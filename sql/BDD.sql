@@ -1,9 +1,7 @@
 START TRANSACTION;
-
 DROP DATABASE IF EXISTS cts;
 CREATE DATABASE cts;
 USE cts;
-
 CREATE TABLE Contact (
 	codeContact INT NOT NULL AUTO_INCREMENT,
 	nomContact VARCHAR(255) NOT NULL,
@@ -12,13 +10,11 @@ CREATE TABLE Contact (
 	codePays INT NOT NULL,
 	CONSTRAINT pk_contact PRIMARY KEY (codeContact)
 );
-
 CREATE TABLE Pays (
 	codePays INT NOT NULL AUTO_INCREMENT,
 	libellePays VARCHAR(255) NOT NULL,
 	CONSTRAINT pk_pays PRIMARY KEY (codePays)
 );
-
 CREATE TABLE Cible (
 	codeCible INT NOT NULL AUTO_INCREMENT,
 	nomCible VARCHAR(255) NOT NULL,
@@ -27,7 +23,6 @@ CREATE TABLE Cible (
 	codePays INT NOT NULL,
 	CONSTRAINT pk_cible PRIMARY KEY (codeCible)
 );
-
 CREATE TABLE Agent (
 	codeAgent INT NOT NULL AUTO_INCREMENT,
 	nomAgent VARCHAR(255) NOT NULL,
@@ -36,13 +31,11 @@ CREATE TABLE Agent (
 	codePays INT NOT NULL,
 	CONSTRAINT pk_agent PRIMARY KEY (codeAgent)
 );
-
 CREATE TABLE Specialite (
 	codeSpecialite INT NOT NULL AUTO_INCREMENT,
 	libelleSpecialite VARCHAR(255) NOT NULL,
 	CONSTRAINT pk_specialite PRIMARY KEY (codeSpecialite)
 );
-
 CREATE TABLE Mission (
 	codeMission INT NOT NULL AUTO_INCREMENT,
 	titreMission VARCHAR(255) NOT NULL,
@@ -54,19 +47,16 @@ CREATE TABLE Mission (
 	codeSpecialite INT NOT NULL,
 	CONSTRAINT pk_mission PRIMARY KEY (codeMission)
 );
-
 CREATE TABLE Statut (
 	codeStatutMission INT NOT NULL AUTO_INCREMENT,
 	libelleMission VARCHAR(255) NOT NULL,
 	CONSTRAINT pk_statut PRIMARY KEY (codeStatutMission)
 );
-
 CREATE TABLE TypeMission (
 	codeTypeMission INT NOT NULL AUTO_INCREMENT,
 	libelleTypeMission VARCHAR(255) NOT NULL,
 	CONSTRAINT pk_typemission PRIMARY KEY (codeTypeMission)
 );
-
 CREATE TABLE Planque (
 	codePlanque INT NOT NULL AUTO_INCREMENT,
 	adressePlanque VARCHAR(255) NOT NULL,
@@ -74,37 +64,31 @@ CREATE TABLE Planque (
 	codeTypePlanque INT NOT NULL,
 	CONSTRAINT pk_planque PRIMARY KEY (codePlanque)
 );
-
 CREATE TABLE TypePlanque (
 	codeTypePlanque INT NOT NULL AUTO_INCREMENT,
 	libelleTypePlanque VARCHAR(255) NOT NULL,
 	CONSTRAINT pk_typeplanque PRIMARY KEY (codeTypePlanque)
 );
-
 CREATE TABLE Aide (
 	codeMission INT NOT NULL,
 	codeContact INT NOT NULL,
 	CONSTRAINT pk_aide PRIMARY KEY (codeMission, codeContact)
 );
-
 CREATE TABLE Visee (
 	codeMission INT NOT NULL,
 	codeCible INT NOT NULL,
 	CONSTRAINT pk_visee PRIMARY KEY (codeMission, codeCible)
 );
-
 CREATE TABLE Specialisation (
 	codeSpecialite INT NOT NULL,
 	codeAgent INT NOT NULL,
 	CONSTRAINT pk_specialisation PRIMARY KEY (codeSpecialite, codeAgent)
 );
-
 CREATE TABLE Execution (
 	codeMission INT NOT NULL,
 	codeAgent INT NOT NULL,
 	CONSTRAINT pk_execution PRIMARY KEY (codeMission, codeAgent)
 );
-
 ALTER TABLE Contact
 ADD CONSTRAINT fk_contact_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
 ALTER TABLE Cible
@@ -116,7 +100,7 @@ ADD CONSTRAINT fk_mission_statut FOREIGN KEY (codeStatutMission) REFERENCES Stat
 ALTER TABLE Mission
 ADD CONSTRAINT fk_mission_typemission FOREIGN KEY (codeTypeMission) REFERENCES TypeMission (codeTypeMission);
 ALTER TABLE Mission
-ADD CONSTRAINT fk_mission_specialite FOREIGN KEY (codeSpecialite) REFERENCES Statut (codeSpecialite);
+ADD CONSTRAINT fk_mission_specialite FOREIGN KEY (codeSpecialite) REFERENCES Specialite (codeSpecialite);
 ALTER TABLE Planque
 ADD CONSTRAINT fk_planque_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
 ALTER TABLE Planque
@@ -137,5 +121,4 @@ ALTER TABLE Execution
 ADD CONSTRAINT fk_execution_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
 ALTER TABLE Execution
 ADD CONSTRAINT fk_execution_agent FOREIGN KEY (codeAgent) REFERENCES Agent (codeAgent);
-
 COMMIT;
