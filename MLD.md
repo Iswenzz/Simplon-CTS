@@ -8,6 +8,8 @@
 
 ### Relations :
 
+NB :  Toutes les données sont non nulles.
+
 - Contact [<u>codeContact</u>, nomContact, prénomContact, dateNaissanceContact, #codePays]
   
   - clé primaire :  codeContact
@@ -18,11 +20,13 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut             | type    | longueur |
+|:-------------------- |:------- |:-------- |
+| codeContact          | INT     |          |
+| nomContact           | VARCHAR | 255      |
+| prenomContact        | VARCHAR | 255      |
+| dateNaissanceContact | DATE    |          |
+| codePays             | INT     |          |
 
 - Cible [<u>codeCible</u>, nomCible, prénomCible, dateNaissanceCible, #codePays]
   
@@ -34,11 +38,13 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut           | type    | longueur |
+|:------------------ |:------- |:-------- |
+| codeCible          | INT     |          |
+| nomCible           | VARCHAR | 255      |
+| prenomCible        | VARCHAR | 255      |
+| dateNaissanceCible | DATE    |          |
+| codePays           | INT     |          |
 
 - Agent [<u>codeAgent</u>, nomAgent, prénomAgent, dateNaissanceAgent, #codePays]
   
@@ -50,11 +56,13 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut             | type    | longueur |
+|:-------------------- |:------- | -------- |
+| codeContact          | INT     |          |
+| nomContact           | VARCHAR | 255      |
+| prenomContact        | VARCHAR | 255      |
+| dateNaissanceContact | DATE    |          |
+| codePays             | INT     |          |
 
 - Spécialité [<u>codeSpécialité</u>, libelléSpécialité]
   
@@ -66,11 +74,10 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut          | type    | longueur |
+| ----------------- | ------- | -------- |
+| codeSpécialité    | INT     |          |
+| libelléSpecialité | VARCHAR | 255      |
 
 - Pays [<u>codePays</u>, libelléPays]
   
@@ -88,11 +95,10 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut    | type    | longueur |
+| ----------- | ------- | -------- |
+| codePays    | INT     |          |
+| libellePays | VARCHAR | 255      |
 
 - Mission [<u>codeMission</u>, titreMission, descriptionMission, dateDébut, dateFin, #codeStatutMission, #codeTypeMission, #codeSpécialité]
   
@@ -118,11 +124,16 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut           | type    | longueur |
+| ------------------ | ------- | -------- |
+| codeMission        | INT     |          |
+| titreMission       | VARCHAR | 255      |
+| descriptionMission | VARCHAR | 255      |
+| dateDébut          | DATE    |          |
+| dateFin            | DATE    |          |
+| codeStatutMission  | INT     |          |
+| codeTypeMission    | INT     |          |
+| codeSpecialite     | INT     |          |
 
 - Statut [<u>codeStatutMission</u>, libelléMission]
   
@@ -131,11 +142,10 @@
   - contraintes :  aucune
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut          | type    | longueur |
+| ----------------- | ------- | -------- |
+| codeStatutMission | INT     |          |
+| libelléMission    | VARCHAR | 255      |
 
 - TypeMission [<u>codeTypeMission</u>, libelléTypeMission]
   
@@ -147,11 +157,10 @@
   
   - dictionnaire des données : 
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut           | type    | longueur |
+| ------------------ | ------- | -------- |
+| codeTypeMission    | INT     |          |
+| libelléTypeMission | VARCHAR | 255      |
 
 - Planque [<u>codePlanque</u>, adressePlanque, #codePays, #codeTypePlanque]
   
@@ -167,11 +176,12 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut        | type    | longueur |
+| --------------- | ------- | -------- |
+| codePlanque     | INT     |          |
+| adressePlanque  | VARCHAR | 255      |
+| codePays        | INT     |          |
+| codeTypePlanque | INT     |          |
 
 - TypePlanque [<u>codeTypePlanque</u>, libelléTypePlanque]
   
@@ -183,11 +193,10 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut           | type    | longueur |
+| ------------------ | ------- | -------- |
+| codeTypePlanque    | INT     |          |
+| libelléTypePlanque | VARCHAR | 255      |
 
 #### Relations supplémentaires dûes aux associations n-n :
 
@@ -205,11 +214,10 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut    | type | longueur |
+| ----------- | ---- | -------- |
+| codeMission | INT  |          |
+| codeContact | INT  |          |
 
 - Visée [<u>#codeMission, #codeCible</u>]
   
@@ -225,11 +233,10 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut    | type | longueur |
+| ----------- | ---- | -------- |
+| codeMission | INT  |          |
+| codeCible   | INT  |          |
 
 - Spécialisation [<u>#codeSpécialité, #codeAgent</u>]
   
@@ -245,11 +252,10 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut       | type | longueur |
+| -------------- | ---- | -------- |
+| codeSpécialité | INT  |          |
+| codeAgent      | INT  |          |
 
 - Exécution [<u>#codeMission, #codeAgent</u>]
   
@@ -265,8 +271,7 @@
   
   - dictionnaire des données :
 
-| attribut | type | longueur |
-| -------- | ---- | -------- |
-|          |      |          |
-|          |      |          |
-|          |      |          |
+| attribut    | type | longueur |
+| ----------- | ---- | -------- |
+| codeMission | INT  |          |
+| codeAgent   | INT  |          |
