@@ -39,6 +39,7 @@ module.exports = (_, argv) =>
 				filename: `${html}.html`,
 				chunks: [html],
 				inject: true,
+				favicon: "src/assets/images/icons/favicon-32x32.png",
 				template: `public/${html}.html`,
 				minify: {
 					collapseWhitespace: true,
