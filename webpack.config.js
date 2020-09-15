@@ -11,7 +11,6 @@ module.exports = (_, argv) =>
 		mode: argv.mode,
 		entry: {	
 			index: ["./src/index.ts"],
-			transport: ["./src/transport.ts"],
 		},
 		output: {
 			filename: "[name].js",
@@ -36,7 +35,7 @@ module.exports = (_, argv) =>
 				filename: "[name].css",
 				chunkFilename: "[id].css",
 			}),
-			...["index", "transport"].map(html => new HtmlWebpackPlugin({
+			...["index"].map(html => new HtmlWebpackPlugin({
 				filename: `${html}.html`,
 				chunks: [html],
 				inject: true,
