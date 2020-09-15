@@ -17,14 +17,13 @@ Contexte du projet
 * Les missions ont un titre, une description, un nom de code, un pays, 1 ou plusieurs agents, 1 ou plusieurs contacts, 1 ou plusieurs cible, une type de mission (Surveillance, Assassinat, Infiltration …), un statut (En preparation, en cours, terminé, echec), 0 ou plusieurs planque, 1 spécialité requise, date de debut, date de fin
 * Les administrateurs ont un nom, un prénom, une adresse mail, un mot de passe, une date de création
 
-**Règle métier :**
-Sur une mission, la ou les cibles ne peuvent pas avoir la même nationalité que le ou les agents.
+**Règle métier :** 
 
-Sur une mission, les contacts sont obligatoirement de la nationalité du pays de la mission.
-
-Sur une mission, la planque est obligatoirement dans le même pays que la mission.
-
-Sur une mission, il faut assigné au moins 1 agent disposant de la spécialité requise.
+_Sur une mission:_
+* La ou les cibles ne peuvent pas avoir la même nationalité que le ou les agents.
+* Les contacts sont obligatoirement de la nationalité du pays de la mission.
+* La planque est obligatoirement dans le même pays que la mission.
+* Il faut assigné au moins 1 agent disposant de la spécialité requise.
 
 ## Modalités pédagogiques
 Il vous est demandé de créer la base de données selon cette description. Tous les champs devront avoir les bons types, avec optimisation. Il faut également créer les liens entre les différentes tables. Certaines colonnes sont peut être manquantes et nécessaire à votre développement, à vous de les fournir. Aucun jeu de données n’est fourni. Il faudra présenter un schéma de conception (MCD/MLD). Il faudra créer un script de création de la base, facilement exécutable pour une création rapide.
@@ -35,12 +34,10 @@ De plus, il faudra créer une interface back-office, uniquement accessible aux u
 
 Il faut réaliser le projet en programmation orienté objet, de type MVC (Model Vue Controller). Chaque table de la base de données sera représentée par un objet PHP.
 
-__BONUS__
-Intégrer un système de pagination sur toutes les listes du site (front-office / back-office)
-
-Ajouter un système de filtres et de tri sur toutes les listes du site
-
-Ajouter un champ de recherche pour une mission
+__BONUS__:
+* Intégrer un système de pagination sur toutes les listes du site (front-office / back-office)
+* Ajouter un système de filtres et de tri sur toutes les listes du site
+* Ajouter un champ de recherche pour une mission
 
 ## Consignes techniques
 * Le site sera réalisé en HTML5, CSS3, JS ES6+ et PHP 7
@@ -50,3 +47,10 @@ Ajouter un champ de recherche pour une mission
 * Vous ne pouvez pas utiliser de framework JS, de framework PHP ou node.js
 
 **Le site est à réaliser par groupe imposés de 2 personnes. A rendre le vendredi 25/09/2020 à 17h30.**
+
+## Build
+    npm i && npm run build
+  
+## Groupe
+<a href="https://github.com/Iswenzz"><img src="https://avatars3.githubusercontent.com/u/26555415?s=100&v=4" height=64 style="border-radius: 50%"></a>
+<a href="https://github.com/ChameauCurieux"><img src="https://avatars2.githubusercontent.com/u/45144369?s=100&v=4" height=64 style="border-radius: 50%"></a>
