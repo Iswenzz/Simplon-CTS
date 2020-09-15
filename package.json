@@ -1,0 +1,69 @@
+{
+	"name": "simplon-cts",
+	"version": "1.0.0",
+	"description": "Simplon PHP 1st TP",
+	"private": true,
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "webpack-dev-server --mode=development",
+		"build": "webpack --progress --mode=production"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Iswenzz/Simplon-CTS.git"
+	},
+	"author": "Iswenzz",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Iswenzz/Simplon-CTS/issues"
+	},
+	"homepage": "https://github.com/Iswenzz/Simplon-CTS#readme",
+	"browserslist": [
+		"defaults"
+	],
+	"dependencies": {
+		"@babel/runtime": "^7.11.2",
+		"materialize-css": "^1.0.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.11.1",
+		"@babel/plugin-proposal-class-properties": "^7.10.4",
+		"@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+		"@babel/plugin-transform-runtime": "^7.11.0",
+		"@babel/preset-env": "^7.11.0",
+		"@babel/preset-typescript": "^7.10.4",
+		"@types/materialize-css": "^1.0.8",
+		"@types/node": "^14.0.27",
+		"@typescript-eslint/eslint-plugin": "^3.7.1",
+		"@typescript-eslint/parser": "^3.7.1",
+		"babel-loader": "^8.1.0",
+		"clean-webpack-plugin": "^3.0.0",
+		"css-loader": "^4.0.0",
+		"cssnano": "^4.1.10",
+		"eslint": "^7.5.0",
+		"eslint-loader": "^4.0.2",
+		"file-loader": "^6.0.0",
+		"html-loader": "^1.1.0",
+		"html-webpack-plugin": "^4.3.0",
+		"mini-css-extract-plugin": "^0.9.0",
+		"postcss-flexbugs-fixes": "^4.2.1",
+		"postcss-font-magician": "^2.3.1",
+		"postcss-import": "^12.0.1",
+		"postcss-loader": "^3.0.0",
+		"postcss-preset-env": "^6.7.0",
+		"postcss-safe-parser": "^4.0.2",
+		"postcss-scss": "^2.1.1",
+		"sass": "^1.26.10",
+		"sass-loader": "^9.0.2",
+		"style-loader": "^1.2.1",
+		"stylelint": "^13.6.1",
+		"stylelint-config-sass-guidelines": "^7.0.0",
+		"stylelint-order": "^4.1.0",
+		"stylelint-webpack-plugin": "^2.1.0",
+		"ts-loader": "^8.0.1",
+		"typescript": "^3.9.7",
+		"webpack": "^4.44.0",
+		"webpack-cli": "^3.3.12",
+		"webpack-dev-server": "^3.11.0"
+	}
+}
