@@ -2,18 +2,27 @@
 <html lang="fr" dir="ltr">
 
 <head>
-
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
 
 	<title>TP7 - Classé Private</title>
 </head>
 
 <body>
-	<p id="test"></p>
+	<p id="display"></p>
+
+	<form action="../src/backend/php/form.php">
+		<div>
+			<label for="table">Table : </label>
+			<input type="text" name="table" id="table">
+		</div>
+		<div>
+			<label for="column">Colonne : </label>
+			<input type="text" name="column" id="column">
+		</div>
+
+		<button type="submit">Tester</button>
+	</form>
 
 </body>
 
