@@ -2,6 +2,44 @@ START TRANSACTION;
 DROP DATABASE IF EXISTS cts;
 CREATE DATABASE cts;
 USE cts;
+-- ------- CREATING ADMINS ------- --
+CREATE TABLE Admin (
+	codeAdmin INT NOT NULL AUTO_INCREMENT,
+	nomAdmin VARCHAR(255) NOT NULL,
+	prenomAdmin VARCHAR(255) NOT NULL,
+	dateCreationAdmin DATE,
+	mdpAdmin VARCHAR(32) NOT NULL,
+	mailAdmin VARCHAR(64) NOT NULL,
+	CONSTRAINT pk_admin PRIMARY KEY (codeAdmin)
+);
+INSERT INTO Admin (
+		prenomAdmin,
+		nomAdmin,
+		dateCreationAdmin,
+		mdpAdmin,
+		mailAdmin
+	)
+VALUES (
+		"Julie",
+		"Souchet",
+		NOW(),
+		"juliesouchet",
+		"julie.souchet.simplon@gmail.com"
+	),
+	(
+		"Alexis",
+		"Nardiello",
+		NOW(),
+		"alexisnardiello",
+		"alexis.nardiello.simplon@gmail.com"
+	),
+	(
+		"admin",
+		"admin",
+		NOW(),
+		"admin",
+		"admin@cts.com"
+	);
 -- ------- CREATING TABLES ------- --
 CREATE TABLE Contact (
 	codeContact INT NOT NULL AUTO_INCREMENT,
