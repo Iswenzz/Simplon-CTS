@@ -4,8 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<title>TP7 - Classé Private</title>
+	<title>TP7 - Classé Private - Connexion</title>
 </head>
 
 <body>
@@ -14,21 +13,16 @@
 		<a href="connexion.html">Connexion</a>
 	</nav>
 
-
-
-	<form action="../src/backend/php/form.php">
+	<form action="../src/backend/php/check_connect.php" method="POST">
 		<div>
-			<label for="table">Table : </label>
-			<input type="text" name="table" id="table">
+			<label for="mail">Mail : </label>
+			<input type="email" name="mail" id="mail">
 		</div>
 		<div>
-			<label for="column">Colonne : </label>
-			<input type="text" name="column" id="column">
+			<label for="pwd">Mot de passe : </label>
+			<input type="password" name="pwd" id="pwd">
 		</div>
-
-		<button type="submit">Tester</button>
 	</form>
-
 </body>
 
 </html>
