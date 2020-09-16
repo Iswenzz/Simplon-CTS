@@ -4,7 +4,7 @@ const hideoutTypeCount = 4;
 // const specialityCount = 16;
 
 
-function newUser(category = "person", number = 0) {
+const newUser = (category = "person", number = 0) : void => {
 	fetch("https://randomuser.me/api/")
 		.then((response) => {
 	  // get the response
@@ -32,31 +32,31 @@ function newUser(category = "person", number = 0) {
 	  // if the promise failed
 	  console.error(error);
 		});
-}
+};
 
 /**
  * Generates a random country.
  */
-function generateCountry() : number {
+const generateCountry = () : number=> { 
 	return Math.ceil(Math.random()*countryCount);
-}
+};
 
 /**
  * Generates a random hideout type.
  */
-function generateHideoutType() : number {
+const generateHideoutType = () : number=> { 
 	return Math.ceil(Math.random()*hideoutTypeCount);
-}
+};
   
   
-function displayHideout(user, number) {
+const displayHideout = (user, number): void =>  {
 	// address
 	const loc : JSON = user.results[0].location;
 	
 	console.log(`("${loc.street.number} ${loc.street.name}, ${loc.postcode} ${loc.city}", ${number}, ${generateHideoutType()}),`);
-}
+};
   
-function displayPerson(user) {
+const displayPerson = (user) : void => {
 	// name and first name
 	const {first, last} = user.results[0].name;
 	// date of birth : only the "YYYY-MM-DD" part of ISO Date
@@ -65,7 +65,7 @@ function displayPerson(user) {
 	const country : number = generateCountry();
 	
 	console.log(`("${first}", "${last}", STR_TO_DATE("${dob}", "%Y-%m-%d"), ${country}),`);
-}
+};
 
 /**
  * Generates n random persons with randomuser API, and displays the results
