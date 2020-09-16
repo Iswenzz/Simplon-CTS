@@ -113,3 +113,6 @@ module.exports = (_, argv) =>
 		}
 	};	
 };
+
+// TODO ajouter php loader
+// TODO factoriser les morceaux de html communs (head, nav, footer...)
