@@ -142,5 +142,4 @@ ALTER TABLE Abri
 ADD CONSTRAINT fk_abri_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
 ALTER TABLE Abri
 ADD CONSTRAINT fk_abri_planque FOREIGN KEY (codePlanque) REFERENCES Planque (codePlanque);
--- ------- ADDING JOB CONSTRAINTS ------- --
 COMMIT;
