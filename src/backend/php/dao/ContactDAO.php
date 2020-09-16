@@ -1,8 +1,9 @@
 <?php
+require "./DAO.php";
 require "../DatabaseFactory.php";
 require "../model/Contact.php";
 
-class ContactDAO
+class ContactDAO implements DAO
 {
 	public const SELECT_QUERY = "SELECT * from Contact";
 
@@ -33,5 +34,10 @@ class ContactDAO
 	public function addContact(Contact $contact): void
 	{
 		
+	}
+
+	public function getClassName(): string
+	{
+		return get_class($this);
 	}
 }
