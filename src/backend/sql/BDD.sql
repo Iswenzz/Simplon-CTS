@@ -2,6 +2,7 @@ START TRANSACTION;
 DROP DATABASE IF EXISTS cts;
 CREATE DATABASE cts;
 USE cts;
+-- ------- CREATING TABLES ------- --
 CREATE TABLE Contact (
 	codeContact INT NOT NULL AUTO_INCREMENT,
 	nomContact VARCHAR(255) NOT NULL,
@@ -89,36 +90,57 @@ CREATE TABLE Execution (
 	codeAgent INT NOT NULL,
 	CONSTRAINT pk_execution PRIMARY KEY (codeMission, codeAgent)
 );
+CREATE TABLE Abri (
+	codeMission INT NOT NULL,
+	codePlanque INT NOT NULL,
+	CONSTRAINT pk_abri PRIMARY KEY (codeMission, codePlanque)
+);
+-- ------- ADDING FOREIGN KEYS ------- --
+-- contact
 ALTER TABLE Contact
 ADD CONSTRAINT fk_contact_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
+-- cible
 ALTER TABLE Cible
 ADD CONSTRAINT fk_cible_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
+-- agent
 ALTER TABLE Agent
 ADD CONSTRAINT fk_agent_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
+-- mission
 ALTER TABLE Mission
 ADD CONSTRAINT fk_mission_statut FOREIGN KEY (codeStatutMission) REFERENCES Statut (codeStatutMission);
 ALTER TABLE Mission
 ADD CONSTRAINT fk_mission_typemission FOREIGN KEY (codeTypeMission) REFERENCES TypeMission (codeTypeMission);
 ALTER TABLE Mission
 ADD CONSTRAINT fk_mission_specialite FOREIGN KEY (codeSpecialite) REFERENCES Specialite (codeSpecialite);
+-- planque
 ALTER TABLE Planque
 ADD CONSTRAINT fk_planque_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
 ALTER TABLE Planque
 ADD CONSTRAINT fk_planque_typeplanque FOREIGN KEY (codeTypePlanque) REFERENCES TypePlanque (codeTypePlanque);
+-- aide
 ALTER TABLE Aide
 ADD CONSTRAINT fk_aide_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
 ALTER TABLE Aide
 ADD CONSTRAINT fk_aide_contact FOREIGN KEY (codeContact) REFERENCES Contact (codeContact);
+-- visee
 ALTER TABLE Visee
 ADD CONSTRAINT fk_visee_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
 ALTER TABLE Visee
 ADD CONSTRAINT fk_visee_cible FOREIGN KEY (codeCible) REFERENCES Cible (codeCible);
+-- specialisation
 ALTER TABLE Specialisation
 ADD CONSTRAINT fk_specialisation_specialite FOREIGN KEY (codeSpecialite) REFERENCES Specialite (codeSpecialite);
 ALTER TABLE Specialisation
 ADD CONSTRAINT fk_specialisation_agent FOREIGN KEY (codeAgent) REFERENCES Agent (codeAgent);
+-- execution
 ALTER TABLE Execution
 ADD CONSTRAINT fk_execution_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
 ALTER TABLE Execution
 ADD CONSTRAINT fk_execution_agent FOREIGN KEY (codeAgent) REFERENCES Agent (codeAgent);
+-- abri
+ALTER TABLE Abri
+ADD CONSTRAINT fk_abri_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
+ALTER TABLE Abri
+ADD CONSTRAINT fk_abri_planque FOREIGN KEY (codePlanque) REFERENCES Planque (codePlanque);
+-- ------- ADDING JOB CONSTRAINTS ------- --
 COMMIT;

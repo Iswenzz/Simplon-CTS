@@ -6,9 +6,11 @@
 
 ## Modèle logique de données
 
+NB : Toutes les données sont non nulles. 
+
 ### Relations :
 
-- Contact [<u>codeContact</u>, nomContact, prénomContact, dateNaissanceContact, #codePays]
+- **Contact** [<u>codeContact</u>, nomContact, prénomContact, dateNaissanceContact, #codePays]
   
   - clé primaire :  codeContact
   
@@ -26,7 +28,7 @@
 | dateNaissanceContact | DATE    |          |
 | codePays             | INT     |          |
 
-- Cible [<u>codeCible</u>, nomCible, prénomCible, dateNaissanceCible, #codePays]
+- **Cible** [<u>codeCible</u>, nomCible, prénomCible, dateNaissanceCible, #codePays]
   
   - clé primaire : codeCible
   
@@ -44,7 +46,7 @@
 | dateNaissanceCible | DATE    |          |
 | codePays           | INT     |          |
 
-- Agent [<u>codeAgent</u>, nomAgent, prénomAgent, dateNaissanceAgent, #codePays]
+- **Agent** [<u>codeAgent</u>, nomAgent, prénomAgent, dateNaissanceAgent, #codePays]
   
   - clé primaire :  codeAgent
   
@@ -62,7 +64,7 @@
 | dateNaissanceContact | DATE    |          |
 | codePays             | INT     |          |
 
-- Spécialité [<u>codeSpécialité</u>, libelléSpécialité]
+- **Spécialité** [<u>codeSpécialité</u>, libelléSpécialité]
   
   - clé primaire :  codeSpécialité
   
@@ -77,7 +79,7 @@
 | codeSpécialité    | INT     |          |
 | libelléSpécialité | VARCHAR | 127      |
 
-- Pays [<u>codePays</u>, libelléPays]
+- **Pays** [<u>codePays</u>, libelléPays]
   
   - clé primaire :  codePays
   
@@ -98,7 +100,7 @@
 | codePays    | INT     |          |
 | libelléPays | VARCHAR | 255      |
 
-- Mission [<u>codeMission</u>, titreMission, descriptionMission, dateDébut, dateFin, #codeStatutMission, #codeTypeMission, #codeSpécialité]
+- **Mission** [<u>codeMission</u>, titreMission, descriptionMission, dateDébut, dateFin, #codeStatutMission, #codeTypeMission, #codeSpécialité]
   
   - clé primaire : codeMission
   
@@ -133,7 +135,7 @@
 | codeTypeMission    | INT     |          |
 | codeSpécialité     | INT     |          |
 
-- Statut [<u>codeStatutMission</u>, libelléStatutMission]
+- **Statut** [<u>codeStatutMission</u>, libelléStatutMission]
   
   - clé primaire :  codeStatutMission
   - clés étrangères : aucune
@@ -145,7 +147,7 @@
 | codeStatutMission    | INT     |          |
 | libelléStatutMission | VARCHAR | 127      |
 
-- TypeMission [<u>codeTypeMission</u>, libelléTypeMission]
+- **TypeMission** [<u>codeTypeMission</u>, libelléTypeMission]
   
   - clé primaire :  codeTypeMission
   
@@ -160,7 +162,7 @@
 | codeTypeMission    | INT     |          |
 | libelléTypeMission | VARCHAR | 127      |
 
-- Planque [<u>codePlanque</u>, adressePlanque, #codePays, #codeTypePlanque]
+- **Planque** [<u>codePlanque</u>, adressePlanque, #codePays, #codeTypePlanque]
   
   - clé primaire :  codePlanque
   
@@ -181,7 +183,7 @@
 | codePays        | INT     |          |
 | codeTypePlanque | INT     |          |
 
-- TypePlanque [<u>codeTypePlanque</u>, libelléTypePlanque]
+- **TypePlanque** [<u>codeTypePlanque</u>, libelléTypePlanque]
   
   - clé primaire : codeTypePlanque
   
@@ -198,7 +200,7 @@
 
 #### Relations supplémentaires dûes aux associations n-n :
 
-- Aide [<u>#codeMission, #codeContact</u>]
+- **Aide** [<u>#codeMission, #codeContact</u>]
   
   - clé primaire : codeMission, codeContact (composée)
   
@@ -208,7 +210,7 @@
     
     - Aide [codeContact] ∈ Contact [codeContact]
   
-  - contraintes : aucune
+  - contraintes : Sur une mission, les contacts sont obligatoirement de la nationalité du pays de la mission.
   
   - dictionnaire des données :
 
@@ -217,7 +219,7 @@
 | codeMission | INT  |          |
 | codeContact | INT  |          |
 
-- Visée [<u>#codeMission, #codeCible</u>]
+- **Visée** [<u>#codeMission, #codeCible</u>]
   
   - clé primaire : codeMission, codeCible (composée)
   
@@ -227,7 +229,7 @@
     
     - Visée [codeCible] ∈ Cible [codeCible]
   
-  - contraintes : aucune
+  - contraintes : Sur une mission, la ou les cibles ne peuvent pas avoir la même nationalité que le ou les agents.
   
   - dictionnaire des données :
 
@@ -236,7 +238,7 @@
 | codeMission | INT  |          |
 | codeCible   | INT  |          |
 
-- Spécialisation [<u>#codeSpécialité, #codeAgent</u>]
+- **Spécialisation** [<u>#codeSpécialité, #codeAgent</u>]
   
   - clé primaire : codeSpécialité, codeAgent (composée)
   
@@ -246,7 +248,7 @@
     
     - Spécialisation [codeAgent] ∈ Agent [codeAgent]
   
-  - contraintes : aucune
+  - contraintes : Sur une mission, il faut assigner au moins 1 agent disposant de la spécialité requise.
   
   - dictionnaire des données :
 
@@ -255,9 +257,9 @@
 | codeSpécialité | INT  |          |
 | codeAgent      | INT  |          |
 
-- Exécution [<u>#codeMission, #codeAgent</u>]
+- **Exécution** [<u>#codeMission, #codeAgent</u>]
   
-  - clé primaire : codeMission, codeAgent
+  - clé primaire : codeMission, codeAgent (composée)
   
   - clés étrangères :
     
@@ -265,7 +267,11 @@
     
     - Exécution [codeAgent] ∈ Agent [codeAgent]
   
-  - contraintes : aucune
+  - contraintes : 
+    
+    - Sur une mission, la ou les cibles ne peuvent pas avoir la même nationalité que le ou les agents.
+    
+    - Sur une mission, il faut assigner au moins 1 agent disposant de la spécialité requise.
   
   - dictionnaire des données :
 
@@ -273,3 +279,22 @@
 | ----------- | ---- | -------- |
 | codeMission | INT  |          |
 | codeAgent   | INT  |          |
+
+- **Abri** [<u>#codeMission, #codePlanque</u>]
+  
+  - clé primaire : codeMission, codePlanque (composée)
+  
+  - clés étrangères :
+    
+    - Abri [codeMission] ∈ Mission [codeMission]
+    
+    - Abri [codePlanque] ∈ Planque [codePlanque]
+  
+  - contraintes : Sur une mission, la planque est obligatoirement dans le même pays que la mission.
+  
+  - dictionnaire des données :
+
+| attribut    | type | longueur |
+| ----------- | ---- | -------- |
+| codeMission | INT  |          |
+| codePlanque | INT  |          |
