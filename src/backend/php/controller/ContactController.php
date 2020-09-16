@@ -13,18 +13,18 @@ class ContactController
 		$this->view = $view;
 	}
 
-	public function setCode(string $code)
+	public function getModel(): Contact
 	{
-		$this->model->setCode($code);		
+		return $this->model;
 	}
 
-	public function getCode()
+	public function getView(): ContactView
 	{
-		return $this->model->getCode();	
+		return $this->view;
 	}
 
-	public function updateView()
+	public function updateView(): void
 	{				
-		$this->view->printContact($this->model->getCode());
+		$this->view->printContact();
 	}	
 }
