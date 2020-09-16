@@ -33,13 +33,13 @@ CREATE TABLE Agent (
 );
 CREATE TABLE Specialite (
 	codeSpecialite INT NOT NULL AUTO_INCREMENT,
-	libelleSpecialite VARCHAR(255) NOT NULL,
+	libelleSpecialite VARCHAR(127) NOT NULL,
 	CONSTRAINT pk_specialite PRIMARY KEY (codeSpecialite)
 );
 CREATE TABLE Mission (
 	codeMission INT NOT NULL AUTO_INCREMENT,
-	titreMission VARCHAR(255) NOT NULL,
-	descriptionMission VARCHAR(255) NOT NULL,
+	titreMission VARCHAR(127) NOT NULL,
+	descriptionMission TEXT NOT NULL,
 	dateDebut DATE NOT NULL,
 	dateFin DATE NOT NULL,
 	codeStatutMission INT NOT NULL,
@@ -49,12 +49,12 @@ CREATE TABLE Mission (
 );
 CREATE TABLE Statut (
 	codeStatutMission INT NOT NULL AUTO_INCREMENT,
-	libelleMission VARCHAR(255) NOT NULL,
+	libelleStatutMission VARCHAR(127) NOT NULL,
 	CONSTRAINT pk_statut PRIMARY KEY (codeStatutMission)
 );
 CREATE TABLE TypeMission (
 	codeTypeMission INT NOT NULL AUTO_INCREMENT,
-	libelleTypeMission VARCHAR(255) NOT NULL,
+	libelleTypeMission VARCHAR(127) NOT NULL,
 	CONSTRAINT pk_typemission PRIMARY KEY (codeTypeMission)
 );
 CREATE TABLE Planque (
@@ -66,7 +66,7 @@ CREATE TABLE Planque (
 );
 CREATE TABLE TypePlanque (
 	codeTypePlanque INT NOT NULL AUTO_INCREMENT,
-	libelleTypePlanque VARCHAR(255) NOT NULL,
+	libelleTypePlanque VARCHAR(127) NOT NULL,
 	CONSTRAINT pk_typeplanque PRIMARY KEY (codeTypePlanque)
 );
 CREATE TABLE Aide (
