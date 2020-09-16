@@ -16,12 +16,14 @@
 	<form action="../src/backend/php/check_connect.php" method="POST">
 		<div>
 			<label for="mail">Mail : </label>
-			<input type="email" name="mail" id="mail">
+			<input type="email" name="mail" id="mail" required>
 		</div>
 		<div>
 			<label for="pwd">Mot de passe : </label>
-			<input type="password" name="pwd" id="pwd">
+			<input type="password" name="pwd" id="pwd" required>
 		</div>
+
+		<button type="submit">Envoyer</button>
 	</form>
 </body>
 

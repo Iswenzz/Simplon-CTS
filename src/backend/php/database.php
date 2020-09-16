@@ -4,12 +4,14 @@ class Database
 {
     private ?PDO $DB = null;
 
-    public function __construct(string $user, string $password, string $db = "cts")
+    public function __construct(string $user, string $password, string $db, bool $debug = false)
     {
         try {
             $this->DB = new PDO("mysql:host=localhost;dbname=$db;port=3306;charset=utf8mb4", $user, $password);
-        
-            print_r("$db Connected!");
+            
+            if ($debug) {
+                print_r("Connected to $db! <br/>");
+            }
         } catch (PDOException $e) {
             throw new PDOException($e->getMessage());
         }
@@ -65,10 +67,10 @@ class Database
     public function FetchAll(string $table): array
     {
         // prepare the query
-        $req = $this->DB->prepare("SELECT * FROM :tab");
-        
+        $req = $this->DB->prepare("SELECT * FROM $table");
+        // $req->debugDumpParams(); // debug
         // execution
-        $req->execute(["tab" => $table]);
+        $req->execute();
 
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
