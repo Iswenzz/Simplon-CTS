@@ -10,7 +10,7 @@ module.exports = (_, argv) =>
 	return {
 		mode: argv.mode,
 		entry: {	
-			index: ["./src/index.ts"],
+			index: ["./src/frontend/index.ts"],
 		},
 		output: {
 			filename: "[name].js",
