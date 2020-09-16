@@ -1,25 +1,63 @@
 <?php
 
-class Database
+/**
+ * Database PDO factory.
+ */
+class DatabaseFactory
 {
-    private ?PDO $DB = null;
+    private static PDO $DB;
 
-    public function __construct(string $user, string $password, string $db, bool $debug = false)
+    /**
+     * Singleton database instance.
+     * @param string $user - The database username.
+     * @param string $password - The database password.
+     * @param string $db - The default db to acess.
+     * @param bool $debug - Print debug informations.
+     */
+    private function __construct(string $user, string $password, string $db, bool $debug = false)
     {
-        try {
+        try 
+        {
             $this->DB = new PDO("mysql:host=localhost;dbname=$db;port=3306;charset=utf8mb4", $user, $password);
-            
-            if ($debug) {
+            if ($debug)
                 print_r("Connected to $db! <br/>");
-            }
-        } catch (PDOException $e) {
+        } 
+        catch (PDOException $e) 
+        {
             throw new PDOException($e->getMessage());
         }
     }
 
     /**
-     * Execute a SELECT query to the chosen $table, for the chosen $columns (optional), with the chosen $conditions (optional).
-     *
+     * Get the database singleton instance.
+     */
+    public static function getConnection(): PDO
+    {
+        if (!DatabaseFactory::$DB)
+        DatabaseFactory::$DB = new DatabaseFactory($_ENV["user"], $_ENV["password"], 
+            $_ENV["db"], $_ENV["mode"] == "development");
+        return DatabaseFactory::$DB;
+    }
+
+    /**
+     * Fetch the SQLSTATE associated with the last operation on the database handle.
+     */
+    public static function getLastError(): string
+    {
+        return DatabaseFactory::$DB->errorCode();
+    }
+
+    /**
+     * Shutdown the PDO connection.
+     */
+    public static function shutdown(): void
+    {
+        DatabaseFactory::$DB = null;
+    }
+
+    /**
+     * Execute a SELECT query to the chosen $table, for the chosen $columns (optional), 
+     * with the chosen $conditions (optional).
      * @param string $table The name of the table.
      * @param array $columns The list of columns to be fetched : ["id", "type", etc.]
      * @param array $conditions The list of conditions to check :
@@ -29,7 +67,7 @@ class Database
      * ]
      * @return array Array of resulting rows, with each row being an array with the columns names as indexes.
      */
-    public function Fetch(string $table, array $columns = ["*"], array $conditions = []): array
+    public static function fetch(string $table, array $columns = ["*"], array $conditions = []): array
     {
         // prepare query string for the columns (select ...)
         $columnsString = count($columns) == 1 ? $columns[0] : implode(", ", $columns);
@@ -47,13 +85,13 @@ class Database
         }
 
         // prepare the query
-        $req = $this->DB->prepare("SELECT :cols FROM :tab :conds");
-        
+        $req = DatabaseFactory::$DB->prepare("SELECT :cols FROM :tab :conds");
         // execution
         $req->execute([
             "cols" => $columnsString,
             "tab" => $table,
-            "conds" => $conditionsString]);
+            "conds" => $conditionsString
+        ]);
 
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -64,10 +102,10 @@ class Database
      * @param string $table The name of the table.
      * @return array Array of resulting rows, with each row being an array with the columns names as indexes.
      */
-    public function FetchAll(string $table): array
+    public static function fetchAll(string $table): array
     {
         // prepare the query
-        $req = $this->DB->prepare("SELECT * FROM $table");
+        $req = DatabaseFactory::$DB->prepare("SELECT * FROM $table");
         // $req->debugDumpParams(); // debug
         // execution
         $req->execute();
