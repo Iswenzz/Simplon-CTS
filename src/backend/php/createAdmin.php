@@ -33,3 +33,5 @@ if ($success) {
 } else {
     echo "Ajout d'admin échoué ! ☹ $errorMessage<br/>";
 }
+
+// TODO this is to be in Admin class

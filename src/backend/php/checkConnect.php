@@ -31,3 +31,5 @@ if (isset($_POST["mail"]) && isset($_POST["pwd"])) {
 } else {
     echo "Pseudo ou mdp manquant !";
 }
+
+// TODO this is to be in Admin class
