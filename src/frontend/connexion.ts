@@ -10,7 +10,8 @@ form.addEventListener("submit", (ev) => {
 	ev.preventDefault();
 
 	console.log(`test ${mailInput.value} & ${pwdInput.value}`);
-	Axios.post("http://localhost/~jsouchet/TP/TP6-CTS/src/backend/php/checkConnect.php", {
+	// TODO : passage en prod => mettre un URL absolu par rapport au serveur hébergeur
+	Axios.post("../src/backend/php/checkConnect.php", {
 		"mail": mailInput.value,
 		"motDePasse": pwdInput.value
 	});
