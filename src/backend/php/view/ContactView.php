@@ -1,5 +1,5 @@
 <?php
-require "../model/Contact.php";
+require_once __DIR__ . "/../model/Contact.php";
 
 class ContactView 
 {
@@ -12,7 +12,6 @@ class ContactView
 
 	public function printContact(): void
 	{
-		print_r("Contact:");
-		print_r("[Code] " . $this->model->getCode());
+		print_r("[Contact]: " . $this->model->getCode() . " " . $this->model->getNom() . "<br>");
 	}
 }
