@@ -74,4 +74,27 @@ class Database
 
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * TODO :
+     * TEMPORARY FUNCTION
+     * TO BE DELETED when DAO is functionnal
+     */
+    public function createAdmin(string $name, string $firstname, string $mail, string $hashedPwd, string $salt): bool
+    {
+        $req = $this->DB->prepare(
+            "INSERT INTO Admin (nomAdmin, prenomAdmin, mailAdmin, mdpAmin, sel, dateCreationAdmin) VALUES
+            (:nomAdmin, :prenomAdmin, :mailAdmin, :mdpAmin, :sel, NOW())"
+        );
+
+        $values = [
+            "nomAdmin" => $name,
+            "prenomAdmin" => $firstname,
+            "mailAdmin" => $mail,
+            "mdpAmin" => $hashedPwd,
+            "sel" => $salt
+        ];
+
+        return $req->execute($values);
+    }
 }

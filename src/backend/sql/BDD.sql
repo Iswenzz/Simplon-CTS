@@ -8,38 +8,11 @@ CREATE TABLE Admin (
 	nomAdmin VARCHAR(255) NOT NULL,
 	prenomAdmin VARCHAR(255) NOT NULL,
 	dateCreationAdmin DATE,
-	mdpAdmin VARCHAR(32) NOT NULL,
 	mailAdmin VARCHAR(64) NOT NULL,
+	mdpAdmin VARCHAR(32) NOT NULL,
+	sel VARCHAR(64) NOT NULL,
 	CONSTRAINT pk_admin PRIMARY KEY (codeAdmin)
 );
-INSERT INTO Admin (
-		prenomAdmin,
-		nomAdmin,
-		dateCreationAdmin,
-		mdpAdmin,
-		mailAdmin
-	)
-VALUES (
-		"Julie",
-		"Souchet",
-		NOW(),
-		"juliesouchet",
-		"julie.souchet.simplon@gmail.com"
-	),
-	(
-		"Alexis",
-		"Nardiello",
-		NOW(),
-		"alexisnardiello",
-		"alexis.nardiello.simplon@gmail.com"
-	),
-	(
-		"admin",
-		"admin",
-		NOW(),
-		"admin",
-		"admin@cts.com"
-	);
 -- ------- CREATING TABLES ------- --
 CREATE TABLE Contact (
 	codeContact INT NOT NULL AUTO_INCREMENT,
