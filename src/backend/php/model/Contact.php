@@ -1,5 +1,5 @@
 <?php
-require "../controller/ContactController.php";
+require_once __DIR__ . "/../controller/ContactController.php";
 
 class Contact
 {

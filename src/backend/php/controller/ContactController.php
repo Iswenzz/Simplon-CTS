@@ -1,6 +1,6 @@
 <?php
-require "../model/Contact.php";
-require "../views/ContactView.php";
+require_once __DIR__ . "/../model/Contact.php";
+require_once __DIR__ . "/../view/ContactView.php";
 
 class ContactController
 {
