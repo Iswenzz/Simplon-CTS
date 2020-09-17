@@ -1,9 +1,9 @@
 <?php
 require_once("./database.php");
 
-$connexionPage = isset($_SERVER['HTTP_REFERER']) ? isset($_SERVER['HTTP_REFERER']) : "/TP/TP6-CTS/dist/connexion.html";
+$connexionPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/TP/TP6-CTS/dist/connexion.html";
 
-if (isset($_POST["mail"]) && isset($_POST["pwd"])) {
+if (isset($_POST["mail"]) && isset($_POST["motDePasse"])) {
     $DB = new Database("admin", "E.F.Codd", "cts", false);
     $admins = $DB->FetchAll("Admin");
     
@@ -16,6 +16,7 @@ if (isset($_POST["mail"]) && isset($_POST["pwd"])) {
         }
         // same user name -> check password
         // check match
+        $pwd = $_POST["motDePasse"];
         if (password_verify($pwd, $admin["mdpAdmin"])) {
             $match = true;
             break;
@@ -25,7 +26,7 @@ if (isset($_POST["mail"]) && isset($_POST["pwd"])) {
     if ($match) {
         echo "Connexion réussie ! 😀<br/>";
     } else {
-        header("refresh:3; url=$connexionPage");
+        // header("refresh:3; url=$connexionPage");
         echo "Connexion échouée ! ☹<br/> Retour  dans 3 secondes...";
     }
 } else {

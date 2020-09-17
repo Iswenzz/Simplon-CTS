@@ -35,7 +35,7 @@ module.exports = (_, argv) =>
 				filename: "[name].css",
 				chunkFilename: "[id].css",
 			}),
-			...["index", "inscription"].map(html => new HtmlWebpackPlugin({
+			...["index", "inscription", "connexion"].map(html => new HtmlWebpackPlugin({
 				filename: `${html}.html`,
 				chunks: [html],
 				inject: true,
