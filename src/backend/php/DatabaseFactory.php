@@ -5,7 +5,7 @@
  */
 class DatabaseFactory
 {
-    private static PDO $DB;
+    private static ?PDO $DB = null;
 
     /**
      * Singleton database instance.
@@ -18,7 +18,7 @@ class DatabaseFactory
     {
         try 
         {
-            $this->DB = new PDO("mysql:host=localhost;dbname=$db;port=3306;charset=utf8mb4", $user, $password);
+            DatabaseFactory::$DB = new PDO("mysql:host=localhost;dbname=$db;port=3306;charset=utf8mb4", $user, $password);
             if ($debug)
                 print_r("Connected to $db! <br/>");
         } 
@@ -31,10 +31,10 @@ class DatabaseFactory
     /**
      * Get the database singleton instance.
      */
-    public static function getConnection(): PDO
+    public static function getConnection(): ?PDO
     {
         if (!DatabaseFactory::$DB)
-        DatabaseFactory::$DB = new DatabaseFactory($_ENV["user"], $_ENV["password"], 
+            new DatabaseFactory($_ENV["user"], $_ENV["password"], 
             $_ENV["db"], $_ENV["mode"] == "development");
         return DatabaseFactory::$DB;
     }
