@@ -1,11 +1,11 @@
 <?php
-require "./DAO.php";
+require_once __DIR__ . "/DAO.php";
 
 class DAOFactory
 {
 	private static array $daoMap = [];
 
-	public static function getDAO(string $class)
+	public static function getDAO(string $class): DAO
 	{
 		$result = DAOFactory::$daoMap[$class];
 		if (!$result)
@@ -13,7 +13,7 @@ class DAOFactory
 		return $result;
 	}
 
-	public static function registerDAO(string $class)
+	public static function registerDAO(string $class): void
 	{
 		/**
 		 * @var DAO $dao
@@ -25,7 +25,7 @@ class DAOFactory
 			DAOFactory::$daoMap[$class] = $dao;
 	}
 
-	public static function unregisterDAO(string $class)
+	public static function unregisterDAO(string $class): void
 	{
 		/**
 		 * @var DAO $dao
