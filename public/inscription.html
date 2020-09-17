@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TP7 - Classé Private - Connexion</title>
+	<title>TP7 - Classé Private - Inscription</title>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 		<a href="connexion.html">Connexion</a>
 	</nav>
 
-	<form action="../src/backend/php/check_connect.php" method="POST">
+	<form action="../src/backend/php/createAdmin.php" method="POST">
 		<div>
 			<label for="prenom">Prenom : </label>
 			<input type="text" name="prenom" id="prenom" required>
@@ -27,8 +27,8 @@
 			<input type="email" name="mail" id="mail" required>
 		</div>
 		<div>
-			<label for="pwd">Mot de passe : </label>
-			<input type="password" name="pwd" id="pwd" required>
+			<label for="motDePasse">Mot de passe : </label>
+			<input type="password" name="motDePasse" id="motDePasse" required>
 		</div>
 
 		<button type="submit">Envoyer</button>

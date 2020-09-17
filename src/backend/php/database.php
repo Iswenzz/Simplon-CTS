@@ -10,7 +10,7 @@ class Database
             $this->DB = new PDO("mysql:host=localhost;dbname=$db;port=3306;charset=utf8mb4", $user, $password);
             
             if ($debug) {
-                print_r("Connected to $db! <br/>");
+                print_r("Connected to $db! <hr/>");
             }
         } catch (PDOException $e) {
             throw new PDOException($e->getMessage());
@@ -80,19 +80,18 @@ class Database
      * TEMPORARY FUNCTION
      * TO BE DELETED when DAO is functionnal
      */
-    public function createAdmin(string $name, string $firstname, string $mail, string $hashedPwd, string $salt): bool
+    public function createAdmin(string $name, string $firstname, string $mail, string $hashedPwd): bool
     {
         $req = $this->DB->prepare(
-            "INSERT INTO Admin (nomAdmin, prenomAdmin, mailAdmin, mdpAmin, sel, dateCreationAdmin) VALUES
-            (:nomAdmin, :prenomAdmin, :mailAdmin, :mdpAmin, :sel, NOW())"
+            "INSERT INTO Admin(nomAdmin, prenomAdmin, mailAdmin, mdpAdmin, dateCreationAdmin) VALUES
+            (:nomAdmin, :prenomAdmin, :mailAdmin, :mdpAdmin, NOW())"
         );
 
         $values = [
-            "nomAdmin" => $name,
-            "prenomAdmin" => $firstname,
-            "mailAdmin" => $mail,
-            "mdpAmin" => $hashedPwd,
-            "sel" => $salt
+            ":nomAdmin" => $name,
+            ":prenomAdmin" => $firstname,
+            ":mailAdmin" => $mail,
+            ":mdpAdmin" => $hashedPwd
         ];
 
         return $req->execute($values);

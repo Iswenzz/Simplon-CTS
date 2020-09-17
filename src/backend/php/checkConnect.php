@@ -15,12 +15,8 @@ if (isset($_POST["mail"]) && isset($_POST["pwd"])) {
             continue;
         }
         // same user name -> check password
-        // get salt for the password
-        $salt = $admin["sel"];
-        // hash the given password
-        $hashed = crypt($_POST["pwd"], $salt);
         // check match
-        if ($admin["mdpAdmin"] == $hashed) {
+        if (password_verify($pwd, $admin["mdpAdmin"])) {
             $match = true;
             break;
         }

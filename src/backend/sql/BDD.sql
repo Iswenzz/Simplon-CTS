@@ -9,8 +9,7 @@ CREATE TABLE Admin (
 	prenomAdmin VARCHAR(255) NOT NULL,
 	dateCreationAdmin DATE,
 	mailAdmin VARCHAR(64) NOT NULL,
-	mdpAdmin VARCHAR(32) NOT NULL,
-	sel VARCHAR(64) NOT NULL,
+	mdpAdmin VARCHAR(64) NOT NULL,
 	CONSTRAINT pk_admin PRIMARY KEY (codeAdmin)
 );
 -- ------- CREATING TABLES ------- --
