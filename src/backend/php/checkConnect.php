@@ -1,9 +1,20 @@
 <?php
+// imports
 require_once("./database.php");
 
-$connexionPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/TP/TP6-CTS/dist/connexion.html";
+// sets output buffering = prevents output until ob_flush
+ob_start();
 
-if (isset($_POST["mail"]) && isset($_POST["motDePasse"])) {
+$connexionPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/TP/TP6-CTS/dist/connexion.html";
+// redirection
+header("refresh:5; url=$connexionPage");
+
+$requestBody = file_get_contents('php://input');
+
+
+if ($requestBody) {
+    $requestBody = json_decode($requestBody);
+    
     $DB = new Database("admin", "E.F.Codd", "cts", false);
     $admins = $DB->FetchAll("Admin");
     
@@ -11,26 +22,29 @@ if (isset($_POST["mail"]) && isset($_POST["motDePasse"])) {
     $match = false;
     foreach ($admins as $admin) {
         // check user name / mail
-        if ($admin["mailAdmin"] != $_POST["mail"]) {
+        if ($admin["mailAdmin"] != $requestBody->mail) {
             continue;
         }
         // same user name -> check password
         // check match
-        $pwd = $_POST["motDePasse"];
+        $pwd = $requestBody->motDePasse;
         if (password_verify($pwd, $admin["mdpAdmin"])) {
             $match = true;
             break;
         }
     }
     
+    
     if ($match) {
         echo "Connexion réussie ! 😀<br/>";
+        http_response_code(200); // OK
     } else {
-        // header("refresh:3; url=$connexionPage");
-        echo "Connexion échouée ! ☹<br/> Retour  dans 3 secondes...";
+        http_response_code(401); // Unauthorized
     }
 } else {
-    echo "Pseudo ou mdp manquant !";
+    http_response_code(400); // Bad Request
 }
 
+// allows output
+ob_flush();
 // TODO this is to be in Admin class

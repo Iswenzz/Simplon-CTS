@@ -11,6 +11,7 @@ module.exports = (_, argv) =>
 		mode: argv.mode,
 		entry: {	
 			index: ["./src/frontend/index.ts"],
+			connexion: ["./src/frontend/connexion.ts"],
 		},
 		output: {
 			filename: "[name].js",
