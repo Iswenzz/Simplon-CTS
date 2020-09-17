@@ -1,7 +1,7 @@
 <?php
-require "./DAO.php";
-require "../DatabaseFactory.php";
-require "../model/Contact.php";
+require_once __DIR__ . "/DAO.php";
+require_once __DIR__ . "/../DatabaseFactory.php";
+require_once __DIR__ . "/../model/Contact.php";
 
 class ContactDAO implements DAO
 {
@@ -10,12 +10,15 @@ class ContactDAO implements DAO
 	public function getAllContacts(): array
 	{
 		$contacts = [];
-		$stmt = DatabaseFactory::getConnection()->prepare($this->SELECT_QUERY);
+		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::SELECT_QUERY);
+		$stmt->execute();
         
 		while ($row = $stmt->fetch())
 		{
-			$contact = new Contact($row["codeContact"], $row["nomContact"], 
-				$row["prenomContact"], $row["dateNaissanceContact"], $row["codePays"]);
+			$contact = new Contact(
+				(int)$row["codeContact"], $row["nomContact"], $row["prenomContact"], 
+				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceContact"]), 
+				(int)$row["codePays"]);
             $contacts[] = $contact;
         }
         return $contacts;
