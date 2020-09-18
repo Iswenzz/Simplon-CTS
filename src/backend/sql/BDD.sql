@@ -4,13 +4,14 @@ CREATE DATABASE cts;
 USE cts;
 -- ------- CREATING ADMINS ------- --
 CREATE TABLE Admin (
-	codeAdmin INT NOT NULL AUTO_INCREMENT,
 	nomAdmin VARCHAR(255) NOT NULL,
 	prenomAdmin VARCHAR(255) NOT NULL,
 	dateCreationAdmin DATE,
 	mailAdmin VARCHAR(64) NOT NULL,
 	mdpAdmin VARCHAR(64) NOT NULL,
-	CONSTRAINT pk_admin PRIMARY KEY (codeAdmin)
+	apiKey BINARY(32),
+	expirationApiKey DATE,
+	CONSTRAINT pk_admin PRIMARY KEY (mailAdmin, mdpAdmin)
 );
 -- ------- CREATING TABLES ------- --
 CREATE TABLE Contact (
@@ -929,3 +930,4 @@ VALUES (1, 1),
 	(15, 15),
 	(16, 16);
 COMMIT;
+
