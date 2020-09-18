@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . "/../controller/ContactController.php";
+require_once __DIR__ . "/../controller/CibleController.php";
 
-class Contact
+class Cible
 {
 	private int $code;
 	private string $nom;
@@ -9,10 +9,10 @@ class Contact
 	private DateTime $dateNaissance;
 	private int $codePays;
 
-	private ContactController $controller;
+	private CibleController $controller;
 
 	/**
-	 * Initailize a new Contact object.
+	 * Initailize a new Cible object.
 	 */
 	public function __construct(int $code, string $nom, string $prenom, 
 		DateTime $dateNaissance, int $codePays)
@@ -22,13 +22,13 @@ class Contact
 		$this->prenom = $prenom;
 		$this->dateNaissance = $dateNaissance;
 		$this->codePays = $codePays;
-		$this->controller = new ContactController($this, new ContactView($this));
+		$this->controller = new CibleController($this, new CibleView($this));
 	}
 
 	/**
-	 * Get the Contact controller instance.
+	 * Get the Cible controller instance.
 	 */
-	public function getController(): ContactController
+	public function getController(): CibleController
 	{
 		return $this->controller;
 	}
