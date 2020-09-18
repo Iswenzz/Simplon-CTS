@@ -52,13 +52,14 @@ if ($requestBody) {
         if (!is_null($admin["expirationApiKey"]) && !is_null($admin["apiKey"])) {
             $expirationDate = Datetime::createFromFormat("Y-m-d", $admin["expirationApiKey"]);
             $now = new Datetime();
-            $valid = $now->diff($expirationDate)->format("R") == "+"; // the diff is positive
+            $valid = $now->diff($expirationDate)->format("%R") == "+"; // the diff is positive
         } else {
             $valid = false;
         }
 
         // no valid key -> generating a new one
         if (!$valid) {
+            $message = "Nouvelle clé générée";
             $key = random_bytes(31);
             $success = $DB->updateApiKey($admin["mailAdmin"], $admin["mdpAdmin"], $key);
             // DB error during generation
@@ -67,6 +68,7 @@ if ($requestBody) {
                 $message = "Erreur lors de la génération de clé de connexion :(";
             }
         } else { // reading existing key
+            $message = "Récupération de la clé";
             $key = $admin["apiKey"];
         }
     } else { // no mail/password match
