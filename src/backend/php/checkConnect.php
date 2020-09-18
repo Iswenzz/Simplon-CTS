@@ -61,7 +61,7 @@ if ($requestBody) {
         if (!$valid) {
             $message = "Nouvelle clé générée";
             $key = random_bytes(31);
-            $success = $DB->updateApiKey($admin["mailAdmin"], $admin["mdpAdmin"], $key);
+            $success = $DB->updateApiKey($admin["mailAdmin"], $key);
             // DB error during generation
             if (!$success) {
                 $httpCode = 500; // Internal Server Error

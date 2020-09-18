@@ -11,7 +11,7 @@ CREATE TABLE Admin (
 	mdpAdmin VARCHAR(64) NOT NULL,
 	apiKey BINARY(32),
 	expirationApiKey DATE,
-	CONSTRAINT pk_admin PRIMARY KEY (mailAdmin, mdpAdmin)
+	CONSTRAINT pk_admin PRIMARY KEY (mailAdmin)
 );
 -- ------- CREATING TABLES ------- --
 CREATE TABLE Contact (
@@ -930,4 +930,3 @@ VALUES (1, 1),
 	(15, 15),
 	(16, 16);
 COMMIT;
-

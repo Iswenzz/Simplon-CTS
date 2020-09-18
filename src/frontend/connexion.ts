@@ -9,7 +9,7 @@ const pwdInput = document.getElementById("motDePasse") as HTMLInputElement;
 form.addEventListener("submit", async (ev) => {
 	ev.preventDefault();
 
-	console.log(`test ${mailInput.value} & ${pwdInput.value}`);
+	console.log(`test : "${mailInput.value}" & "${pwdInput.value}"`);
 
 	try {
 		// TODO : passage en prod => mettre un URL absolu par rapport au serveur hébergeur
@@ -17,8 +17,11 @@ form.addEventListener("submit", async (ev) => {
 			"mail": mailInput.value,
 			"motDePasse": pwdInput.value
 		});
-		// thanks to async .. await, this is synchronized with the fetch
+		
 		console.log(response.data);
+		const apiKey : string = response.data.key;
+		// save the key for future use
+		sessionStorage.setItem("apiKey", apiKey);
 	} catch (error) {
 		// console.log(error);
 	}

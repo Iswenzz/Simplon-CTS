@@ -97,17 +97,16 @@ class Database
         return $req->execute($values);
     }
 
-    public function updateApiKey(string $mail, string $hashedPwd, string $apiKey) : bool
+    public function updateApiKey(string $mail, string $apiKey) : bool
     {
         $req = $this->DB->prepare(
             "UPDATE Admin
             SET apiKey = :apiKey, expirationApiKey = DATE_ADD(NOW(), INTERVAL 1 DAY)
-            WHERE mailAdmin = :mailAdmin AND mdpAdmin = :mdpAdmin"
+            WHERE mailAdmin = :mailAdmin"
         );
 
         $values = [
             ":mailAdmin" => $mail,
-            ":mdpAdmin" => $hashedPwd,
             ":apiKey" => $apiKey
         ];
 
