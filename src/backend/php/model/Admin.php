@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . "/../controller/AdministrateurController.php";
+require_once __DIR__ . "/../controller/AdminController.php";
 
-class Administrateur
+class Admin
 {
 	private string $email;
 	private string $nom;
@@ -9,10 +9,10 @@ class Administrateur
 	private DateTime $dateCreation;
 	private string $mdp;
 
-	private AdministrateurController $controller;
+	private AdminController $controller;
 
 	/**
-	 * Initailize a new Administrateur object.
+	 * Initailize a new Admin object.
 	 */
 	public function __construct(string $email, string $nom, string $prenom, 
 		DateTime $dateCreation, string $mdp)
@@ -23,13 +23,13 @@ class Administrateur
 		$this->dateCreation = $dateCreation;
 		$this->mdp = $mdp;
 		$this->email = $email;
-		$this->controller = new AdministrateurController($this, new AdministrateurView($this));
+		$this->controller = new AdminController($this, new AdminView($this));
 	}
 
 	/**
-	 * Get the Administrateur controller instance.
+	 * Get the Admin controller instance.
 	 */
-	public function getController(): AdministrateurController
+	public function getController(): AdminController
 	{
 		return $this->controller;
 	}
