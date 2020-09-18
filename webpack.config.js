@@ -12,6 +12,7 @@ module.exports = (_, argv) =>
 		entry: {	
 			index: ["./src/frontend/index.ts"],
 			connexion: ["./src/frontend/connexion.ts"],
+			inscription: ["./src/frontend/inscription.ts"],
 		},
 		output: {
 			filename: "[name].js",

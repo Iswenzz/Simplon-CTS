@@ -2,11 +2,18 @@
 
 class Response
 {
+    // constants
+    public const OK = 200;
+    public const BAD_REQUEST = 400;
+    public const INTERNAL_SERVER_ERROR = 500;
+    public const NOT_IMPLEMENTED = 501;
+
+    // attributes
     private bool $success;
     private int $httpCode;
     private string $message;
 
-    public function __construct(bool $success = false, int $httpCode = 500, string $message = "Non exécuté")
+    public function __construct(bool $success = false, int $httpCode = Response::NOT_IMPLEMENTED, string $message = "Message par défaut")
     {
         $this->success = $success;
         $this->httpCode = $httpCode;
@@ -50,11 +57,11 @@ class Response
     public function send()
     {
         header('Content-Type: application/json');
-        http_response_code($httpCode);
+        http_response_code($this->httpCode);
         $return = json_encode(
             [
-                "message" => $message,
-                "success" => $success
+                "message" => $this->message,
+                "success" => $this->success
             ]
         );
         echo $return;

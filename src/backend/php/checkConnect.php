@@ -1,6 +1,7 @@
 <?php
 // imports
 require_once("./database.php");
+require_once __DIR__."/ConnectionResponse.php";
 
 // sets output buffering = prevents output until ob_flush
 ob_start();
@@ -40,9 +41,9 @@ if ($requestBody) {
         }
     }
     
-    
+    // getting the corresponding key
     if ($match) {
-        $response->setHttpCode(200); // OK
+        $response->setHttpCode(Response::OK);
         $response->setMessage("Identifiants valides :)");
         $response->setSuccess(true);
         
@@ -61,22 +62,26 @@ if ($requestBody) {
             $key = random_bytes(31);
             $response->setSuccess($DB->updateApiKey($admin["mailAdmin"], $key));
             // DB error during generation
-            if (!$success) {
-                $response->setHttpCode(500); // Internal Server Error
+            if (!$response->getSuccess()) {
+                $response->setHttpCode(Response::INTERNAL_SERVER_ERROR);
                 $response->setMessage("Erreur lors de la génération de clé de connexion :(");
+            } else {
+                $response->setKey($key);
+                $response->setUser($mail);
             }
         } else { // reading existing key
             $response->setMessage("Récupération de la clé");
-            $key = $admin["apiKey"];
+            $response->setKey($admin["apiKey"]);
+            $response->setUser($mail);
         }
     } else { // no mail/password match
         $response->setSuccess(false);
-        $response->setHttpCode(400); // Bad Request
+        $response->setHttpCode(Response::BAD_REQUEST);
         $response->setMessage("Mauvais email et / ou mot de passe :(");
     }
 } else { // empty request
     $response->setSuccess(false);
-    $response->setHttpCode(400); // Bad Request
+    $response->setHttpCode(Response::BAD_REQUEST);
     $response->setMessage("Mauvaise syntaxe de requête / paramètres manquants :(");
 }
 
