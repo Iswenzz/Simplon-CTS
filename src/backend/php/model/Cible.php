@@ -3,7 +3,7 @@ require_once __DIR__ . "/../controller/CibleController.php";
 
 class Cible
 {
-	private int $code;
+	private ?int $code;
 	private string $nom;
 	private string $prenom;
 	private DateTime $dateNaissance;
@@ -14,7 +14,7 @@ class Cible
 	/**
 	 * Initailize a new Cible object.
 	 */
-	public function __construct(int $code, string $nom, string $prenom, 
+	public function __construct(?int $code, string $nom, string $prenom, 
 		DateTime $dateNaissance, int $codePays)
 	{
 		$this->code = $code;
@@ -36,7 +36,7 @@ class Cible
 	/**
 	 * Get the value of code.
 	 */
-	public function getCode(): int
+	public function getCode(): ?int
 	{
 		return $this->code;
 	}
@@ -44,7 +44,7 @@ class Cible
 	/**
 	 * Set the value of code.
 	 */
-	public function setCode(int $code): void
+	public function setCode(?int $code): void
 	{
 		$this->code = $code;
 	}

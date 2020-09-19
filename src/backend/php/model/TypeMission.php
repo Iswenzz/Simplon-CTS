@@ -2,13 +2,13 @@
 
 class TypeMission
 {
-	private int $code;
+	private ?int $code;
 	private string $libelle;
 
 	/**
 	 * Initailize a new TypeMission object.
 	 */
-	public function __construct(int $code, string $libelle)
+	public function __construct(?int $code, string $libelle)
 	{
 		$this->code = $code;
 		$this->libelle = $libelle;
@@ -17,7 +17,7 @@ class TypeMission
 	/**
 	 * Get the value of code
 	 */ 
-	public function getCode(): int
+	public function getCode(): ?int
 	{
 		return $this->code;
 	}
@@ -25,7 +25,7 @@ class TypeMission
 	/**
 	 * Set the value of code
 	 */ 
-	public function setCode(int $code): void
+	public function setCode(?int $code): void
 	{
 		$this->code = $code;
 	}

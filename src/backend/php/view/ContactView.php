@@ -15,7 +15,8 @@ class ContactView
 	 */
 	public function printContact(): void
 	{
-		print_r(sprintf("%s | %s | %s | %s <br>",
+		print_r(sprintf("[%s] %s %s %s (%s) <br>",
+			$this->model->getCode(),
 			$this->model->getNom(),
 			$this->model->getPrenom(),
 			$this->model->getDateNaissance()->format("Y-m-d"),

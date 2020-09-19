@@ -2,7 +2,7 @@
 
 class Planque
 {
-	private int $code;
+	private ?int $code;
 	private string $adresse;
 	private int $codePays;
 	private int $codeType;
@@ -10,7 +10,7 @@ class Planque
 	/**
 	 * Initailize a new Planque object.
 	 */
-	public function __construct(int $code, string $adresse, int $codePays, int $codeType)
+	public function __construct(?int $code, string $adresse, int $codePays, int $codeType)
 	{
 		$this->code = $code;
 		$this->codePays = $codePays;
@@ -21,7 +21,7 @@ class Planque
 	/**
 	 * Get the value of code
 	 */ 
-	public function getCode(): int
+	public function getCode(): ?int
 	{
 		return $this->code;
 	}
@@ -29,7 +29,7 @@ class Planque
 	/**
 	 * Set the value of code
 	 */ 
-	public function setCode(int $code): void
+	public function setCode(?int $code): void
 	{
 		$this->code = $code;
 	}

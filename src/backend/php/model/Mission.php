@@ -3,7 +3,7 @@ require_once __DIR__ . "/../controller/MissionController.php";
 
 class Mission
 {
-	private int $code;
+	private ?int $code;
 	private string $titre;
 	private string $description;
 	private DateTime $dateDebut;
@@ -17,7 +17,7 @@ class Mission
 	/**
 	 * Initailize a new Mission object.
 	 */
-	public function __construct(int $code, string $nom, string $prenom, 
+	public function __construct(?int $code, string $nom, string $prenom, 
 		DateTime $dateNaissance, int $codeStatut, int $codeType, int $codeSpecialite)
 	{
 		$this->code = $code;
@@ -41,7 +41,7 @@ class Mission
 	/**
 	 * Get the value of code
 	 */ 
-	public function getCode(): int
+	public function getCode(): ?int
 	{
 		return $this->code;
 	}
@@ -49,7 +49,7 @@ class Mission
 	/**
 	 * Set the value of code
 	 */ 
-	public function setCode(int $code): void
+	public function setCode(?int $code): void
 	{
 		$this->code = $code;
 	}
