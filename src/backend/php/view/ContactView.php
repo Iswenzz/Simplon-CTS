@@ -5,13 +5,17 @@ class ContactView
 {
 	private Contact $model;
 
+	/**
+	 * Initialize a new Contact view.
+	 * @param Contact $model - The Contact model.
+	 */
 	public function __construct(Contact $model)
 	{
 		$this->model = $model;
 	}
 
 	/**
-	 * Print the contact model informations.
+	 * Print the Contact model informations.
 	 */
 	public function printContact(): void
 	{
