@@ -10,8 +10,16 @@ class ContactView
 		$this->model = $model;
 	}
 
+	/**
+	 * Print the contact model informations.
+	 */
 	public function printContact(): void
 	{
-		print_r("[Contact]: " . $this->model->getCode() . " " . $this->model->getNom() . "<br>");
+		print_r(sprintf("%s | %s | %s | %s <br>",
+			$this->model->getNom(),
+			$this->model->getPrenom(),
+			$this->model->getDateNaissance()->format("Y-m-d"),
+			$this->model->getCodePays()
+		));
 	}
 }
