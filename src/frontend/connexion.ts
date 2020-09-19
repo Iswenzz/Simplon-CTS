@@ -1,4 +1,5 @@
 import Axios from "axios";
+import "./disconnect";
 
 
 const form : HTMLFormElement = document.getElementsByTagName("form")[0];
@@ -18,12 +19,21 @@ form.addEventListener("submit", async (ev) => {
 		});
 		
 		console.log(response.data);
-		const apiKey : string = response.data.key;
-		const user : string = response.data.user;
-		// save the ids for future use
-		sessionStorage.setItem("apiKey", apiKey);
-		sessionStorage.setItem("user", user);
+		
+		// if the login was succesful
+		if (response.data.success) {
+			const apiKey : string = response.data.key;
+			// save the key for future use
+			sessionStorage.setItem("apiKey", apiKey);
+			console.log("Login successful !");
+			// redirect to home
+			setTimeout(() => {
+				window.location.href = "index.html";
+			}, 2000);
+		} else {
+			console.log("Login failed ☹");
+		}
 	} catch (error) {
-		// console.log(error);
+		console.log(error);
 	}
 });

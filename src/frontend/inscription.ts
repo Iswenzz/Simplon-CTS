@@ -1,4 +1,5 @@
 import Axios from "axios";
+import "./disconnect";
 
 
 const form : HTMLFormElement = document.getElementsByTagName("form")[0];
