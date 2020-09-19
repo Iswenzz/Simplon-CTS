@@ -33,7 +33,7 @@ if ($requestBody) {
     // there is already an admin with this email
     if ($match) {
         $response->setSuccess(false);
-        $response->setHttpCode(Response::BAD_REQUEST);
+        $response->setHttpCode(Response::OK);
         $response->setMessage("Il existe déjà un administrateur possédant cet email !");
     } else {
         // hash the password

@@ -76,7 +76,7 @@ if ($requestBody) {
         }
     } else { // no mail/password match
         $response->setSuccess(false);
-        $response->setHttpCode(Response::BAD_REQUEST);
+        $response->setHttpCode(Response::OK);
         $response->setMessage("Mauvais email et / ou mot de passe :(");
     }
 } else { // empty request
