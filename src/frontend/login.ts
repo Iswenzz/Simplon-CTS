@@ -1,6 +1,5 @@
 import Axios from "axios";
-import "./logout";
-
+import swal from "sweetalert";
 
 const form : HTMLFormElement = document.getElementsByTagName("form")[0];
 const mailInput = document.getElementById("mail") as HTMLInputElement;
@@ -26,12 +25,22 @@ form.addEventListener("submit", async (ev) => {
 			// save the key for future use
 			sessionStorage.setItem("apiKey", apiKey);
 			console.log("Login successful !");
-			// redirect to home
-			setTimeout(() => {
-				window.location.href = "index.html";
-			}, 2000);
+			// feedback : success
+			swal({
+				title: "Connexion réussie!",
+				text: `Connexion en tant que ${mailInput.value}...`,
+				icon: "success",
+			  })
+			  .then(() => {
+				  window.location.reload();
+			  });
 		} else {
-			console.log("Login failed ☹");
+			// feedback : failure
+			swal({
+				title: "Connexion échouée!",
+				text: response.data.message,
+				icon: "error",
+			  });
 		}
 	} catch (error) {
 		console.log(error);

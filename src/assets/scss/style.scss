@@ -1,3 +1,97 @@
-p {
-	background: red;
+/* CSS Mini Reset */
+
+html,
+body,
+div,
+form,
+fieldset,
+legend,
+caption,
+label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre {
+	font-size: 100%;
+	font-weight: normal;
+
+	margin: 0;
+	padding: 0;
+
+	vertical-align: baseline;
+
+	border: 0;
+	outline: 0;
+	background: transparent;
+}
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	text-align: left;
+	vertical-align: top;
+}
+
+img {
+	border: 0;
+}
+
+// CSS TODO
+// whole page
+// body {
+// 	min-height: 100vh;
+// }
+
+// main {
+// 	background-image: url("../images/looking-glass.jpg");
+// 	background-size: cover;
+// 	height: 100%;
+
+// 	::before {
+// 		position: absolute;
+// 		content: "";
+// 		top: 0;
+// 		width: 100%;
+// 		height: 100%;
+// 		background-color: rgba(128, 128, 128, 0.164);
+// 	}
+// }
+
+// // banners
+// header,
+// footer {
+// 	position: relative;
+// 	z-index: 2;
+// 	background-color: rgb(73, 73, 173);
+// 	color: white;
+// 	fill: currentColor;
+
+// 	// links
+// 	a {
+// 		color: white;
+
+// 		&:visited {
+// 			color: black;
+// 		}
+// 	}
+// }
+
+// // footer
+// footer {
+// 	position: absolute;
+// 	bottom: 0;
+// }
+
+// icons
+a svg {
+	width: 40px;
 }

@@ -9,36 +9,63 @@
 </head>
 
 <body>
-	<nav>
-		<a href="index.html">Accueil</a>
-		<a href="connexion.html" id="connect">Connexion</a>
-		<a href="index.html" id="disconnect">Déconnexion</a>
-	</nav>
+	<header>
+		<nav>
+			<a href="index.html">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+					<path
+						d="M503.4 229L273.7 19.6c-10-9.2-25.3-9.2-35.4 0L8.6 229a26 26 0 0 0-6.8 28.9 26 26 0 0 0 24.5 16.8H63v209.7a15 15 0 0 0 15 14.9h126a15 15 0 0 0 15.1-15.1V357h74v127.3a15 15 0 0 0 15.1 15.1h126a15 15 0 0 0 15.1-15.1V274.5H486a26 26 0 0 0 24.5-16.8 26 26 0 0 0-6.8-28.9zM445 42.7H344l116 105.7V57.8a15 15 0 0 0-15.1-15.1z" />
+				</svg>
+				Accueil
+			</a>
+			<a href="connexion.html" id="login" class="hidden-when-connected">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlns:v="https://vecta.io/nano">
+					<path
+						d="M256 189c-11 0-19.7 9-19.7 19.7V226h39.5v-17.3c0-11-9-19.7-19.7-19.7zm-34 67h68v52.7h-68zm290 61.4V194.6l-47.2-7.2a219 219 0 0 0-12.6-30.5l28.3-38.5-86.8-86.8L355 60l-30.5-12.6-7-47.4H194.6l-7.2 47.2a219 219 0 0 0-30.5 12.6l-38.5-28.3-86.8 86.8L60 157l-12.6 30.5-47.4 7v122.8l47.2 7.2a219 219 0 0 0 12.6 30.5l-28.3 38.5 86.8 86.8L157 452a219 219 0 0 0 30.5 12.6l7.2 47.2h122.8l7.2-47.2a219 219 0 0 0 30.5-12.6l38.5 28.3 86.8-86.8L452 355a219 219 0 0 0 12.6-30.5l47.2-7.2zM256 421A165 165 0 0 1 91.1 256 165 165 0 0 1 256 91.1 165 165 0 0 1 420.9 256 165 165 0 0 1 256 420.9zm0-300a135 135 0 0 0-134.9 135A135 135 0 0 0 256 390.9 135 135 0 0 0 390.9 256 135 135 0 0 0 256 121.1zm-64 217.7V226h14.3v-17.3A50 50 0 0 1 256 159a50 50 0 0 1 49.7 49.7V226H320v112.7H192z" />
+				</svg>
+				Connexion
+			</a>
+			<a href="index.html" id="logout" class="visible-when-connected">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+					<path
+						d="M320 277.3c-11.8 0-21.3 9.6-21.3 21.3V384c0 11.8-9.6 21.3-21.3 21.3h-64v-320a43 43 0 0 0-29.1-40.6l-6.3-2h99.4c11.8 0 21.3 9.6 21.3 21.3v64c0 11.8 9.5 21.3 21.3 21.3s21.3-9.6 21.3-21.3V64a64 64 0 0 0-64-64H48c-.8 0-1.5.4-2.3.5-1-.1-2-.5-3-.5C19 0 0 19 0 42.7v384a43 43 0 0 0 29.1 40.6L157.4 510a44 44 0 0 0 13.2 2c23.5 0 42.7-19 42.7-42.7V448h64a64 64 0 0 0 64-64v-85.3c0-11.8-9.5-21.3-21.3-21.3zm185.8-79L420.4 113c-6-6-15.3-8-23.2-4.6-8 3.3-13.2 11-13.2 19.7v64h-85.3c-11.8 0-21.3 9.6-21.3 21.3s9.6 21.3 21.3 21.3H384v64c0 8.6 5.2 16.4 13.2 19.7s17.2 1.5 23.3-4.6l85.3-85.3c8.3-8.3 8.3-21.8 0-30.2zm0 0" />
+				</svg>
+				Déconnexion</a>
+		</nav>
+
+		<h1>Classé "Private"</h1>
+	</header>
 
 
+	<main>
+		<section class="dropdown hidden-when-connected">
+			<!-- formulaire de connexion -->
+			<h3>Connexion</h3>
+			<!-- TODO : utiliser une sweet alert -->
+			<form>
+				<div>
+					<label for="mail">Mail : </label>
+					<input type="email" name="mail" id="mail" required>
+				</div>
+				<div>
+					<label for="motDePasse">Mot de passe : </label>
+					<input type="password" name="motDePasse" id="motDePasse" required>
+				</div>
+
+				<button type="submit">Envoyer</button>
+			</form>
+		</section>
+	</main>
 
 	<footer>
-		<p>
-			Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a
-				href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-		</p>
-		<p>
-			Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel
-				perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-		</p>
-		<p>
-		<div>Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a
-				href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-		</p>
-		<p>
-		<div>Icons made by <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from
-			<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-		</p>
-		<p>
-		<div>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a>
-			from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-		</p>
-
+		<small>
+			Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a>, <a
+				href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel
+				perfect</a>, <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a>, <a
+				href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> and <a
+				href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a>
+			from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+		</small>
 	</footer>
 
 </body>

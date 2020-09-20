@@ -1,17 +1,22 @@
-const disconnectLink = document.getElementById("disconnect") as HTMLLinkElement;
-const connectLink = document.getElementById("connect") as HTMLLinkElement;
+const conHidden : HTMLCollectionOf<Element> = document.getElementsByClassName("hidden-when-connected");
+const conVisible : HTMLCollectionOf<Element> = document.getElementsByClassName("visible-when-connected");
 
-// displaying the correct connect / disconnect link
+// displaying the correct widgets depending on the connected state
 console.log(sessionStorage["apiKey"]);
 if (sessionStorage["apiKey"]) { // already connected
-	connectLink.setAttribute("hidden", "true");
-} else {
-	disconnectLink.setAttribute("hidden", "true");
+	for (const el of conHidden) {
+		el.setAttribute("hidden", "true");
+	}
+} else { // not connected
+	for (const el of conVisible) {
+		el.setAttribute("hidden", "true");
+	}
 }
 
 // disconnecting
-disconnectLink.addEventListener("click", () => {
-	if (sessionStorage["key"]) {
+document.getElementById("logout").addEventListener("click", () => {
+	if (sessionStorage["apiKey"]) {
 		sessionStorage.clear();
+		window.location.reload();
 	}
 });
