@@ -1,3 +1,4 @@
+import "../assets/scss/style.scss";
 import Axios from "axios";
 import "./logout";
 
