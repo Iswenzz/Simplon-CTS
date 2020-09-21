@@ -47,7 +47,7 @@ img {
 	border: 0;
 }
 
-// Custom CSS TODO
+// ----- Custom CSS ----- TODO
 // whole page
 body {
 	display: flex;
@@ -79,12 +79,20 @@ a,
 button {
 	svg {
 		width: 40px;
+		fill: currentColor;
 	}
+}
+
+// titles
+h3 {
+	font-size: larger;
+	font-weight: bold;
 }
 
 // dropdown connexion
 .dropdown-content {
 	color: initial;
+	padding: 20px !important;
 }
 
 // --- page détails
