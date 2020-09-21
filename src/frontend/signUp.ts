@@ -1,5 +1,6 @@
 import "../assets/scss/style.scss";
 import Axios from "axios";
+import swal from "sweetalert";
 import "./logout";
 
 
@@ -24,6 +25,30 @@ form.addEventListener("submit", async (ev) => {
 		});
 		
 		console.log(response.data);
+
+		// if the signup was succesful
+		if (response.data.success) {
+			const apiKey : string = response.data.key;
+			// save the key for future use
+			sessionStorage.setItem("apiKey", apiKey);
+			console.log("Sign up successful !");
+			// feedback : success
+			swal({
+				title: "Inscription réussie!",
+				text: `Connexion en tant que ${mailInput.value}...`,
+				icon: "success",
+			  })
+			  .then(() => {
+				  window.location.reload();
+			  });
+		} else {
+			// feedback : failure
+			swal({
+				title: "Inscription échouée!",
+				text: response.data.message,
+				icon: "error",
+			  });
+		}
 	} catch (error) {
 		console.log(error);
 	}
