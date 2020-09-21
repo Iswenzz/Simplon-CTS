@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/config/config.php";
 
 /**
  * Database PDO factory.
@@ -35,7 +36,7 @@ class DatabaseFactory
 	{
 		if (!DatabaseFactory::$DB)
 			new DatabaseFactory($_ENV["user"], $_ENV["password"], 
-			$_ENV["db"], $_ENV["mode"] == "development");
+			$_ENV["db"], false);
 		return DatabaseFactory::$DB;
 	}
 

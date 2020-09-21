@@ -2,14 +2,14 @@
 require_once __DIR__ . "/config/config.php";
 require_once __DIR__ . "/DatabaseFactory.php";
 require_once __DIR__ . "/dao/DAOFactory.php";
-require_once __DIR__ . "/dao/ContactDAO.php";
-require_once __DIR__ . "/model/Contact.php";
+require_once __DIR__ . "/dao/AdminDAO.php";
+require_once __DIR__ . "/model/Admin.php";
 
-DAOFactory::registerDAO(ContactDAO::class);
+DAOFactory::registerDAO(AdminDAO::class);
 /**
- * @var ContactDAO $contactDAO
+ * @var AdminDAO $adminDAO
  */
-$contactDAO = DAOFactory::getDAO(ContactDAO::class);
+$adminDAO = DAOFactory::getDAO(AdminDAO::class);
 
 // var_dump($contactDAO->addContact(new Contact(null, "Test", "Yeet", 
 // 	DateTime::createFromFormat("Y-m-d", "1970-01-01"), 28)));
@@ -19,7 +19,7 @@ $contactDAO = DAOFactory::getDAO(ContactDAO::class);
 // 	DateTime::createFromFormat("Y-m-d", "1970-01-01"), 40)));
 
 /**
- * @var Contact $contact
+ * @var Admin $admin
  */
-foreach ($contactDAO->getAllContacts() as $contact)
-	$contact->getController()->getView()->printContact();
+foreach ($adminDAO->getAllAdmins() as $admin)
+	$admin->getController()->getView()->printAdmin();
