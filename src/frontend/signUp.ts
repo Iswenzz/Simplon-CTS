@@ -3,11 +3,11 @@ import Axios from "axios";
 import "./logout";
 
 
-const form : HTMLFormElement = document.getElementsByTagName("form")[0];
-const nameInput = document.getElementById("nom") as HTMLInputElement;
-const firstNameInput = document.getElementById("prenom") as HTMLInputElement;
-const mailInput = document.getElementById("mail") as HTMLInputElement;
-const pwdInput = document.getElementById("motDePasse") as HTMLInputElement;
+const form = document.getElementById("inscription-form") as HTMLFormElement;
+const nameInput = document.getElementById("inscription-nom") as HTMLInputElement;
+const firstNameInput = document.getElementById("inscription-prenom") as HTMLInputElement;
+const mailInput = document.getElementById("inscription-mail") as HTMLInputElement;
+const pwdInput = document.getElementById("inscription-motDePasse") as HTMLInputElement;
 
 form.addEventListener("submit", async (ev) => {
 	ev.preventDefault();

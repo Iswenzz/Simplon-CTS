@@ -6,7 +6,7 @@ import "./logout";
 document.addEventListener("DOMContentLoaded", () => {
 	// login
 	const loginTrigger = document.getElementById("login");
-	M.Dropdown.init(loginTrigger, {
+	const loginInstance = M.Dropdown.init(loginTrigger, {
 		// aligned ?
 		alignment: null,
 		// appears below the trigger
@@ -21,8 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
+	const inscriptionTrigger = document.getElementById("inscription");
+	inscriptionTrigger.addEventListener("click", () => {
+		loginInstance.close();
+	});
+
 	// inscription
 	const inscriptionModal = document.getElementById("inscription-modal");
-	console.log(inscriptionModal);
-	M.Modal.init(inscriptionModal);
+	M.Modal.init(inscriptionModal, {
+		onOpenStart: () => {
+			import("./signUp");
+		},
+	});
 });
