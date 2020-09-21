@@ -77,7 +77,7 @@ class ConnectionController extends Controller
             } else {	// no mail/password match
                 $this->response->setSuccess(false);
                 $this->response->setHttpCode(Response::OK);
-                $this->response->setMessage("Mauvais email :(");
+                $this->response->setMessage("Aucun admin existant avec cet email :(");
             }
         } else {
             // empty request
