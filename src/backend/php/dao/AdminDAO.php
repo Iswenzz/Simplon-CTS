@@ -115,7 +115,7 @@ class AdminDAO implements DAO
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::UPDATE_APIKEY_QUERY);
         return $stmt->execute([
-            ":apikey" => $admin->getApiKey(),
+            ":apiKey" => $admin->getApiKey(),
             ":expirationApiKey" => date("Y-m-d", time() + 86400),
             ":mail" => $admin->getEmail()
         ]);
