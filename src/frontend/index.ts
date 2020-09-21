@@ -1,12 +1,12 @@
 import "../assets/scss/style.scss";
 import "materialize-css";
 import "./logout";
-// import "./login";
 
-// initializing login dropdown
+// initializing login dropdown & inscription modal
 document.addEventListener("DOMContentLoaded", () => {
-	const trigger = document.getElementById("login");
-	M.Dropdown.init(trigger, {
+	// login
+	const loginTrigger = document.getElementById("login");
+	M.Dropdown.init(loginTrigger, {
 		// aligned ?
 		alignment: null,
 		// appears below the trigger
@@ -20,4 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			import("./login");
 		}
 	});
+
+	// inscription
+	const inscriptionModal = document.getElementById("inscription-modal");
+	console.log(inscriptionModal);
+	M.Modal.init(inscriptionModal);
 });

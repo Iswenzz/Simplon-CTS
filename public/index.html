@@ -52,41 +52,47 @@
 			</div>
 
 			<button class="btn waves-effect waves-light" type="submit">Envoyer</button>
+			<!-- inscription -->
 			<p>Pas encore de compte ?</p>
-			<a href="inscription.html" class="btn waves-effect cyan lighten-5 black-text">Inscrivez-vous</a>
+			<button data-target="inscription-modal" class="btn waves-effect cyan black-text modal-trigger"
+				id="inscription">Inscrivez-vous</button>
 
 		</form>
 	</ul>
 
 	<!-- formulaire d'inscription -->
-	<!-- <h2>Inscription</h2>
-	<form>
-		<div>
-			<label for="prenom">Prenom : </label>
-			<input type="text" name="prenom" id="prenom" required>
-		</div>
-		<div>
-			<label for="nom">Nom : </label>
-			<input type="text" name="nom" id="nom" required>
-		</div>
-		<div>
-			<label for="mail">Mail : </label>
-			<input type="email" name="mail" id="mail" required>
-		</div>
-		<div>
-			<label for="motDePasse">Mot de passe : </label>
-			<input type="password" name="motDePasse" id="motDePasse" required>
-		</div>
+	<div class="modal" id="inscription-modal">
+		<div class="modal-content">
+			<h3>Inscription</h3>
+			<form>
+				<div>
+					<label for="prenom">Prénom : </label>
+					<input type="text" name="prenom" id="prenom" required>
+				</div>
+				<div>
+					<label for="nom">Nom : </label>
+					<input type="text" name="nom" id="nom" required>
+				</div>
+				<div>
+					<label for="mail">Mail : </label>
+					<input type="email" name="mail" id="mail" required>
+				</div>
+				<div>
+					<label for="motDePasse">Mot de passe : </label>
+					<input type="password" name="motDePasse" id="motDePasse" required>
+				</div>
 
-		<button type="submit">Envoyer</button>
-	</form> -->
+				<button class="btn waves-effect waves-light" type="submit">Envoyer</button>
+			</form>
+		</div>
+	</div>
 
 	<main>
 		<!-- page gauche : détails -->
 		<section id="mission-detail" class="page">
 			<!-- titre de la mission : à insérer en JS -->
 			<h3>
-				Opération
+				Opération <span id="mission-title">_</span>
 				<button id="mission-details-title-edit" class="visible-when-connected"
 					title="Éditer le nom de la mission">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
