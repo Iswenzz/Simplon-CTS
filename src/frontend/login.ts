@@ -1,5 +1,4 @@
 import Axios from "axios";
-import swal from "sweetalert";
 
 const form : HTMLFormElement = document.getElementsByTagName("form")[0];
 const mailInput = document.getElementById("mail") as HTMLInputElement;
@@ -12,13 +11,15 @@ form.addEventListener("submit", async (ev) => {
 
 	try {
 		// TODO : passage en prod => mettre un URL absolu par rapport au serveur hébergeur
-		const response = await Axios.post("../src/backend/php/checkConnect.php", {
+		const response = await Axios.post("../src/backend/php/checkLogin.php", {
 			"mail": mailInput.value,
 			"motDePasse": pwdInput.value
 		});
 		
 		console.log(response.data);
-		
+
+		await import("sweetalert");
+
 		// if the login was succesful
 		if (response.data.success) {
 			const apiKey : string = response.data.key;

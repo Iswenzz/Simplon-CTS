@@ -1,5 +1,7 @@
-/* CSS Mini Reset */
+// Materialize
+@import "node_modules/materialize-css/sass/materialize";
 
+/* CSS Mini Reset */
 html,
 body,
 div,
@@ -45,11 +47,17 @@ img {
 	border: 0;
 }
 
-// CSS TODO
+// Custom CSS TODO
 // whole page
-// body {
-// 	min-height: 100vh;
-// }
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+}
 
 // main {
 // 	background-image: url("../images/looking-glass.jpg");
@@ -66,37 +74,17 @@ img {
 // 	}
 // }
 
-// // banners
-// header,
-// footer {
-// 	position: relative;
-// 	z-index: 2;
-// 	background-color: rgb(73, 73, 173);
-// 	color: white;
-// 	fill: currentColor;
-
-// 	// links
-// 	a {
-// 		color: white;
-
-// 		&:visited {
-// 			color: black;
-// 		}
-// 	}
-// }
-
-// // footer
-// footer {
-// 	position: absolute;
-// 	bottom: 0;
-// }
-
 // icons
 a,
 button {
 	svg {
 		width: 40px;
 	}
+}
+
+// dropdown connexion
+.dropdown-content {
+	color: initial;
 }
 
 // --- page détails
