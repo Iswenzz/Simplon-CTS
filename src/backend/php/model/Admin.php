@@ -8,6 +8,8 @@ class Admin
 	private string $prenom;
 	private DateTime $dateCreation;
 	private string $mdp;
+	private string $apiKey;
+	private DateTime $expirationApiKey;
 
 	private AdminController $controller;
 
@@ -15,7 +17,7 @@ class Admin
 	 * Initailize a new Admin object.
 	 */
 	public function __construct(string $email, string $nom, string $prenom, 
-		DateTime $dateCreation, string $mdp)
+		DateTime $dateCreation, string $mdp, string $apiKey, DateTime $expirationApiKey)
 	{
 
 		$this->nom = $nom;
@@ -23,6 +25,8 @@ class Admin
 		$this->dateCreation = $dateCreation;
 		$this->mdp = $mdp;
 		$this->email = $email;
+		$this->apiKey = $apiKey;
+		$this->expirationApiKey = $expirationApiKey ?? date("Y-m-d", time() + 86400);
 		$this->controller = new AdminController($this, new AdminView($this));
 	}
 
@@ -112,5 +116,37 @@ class Admin
 	public function setEmail(string $email): void
 	{
 		$this->email = $email;
+	}
+
+	/**
+	 * Get the value of apiKey
+	 */ 
+	public function getApiKey(): string
+	{
+		return $this->apiKey;
+	}
+
+	/**
+	 * Set the value of apiKey
+	 */ 
+	public function setApiKey(string $apiKey): void
+	{
+		$this->apiKey = $apiKey;
+	}
+
+	/**
+	 * Get the value of expirationApiKey
+	 */ 
+	public function getExpirationApiKey(): DateTime
+	{
+		return $this->expirationApiKey;
+	}
+
+	/**
+	 * Set the value of expirationApiKey
+	 */ 
+	public function setExpirationApiKey(DateTime $expirationApiKey): void
+	{
+		$this->expirationApiKey = $expirationApiKey;
 	}
 }
