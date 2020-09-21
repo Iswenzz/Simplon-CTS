@@ -57,7 +57,7 @@ class ConnectionController extends Controller
                     // no valid key -> generating a new one
                     if (!$isValidKey) {
                         $this->response->setMessage("Nouvelle clé générée");
-                        $key = random_bytes(31);
+                        $admin->setApiKey(random_bytes(31));
                         $this->response->setSuccess($dao->updateApiKey($admin));
 
                         // DB error during generation

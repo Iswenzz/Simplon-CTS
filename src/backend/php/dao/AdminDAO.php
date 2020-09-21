@@ -101,7 +101,7 @@ class AdminDAO implements DAO
             ":nom" => $admin->getNom(),
             ":prenom" => $admin->getPrenom(),
             ":dateCreation" => $admin->getDateCreation()->format("Y-m-d"),
-            ":mailPays" => $admin->getMdp()
+            ":mdp" => $admin->getMdp()
         ]);
         return $res;
     }
@@ -115,7 +115,8 @@ class AdminDAO implements DAO
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::UPDATE_APIKEY_QUERY);
         return $stmt->execute([
             ":apikey" => $admin->getApiKey(),
-            ":expirationApiKey" => $admin->getExpirationApiKey()
+            ":expirationApiKey" => date("Y-m-d", time() + 86400),
+            ":mail" => $admin->getEmail()
         ]);
     }
 
