@@ -98,6 +98,7 @@ class AdminDAO implements DAO
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::ADD_QUERY);
         $res = $stmt->execute([
+            ":mail" => $admin->getEmail(),
             ":nom" => $admin->getNom(),
             ":prenom" => $admin->getPrenom(),
             ":dateCreation" => $admin->getDateCreation()->format("Y-m-d"),
