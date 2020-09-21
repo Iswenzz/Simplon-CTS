@@ -10,9 +10,7 @@ module.exports = (_, argv) =>
 	return {
 		mode: argv.mode,
 		entry: {	
-			index: ["./src/frontend/index.ts"],
-			connexion: ["./src/frontend/connexion.ts"],
-			inscription: ["./src/frontend/inscription.ts"],
+			index: ["./src/frontend/index.ts"]
 		},
 		output: {
 			filename: "[name].js",
@@ -37,7 +35,7 @@ module.exports = (_, argv) =>
 				filename: "[name].css",
 				chunkFilename: "[id].css",
 			}),
-			...["index", "inscription", "connexion"].map(html => new HtmlWebpackPlugin({
+			...["index"].map(html => new HtmlWebpackPlugin({
 				filename: `${html}.html`,
 				chunks: [html],
 				inject: true,
