@@ -149,10 +149,12 @@ h3 {
 	position: relative;
 }
 
+#mission-detail-header {
+	display: flex;
+	justify-content: space-between;
+}
+
 #controls {
-	position: absolute;
-	top: 3px;
-	left: 3px;
 	display: flex;
 	flex-direction: column;
 }

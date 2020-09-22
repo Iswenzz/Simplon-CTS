@@ -6,7 +6,7 @@ import "./signUp";
 
 // initializing login dropdown & inscription modal
 document.addEventListener("DOMContentLoaded", () => {
-	// login
+	// dropdown
 	const loginTrigger = document.getElementById("login");
 	const loginInstance = M.Dropdown.init(loginTrigger, {
 		// aligned ?
@@ -24,7 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		loginInstance.close();
 	});
 
-	// inscription
-	const inscriptionModal = document.getElementById("inscription-modal");
-	M.Modal.init(inscriptionModal);
+	// modal
+	const modals = document.querySelectorAll(".modal");
+	M.Modal.init(modals);
+
+	// select
+	const selects = document.querySelectorAll("select");
+	M.FormSelect.init(selects);
 });
