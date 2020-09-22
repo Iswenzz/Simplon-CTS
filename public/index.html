@@ -120,7 +120,7 @@
 				</section>
 
 				<!-- résumé visuel -->
-				<section id="illustration" class="row"></section>
+				<section id="illustration" class="col s11"></section>
 
 				<!-- résumé écrit -->
 				<section id="description">
@@ -227,24 +227,23 @@
 			<!-- page droite : liste TODO -->
 			<section id="page-mission-list" class="page col m11 l5">
 				<!-- changement de page -->
-				<ul id="mission-list-pagination" class="pagination">
-					<li><a href="#!" title="Passer à la page précédente" id="previous" role="button" class="btn">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.5 444.5">
-								<path
-									d="M213 222.4L352 83.7a35 35 0 0 0 10.6-25.8A35 35 0 0 0 351.9 32l-21.4-21.4A35 35 0 0 0 304.6 0a35 35 0 0 0-25.8 10.6l-186 186a35 35 0 0 0-10.6 25.8 35 35 0 0 0 10.6 25.8l186 186a35 35 0 0 0 25.8 10.6 35 35 0 0 0 25.8-10.6l21.4-21.4a35 35 0 0 0 10.6-25.7 36 36 0 0 0-10.6-26L213 222.4z" />
-							</svg>
-							<span class="sr-only">Passer à la page précédente</span>
-						</a>
-					</li>
-					<li><a href="#!" title="Passer à la page suivante" id="next" role="button" class="btn">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.8 444.8">
-								<path
-									d="M352 196.7l-186-186A34 34 0 0 0 140.2 0a34 34 0 0 0-25.7 10.8L92.8 32.3A35 35 0 0 0 82.2 58c0 10 3.5 18.6 10.6 26l138.8 138.5L92.8 361.2a35 35 0 0 0-10.6 25.7c0 10 3.5 18.6 10.6 26l21.7 21.4a35 35 0 0 0 25.7 10.6 35 35 0 0 0 25.7-10.6l186-186c7-7.4 10.6-16 10.6-26a35 35 0 0 0-10.6-25.7z" />
-							</svg>
-							<span class="sr-only">Passer à la page suivante</span>
-						</a>
-					</li>
-				</ul>
+				<div id="mission-list-pagination" class="pagination">
+					<button title="Passer à la page précédente" id="previous" class="btn">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.5 444.5">
+							<path
+								d="M213 222.4L352 83.7a35 35 0 0 0 10.6-25.8A35 35 0 0 0 351.9 32l-21.4-21.4A35 35 0 0 0 304.6 0a35 35 0 0 0-25.8 10.6l-186 186a35 35 0 0 0-10.6 25.8 35 35 0 0 0 10.6 25.8l186 186a35 35 0 0 0 25.8 10.6 35 35 0 0 0 25.8-10.6l21.4-21.4a35 35 0 0 0 10.6-25.7 36 36 0 0 0-10.6-26L213 222.4z" />
+						</svg>
+						<span class="sr-only">Passer à la page précédente</span>
+					</button>
+
+					<button title="Passer à la page suivante" id="next" class="btn">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.8 444.8">
+							<path
+								d="M352 196.7l-186-186A34 34 0 0 0 140.2 0a34 34 0 0 0-25.7 10.8L92.8 32.3A35 35 0 0 0 82.2 58c0 10 3.5 18.6 10.6 26l138.8 138.5L92.8 361.2a35 35 0 0 0-10.6 25.7c0 10 3.5 18.6 10.6 26l21.7 21.4a35 35 0 0 0 25.7 10.6 35 35 0 0 0 25.7-10.6l186-186c7-7.4 10.6-16 10.6-26a35 35 0 0 0-10.6-25.7z" />
+						</svg>
+						<span class="sr-only">Passer à la page suivante</span>
+					</button>
+				</div>
 
 				<h3>Liste des missions :</h3>
 
