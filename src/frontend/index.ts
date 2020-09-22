@@ -1,6 +1,8 @@
 import "../assets/scss/style.scss";
 import "materialize-css";
+import "./signUp";
 import "./logout";
+import "./login";
 
 // initializing login dropdown & inscription modal
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,11 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		// not closing when clicked
 		closeOnClick: false,
 		// free width
-		constrainWidth: false,
-		// lazy loading
-		onOpenStart: () => {
-			import("./login");
-		}
+		constrainWidth: false
 	});
 
 	const inscriptionTrigger = document.getElementById("inscription");
@@ -28,9 +26,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// inscription
 	const inscriptionModal = document.getElementById("inscription-modal");
-	M.Modal.init(inscriptionModal, {
-		onOpenStart: () => {
-			import("./signUp");
-		},
-	});
+	M.Modal.init(inscriptionModal);
 });
