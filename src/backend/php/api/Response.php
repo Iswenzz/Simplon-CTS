@@ -44,9 +44,28 @@ class Response
 		$this->httpCode = $httpCode;
 	}
 
-	public function setMessage(string $message)
+	public function setMessage(string $message, bool $debug = false)
 	{
 		$this->message = $message;
+		if ($debug)
+			print_r($this->message);
+	}
+
+	/**
+	 * Prepare an HTTP response with the specified parameter.
+	 * @param int $httpCode - The response code.
+	 * @param bool $success - The success state.
+	 * @param string $message - The response message.
+	 * @param array $data - The response data.
+	 * @param bool $debug - Print debug informations.
+	 */
+	public function prepare(int $httpCode, bool $success, 
+		string $message, bool $debug = false): Response
+	{
+		$this->setHttpCode($httpCode);
+		$this->setSuccess($success);
+		$this->setMessage($message, $debug);
+		return $this;
 	}
 	
 	/**
@@ -61,7 +80,7 @@ class Response
 			[
 				"message" => $this->message,
 				"success" => $this->success,
-				"data" => json_encode($data)
+				"body" => json_encode($data)
 			]
 		);
 		echo $return;

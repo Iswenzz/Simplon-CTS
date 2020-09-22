@@ -26,69 +26,62 @@ class ConnectionController extends Controller
 	public function respond(): void
 	{
 		$requestBody = file_get_contents('php://input');
-		if ($requestBody) {
-			$requestBody = json_decode($requestBody);
-			/**
-			 * @var AdminDAO $dao
-			 */
-			$dao = $this->dao;
-			$admin = $dao->getAdmin($requestBody->mail);
-			if ($admin) {
-				if (password_verify($requestBody->motDePasse, $admin->getMdp())) {
-					$admin->setEmail($requestBody->mail);
-					$admin->setMdp($requestBody->motDePasse);
-
-					$this->response->setHttpCode(Response::OK);
-					$this->response->setMessage("Identifiants valides :)");
-					$this->response->setSuccess(true);
-					
-					// check if this admin already has a valid API key
-					if (!is_null($admin->getExpirationApiKey()) && !is_null($admin->getApiKey())) {
-						$expirationDate = $admin->getExpirationApiKey();
-						$now = new Datetime();
-						$isValidKey = $now->diff($expirationDate)->format("%R") == "+"; // the diff is positive
-					} else {
-						$isValidKey = false;
-					}
-			
-					// no valid key -> generating a new one
-					if (!$isValidKey) {
-						$this->response->setMessage("Nouvelle clé générée");
-						$admin->setApiKey(random_bytes(31));
-						$this->response->setSuccess($dao->updateApiKey($admin));
-
-						// DB error during generation
-						if (!$this->response->getSuccess()) {
-							$this->response->setHttpCode(Response::INTERNAL_SERVER_ERROR);
-							$this->response->setMessage("Erreur lors de la génération de clé de connexion :(");
-						}
-					} else {
-						// reading existing key
-						$this->response->setMessage("Récupération de la clé");
-					}
-					// response success
-					$this->response->send([
-						"key" => $admin->getApiKey() ?? "",
-						"user" => $admin->getEmail() ?? ""
-					]);
-					return;
-				} else {	// bad password
-					$this->response->setSuccess(false);
-					$this->response->setHttpCode(Response::OK);
-					$this->response->setMessage("Mauvais mot de passe :(");
-				}
-			} else {	// no mail/password match
-				$this->response->setSuccess(false);
-				$this->response->setHttpCode(Response::OK);
-				$this->response->setMessage("Aucun admin existant avec cet email :(");
-			}
-		} else {
-			// empty request
-			$this->response->setSuccess(false);
-			$this->response->setHttpCode(Response::BAD_REQUEST);
-			$this->response->setMessage("Mauvaise syntaxe de requête / paramètres manquants :(");
+		if (!$requestBody) // empty request
+		{
+			$this->response->prepare(Response::BAD_REQUEST, false, 
+				"Mauvaise syntaxe de requête / paramètres manquants :(")->send();
+			return;
 		}
-		$this->response->send();
+		$requestBody = json_decode($requestBody);
+		/**
+		 * @var AdminDAO $dao
+		 */
+		$dao = $this->dao;
+		$admin = $dao->getAdmin($requestBody->mail);
+		if ($admin) 
+		{
+			if (password_verify($requestBody->motDePasse, $admin->getMdp())) 
+			{
+				$admin->setEmail($requestBody->mail);
+				$admin->setMdp($requestBody->motDePasse);
+				$this->response->setMessage("Identifiants valides :)");
+
+				// check if this admin already has a valid API key
+				if (!is_null($admin->getExpirationApiKey()) && !is_null($admin->getApiKey())) {
+					$expirationDate = $admin->getExpirationApiKey();
+					$now = new Datetime();
+					$isValidKey = $now->diff($expirationDate)->format("%R") == "+"; // the diff is positive
+				} 
+				else
+					$isValidKey = false;
+		
+				// no valid key -> generating a new one
+				if (!$isValidKey) 
+				{
+					$admin->setApiKey(random_bytes(31));
+					$this->response->prepare(Response::OK, $dao->updateApiKey($admin), 
+						"Nouvelle clé générée");
+
+					// DB error during generation
+					if (!$this->response->getSuccess())
+						$this->response->prepare(Response::INTERNAL_SERVER_ERROR, false, 
+							"Erreur lors de la génération de clé de connexion :(")->send();
+				} 
+				else // reading existing key
+					$this->response->setMessage("Récupération de la clé");
+				// response success
+				$this->response->prepare(Response::OK, true, "Connection réussi!")->send([
+					"key" => $admin->getApiKey() ?? "",
+					"user" => $admin->getEmail() ?? ""
+				]);
+			} 
+			else // bad password
+				$this->response->prepare(Response::OK, false, 
+					"Mauvais mot de passe :(")->send();
+		} 
+		else // no mail/password match
+			$this->response->prepare(Response::OK, false, 
+				"Aucun admin existant avec cet email :(")->send();
 	}
 }
 ConnectionController::getInstance()->respond();
