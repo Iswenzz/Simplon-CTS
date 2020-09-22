@@ -5,9 +5,9 @@ require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
 require_once __DIR__ . "/../dao/AdminDAO.php";
 
-class ConnectionController extends Controller
+class MissionController extends Controller
 {
-	private static ?ConnectionController $instance = null;
+	private static ?MissionController $instance = null;
 
 	private function __construct()
 	{
@@ -16,11 +16,11 @@ class ConnectionController extends Controller
 		$this->response = new Response();
 	}
 
-	public static function getInstance(): ?ConnectionController
+	public static function getInstance(): ?MissionController
 	{
-		if (!ConnectionController::$instance)
-			ConnectionController::$instance = new ConnectionController();
-		return ConnectionController::$instance;
+		if (!MissionController::$instance)
+			MissionController::$instance = new MissionController();
+		return MissionController::$instance;
 	}
 
 	public function respond(): void
@@ -91,4 +91,4 @@ class ConnectionController extends Controller
 		$this->response->send();
 	}
 }
-ConnectionController::getInstance()->respond();
+MissionController::getInstance()->respond();

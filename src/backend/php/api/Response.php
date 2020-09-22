@@ -19,17 +19,17 @@ class Response
 		$this->message = $message;
 	}
 
-	public function getSuccess() : bool
+	public function getSuccess(): bool
 	{
 		return $this->success;
 	}
 	
-	public function getHttpCode() : int
+	public function getHttpCode(): int
 	{
 		return $this->httpCode;
 	}
 
-	public function getMessage() : string
+	public function getMessage(): string
 	{
 		return $this->message;
 	}
@@ -52,17 +52,16 @@ class Response
 	/**
 	 * Sends the prepared response to the output as JSON,
 	 * with the HTTP code sent in an HTTP header.
-	 *
-	 * @return void
 	 */
-	public function send($model)
+	public function send(array $data = null): void
 	{
 		header('Content-Type: application/json');
 		http_response_code($this->httpCode);
 		$return = json_encode(
 			[
 				"message" => $this->message,
-				"success" => $this->success
+				"success" => $this->success,
+				"data" => json_encode($data)
 			]
 		);
 		echo $return;
