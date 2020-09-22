@@ -8,9 +8,9 @@ require_once __DIR__ . "/../dao/AdminDAO.php";
 /**
  * Controller for login requests.
  */
-class ConnectionController extends Controller
+class ConnectionAPI extends Controller
 {
-	private static ?ConnectionController $instance = null;
+	private static ?ConnectionAPI $instance = null;
 
 	/**
 	 * Connection singleton instance.
@@ -25,11 +25,11 @@ class ConnectionController extends Controller
 	/**
 	 * Get the singleton instance.
 	 */
-	public static function getInstance(): ?ConnectionController
+	public static function getInstance(): ?ConnectionAPI
 	{
-		if (!ConnectionController::$instance)
-			ConnectionController::$instance = new ConnectionController();
-		return ConnectionController::$instance;
+		if (!ConnectionAPI::$instance)
+			ConnectionAPI::$instance = new ConnectionAPI();
+		return ConnectionAPI::$instance;
 	}
 
 	/**
@@ -82,10 +82,10 @@ class ConnectionController extends Controller
 					$this->res->setMessage("Récupération de la clé");
 
 				// response success
-				return $this->res->prepare(Response::OK, true, "Connection réussi!", [
+				return $this->res->prepare(Response::OK, true, "Connection réussi!", json_encode([
 					"key" => $admin->getApiKey(),
 					"user" => $admin->getEmail()
-				]);
+				]));
 			} 
 			// bad password
 			return $this->res->prepare(Response::OK, false, 
@@ -96,4 +96,4 @@ class ConnectionController extends Controller
 			"Aucun admin existant avec cet email :(");
 	}
 }
-ConnectionController::getInstance()->response()->send();
+ConnectionAPI::getInstance()->response()->send();

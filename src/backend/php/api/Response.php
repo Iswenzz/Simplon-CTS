@@ -10,7 +10,7 @@ class Response
 	private bool $success;
 	private int $httpCode;
 	private string $message;
-	private ?array $data;
+	private $data;
 
 	/**
 	 * Initialize a new Response object.
@@ -31,11 +31,11 @@ class Response
 	 * @param int $httpCode - The response code.
 	 * @param bool $success - The success state.
 	 * @param string $message - The response message.
-	 * @param array $data - The response data.
+	 * @param mixed $data - The response data.
 	 * @param bool $debug - Print debug informations.
 	 */
 	public function prepare(int $httpCode, bool $success, 
-		string $message, array $data = null, bool $debug = false): Response
+		string $message, $data = null, bool $debug = false): Response
 	{
 		$this->setHttpCode($httpCode);
 		$this->setSuccess($success);
@@ -56,7 +56,7 @@ class Response
 			[
 				"message" => $this->message,
 				"success" => $this->success,
-				"body" => json_encode($this->data)
+				"body" => $this->data
 			]
 		);
 		echo $return;
@@ -116,7 +116,7 @@ class Response
 	/**
 	 * Get the value of data
 	 */ 
-	public function getData(): ?array
+	public function getData()
 	{
 		return $this->data;
 	}
@@ -124,7 +124,7 @@ class Response
 	/**
 	 * Set the value of data
 	 */ 
-	public function setData(?array $data): void
+	public function setData($data): void
 	{
 		$this->data = $data;
 	}

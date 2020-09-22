@@ -8,9 +8,9 @@ require_once __DIR__ . "/../dao/AdminDAO.php";
 /**
  * Controller for signing up.
  */
-class InscriptionController extends Controller
+class InscriptionAPI extends Controller
 {
-	private static ?InscriptionController $instance = null;
+	private static ?InscriptionAPI $instance = null;
 
 	/**
 	 * Inscription singleton instance.
@@ -25,11 +25,11 @@ class InscriptionController extends Controller
 	/**
 	 * Get the singleton instance.
 	 */
-	public static function getInstance(): ?InscriptionController
+	public static function getInstance(): ?InscriptionAPI
 	{
-		if (!InscriptionController::$instance)
-			InscriptionController::$instance = new InscriptionController();
-		return InscriptionController::$instance;
+		if (!InscriptionAPI::$instance)
+			InscriptionAPI::$instance = new InscriptionAPI();
+		return InscriptionAPI::$instance;
 	}
 	
 	/**
@@ -71,4 +71,4 @@ class InscriptionController extends Controller
 			"Il existe déjà un administrateur possédant cet email !");
 	}
 }
-InscriptionController::getInstance()->response()->send();
+InscriptionAPI::getInstance()->response()->send();

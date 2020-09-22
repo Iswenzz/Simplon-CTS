@@ -17,7 +17,7 @@ form.addEventListener("submit", async (ev) => {
 
 	try {
 		// TODO : passage en prod => mettre un URL absolu par rapport au serveur hébergeur
-		const response = await Axios.post("../src/backend/php/api/InscriptionController.php", {
+		const response = await Axios.post("../src/backend/php/api/InscriptionAPI.php", {
 			"name": nameInput.value,
 			"firstName": firstNameInput.value,
 			"mail": mailInput.value,

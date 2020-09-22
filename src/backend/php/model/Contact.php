@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../controller/ContactController.php";
 
-class Contact
+class Contact implements JsonSerializable
 {
 	private ?int $code;
 	private string $nom;
@@ -111,5 +111,19 @@ class Contact
 	public function setCodePays(int $codePays): void
 	{
 		$this->codePays = $codePays;
+	}
+
+	/**
+	 * Serialize the model data for JSON encoding.
+	 */
+	public function jsonSerialize(): array
+	{
+		return [
+			"code" => $this->getCode(),
+			"nom" => $this->getNom(),
+			"prenom" => $this->getPrenom(),
+			"dateNaissance" => $this->getDateNaissance()->format("Y-m-d"),
+			"codePays" => $this->getCodePays()
+		];
 	}
 }
