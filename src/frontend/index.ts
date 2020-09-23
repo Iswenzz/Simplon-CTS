@@ -31,4 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	// select
 	const selects = document.querySelectorAll("select");
 	M.FormSelect.init(selects);
+
+	// tabs
+	const tabs = document.querySelectorAll(".tabs");
+	M.Tabs.init(tabs);
 });
