@@ -2,6 +2,7 @@
 require_once __DIR__ . "/Response.php";
 require_once __DIR__ . "/Controller.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
+require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
 require_once __DIR__ . "/../dao/ContactDAO.php";
 
@@ -42,7 +43,42 @@ class ContactAPI extends Controller
 		 */
 		$dao = $this->dao;
 		$contacts = $dao->getAllContacts();
-		return $this->res->prepare(Response::OK, true, "Query successful", $contacts);
+		return $this->res->prepare(Response::OK, true,
+            "Query successful", $contacts);
+	}
+
+	/**
+	 * Update a specific Contact.
+	 */
+	private function update(): Response
+    {
+		/**
+		 * @var ContactDAO $dao
+		 * @var Contact $contact
+		 */
+		$dao = $this->dao;
+		$deserializer = new Deserializer(Contact::class, $this->req->contact);
+		$contact = $deserializer->deserialize();
+		$dao->updateContact($contact);
+		return $this->res->prepare(Response::OK, true,
+			"Query successful", $deserializer->deserialize());
+	}
+
+	/**
+	 * Delete a specific Contact.
+	 */
+	private function delete(): Response
+	{
+		/**
+		 * @var ContactDAO $dao
+		 * @var Contact $contact
+		 */
+		$dao = $this->dao;
+		$deserializer = new Deserializer(Contact::class, $this->req->contact);
+		$contact = $deserializer->deserialize();
+		$dao->deleteContact($contact);
+		return $this->res->prepare(Response::OK, true,
+			"Query successful", $deserializer->deserialize());
 	}
 
 	/**
@@ -52,14 +88,13 @@ class ContactAPI extends Controller
 	{
 		$requestBody = file_get_contents('php://input');
 		if (!$requestBody) // empty request
-			return $this->res->prepare(Response::BAD_REQUEST, false, 
+			return $this->res->prepare(Response::BAD_REQUEST, false,
 				"Mauvaise syntaxe de requête / paramètres manquants :(");
 		$requestBody = json_decode($requestBody);
+		$this->req = $requestBody;
 
-		switch ($requestBody->method)
-		{
-			case "all": return $this->getAll();
-		}
+		// call the right response callback
+		return call_user_func([$this, $requestBody->method]);
 	}
 }
 ContactAPI::getInstance()->response()->send();

@@ -42,6 +42,7 @@ class InscriptionAPI extends Controller
 			return $this->res->prepare(Response::BAD_REQUEST, false, 
 				"Mauvaise syntaxe de requête / paramètres manquants :(");
 		$requestBody = json_decode($requestBody);
+		$this->req = $requestBody;
 
 		/**
 		 * @var AdminDAO $dao

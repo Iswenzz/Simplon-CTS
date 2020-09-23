@@ -6,6 +6,7 @@ abstract class Controller
 {
 	public DAO $dao;
 	public Response $res;
+	public $req;
 
 	/**
 	 * Prepare the request response.
