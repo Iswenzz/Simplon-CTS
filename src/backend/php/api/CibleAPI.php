@@ -4,79 +4,79 @@ require_once __DIR__ . "/Controller.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
-require_once __DIR__ . "/../dao/ContactDAO.php";
+require_once __DIR__ . "/../dao/CibleDAO.php";
 
 /**
- * Controller for contact request.
+ * Controller for cible requests.
  */
-class ContactAPI extends Controller
+class CibleAPI extends Controller
 {
-	private static ?ContactAPI $instance = null;
+	private static ?CibleAPI $instance = null;
 
 	/**
-	 * Contact singleton instance.
+	 * Cible singleton instance.
 	 */
 	private function __construct()
 	{
-		DAOFactory::registerDAO(ContactDAO::class);
-		$this->dao = DAOFactory::getDAO(ContactDAO::class);
+		DAOFactory::registerDAO(CibleDAO::class);
+		$this->dao = DAOFactory::getDAO(CibleDAO::class);
 		$this->res = new Response();
 	}
 
 	/**
 	 * Get the singleton instance.
 	 */
-	public static function getInstance(): ?ContactAPI
+	public static function getInstance(): ?CibleAPI
 	{
-		if (!ContactAPI::$instance)
-			ContactAPI::$instance = new ContactAPI();
-		return ContactAPI::$instance;
+		if (!CibleAPI::$instance)
+			CibleAPI::$instance = new CibleAPI();
+		return CibleAPI::$instance;
 	}
 
 	/**
-	 * Get all contacts.
+	 * Get all Cibles.
 	 */
 	private function getAll(): Response
 	{
 		/**
-		 * @var ContactDAO $dao
+		 * @var CibleDAO $dao
 		 */
 		$dao = $this->dao;
-		$contacts = $dao->getAllContacts();
+		$Cibles = $dao->getAllCibles();
 		return $this->res->prepare(Response::OK, true,
-            "Query successful", $contacts);
+            "Query successful", $Cibles);
 	}
 
 	/**
-	 * Update a specific Contact.
+	 * Update a specific Cible.
 	 */
 	private function update(): Response
     {
 		/**
-		 * @var ContactDAO $dao
-		 * @var Contact $contact
+		 * @var CibleDAO $dao
+		 * @var Cible $Cible
 		 */
 		$dao = $this->dao;
-		$deserializer = new Deserializer(Contact::class, $this->req->contact);
-		$contact = $deserializer->deserialize();
-		$dao->updateContact($contact);
+		$deserializer = new Deserializer(Cible::class, $this->req->Cible);
+		$Cible = $deserializer->deserialize();
+		$dao->updateCible($Cible);
 		return $this->res->prepare(Response::OK, true,
 			"Query successful", $deserializer->deserialize());
 	}
 
 	/**
-	 * Delete a specific Contact.
+	 * Delete a specific Cible.
 	 */
 	private function delete(): Response
 	{
 		/**
-		 * @var ContactDAO $dao
-		 * @var Contact $contact
+		 * @var CibleDAO $dao
+		 * @var Cible $Cible
 		 */
 		$dao = $this->dao;
-		$deserializer = new Deserializer(Contact::class, $this->req->contact);
-		$contact = $deserializer->deserialize();
-		$dao->deleteContact($contact);
+		$deserializer = new Deserializer(Cible::class, $this->req->Cible);
+		$Cible = $deserializer->deserialize();
+		$dao->deleteCible($Cible);
 		return $this->res->prepare(Response::OK, true,
 			"Query successful", $deserializer->deserialize());
 	}
@@ -97,4 +97,4 @@ class ContactAPI extends Controller
 		return call_user_func([$this, $requestBody->method]);
 	}
 }
-ContactAPI::getInstance()->response()->send();
+CibleAPI::getInstance()->response()->send();

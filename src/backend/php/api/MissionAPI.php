@@ -4,79 +4,79 @@ require_once __DIR__ . "/Controller.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
-require_once __DIR__ . "/../dao/ContactDAO.php";
+require_once __DIR__ . "/../dao/MissionDAO.php";
 
 /**
- * Controller for contact request.
+ * Controller for mission requests.
  */
-class ContactAPI extends Controller
+class MissionAPI extends Controller
 {
-	private static ?ContactAPI $instance = null;
+	private static ?MissionAPI $instance = null;
 
 	/**
-	 * Contact singleton instance.
+	 * Mission singleton instance.
 	 */
 	private function __construct()
 	{
-		DAOFactory::registerDAO(ContactDAO::class);
-		$this->dao = DAOFactory::getDAO(ContactDAO::class);
+		DAOFactory::registerDAO(MissionDAO::class);
+		$this->dao = DAOFactory::getDAO(MissionDAO::class);
 		$this->res = new Response();
 	}
 
 	/**
 	 * Get the singleton instance.
 	 */
-	public static function getInstance(): ?ContactAPI
+	public static function getInstance(): ?MissionAPI
 	{
-		if (!ContactAPI::$instance)
-			ContactAPI::$instance = new ContactAPI();
-		return ContactAPI::$instance;
+		if (!MissionAPI::$instance)
+			MissionAPI::$instance = new MissionAPI();
+		return MissionAPI::$instance;
 	}
 
 	/**
-	 * Get all contacts.
+	 * Get all Missions.
 	 */
 	private function getAll(): Response
 	{
 		/**
-		 * @var ContactDAO $dao
+		 * @var MissionDAO $dao
 		 */
 		$dao = $this->dao;
-		$contacts = $dao->getAllContacts();
+		$Missions = $dao->getAllMissions();
 		return $this->res->prepare(Response::OK, true,
-            "Query successful", $contacts);
+            "Query successful", $Missions);
 	}
 
 	/**
-	 * Update a specific Contact.
+	 * Update a specific Mission.
 	 */
 	private function update(): Response
     {
 		/**
-		 * @var ContactDAO $dao
-		 * @var Contact $contact
+		 * @var MissionDAO $dao
+		 * @var Mission $Mission
 		 */
 		$dao = $this->dao;
-		$deserializer = new Deserializer(Contact::class, $this->req->contact);
-		$contact = $deserializer->deserialize();
-		$dao->updateContact($contact);
+		$deserializer = new Deserializer(Mission::class, $this->req->Mission);
+		$Mission = $deserializer->deserialize();
+		$dao->updateMission($Mission);
 		return $this->res->prepare(Response::OK, true,
 			"Query successful", $deserializer->deserialize());
 	}
 
 	/**
-	 * Delete a specific Contact.
+	 * Delete a specific Mission.
 	 */
 	private function delete(): Response
 	{
 		/**
-		 * @var ContactDAO $dao
-		 * @var Contact $contact
+		 * @var MissionDAO $dao
+		 * @var Mission $Mission
 		 */
 		$dao = $this->dao;
-		$deserializer = new Deserializer(Contact::class, $this->req->contact);
-		$contact = $deserializer->deserialize();
-		$dao->deleteContact($contact);
+		$deserializer = new Deserializer(Mission::class, $this->req->Mission);
+		$Mission = $deserializer->deserialize();
+		$dao->deleteMission($Mission);
 		return $this->res->prepare(Response::OK, true,
 			"Query successful", $deserializer->deserialize());
 	}
@@ -97,4 +97,4 @@ class ContactAPI extends Controller
 		return call_user_func([$this, $requestBody->method]);
 	}
 }
-ContactAPI::getInstance()->response()->send();
+MissionAPI::getInstance()->response()->send();

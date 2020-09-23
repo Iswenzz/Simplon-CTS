@@ -4,79 +4,79 @@ require_once __DIR__ . "/Controller.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
-require_once __DIR__ . "/../dao/ContactDAO.php";
+require_once __DIR__ . "/../dao/AgentDAO.php";
 
 /**
- * Controller for contact request.
+ * Controller for agent requests.
  */
-class ContactAPI extends Controller
+class AgentAPI extends Controller
 {
-	private static ?ContactAPI $instance = null;
+	private static ?AgentAPI $instance = null;
 
 	/**
-	 * Contact singleton instance.
+	 * Agent singleton instance.
 	 */
 	private function __construct()
 	{
-		DAOFactory::registerDAO(ContactDAO::class);
-		$this->dao = DAOFactory::getDAO(ContactDAO::class);
+		DAOFactory::registerDAO(AgentDAO::class);
+		$this->dao = DAOFactory::getDAO(AgentDAO::class);
 		$this->res = new Response();
 	}
 
 	/**
 	 * Get the singleton instance.
 	 */
-	public static function getInstance(): ?ContactAPI
+	public static function getInstance(): ?AgentAPI
 	{
-		if (!ContactAPI::$instance)
-			ContactAPI::$instance = new ContactAPI();
-		return ContactAPI::$instance;
+		if (!AgentAPI::$instance)
+			AgentAPI::$instance = new AgentAPI();
+		return AgentAPI::$instance;
 	}
 
 	/**
-	 * Get all contacts.
+	 * Get all Agents.
 	 */
 	private function getAll(): Response
 	{
 		/**
-		 * @var ContactDAO $dao
+		 * @var AgentDAO $dao
 		 */
 		$dao = $this->dao;
-		$contacts = $dao->getAllContacts();
+		$Agents = $dao->getAllAgents();
 		return $this->res->prepare(Response::OK, true,
-            "Query successful", $contacts);
+            "Query successful", $Agents);
 	}
 
 	/**
-	 * Update a specific Contact.
+	 * Update a specific Agent.
 	 */
 	private function update(): Response
     {
 		/**
-		 * @var ContactDAO $dao
-		 * @var Contact $contact
+		 * @var AgentDAO $dao
+		 * @var Agent $Agent
 		 */
 		$dao = $this->dao;
-		$deserializer = new Deserializer(Contact::class, $this->req->contact);
-		$contact = $deserializer->deserialize();
-		$dao->updateContact($contact);
+		$deserializer = new Deserializer(Agent::class, $this->req->Agent);
+		$Agent = $deserializer->deserialize();
+		$dao->updateAgent($Agent);
 		return $this->res->prepare(Response::OK, true,
 			"Query successful", $deserializer->deserialize());
 	}
 
 	/**
-	 * Delete a specific Contact.
+	 * Delete a specific Agent.
 	 */
 	private function delete(): Response
 	{
 		/**
-		 * @var ContactDAO $dao
-		 * @var Contact $contact
+		 * @var AgentDAO $dao
+		 * @var Agent $Agent
 		 */
 		$dao = $this->dao;
-		$deserializer = new Deserializer(Contact::class, $this->req->contact);
-		$contact = $deserializer->deserialize();
-		$dao->deleteContact($contact);
+		$deserializer = new Deserializer(Agent::class, $this->req->Agent);
+		$Agent = $deserializer->deserialize();
+		$dao->deleteAgent($Agent);
 		return $this->res->prepare(Response::OK, true,
 			"Query successful", $deserializer->deserialize());
 	}
@@ -97,4 +97,4 @@ class ContactAPI extends Controller
 		return call_user_func([$this, $requestBody->method]);
 	}
 }
-ContactAPI::getInstance()->response()->send();
+AgentAPI::getInstance()->response()->send();
