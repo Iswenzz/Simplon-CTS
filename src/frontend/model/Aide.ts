@@ -1,3 +1,5 @@
+import Visee from "./Visee";
+
 class Aide
 {
 	private codeMission: number;
@@ -44,3 +46,5 @@ class Aide
 		this.codeContact = codeContact;
 	}
 }
+
+export default Aide;

@@ -1,3 +1,5 @@
+import Visee from "./Visee";
+
 class Specilisation
 {
 	private codeSpecialite: number;
@@ -44,3 +46,5 @@ class Specilisation
 		this.codeAgent = codeAgent;
 	}
 }
+
+export default Specilisation;

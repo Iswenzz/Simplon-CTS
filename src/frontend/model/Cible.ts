@@ -1,4 +1,5 @@
 import JsonSerializable from "../JsonSerializable";
+import Visee from "./Visee";
 
 class Cible implements JsonSerializable
 {
@@ -115,3 +116,5 @@ class Cible implements JsonSerializable
 		};
 	}
 }
+
+export default Cible;

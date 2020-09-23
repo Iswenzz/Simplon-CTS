@@ -1,3 +1,5 @@
+import Visee from "./Visee";
+
 class Abri
 {
 	private codeMission: number;
@@ -44,3 +46,5 @@ class Abri
 		this.codePlanque = codePlanque;
 	}
 }
+
+export default Abri;

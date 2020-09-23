@@ -1,4 +1,5 @@
 import JsonSerializable from "../JsonSerializable";
+import Visee from "./Visee";
 
 class Contact implements JsonSerializable
 {
@@ -120,3 +121,5 @@ class Contact implements JsonSerializable
 		};
 	}
 }
+
+export default Contact;

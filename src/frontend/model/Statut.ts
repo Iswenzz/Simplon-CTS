@@ -1,4 +1,5 @@
 import JsonSerializable from "../JsonSerializable";
+import Visee from "./Visee";
 
 class Statut implements JsonSerializable
 {
@@ -57,3 +58,5 @@ class Statut implements JsonSerializable
 		};
 	}
 }
+
+export default Statut;

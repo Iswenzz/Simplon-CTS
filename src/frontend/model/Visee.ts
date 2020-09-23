@@ -44,3 +44,5 @@ class Visee
 		this.codeCible = codeCible;
 	}
 }
+
+export default Visee;

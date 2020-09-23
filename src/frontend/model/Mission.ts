@@ -1,4 +1,5 @@
 import JsonSerializable from "../JsonSerializable";
+import Visee from "./Visee";
 
 class Mission implements JsonSerializable
 {
@@ -181,3 +182,5 @@ class Mission implements JsonSerializable
 		};
 	}
 }
+
+export default Mission;

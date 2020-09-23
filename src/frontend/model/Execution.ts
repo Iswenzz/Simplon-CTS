@@ -1,3 +1,5 @@
+import Visee from "./Visee";
+
 class Execution
 {
 	private codeMission: number;
@@ -46,3 +48,5 @@ class Execution
 		this.codeMission = codeMission;
 	}
 }
+
+export default Execution;

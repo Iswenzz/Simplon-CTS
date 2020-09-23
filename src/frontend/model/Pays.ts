@@ -1,4 +1,5 @@
 import JsonSerializable from "../JsonSerializable";
+import Visee from "./Visee";
 
 class Pays implements JsonSerializable
 {
@@ -57,3 +58,5 @@ class Pays implements JsonSerializable
 		};
 	}
 }
+
+export default Pays;

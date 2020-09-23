@@ -1,4 +1,5 @@
 import JsonSerializable from "../JsonSerializable";
+import Visee from "./Visee";
 
 class Agent implements JsonSerializable
 {
@@ -115,3 +116,5 @@ class Agent implements JsonSerializable
 		};
 	}
 }
+
+export default Agent;

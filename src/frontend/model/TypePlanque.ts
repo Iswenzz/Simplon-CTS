@@ -1,4 +1,5 @@
 import JsonSerializable from "../JsonSerializable";
+import Visee from "./Visee";
 
 class TypePlanque implements JsonSerializable
 {
@@ -57,3 +58,5 @@ class TypePlanque implements JsonSerializable
 		};
 	}
 }
+
+export default TypePlanque;

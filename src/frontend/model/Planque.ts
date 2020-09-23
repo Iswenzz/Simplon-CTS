@@ -1,4 +1,5 @@
 import JsonSerializable from "../JsonSerializable";
+import Visee from "./Visee";
 
 class Planque implements JsonSerializable
 {
@@ -95,3 +96,5 @@ class Planque implements JsonSerializable
 		};
 	}
 }
+
+export default Planque;

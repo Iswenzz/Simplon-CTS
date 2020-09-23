@@ -1,4 +1,5 @@
 import JsonSerializable from "../JsonSerializable";
+import Visee from "./Visee";
 
 class Specialite implements JsonSerializable
 {
@@ -57,3 +58,5 @@ class Specialite implements JsonSerializable
 		};
 	}
 }
+
+export default Specialite;
