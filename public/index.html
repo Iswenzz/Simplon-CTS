@@ -152,14 +152,13 @@
 
 				<!-- résumé écrit -->
 				<section class="description">
-					<h4>Description</h4>
+					<h4>Résumé</h4>
 					<!-- lieu -->
 					<section class="row">
-						<h5 class="col s12">Lieu</h5>
-						<p id="mission-details-location-desc" class="col m12 l5">"Pays" est un beau pays... mais
+						<h5 class="col s12">Pays</h5>
+						<p id="mission-details-country-desc" class="col m12 l5">"Pays" est un beau pays... mais
 							dangereux ! Aucune planque pour n'est prévue pour nos agents lors de de cette mission.</p>
 						<div class="logo-container col m12 l5">
-							<!-- image du pays TODO -->
 							<button id="mission-details-country-edit" title="Changer le pays"
 								class="btn visible-when-connected modal-trigger"
 								data-target="mission-details-country-edit-modal">
@@ -169,18 +168,7 @@
 								</svg>
 								<span class="sr-only">Changer le pays</span>
 							</button>
-							<!-- logo(s) planque TODO -->
-							<button id="mission-details-hideout-add" title="Ajouter une planque"
-								class="btn visible-when-connected modal-trigger"
-								data-target="mission-details-hideout-add-modal">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448">
-									<path
-										d="M408 184H272a8 8 0 0 1-8-8V40a40 40 0 1 0-80 0v136a8 8 0 0 1-8 8H40a40 40 0 1 0 0 80h136a8 8 0 0 1 8 8v136a40 40 0 1 0 80 0V272a8 8 0 0 1 8-8h136a40 40 0 1 0 0-80zm0 0" />
-								</svg>
-								<span class="sr-only">Ajouter une planque</span>
-							</button>
 						</div>
-
 						<div id="mission-details-country-edit-modal" class="modal">
 							<button class="modal-close btn-flat">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
@@ -216,7 +204,23 @@
 								</a>
 							</div>
 						</div>
-
+					</section>
+					<!-- lieu -->
+					<section class="row">
+						<h5 class="col s12">Planque(s)</h5>
+						<p id="mission-details-hideout-desc" class="col m12 l5">"type" : Parfait pour récupérer en
+							mouvement.</p>
+						<div class="logo-container col m12 l5">
+							<button id="mission-details-hideout-add" title="Ajouter une planque"
+								class="btn visible-when-connected modal-trigger"
+								data-target="mission-details-hideout-add-modal">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448">
+									<path
+										d="M408 184H272a8 8 0 0 1-8-8V40a40 40 0 1 0-80 0v136a8 8 0 0 1-8 8H40a40 40 0 1 0 0 80h136a8 8 0 0 1 8 8v136a40 40 0 1 0 80 0V272a8 8 0 0 1 8-8h136a40 40 0 1 0 0-80zm0 0" />
+								</svg>
+								<span class="sr-only">Ajouter une planque</span>
+							</button>
+						</div>
 						<div id="mission-details-hideout-add-modal" class="modal">
 							<button class="modal-close btn-flat">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
@@ -254,18 +258,8 @@
 					<!-- cible(s) -->
 					<section class="row">
 						<h5 class="col s12">Cible(s)</h5>
-						<p id="mission-details-target-desc" class="col m12 l5">"Cible" doit "mourir".</p>
+						<p id="mission-details-target-desc" class="col m12 l5">La cible ? "Cible", "age" ans, "pays"</p>
 						<div class="logo-container col m12 l5">
-							<!-- logo type mission TODO -->
-							<button id="mission-details-type-edit" title="Changer le type de mission"
-								class="btn visible-when-connected modal-trigger"
-								data-target="mission-details-type-edit-modal">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
-									<path
-										d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
-								</svg>
-								<span class="sr-only">Changer le type de mission</span>
-							</button>
 							<!-- portrait(s) cible TODO -->
 							<button id="mission-details-target-add" title="Ajouter une cible"
 								class="btn visible-when-connected modal-trigger"
@@ -277,42 +271,6 @@
 								<span class="sr-only">Ajouter une cible</span>
 							</button>
 						</div>
-
-						<!-- modal -->
-						<div id="mission-details-type-edit-modal" class="modal">
-							<button class="modal-close btn-flat">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-									<path
-										d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-								</svg>
-								<span class="sr-only">Annuler</span>
-							</button>
-							<div class="modal-content">
-								<h5>Changer le type de mission</h5>
-
-								<form>
-									<label>
-										<input type="radio" name="mission-details-type" class="with-gap" />
-										<span>Muffet</span>
-									</label>
-									<label>
-										<input type="radio" name="mission-details-type" class="with-gap" />
-										<span>Mettaton</span>
-									</label>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-										<path
-											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-									</svg>
-									<span class="sr-only">Valider</span>
-								</a>
-							</div>
-						</div>
-
-						<!-- modal -->
 						<div id="mission-details-target-add-modal" class="modal">
 							<button class="modal-close btn-flat">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
@@ -332,6 +290,56 @@
 									<label>
 										<input type="checkbox" class="filled-in" />
 										<span>Mettaton</span>
+									</label>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+										<path
+											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+									</svg>
+									<span class="sr-only">Valider</span>
+								</a>
+							</div>
+						</div>
+					</section>
+
+					<!-- spécialité -->
+					<section class="row">
+						<h5 class="col s12">Spécialité requise</h5>
+						<p id="mission-details-type-desc" class="col m12 l5">"type" : Assassiner, abattre,
+							neutraliser... Vous savez de quoi il s'agit.</p>
+						<div class="logo-container col m12 l5">
+							<button id="mission-details-specialisation-edit" title="Changer la spécialité de mission"
+								class="btn visible-when-connected modal-trigger"
+								data-target="mission-details-specialisation-edit-modal">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
+									<path
+										d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
+								</svg>
+								<span class="sr-only">Changer la spécialité de mission</span>
+							</button>
+						</div>
+						<div id="mission-details-specialisation-edit-modal" class="modal">
+							<button class="modal-close btn-flat">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+									<path
+										d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+								</svg>
+								<span class="sr-only">Annuler</span>
+							</button>
+							<div class="modal-content">
+								<h5>Changer la spécialité de mission</h5>
+
+								<form>
+									<label>
+										<input type="radio" name="mission-details-specialisation" class="with-gap" />
+										<span>Armes à feu</span>
+									</label>
+									<label>
+										<input type="radio" name="mission-details-specialisation" class="with-gap" />
+										<span>Armes blanches</span>
 									</label>
 								</form>
 							</div>
@@ -476,21 +484,11 @@
 				<h3>Liste des missions :</h3>
 
 				<ul id="mission-list">
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
 				</ul>
 
 				<div id="mission-list-footer">
@@ -593,7 +591,7 @@
 
 				<!-- résumé écrit -->
 				<section>
-					<h4>Description</h4>
+					<h4>Résumé</h4>
 					<!-- lieu -->
 					<section class="row">
 						<h5 class="col s12">Pays</h5>
@@ -655,6 +653,15 @@
 							"type" : Parfait pour récupérer en mouvement.
 						</p>
 						<div class="logo-container col m12 l5">
+							<button id="hideout-details-type-desc-edit"
+								class="btn text-edit-trigger visible-when-connected"
+								title="Éditer la description de la planque" data-target="#hideout-details-type-desc">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+									<path
+										d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
+								</svg>
+								<span class="sr-only">Éditer la description de la planque</span>
+							</button>
 							<button id="hideout-details-type-edit" title="Changer le type de planque"
 								class="btn visible-when-connected modal-trigger"
 								data-target="hideout-details-type-edit-modal">
@@ -726,21 +733,11 @@
 				<h3>Liste des planques :</h3>
 
 				<ul id="hideout-list">
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
 				</ul>
 
 				<div id="hideout-list-footer">
@@ -871,7 +868,7 @@
 
 				<!-- résumé écrit -->
 				<section>
-					<h4>Description</h4>
+					<h4>Résumé</h4>
 					<!-- pays -->
 					<section class="row">
 						<h5 class="col s12">Pays</h5>
@@ -1010,21 +1007,11 @@
 				<h3>Liste des agents :</h3>
 
 				<ul id="agent-list">
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
 				</ul>
 
 				<div id="agent-list-footer">
@@ -1151,7 +1138,7 @@
 
 				<!-- résumé écrit -->
 				<section>
-					<h4>Description</h4>
+					<h4>Résumé</h4>
 					<!-- pays -->
 					<section class="row">
 						<h5 class="col s12">Lieu</h5>
@@ -1240,21 +1227,11 @@
 				<h3>Liste des contacts :</h3>
 
 				<ul id="contact-list">
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
 				</ul>
 
 				<div id="contact-list-footer">
@@ -1382,7 +1359,7 @@
 
 				<!-- résumé écrit -->
 				<section>
-					<h4>Description</h4>
+					<h4>Résumé</h4>
 					<!-- pays -->
 					<section class="row">
 						<h5 class="col s12">Lieu</h5>
@@ -1471,21 +1448,11 @@
 				<h3>Liste des cibles :</h3>
 
 				<ul id="target-list">
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
 				</ul>
 
 				<div id="target-list-footer">
@@ -1605,10 +1572,29 @@
 
 				<!-- résumé écrit -->
 				<section>
-					<h4>Description</h4>
+					<h4>Résumé</h4>
+					<!-- description -->
+					<section class="row">
+						<h5 class="col s12">Description</h5>
+						<p id="specialisation-details-desc" class="col m12 l5">
+							"libellé" : Des explosions, encore et toujours plus !
+						</p>
+						<div class="logo-container col m12 l5">
+							<button id="specialisation-details-desc-edit"
+								class="btn text-edit-trigger visible-when-connected"
+								title="Éditer la description de la spécialisation"
+								data-target="#specialisation-details-desc">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+									<path
+										d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
+								</svg>
+								<span class="sr-only">Éditer la description de la spécialisation</span>
+							</button>
+						</div>
+					</section>
 					<!-- type -->
 					<section class="row">
-						<h5 class="col s12">Type</h5>
+						<h5 class="col s12">Missions associées</h5>
 						<p id="specialisation-details-type-desc" class="col m12 l5">
 							"type" : Assassiner, abattre, neutraliser... Vous savez de quoi il s'agit.
 						</p>
@@ -1743,21 +1729,11 @@
 				<h3>Liste des spécialités :</h3>
 
 				<ul id="specialisation-list">
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
-					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
-						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
-						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
+					<li>Lorem ipsum dolor</li>
 				</ul>
 
 				<div id="specialisation-list-footer">
