@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../controller/MissionController.php";
 
-class Mission
+class Mission implements JsonSerializable
 {
 	private ?int $code;
 	private string $titre;
@@ -16,14 +16,24 @@ class Mission
 
 	/**
 	 * Initailize a new Mission object.
+	 * @param int|null $code - The mission primary key.
+	 * @param string $titre - The mission title.
+	 * @param string $description - The mission description.
+	 * @param DateTime|null $dateDebut - The mission start date.
+	 * @param DateTime|null $dateFin - The mission end date.
+	 * @param int $codeStatut - The mission statut code.
+	 * @param int $codeType - The mission type code.
+	 * @param int $codeSpecialite - The mission speciality code.
 	 */
-	public function __construct(?int $code, string $nom, string $prenom, 
-		DateTime $dateNaissance, int $codeStatut, int $codeType, int $codeSpecialite)
+	public function __construct(?int $code = 0, string $titre = "", string $description = "",
+		DateTime $dateDebut = null, DateTime $dateFin = null, int $codeStatut = 0,
+		int $codeType = 0, int $codeSpecialite = 0)
 	{
 		$this->code = $code;
-		$this->nom = $nom;
-		$this->prenom = $prenom;
-		$this->dateNaissance = $dateNaissance;
+		$this->titre = $titre;
+		$this->description = $description;
+		$this->dateDebut = $dateDebut ?? new DateTime();
+		$this->dateFin = $dateFin ?? new DateTime();
 		$this->codeStatut = $codeStatut;
 		$this->codeType = $codeType;
 		$this->codeSpecialite = $codeSpecialite;
@@ -164,5 +174,22 @@ class Mission
 	public function setCodeSpecialite(int $codeSpecialite): void
 	{
 		$this->codeSpecialite = $codeSpecialite;
+	}
+
+	/**
+	 * Serialize the object.
+	 */
+	public function jsonSerialize()
+	{
+		return [
+			"code" => $this->getCode(),
+			"titre" => $this->getTitre(),
+			"description" => $this->getDescription(),
+			"dateDebut" => $this->getDateDebut(),
+			"dateFin" => $this->getDateFin(),
+			"codeStatut" => $this->getCodeStatut(),
+			"codeType" => $this->getCodeType(),
+			"codeSpecialite" => $this->getCodeSpecialite(),
+		];
 	}
 }

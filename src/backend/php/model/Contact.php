@@ -119,7 +119,7 @@ class Contact implements JsonSerializable
 	}
 
 	/**
-	 * Serialize the model data for JSON encoding.
+	 * Serialize the object.
 	 */
 	public function jsonSerialize(): array
 	{

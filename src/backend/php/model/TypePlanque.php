@@ -1,6 +1,6 @@
 <?php
 
-class TypePlanque
+class TypePlanque implements JsonSerializable
 {
 	private ?int $code;
 	private string $libelle;
@@ -44,5 +44,16 @@ class TypePlanque
 	public function setLibelle(string $libelle): void
 	{
 		$this->libelle = $libelle;
+	}
+
+	/**
+	 * Serialize the object.
+	 */
+	public function jsonSerialize()
+	{
+		return [
+			"code" => $this->getCode(),
+			"libelle" => $this->getLibelle()
+		];
 	}
 }

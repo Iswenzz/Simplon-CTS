@@ -1,6 +1,6 @@
 <?php
 
-class Planque
+class Planque implements JsonSerializable
 {
 	private ?int $code;
 	private string $adresse;
@@ -80,5 +80,18 @@ class Planque
 	public function setCodeType(int $codeType): void
 	{
 		$this->codeType = $codeType;
+	}
+
+	/**
+	 * Serialize the object.
+	 */
+	public function jsonSerialize()
+	{
+		return [
+			"code" => $this->getCode(),
+			"adresse" => $this->getAdresse(),
+			"codePays" => $this->getCodePays(),
+			"codeType" => $this->getCodeType()
+		];
 	}
 }
