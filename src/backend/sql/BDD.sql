@@ -46,6 +46,8 @@ CREATE TABLE Agent (
 CREATE TABLE Specialite (
 	codeSpecialite INT NOT NULL AUTO_INCREMENT,
 	libelleSpecialite VARCHAR(127) NOT NULL,
+	codeTypeMission INT,
+	descSpecialite TEXT,
 	CONSTRAINT pk_specialite PRIMARY KEY (codeSpecialite)
 );
 CREATE TABLE Mission (
@@ -67,6 +69,7 @@ CREATE TABLE Statut (
 CREATE TABLE TypeMission (
 	codeTypeMission INT NOT NULL AUTO_INCREMENT,
 	libelleTypeMission VARCHAR(127) NOT NULL,
+	descTypeMission TEXT,
 	CONSTRAINT pk_typemission PRIMARY KEY (codeTypeMission)
 );
 CREATE TABLE Planque (
@@ -79,6 +82,7 @@ CREATE TABLE Planque (
 CREATE TABLE TypePlanque (
 	codeTypePlanque INT NOT NULL AUTO_INCREMENT,
 	libelleTypePlanque VARCHAR(127) NOT NULL,
+	descTypePlanque TEXT,
 	CONSTRAINT pk_typeplanque PRIMARY KEY (codeTypePlanque)
 );
 CREATE TABLE Aide (
@@ -128,6 +132,9 @@ ALTER TABLE Planque
 ADD CONSTRAINT fk_planque_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
 ALTER TABLE Planque
 ADD CONSTRAINT fk_planque_typeplanque FOREIGN KEY (codeTypePlanque) REFERENCES TypePlanque (codeTypePlanque);
+-- specialité
+ALTER TABLE Specialite
+ADD CONSTRAINT fk_specialite_typemission FOREIGN KEY (codeTypeMission) REFERENCES TypeMission (codeTypeMission);
 -- aide
 ALTER TABLE Aide
 ADD CONSTRAINT fk_aide_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
