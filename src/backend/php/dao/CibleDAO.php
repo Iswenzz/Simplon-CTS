@@ -12,6 +12,7 @@ class CibleDAO implements DAO
 
 	/**
 	 * Fetch all rows to get all Cible objects.
+	 * @return Cible[]
 	 */
 	public function getAllCibles(): array
 	{

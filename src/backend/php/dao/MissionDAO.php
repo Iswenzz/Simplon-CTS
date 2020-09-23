@@ -12,6 +12,7 @@ class MissionDAO implements DAO
 
 	/**
 	 * Fetch all rows to get all Mission objects.
+	 * @return Mission[]
 	 */
 	public function getAllMissions(): array
 	{

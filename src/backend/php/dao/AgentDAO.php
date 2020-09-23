@@ -12,6 +12,7 @@ class AgentDAO implements DAO
 
 	/**
 	 * Fetch all rows to get all Agent objects.
+	 * @return Agent[]
 	 */
 	public function getAllAgents(): array
 	{

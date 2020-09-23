@@ -14,6 +14,7 @@ class AdminDAO implements DAO
 
     /**
      * Fetch all rows to get all Admin objects.
+     * @return Admin[]
      */
     public function getAllAdmins(): array
     {

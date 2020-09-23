@@ -9,9 +9,11 @@ class ContactDAO implements DAO
 	public const ADD_QUERY = "INSERT INTO Contact (nomContact, prenomContact, dateNaissanceContact, codePays) VALUES (:nom, :prenom, :dateNaissance, :codePays)";
 	public const DELETE_QUERY = "DELETE FROM Contact WHERE codeContact = :code";
 	public const UPDATE_QUERY = "UPDATE Contact SET nomContact = :nom, prenomContact = :prenom, dateNaissanceContact = :dateNaissance, codePays = :codePays WHERE codeContact = :code";
+	public const SELECT_ONE_QUERY = "SELECT codeContact, nomContact, prenomContact, dateNaissanceContact, codePays from Contact WHERE codeContact = :code";
 
 	/**
 	 * Fetch all rows to get all Contact objects.
+	 * @return Contact[]
 	 */
 	public function getAllContacts(): array
 	{
@@ -27,6 +29,27 @@ class ContactDAO implements DAO
             $contacts[] = $contact;
         }
         return $contacts;
+	}
+
+	/**
+	 * Get a contact from its primary key.
+	 * @param int $code - The primary key code.
+	 * @return Contact|null
+	 */
+	public function getContact(int $code): ?Contact
+	{
+		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::SELECT_ONE_QUERY);
+		$stmt->execute([
+			"code" => $code
+		]);
+
+		if ($row = $stmt->fetch())
+		{
+			return new Contact($row["codeContact"], $row["nomContact"], $row["prenomContact"],
+				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceContact"]),
+				(int)$row["codePays"]);
+		}
+		return null;
 	}
 
 	/**
