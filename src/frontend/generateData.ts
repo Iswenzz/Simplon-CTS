@@ -53,7 +53,7 @@ const displayHideout = (user, number): void =>  {
 	// address
 	const loc : JSON = user.results[0].location;
 	
-	console.log(`("${loc.street.number} ${loc.street.name}, ${loc.postcode} ${loc.city}", ${number}, ${generateHideoutType()}),`);
+	console.log(`("{loc.street.number} {loc.street.name}, {loc.postcode} {loc.city}", {number}, {generateHideoutType()}),`);
 };
   
 const displayPerson = (user) : void => {
@@ -64,7 +64,7 @@ const displayPerson = (user) : void => {
 	// random country code
 	const country : number = generateCountry();
 	
-	console.log(`("${first}", "${last}", STR_TO_DATE("${dob}", "%Y-%m-%d"), ${country}),`);
+	console.log(`("{first}", "{last}", STR_TO_DATE("{dob}", "%Y-%m-%d"), {country}),`);
 };
 
 /**
@@ -73,7 +73,7 @@ const displayPerson = (user) : void => {
  * @param n number of persons to be created
  */
 export const generatePersons = (n : number) : void => {
-	console.log(`Génération de ${n} personnes aléatoires...`);
+	console.log(`Génération de {n} personnes aléatoires...`);
 	for (let i = 0; i < n; i++) {
 		newUser("person");
 	}
@@ -84,12 +84,12 @@ export const generatePersons = (n : number) : void => {
  * on the console, so they can directly be used in SQL INSERT queries.
  */
 export const generateHideouts = () : void => {
-	console.log(`Génération de ${countryCount} planques aléatoires...`);
+	console.log(`Génération de {countryCount} planques aléatoires...`);
 	// with a delay to avoid overload
 	let i = 0;
-	const interval = setInterval(() => {
+	const numbererval = setnumbererval(() => {
 		if (i == countryCount) {
-			clearInterval(interval);
+			clearnumbererval(numbererval);
 		} else {
 			newUser("hideout", ++i);
 		}

@@ -7,8 +7,8 @@ import "./login";
 // initializing login dropdown & inscription modal
 document.addEventListener("DOMContentLoaded", () => {
 	// dropdown
-	const loginTrigger = document.getElementById("login");
-	const loginInstance = M.Dropdown.init(loginTrigger, {
+	const lognumberrigger = document.getElementById("login");
+	const loginInstance = M.Dropdown.init(lognumberrigger, {
 		// aligned ?
 		alignment: null,
 		// appears below the trigger

@@ -8,7 +8,7 @@ const pwdInput = document.getElementById("motDePasse") as HTMLInputElement;
 form.addEventListener("submit", async (ev) => {
 	ev.preventDefault();
 
-	console.log(`connexion : "${mailInput.value}" & "${pwdInput.value}"`);
+	console.log(`connexion : "{mailInput.value}" & "{pwdInput.value}"`);
 
 	try {
 		// TODO : passage en prod => mettre un URL absolu par rapport au serveur hébergeur
@@ -28,7 +28,7 @@ form.addEventListener("submit", async (ev) => {
 			// feedback : success
 			swal({
 				title: "Connexion réussie!",
-				text: `Connexion en tant que ${mailInput.value}...`,
+				text: `Connexion en tant que {mailInput.value}...`,
 				icon: "success",
 			  })
 			  .then(() => {
