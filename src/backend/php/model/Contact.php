@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../controller/ContactController.php";
 
-class Contact
+class Contact implements JsonSerializable
 {
 	private ?int $code;
 	private string $nom;
@@ -13,14 +13,19 @@ class Contact
 
 	/**
 	 * Initailize a new Contact object.
+	 * @param int|null $code - The contact code.
+	 * @param string $nom - The contact name.
+	 * @param string $prenom - The contact firstname.
+	 * @param DateTime|null $dateNaissance - The contact birthdate.
+	 * @param int $codePays - The contact country code.
 	 */
-	public function __construct(?int $code, string $nom, string $prenom, 
-		DateTime $dateNaissance, int $codePays)
+	public function __construct(?int $code = null, string $nom = "",
+		string $prenom = "", DateTime $dateNaissance = null, int $codePays = 0)
 	{
 		$this->code = $code;
 		$this->nom = $nom;
 		$this->prenom = $prenom;
-		$this->dateNaissance = $dateNaissance;
+		$this->dateNaissance = $dateNaissance ?? new DateTime();
 		$this->codePays = $codePays;
 		$this->controller = new ContactController($this, new ContactView($this));
 	}
@@ -111,5 +116,19 @@ class Contact
 	public function setCodePays(int $codePays): void
 	{
 		$this->codePays = $codePays;
+	}
+
+	/**
+	 * Serialize the object.
+	 */
+	public function jsonSerialize(): array
+	{
+		return [
+			"code" => $this->getCode(),
+			"nom" => $this->getNom(),
+			"prenom" => $this->getPrenom(),
+			"dateNaissance" => $this->getDateNaissance()->format("Y-m-d"),
+			"codePays" => $this->getCodePays()
+		];
 	}
 }

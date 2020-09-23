@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../controller/AdminController.php";
 
-class Admin
+class Admin implements JsonSerializable
 {
     private string $email;
     private string $nom;
@@ -152,7 +152,23 @@ class Admin
      * Set the value of expirationApiKey
      */
     public function setExpirationApiKey(DateTime $expirationApiKey): void
-    {
-        $this->expirationApiKey = $expirationApiKey;
-    }
+	{
+		$this->expirationApiKey = $expirationApiKey;
+	}
+
+	/**
+	 * Serialize the object.
+	 */
+	public function jsonSerialize(): array
+	{
+		return [
+			"email" => $this->getEmail(),
+			"nom" => $this->getNom(),
+			"prenom" => $this->getPrenom(),
+			"dateCreation" => $this->getDateCreation()->format("Y-m-d"),
+			"mdp" => $this->getMdp(),
+			"apiKey" => $this->getApiKey(),
+			"expirationApiKey" => $this->getExpirationApiKey()
+		];
+	}
 }

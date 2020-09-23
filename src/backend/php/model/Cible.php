@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../controller/CibleController.php";
 
-class Cible
+class Cible implements JsonSerializable
 {
 	private ?int $code;
 	private string $nom;
@@ -111,5 +111,19 @@ class Cible
 	public function setCodePays(int $codePays): void
 	{
 		$this->codePays = $codePays;
+	}
+
+	/**
+	 * Serialize the object.
+	 */
+	public function jsonSerialize(): array
+	{
+		return [
+			"code" => $this->getCode(),
+			"nom" => $this->getNom(),
+			"prenom" => $this->getPrenom(),
+			"dateNaissance" => $this->getDateNaissance()->format("Y-m-d"),
+			"codePays" => $this->getCodePays()
+		];
 	}
 }

@@ -6,12 +6,14 @@ require_once __DIR__ . "/../model/Cible.php";
 class CibleDAO implements DAO
 {
 	public const SELECT_QUERY = "SELECT codeCible, nomCible, prenomCible, dateNaissanceCible, codePays from Cible";
+	public const SELECT_ONE_QUERY = "SELECT codeCible, nomCible, prenomCible, dateNaissanceCible, codePays from Cible WHERE codeCible = :code";
 	public const ADD_QUERY = "INSERT INTO Cible (nomCible, prenomCible, dateNaissanceCible, codePays) VALUES (:nom, :prenom, :dateNaissance, :codePays)";
 	public const DELETE_QUERY = "DELETE FROM Cible WHERE codeCible = :code";
 	public const UPDATE_QUERY = "UPDATE Cible SET nomCible = :nom, prenomCible = :prenom, dateNaissanceCible = :dateNaissance, codePays = :codePays WHERE codeCible = :code";
 
 	/**
 	 * Fetch all rows to get all Cible objects.
+	 * @return Cible[]
 	 */
 	public function getAllCibles(): array
 	{
@@ -27,6 +29,27 @@ class CibleDAO implements DAO
             $cibles[] = $cible;
         }
         return $cibles;
+	}
+
+	/**
+	 * Get a Cible from its primary key.
+	 * @param int $code - The primary key code.
+	 * @return Cible|null
+	 */
+	public function getCible(int $code): ?Cible
+	{
+		$stmt = DatabaseFactory::getConnection()->prepare(CibleDAO::SELECT_ONE_QUERY);
+		$stmt->execute([
+			"code" => $code
+		]);
+
+		if ($row = $stmt->fetch())
+		{
+			return new Cible($row["codeCible"], $row["nomCible"], $row["prenomCible"],
+				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceCible"]),
+				(int)$row["codePays"]);
+		}
+		return null;
 	}
 
 	/**

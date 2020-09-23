@@ -12,7 +12,7 @@ form.addEventListener("submit", async (ev) => {
 
 	try {
 		// TODO : passage en prod => mettre un URL absolu par rapport au serveur hébergeur
-		const response = await Axios.post("../src/backend/php/api/ConnectionController.php", {
+		const response = await Axios.post("../src/backend/php/api/ConnectionAPI.php", {
 			"mail": mailInput.value,
 			"motDePasse": pwdInput.value
 		});
@@ -21,7 +21,7 @@ form.addEventListener("submit", async (ev) => {
 
 		// if the login was succesful
 		if (response.data.success) {
-			const apiKey : string = response.data.key;
+			const apiKey : string = response.data.body.key;
 			// save the key for future use
 			sessionStorage.setItem("apiKey", apiKey);
 			console.log("Login successful !");
@@ -38,9 +38,9 @@ form.addEventListener("submit", async (ev) => {
 			// feedback : failure
 			swal({
 				title: "Connexion échouée!",
-				text: response.data.message,
+				text: response.data.body.message,
 				icon: "error",
-			  });
+			});
 		}
 	} catch (error) {
 		console.log(error);

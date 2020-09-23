@@ -2,3 +2,4 @@ node_modules/
 dist/
 .vscode
 src/backend/php/config/config.php
+.idea/workspace.xml

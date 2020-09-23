@@ -1,8 +1,8 @@
 import "../assets/scss/style.scss";
 import "materialize-css";
+import "./signUp";
 import "./logout";
 import "./login";
-import "./signUp";
 
 // initializing login dropdown & inscription modal
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		// not closing when clicked
 		closeOnClick: false,
 		// free width
-		constrainWidth: false,
+		constrainWidth: false
 	});
 
 	const inscriptionTrigger = document.getElementById("inscription");
