@@ -102,7 +102,12 @@
 		<div class="row" id="missions">
 			<!-- page gauche : détails -->
 			<section class="page col m11 l5">
-				<h3>Mission</h3>
+				<h3>Mission
+					<span class="input-field inline">
+						<label for="mission-details-name" class="sr-only">Opération</label><input type="text"
+							name="mission-name" id="mission-details-name" disabled placeholder="opération">
+					</span>
+				</h3>
 				<div class="details-header">
 					<!-- contrôle mission entière -->
 					<div class="controls visible-when-connected">
@@ -130,10 +135,6 @@
 							</svg>
 							<span class="sr-only">Réinitialiser la mission</span>
 						</button>
-					</div>
-					<div class="input-field inline">
-						<label for="mission-details-name">Opération</label><input type="text" name="mission-name"
-							id="mission-details-name" disabled placeholder="opération">
 					</div>
 					<button id="mission-details-title-edit" class="btn text-edit-trigger visible-when-connected"
 						title="Éditer le nom de la mission" data-target="#mission-details-name">
@@ -815,7 +816,18 @@
 		<div class="row" id="agents">
 			<!-- page gauche : détails -->
 			<section class="page col m11 l5">
-				<h3>Agent</h3>
+				<h3>Agent
+					<span class="input-field inline">
+						<label for="agent-details-name" class="sr-only">Nom</label><input type="text"
+							name="agent-details-name" id="agent-details-name" class="agent-name" disabled
+							placeholder="_">
+					</span>
+					<span class="input-field inline">
+						<label for="agent-details-firstname" class="sr-only">Prénom</label><input type="text"
+							name="agent-details-firstname" id="agent-details-firstname" class="agent-name" disabled
+							placeholder="_">
+					</span>
+				</h3>
 				<div class="details-header">
 					<!-- contrôle agent entière -->
 					<div class="controls visible-when-connected">
@@ -848,14 +860,6 @@
 							<span class="sr-only">Réinitialiser l'agent</span>
 						</button>
 					</div>
-					<div class="input-field inline">
-						<label for="agent-details-name" class="sr-only">Nom</label><input type="text"
-							name="agent-details-name" id="agent-details-name" class="agent-name" disabled
-							placeholder="_">
-						<label for="agent-details-firstname" class="sr-only">Prénom</label><input type="text"
-							name="agent-details-firstname" id="agent-details-firstname" class="agent-name" disabled
-							placeholder="_">
-					</div>
 					<button id="agent-details-title-edit" class="btn text-edit-trigger visible-when-connected"
 						title="Éditer le nom de l'agent" data-target=".agent-name">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
@@ -880,7 +884,8 @@
 							"pays".</p>
 						<div class="logo-container col m12 l5">
 							<button id="agent-details-country-edit" title="Changer le pays"
-								class="btn visible-when-connected modal-trigger" data-target="country-edit-modal">
+								class="btn visible-when-connected modal-trigger"
+								data-target="agent-details-country-edit-modal">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
 									<path
 										d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
@@ -902,16 +907,67 @@
 
 								<form>
 									<div class="input-field">
-										<label for="agent-details-country-edit-select">Pays où se déroulera l'agent
+										<label for="agent-details-country-edit-select">Pays où oeuvre l'agent
 											:</label>
 										<select name="agent-details-country-edit-select"
 											id="agent-details-country-edit-select">
 											<option value="allemagne">Allemagne</option>
 											<option value="france">France</option>
 											<option value="italie">Italie</option>
-											<!-- rempli par un fetch -->
 										</select>
 									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+										<path
+											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+									</svg>
+									<span class="sr-only">Valider</span>
+								</a>
+							</div>
+						</div>
+					</section>
+
+					<!-- spécialisation -->
+					<section class="row">
+						<h5 class="col s12">Spécialité</h5>
+						<p id="agent-details-specialisation-desc" class="col m12 l5">N°"code" est non seulement sexy,
+							mais
+							"agent" est aussi doué en ... Non, en fait, "agent" ne sait rien faire.</p>
+						<div class="logo-container col m12 l5">
+							<button id="agent-details-specialisation-edit" title="Changer les spécialités"
+								class="btn visible-when-connected modal-trigger"
+								data-target="agent-details-specialisation-edit-modal">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
+									<path
+										d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
+								</svg>
+								<span class="sr-only">Changer le pays</span>
+							</button>
+						</div>
+
+						<div id="agent-details-specialisation-edit-modal" class="modal">
+							<button class="modal-close btn-flat">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+									<path
+										d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+								</svg>
+								<span class="sr-only">Annuler</span>
+							</button>
+							<div class="modal-content">
+								<h5>Changer les spécialités</h5>
+
+								<form>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>Explosifs</span>
+									</label>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>Hacking</span>
+									</label>
 								</form>
 							</div>
 							<div class="modal-footer">
@@ -1037,6 +1093,466 @@
 						Agents <span id="agent-list-agent-start">_</span>-<span id="agent-list-agent-end">_</span>
 						/ <span id="agent-list-agent-total">_</span> • Page <span id="agent-list-page-start">_</span>
 						/ <span id="agent-list-page-end">_</span>
+					</p>
+				</div>
+			</section>
+		</div>
+		<!-- CONTACTS -->
+		<div class="row" id="contacts">
+			<!-- page gauche : détails -->
+			<section class="page col m11 l5">
+				<h3>Contact
+					<span class="input-field inline">
+						<label for="contact-details-name" class="sr-only">Nom</label><input type="text"
+							name="contact-details-name" id="contact-details-name" class="contact-name" disabled
+							placeholder="_">
+					</span>
+					<span class="input-field inline">
+						<label for="contact-details-firstname" class="sr-only">Prénom</label><input type="text"
+							name="contact-details-firstname" id="contact-details-firstname" class="contact-name"
+							disabled placeholder="_">
+					</span>
+				</h3>
+				<div class="details-header">
+					<!-- contrôle contact entièr -->
+					<div class="controls visible-when-connected">
+						<button id="contact-details-confirm" title="Confirmer le contact" class="btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path
+									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+							</svg>
+							<span class="sr-only">Confirmer le contact</span>
+						</button>
+						<button id="contact-details-delete" title="Supprimer le contact" class="btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path
+									d="M424 64h-88V48a48 48 0 0 0-48-48h-64a48 48 0 0 0-48 48v16H88a40 40 0 0 0-40 40v56a16 16 0 0 0 16 16h8.7l13.8 290.3a48 48 0 0 0 47.9 45.7h243a48 48 0 0 0 47.9-45.7L448 176a16 16 0 0 0 16-16v-56a40 40 0 0 0-40-40zM208 48a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v16h-96zM80 104a8 8 0 0 1 8-8h336a8 8 0 0 1 8 8v40H80zm313.5 360.8a16 16 0 0 1-16 15.2h-243a16 16 0 0 1-16-15.2L104.8 176h302.4z" />
+								<use href="#B" />
+								<use href="#B" x="80" />
+								<use href="#B" x="-80" />
+							</svg>
+							<span class="sr-only">Supprimer le contact</span>
+						</button>
+						<button id="contact-details-reset" title="Réinitialiser le contact" class="btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path
+									d="M288.5 32.5A224 224 0 0 0 69.3 212.4l-42.5-53-27 21.5 68.8 86c3.4 4.2 8.3 6.4 13.4 6.4 2.6 0 5.2-.6 7.7-1.8L193 219.8 177.6 189l-75.8 38C116 136.4 194 67 288.5 67c104.3 0 189 84.8 189 189s-84.8 189-189 189v34.4A224 224 0 0 0 512 256 224 224 0 0 0 288.5 32.5z" />
+							</svg>
+							<span class="sr-only">Réinitialiser le contact</span>
+						</button>
+					</div>
+					<button id="contact-details-title-edit" class="btn text-edit-trigger visible-when-connected"
+						title="Éditer le nom du contact" data-target=".contact-name">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
+							<path
+								d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
+						</svg>
+						<span class="sr-only">Éditer le nom du contact</span>
+					</button>
+
+				</div>
+
+				<!-- résumé visuel -->
+				<div class="illustration row"></div>
+
+				<!-- résumé écrit -->
+				<section>
+					<h4>Description</h4>
+					<!-- pays -->
+					<section class="row">
+						<h5 class="col s12">Lieu</h5>
+						<p id="contact-details-country-desc" class="col m12 l5">Nous disposons de "n" autres contacts
+							dans
+							"pays".</p>
+						<div class="logo-container col m12 l5">
+							<button id="contact-details-country-edit" title="Changer le pays"
+								class="btn visible-when-connected modal-trigger"
+								data-target="contact-details-country-edit-modal">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
+									<path
+										d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
+								</svg>
+								<span class="sr-only">Changer le pays</span>
+							</button>
+						</div>
+
+						<div id="contact-details-country-edit-modal" class="modal">
+							<button class="modal-close btn-flat">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+									<path
+										d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+								</svg>
+								<span class="sr-only">Annuler</span>
+							</button>
+							<div class="modal-content">
+								<h5>Changer le pays</h5>
+
+								<form>
+									<div class="input-field">
+										<label for="contact-details-country-edit-select">Pays où se trouve le contact
+											:</label>
+										<select name="contact-details-country-edit-select"
+											id="contact-details-country-edit-select">
+											<option value="allemagne">Allemagne</option>
+											<option value="france">France</option>
+											<option value="italie">Italie</option>
+										</select>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+										<path
+											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+									</svg>
+									<span class="sr-only">Valider</span>
+								</a>
+							</div>
+						</div>
+					</section>
+
+					<!-- date de naissance -->
+					<section class="row">
+						<h5 class="col s12">Date de naissance</h5>
+						<p class="col m12 l5">Est-ce que l'âge de "contact" importe vraiment ?... Non, à vrai dire.</p>
+						<form class="logo-container col m12 l5">
+							<input type="date" name="contact-details-dob" id="contact-details-dob" />
+						</form>
+					</section>
+				</section>
+			</section>
+			<!-- page droite : liste -->
+			<section id="contact-list-page" class="page col m11 l5">
+				<!-- changement de page -->
+				<div id="contact-list-pagination" class="pagination">
+					<button title="Passer à la page précédente" id="contact-list-previous" class="btn">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.5 444.5">
+							<path
+								d="M213 222.4L352 83.7a35 35 0 0 0 10.6-25.8A35 35 0 0 0 351.9 32l-21.4-21.4A35 35 0 0 0 304.6 0a35 35 0 0 0-25.8 10.6l-186 186a35 35 0 0 0-10.6 25.8 35 35 0 0 0 10.6 25.8l186 186a35 35 0 0 0 25.8 10.6 35 35 0 0 0 25.8-10.6l21.4-21.4a35 35 0 0 0 10.6-25.7 36 36 0 0 0-10.6-26L213 222.4z" />
+						</svg>
+						<span class="sr-only">Passer à la page précédente</span>
+					</button>
+
+					<button title="Passer à la page suivante" id="contact-list-next" class="btn">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.8 444.8">
+							<path
+								d="M352 196.7l-186-186A34 34 0 0 0 140.2 0a34 34 0 0 0-25.7 10.8L92.8 32.3A35 35 0 0 0 82.2 58c0 10 3.5 18.6 10.6 26l138.8 138.5L92.8 361.2a35 35 0 0 0-10.6 25.7c0 10 3.5 18.6 10.6 26l21.7 21.4a35 35 0 0 0 25.7 10.6 35 35 0 0 0 25.7-10.6l186-186c7-7.4 10.6-16 10.6-26a35 35 0 0 0-10.6-25.7z" />
+						</svg>
+						<span class="sr-only">Passer à la page suivante</span>
+					</button>
+				</div>
+
+				<h3>Liste des contacts :</h3>
+
+				<ul id="contact-list">
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+				</ul>
+
+				<div id="contact-list-footer">
+					<button title="Ajouter un contact" id="contact-list-add"
+						class="btn modal-trigger visible-when-connected" data-target="contact-list-add-modal">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448">
+							<path
+								d="M408 184H272a8 8 0 0 1-8-8V40a40 40 0 1 0-80 0v136a8 8 0 0 1-8 8H40a40 40 0 1 0 0 80h136a8 8 0 0 1 8 8v136a40 40 0 1 0 80 0V272a8 8 0 0 1 8-8h136a40 40 0 1 0 0-80zm0 0" />
+						</svg>
+						<span class="sr-only">Ajouter un contact</span>
+					</button>
+
+
+					<div id="contact-list-add-modal" class="modal">
+						<button class="modal-close btn-flat">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+								<path
+									d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+							</svg>
+							<span class="sr-only">Annuler</span>
+						</button>
+						<div class="modal-content">
+							<h5>Ajouter un contact</h5>
+
+							<form>
+								<div class="input-field">
+									<label for="contact-list-country-select">Pays où se trouvera le contact :</label>
+									<select name="contact-list-country-select" id="contact-list-country-select">
+										<option value="allemagne">Allemagne</option>
+										<option value="france">France</option>
+										<option value="italie">Italie</option>
+										<!-- rempli par un fetch -->
+									</select>
+								</div>
+
+								<div class="input-field">
+									<label for="contact-list-name-input">Nom du contact :</label>
+									<input type="text" name="contact-list-name-input" id="contact-list-name-input">
+								</div>
+								<div class="input-field">
+									<label for="contact-list-firstname-input">Prénom du contact :</label>
+									<input type="text" name="contact-list-firstname-input"
+										id="contact-list-firstname-input">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+									<path
+										d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+								</svg>
+								<span class="sr-only">Valider</span>
+							</a>
+						</div>
+					</div>
+
+					<p id="contact-list-number">
+						Contacts <span id="contact-list-contact-start">_</span>-<span
+							id="contact-list-contact-end">_</span>
+						/ <span id="contact-list-contact-total">_</span> • Page <span
+							id="contact-list-page-start">_</span>
+						/ <span id="contact-list-page-end">_</span>
+					</p>
+				</div>
+			</section>
+		</div>
+		<!-- CIBLES -->
+		<div class="row" id="targets">
+			<!-- page gauche : détails -->
+			<section class="page col m11 l5">
+				<h3>Cible
+					<span class="input-field inline">
+						<label for="target-details-name" class="sr-only">Nom</label><input type="text"
+							name="target-details-name" id="target-details-name" class="target-name" disabled
+							placeholder="_">
+					</span>
+					<span class="input-field inline">
+						<label for="target-details-firstname" class="sr-only">Prénom</label><input type="text"
+							name="target-details-firstname" id="target-details-firstname" class="target-name" disabled
+							placeholder="_">
+					</span>
+				</h3>
+				<div class="details-header">
+					<!-- contrôla cible entièr -->
+					<div class="controls visible-when-connected">
+						<button id="target-details-confirm" title="Confirmer la cible" class="btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path
+									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+							</svg>
+							<span class="sr-only">Confirmer la cible</span>
+						</button>
+						<button id="target-details-delete" title="Supprimer la cible" class="btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path
+									d="M424 64h-88V48a48 48 0 0 0-48-48h-64a48 48 0 0 0-48 48v16H88a40 40 0 0 0-40 40v56a16 16 0 0 0 16 16h8.7l13.8 290.3a48 48 0 0 0 47.9 45.7h243a48 48 0 0 0 47.9-45.7L448 176a16 16 0 0 0 16-16v-56a40 40 0 0 0-40-40zM208 48a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v16h-96zM80 104a8 8 0 0 1 8-8h336a8 8 0 0 1 8 8v40H80zm313.5 360.8a16 16 0 0 1-16 15.2h-243a16 16 0 0 1-16-15.2L104.8 176h302.4z" />
+								<use href="#B" />
+								<use href="#B" x="80" />
+								<use href="#B" x="-80" />
+							</svg>
+							<span class="sr-only">Supprimer la cible</span>
+						</button>
+						<button id="target-details-reset" title="Réinitialiser la cible" class="btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path
+									d="M288.5 32.5A224 224 0 0 0 69.3 212.4l-42.5-53-27 21.5 68.8 86c3.4 4.2 8.3 6.4 13.4 6.4 2.6 0 5.2-.6 7.7-1.8L193 219.8 177.6 189l-75.8 38C116 136.4 194 67 288.5 67c104.3 0 189 84.8 189 189s-84.8 189-189 189v34.4A224 224 0 0 0 512 256 224 224 0 0 0 288.5 32.5z" />
+							</svg>
+							<span class="sr-only">Réinitialiser la cible</span>
+						</button>
+					</div>
+					<button id="target-details-title-edit" class="btn text-edit-trigger visible-when-connected"
+						title="Éditer le nom de la cible" data-target=".target-name">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
+							<path
+								d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
+						</svg>
+						<span class="sr-only">Éditer le nom de la cible</span>
+					</button>
+
+				</div>
+
+				<!-- résumé visuel -->
+				<div class="illustration row"></div>
+
+				<!-- résumé écrit -->
+				<section>
+					<h4>Description</h4>
+					<!-- pays -->
+					<section class="row">
+						<h5 class="col s12">Lieu</h5>
+						<p id="target-details-country-desc" class="col m12 l5">Il se trouve "n" autres cibles
+							dans
+							"pays".</p>
+						<div class="logo-container col m12 l5">
+							<button id="target-details-country-edit" title="Changer le pays"
+								class="btn visible-when-connected modal-trigger"
+								data-target="target-details-country-edit-modal">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
+									<path
+										d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
+								</svg>
+								<span class="sr-only">Changer le pays</span>
+							</button>
+						</div>
+
+						<div id="target-details-country-edit-modal" class="modal">
+							<button class="modal-close btn-flat">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+									<path
+										d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+								</svg>
+								<span class="sr-only">Annuler</span>
+							</button>
+							<div class="modal-content">
+								<h5>Changer le pays</h5>
+
+								<form>
+									<div class="input-field">
+										<label for="target-details-country-edit-select">Pays où se trouve la cible
+											:</label>
+										<select name="target-details-country-edit-select"
+											id="target-details-country-edit-select">
+											<option value="allemagne">Allemagne</option>
+											<option value="france">France</option>
+											<option value="italie">Italie</option>
+										</select>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+										<path
+											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+									</svg>
+									<span class="sr-only">Valider</span>
+								</a>
+							</div>
+						</div>
+					</section>
+
+					<!-- date de naissance -->
+					<section class="row">
+						<h5 class="col s12">Date de naissance</h5>
+						<p class="col m12 l5">Est-ce que l'âge de "cible" importe vraiment ?... Oui, parfois.</p>
+						<form class="logo-container col m12 l5">
+							<input type="date" name="target-details-dob" id="target-details-dob" />
+						</form>
+					</section>
+				</section>
+			</section>
+			<!-- page droite : liste -->
+			<section id="target-list-page" class="page col m11 l5">
+				<!-- changement de page -->
+				<div id="target-list-pagination" class="pagination">
+					<button title="Passer à la page précédente" id="target-list-previous" class="btn">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.5 444.5">
+							<path
+								d="M213 222.4L352 83.7a35 35 0 0 0 10.6-25.8A35 35 0 0 0 351.9 32l-21.4-21.4A35 35 0 0 0 304.6 0a35 35 0 0 0-25.8 10.6l-186 186a35 35 0 0 0-10.6 25.8 35 35 0 0 0 10.6 25.8l186 186a35 35 0 0 0 25.8 10.6 35 35 0 0 0 25.8-10.6l21.4-21.4a35 35 0 0 0 10.6-25.7 36 36 0 0 0-10.6-26L213 222.4z" />
+						</svg>
+						<span class="sr-only">Passer à la page précédente</span>
+					</button>
+
+					<button title="Passer à la page suivante" id="target-list-next" class="btn">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.8 444.8">
+							<path
+								d="M352 196.7l-186-186A34 34 0 0 0 140.2 0a34 34 0 0 0-25.7 10.8L92.8 32.3A35 35 0 0 0 82.2 58c0 10 3.5 18.6 10.6 26l138.8 138.5L92.8 361.2a35 35 0 0 0-10.6 25.7c0 10 3.5 18.6 10.6 26l21.7 21.4a35 35 0 0 0 25.7 10.6 35 35 0 0 0 25.7-10.6l186-186c7-7.4 10.6-16 10.6-26a35 35 0 0 0-10.6-25.7z" />
+						</svg>
+						<span class="sr-only">Passer à la page suivante</span>
+					</button>
+				</div>
+
+				<h3>Liste des cibles :</h3>
+
+				<ul id="target-list">
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+					<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo corrupti id nemo itaque. Laudantium
+						cupiditate reiciendis consequatur cum eum libero tempora et doloremque. Obcaecati inventore
+						magni nam amet illum repellat!</li>
+				</ul>
+
+				<div id="target-list-footer">
+					<button title="Ajouter une cible" id="target-list-add"
+						class="btn modal-trigger visible-when-connected" data-target="target-list-add-modal">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448">
+							<path
+								d="M408 184H272a8 8 0 0 1-8-8V40a40 40 0 1 0-80 0v136a8 8 0 0 1-8 8H40a40 40 0 1 0 0 80h136a8 8 0 0 1 8 8v136a40 40 0 1 0 80 0V272a8 8 0 0 1 8-8h136a40 40 0 1 0 0-80zm0 0" />
+						</svg>
+						<span class="sr-only">Ajouter une cible</span>
+					</button>
+
+
+					<div id="target-list-add-modal" class="modal">
+						<button class="modal-close btn-flat">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+								<path
+									d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+							</svg>
+							<span class="sr-only">Annuler</span>
+						</button>
+						<div class="modal-content">
+							<h5>Ajouter une cible</h5>
+
+							<form>
+								<div class="input-field">
+									<label for="target-list-country-select">Pays où se trouvera la cible :</label>
+									<select name="target-list-country-select" id="target-list-country-select">
+										<option value="allemagne">Allemagne</option>
+										<option value="france">France</option>
+										<option value="italie">Italie</option>
+										<!-- rempli par un fetch -->
+									</select>
+								</div>
+
+								<div class="input-field">
+									<label for="target-list-name-input">Nom de la cible :</label>
+									<input type="text" name="target-list-name-input" id="target-list-name-input">
+								</div>
+								<div class="input-field">
+									<label for="target-list-firstname-input">Prénom de la cible :</label>
+									<input type="text" name="target-list-firstname-input"
+										id="target-list-firstname-input">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+									<path
+										d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+								</svg>
+								<span class="sr-only">Valider</span>
+							</a>
+						</div>
+					</div>
+
+					<p id="target-list-number">
+						Cibles <span id="target-list-target-start">_</span>-<span id="target-list-target-end">_</span>
+						/ <span id="target-list-target-total">_</span> • Page <span id="target-list-page-start">_</span>
+						/ <span id="target-list-page-end">_</span>
 					</p>
 				</div>
 			</section>
