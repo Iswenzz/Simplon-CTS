@@ -6,6 +6,7 @@ require_once __DIR__ . "/../model/Mission.php";
 class MissionDAO implements DAO
 {
 	public const SELECT_QUERY = "SELECT codeMission, titreMission, descriptionMission, dateDebut, dateFin, codeStatutMission, codeTypeMission, codeSpecialite from Mission";
+	public const SELECT_ONE_QUERY = "SELECT codeMission, titreMission, descriptionMission, dateDebut, dateFin, codeStatutMission, codeTypeMission, codeSpecialite from Mission WHERE codeMission: code";
 	public const ADD_QUERY = "INSERT INTO Mission (titreMission, descriptionMission, dateDebut, dateFin, codeStatutMission, codeTypeMission, codeSpecialite) VALUES (:titre, :description, :dateDebut, :dateFin, :codeStatut, :codeType, :codeSpecialite)";
 	public const DELETE_QUERY = "DELETE FROM Mission WHERE codeMission = :code";
 	public const UPDATE_QUERY = "UPDATE Mission SET titreMission = :titre, descriptionMission = :description, dateDebut = :dateDebut, dateFin = :dateFin, codeStatutMission = :codeStatut, codeTypeMission = :codeType, codeSpecialite: codeSpecialite WHERE codeMission = :code";
@@ -30,6 +31,29 @@ class MissionDAO implements DAO
             $missions[] = $mission;
         }
         return $missions;
+	}
+
+	/**
+	 * Get a mission from its primary key.
+	 * @param int $code - The primary key code.
+	 * @return Mission|null
+	 */
+	public function getMission(int $code): ?Mission
+	{
+		$stmt = DatabaseFactory::getConnection()->prepare(MissionDAO::SELECT_ONE_QUERY);
+		$stmt->execute([
+			"code" => $code
+		]);
+
+		if ($row = $stmt->fetch())
+		{
+			return new Mission((int)$row["codeMission"], $row["titreMission"], $row["descriptionMission"],
+				DateTime::createFromFormat("Y-m-d", $row["dateDebut"]),
+				DateTime::createFromFormat("Y-m-d", $row["dateFin"]),
+				(int)$row["codeStatutMission"], (int)$row["codeTypeMission"], (int)$row["codeSpecialite"]
+			);
+		}
+		return null;
 	}
 
 	/**

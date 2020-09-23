@@ -6,10 +6,10 @@ require_once __DIR__ . "/../model/Contact.php";
 class ContactDAO implements DAO
 {
 	public const SELECT_QUERY = "SELECT codeContact, nomContact, prenomContact, dateNaissanceContact, codePays from Contact";
+	public const SELECT_ONE_QUERY = "SELECT codeContact, nomContact, prenomContact, dateNaissanceContact, codePays from Contact WHERE codeContact = :code";
 	public const ADD_QUERY = "INSERT INTO Contact (nomContact, prenomContact, dateNaissanceContact, codePays) VALUES (:nom, :prenom, :dateNaissance, :codePays)";
 	public const DELETE_QUERY = "DELETE FROM Contact WHERE codeContact = :code";
 	public const UPDATE_QUERY = "UPDATE Contact SET nomContact = :nom, prenomContact = :prenom, dateNaissanceContact = :dateNaissance, codePays = :codePays WHERE codeContact = :code";
-	public const SELECT_ONE_QUERY = "SELECT codeContact, nomContact, prenomContact, dateNaissanceContact, codePays from Contact WHERE codeContact = :code";
 
 	/**
 	 * Fetch all rows to get all Contact objects.

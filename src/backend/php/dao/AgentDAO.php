@@ -6,6 +6,7 @@ require_once __DIR__ . "/../model/Agent.php";
 class AgentDAO implements DAO
 {
 	public const SELECT_QUERY = "SELECT codeAgent, nomAgent, prenomAgent, dateNaissanceAgent, codePays from Agent";
+	public const SELECT_ONE_QUERY = "SELECT codeAgent, nomAgent, prenomAgent, dateNaissanceAgent, codePays from Agent WHERE codeAgent = :code";
 	public const ADD_QUERY = "INSERT INTO Agent (nomAgent, prenomAgent, dateNaissanceAgent, codePays) VALUES (:nom, :prenom, :dateNaissance, :codePays)";
 	public const DELETE_QUERY = "DELETE FROM Agent WHERE codeAgent = :code";
 	public const UPDATE_QUERY = "UPDATE Agent SET nomAgent = :nom, prenomAgent = :prenom, dateNaissanceAgent = :dateNaissance, codePays = :codePays WHERE codeAgent = :code";
@@ -28,6 +29,27 @@ class AgentDAO implements DAO
             $agents[] = $agent;
         }
         return $agents;
+	}
+
+	/**
+	 * Get an Agent from its primary key.
+	 * @param int $code - The primary key code.
+	 * @return Agent|null
+	 */
+	public function getAgent(int $code): ?Agent
+	{
+		$stmt = DatabaseFactory::getConnection()->prepare(AgentDAO::SELECT_ONE_QUERY);
+		$stmt->execute([
+			"code" => $code
+		]);
+
+		if ($row = $stmt->fetch())
+		{
+			return new Agent((int)$row["codeAgent"], $row["nomAgent"], $row["prenomAgent"],
+				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceAgent"]),
+				(int)$row["codePays"]);
+		}
+		return null;
 	}
 
 	/**
