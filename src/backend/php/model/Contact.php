@@ -13,14 +13,19 @@ class Contact implements JsonSerializable
 
 	/**
 	 * Initailize a new Contact object.
+	 * @param int|null $code - The contact code.
+	 * @param string $nom - The contact name.
+	 * @param string $prenom - The contact firstname.
+	 * @param DateTime|null $dateNaissance - The contact birthdate.
+	 * @param int $codePays - The contact country code.
 	 */
-	public function __construct(?int $code, string $nom, string $prenom, 
-		DateTime $dateNaissance, int $codePays)
+	public function __construct(?int $code = null, string $nom = "",
+		string $prenom = "", DateTime $dateNaissance = null, int $codePays = 0)
 	{
 		$this->code = $code;
 		$this->nom = $nom;
 		$this->prenom = $prenom;
-		$this->dateNaissance = $dateNaissance;
+		$this->dateNaissance = $dateNaissance ?? new DateTime();
 		$this->codePays = $codePays;
 		$this->controller = new ContactController($this, new ContactView($this));
 	}
