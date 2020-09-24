@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/Response.php";
 require_once __DIR__ . "/Controller.php";
+require_once __DIR__ . "/CRUD.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
@@ -9,7 +10,7 @@ require_once __DIR__ . "/../dao/AgentDAO.php";
 /**
  * Controller for agent requests.
  */
-class AgentAPI extends Controller
+class AgentAPI extends Controller implements CRUD
 {
 	private static ?AgentAPI $instance = null;
 
@@ -36,7 +37,7 @@ class AgentAPI extends Controller
 	/**
 	 * Get a specific Agent.
 	 */
-	private function get(): Response
+	public function get(): Response
 	{
 		/**
 		 * @var AgentDAO $dao
@@ -51,7 +52,7 @@ class AgentAPI extends Controller
 	/**
 	 * Get all Agents.
 	 */
-	private function getAll(): Response
+	public function getAll(): Response
 	{
 		/**
 		 * @var AgentDAO $dao
@@ -65,7 +66,7 @@ class AgentAPI extends Controller
 	/**
 	 * Update a specific Agent.
 	 */
-	private function update(): Response
+	public function update(): Response
     {
 		/**
 		 * @var AgentDAO $dao
@@ -82,7 +83,7 @@ class AgentAPI extends Controller
 	/**
 	 * Delete a specific Agent.
 	 */
-	private function delete(): Response
+	public function delete(): Response
 	{
 		/**
 		 * @var AgentDAO $dao

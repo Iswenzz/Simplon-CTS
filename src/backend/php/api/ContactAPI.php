@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/Response.php";
 require_once __DIR__ . "/Controller.php";
+require_once __DIR__ . "/CRUD.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
@@ -9,7 +10,7 @@ require_once __DIR__ . "/../dao/ContactDAO.php";
 /**
  * Controller for contact request.
  */
-class ContactAPI extends Controller
+class ContactAPI extends Controller implements CRUD
 {
 	private static ?ContactAPI $instance = null;
 
