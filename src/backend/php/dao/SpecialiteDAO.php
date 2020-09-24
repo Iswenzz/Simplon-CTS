@@ -15,7 +15,7 @@ class SpecialiteDAO implements DAO
      * Fetch all rows to get all Specialite objects.
      * @return Specialite[]
      */
-    public function getAllSpecialites(): array
+    public function getAll(): array
     {
         $specialites = [];
         $stmt = DatabaseFactory::getConnection()->prepare(SpecialiteDAO::SELECT_QUERY);
@@ -38,7 +38,7 @@ class SpecialiteDAO implements DAO
      * @param int $code - The primary key code.
      * @return Specialite|null
      */
-    public function getSpecialite(int $code): ?Specialite
+    public function get($code): ?Specialite
     {
         $stmt = DatabaseFactory::getConnection()->prepare(SpecialiteDAO::SELECT_ONE_QUERY);
         $stmt->execute([
@@ -58,9 +58,10 @@ class SpecialiteDAO implements DAO
 
     /**
      * Update a specialite row.
+     * @param Specialite $specialite - model
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function updateSpecialite(Specialite $specialite): bool
+    public function update($specialite): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(SpecialiteDAO::UPDATE_QUERY);
         return $stmt->execute([
@@ -73,9 +74,10 @@ class SpecialiteDAO implements DAO
 
     /**
      * Delete a specialite row.
+     * @param Specialite $specialite - model
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function deleteSpecialite(Specialite $specialite): bool
+    public function delete($specialite): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(SpecialiteDAO::DELETE_QUERY);
         return $stmt->execute([
@@ -85,9 +87,10 @@ class SpecialiteDAO implements DAO
 
     /**
      * Add a new specialite row.
+     * @param Specialite $specialite - model
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function addSpecialite(Specialite $specialite): bool
+    public function add($specialite): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(SpecialiteDAO::ADD_QUERY);
         $res = $stmt->execute([
