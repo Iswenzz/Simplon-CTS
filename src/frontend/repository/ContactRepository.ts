@@ -2,8 +2,9 @@ import Axios from "axios";
 import DeleteButton from "../component/DeleteButton";
 import Deserializer from "../Deserializer";
 import Contact from "../model/Contact";
+import Repository from "./Repository";
 
-export default class Repository {
+export default class ContactRepository implements Repository {
 	list: HTMLUListElement;
 
 	constructor(listId : string) {
@@ -11,7 +12,7 @@ export default class Repository {
 	}
 	
 	// DB
-	public async fetchAll() : Promise<Contact[]> {
+	public async getAll() : Promise<Contact[]> {
 		const response =  await Axios.post("../src/backend/php/api/ContactAPI.php", {
 			method: "getAll"
 		});
@@ -25,10 +26,10 @@ export default class Repository {
 		return res;
 	}
 
-	public async fetch(key: string) : Promise<Contact> {
+	public async get(model: Contact) : Promise<Contact> {
 		const response =  await Axios.post("../src/backend/php/api/ContactAPI.php", {
 			method: "get",
-			code: key
+			code: model.getCode()
 		});
 
 		return new Deserializer(new Contact(), response.data.body).deserialize();
@@ -69,7 +70,7 @@ export default class Repository {
 	public async listAll(): Promise<void> {
 
 		try {
-			const contacts = await this.fetchAll();
+			const contacts = await this.getAll();
 
 			// display all contacts gotten from the DB
 			for (const contact of contacts) {

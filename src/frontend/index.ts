@@ -3,7 +3,7 @@ import "materialize-css";
 import "./signUp";
 import "./logout";
 import "./login";
-import ContactRepository from "./controller/ContactRepository";
+import ContactRepository from "./repository/ContactRepository";
 
 // initializing components
 document.addEventListener("DOMContentLoaded", () => {
