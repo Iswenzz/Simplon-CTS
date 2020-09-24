@@ -34,6 +34,21 @@ class CibleAPI extends Controller
 	}
 
 	/**
+	 * Get a specific Cible.
+	 */
+	private function get(): Response
+	{
+		/**
+		 * @var CibleDAO $dao
+		 * @var Cible $cible
+		 */
+		$dao = $this->dao;
+		$cible = $dao->getCible($this->req->code);
+		return $this->res->prepare(Response::OK, true,
+			"Query successful", $cible);
+	}
+
+	/**
 	 * Get all Cibles.
 	 */
 	private function getAll(): Response
