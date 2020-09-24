@@ -22,11 +22,7 @@ export default class ContactController implements Controller {
 		const res : Contact[] = [];
 
 		for (const contact of response.data.body) {
-			console.log(`récup contact : ${JSON.stringify(contact)}`);
-
-			const dsr = new Deserializer(new Contact(), contact);
-			console.log(dsr);
-			res.push(dsr.deserialize());
+			res.push(new Deserializer(new Contact(), contact).deserialize());
 		}
 
 		return res;
