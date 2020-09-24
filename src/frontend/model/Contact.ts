@@ -1,6 +1,7 @@
 import Formattable from "../Formattable";
 import JsonSerializable from "../JsonSerializable";
 import Model from "./Model";
+import * as dayjs from "dayjs";
 
 class Contact extends Model implements JsonSerializable, Formattable
 {
@@ -125,7 +126,7 @@ class Contact extends Model implements JsonSerializable, Formattable
 			code: this.getCode(),
 			nom: this.getNom(),
 			prenom: this.getPrenom(),
-			dateNaissance: this.getDateNaissance().toLocaleDateString(),
+			dateNaissance: dayjs(this.getDateNaissance()).format("YYYY-MM-DD"),
 			codePays: this.getCodePays()
 		};
 	}
