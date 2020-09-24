@@ -1,6 +1,6 @@
 import Axios from "axios";
 import DeleteButton from "../component/DeleteButton";
-import Deserializer from "../Deserializer";
+import Deserializer from "../util/Deserializer";
 import Agent from "../model/Agent";
 import Repository from "./Repository";
 

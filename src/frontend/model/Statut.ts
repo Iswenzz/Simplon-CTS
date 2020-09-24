@@ -1,5 +1,5 @@
-import Formattable from "../Formattable";
-import JsonSerializable from "../JsonSerializable";
+import Formattable from "./Formattable";
+import JsonSerializable from "../util/JsonSerializable";
 import Model from "./Model";
 
 class Statut extends Model implements JsonSerializable, Formattable
