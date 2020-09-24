@@ -1,6 +1,6 @@
-import Visee from "./Visee";
+import Model from "./Model";
 
-class Execution
+class Execution extends Model
 {
 	private codeMission: number;
 	private codeAgent: number;
@@ -10,6 +10,7 @@ class Execution
 	 */
 	public constructor(codeMission: number, codeAgent: number)
 	{
+		super();
 		this.codeMission = codeMission;
 		this.codeAgent = codeAgent;
 	}

@@ -1,7 +1,7 @@
 import JsonSerializable from "../JsonSerializable";
 import Visee from "./Visee";
 
-class Mission implements JsonSerializable
+class Mission extends Model implements JsonSerializable
 {
 	private code: number | null;
 	private titre: string;
@@ -27,6 +27,7 @@ class Mission implements JsonSerializable
 		dateDebut: Date = null, dateFin: Date = null, codeStatut = 0,
 		codeType = 0, codeSpecialite = 0)
 	{
+		super();
 		this.code = code;
 		this.titre = titre;
 		this.description = description;

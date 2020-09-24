@@ -1,4 +1,6 @@
-class Visee
+import Model from "./Model";
+
+class Visee extends Model
 {
 	private codeMission: number;
 	private codeCible: number;
@@ -8,6 +10,7 @@ class Visee
 	 */
 	public constructor(codeMission: number, codeCible: number)
 	{
+		super();
 		this.codeMission = codeMission;
 		this.codeCible = codeCible;
 	}

@@ -1,7 +1,8 @@
 import JsonSerializable from "../JsonSerializable";
+import Model from "./Model";
 import Visee from "./Visee";
 
-class Specialite implements JsonSerializable
+class Specialite extends Model implements JsonSerializable
 {
 	private code: number | null;
 	private libelle: string;
@@ -11,6 +12,7 @@ class Specialite implements JsonSerializable
 	 */
 	public constructor(code: number | null, libelle: string)
 	{
+		super();
 		this.code = code;
 		this.libelle = libelle;
 	}

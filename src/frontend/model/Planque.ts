@@ -1,7 +1,8 @@
 import JsonSerializable from "../JsonSerializable";
+import Model from "./Model";
 import Visee from "./Visee";
 
-class Planque implements JsonSerializable
+class Planque extends Model implements JsonSerializable
 {
 	private code: number | null;
 	private adresse: string;
@@ -13,6 +14,7 @@ class Planque implements JsonSerializable
 	 */
 	public constructor(code: number | null, adresse: string, codePays: number, codeType: number)
 	{
+		super();
 		this.code = code;
 		this.codePays = codePays;
 		this.codeType = codeType;

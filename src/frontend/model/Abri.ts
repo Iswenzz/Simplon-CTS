@@ -1,6 +1,7 @@
+import Model from "./Model";
 import Visee from "./Visee";
 
-class Abri
+class Abri extends Model
 {
 	private codeMission: number;
 	private codePlanque: number;
@@ -10,6 +11,7 @@ class Abri
 	 */
 	public constructor(codeMission: number, codePlanque: number)
 	{
+		super();
 		this.codeMission = codeMission;
 		this.codePlanque = codePlanque;
 	}

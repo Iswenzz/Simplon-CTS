@@ -1,7 +1,7 @@
 import JsonSerializable from "../JsonSerializable";
-import Visee from "./Visee";
+import Model from "./Model";
 
-class Pays implements JsonSerializable
+class Pays extends Model implements JsonSerializable
 {
 	private code: number | null;
 	private libelle: string;
@@ -11,6 +11,7 @@ class Pays implements JsonSerializable
 	 */
 	public constructor(code: number | null, libelle: string)
 	{
+		super();
 		this.code = code;
 		this.libelle = libelle;
 	}

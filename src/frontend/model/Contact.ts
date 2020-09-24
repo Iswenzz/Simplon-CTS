@@ -1,7 +1,8 @@
 import JsonSerializable from "../JsonSerializable";
+import Model from "./Model";
 import Visee from "./Visee";
 
-class Contact implements JsonSerializable
+class Contact extends Model implements JsonSerializable
 {
 	private code: number | null;
 	private nom: string;
@@ -20,6 +21,7 @@ class Contact implements JsonSerializable
 	public constructor(code: number | null = null, nom = "",
 		prenom = "", dateNaissance: Date = null, codePays = 0)
 	{
+		super();
 		this.code = code;
 		this.nom = nom;
 		this.prenom = prenom;

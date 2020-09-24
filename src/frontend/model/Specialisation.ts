@@ -1,6 +1,6 @@
-import Visee from "./Visee";
+import Model from "./Model";
 
-class Specilisation
+class Specilisation extends Model
 {
 	private codeSpecialite: number;
 	private codeAgent: number;
@@ -10,6 +10,7 @@ class Specilisation
 	 */
 	public constructor(codeSpecialite: number, codeAgent: number)
 	{
+		super();
 		this.codeSpecialite = codeSpecialite;
 		this.codeAgent = codeAgent;
 	}
