@@ -11,7 +11,7 @@ class Specialite extends Model implements JsonSerializable, Formattable
 	/**
 	 * Initialize a new Specialite object.
 	 */
-	public constructor(code: number | null, libelle: string)
+	public constructor(code: number | null = null, libelle = "")
 	{
 		super();
 		this.code = code;
@@ -22,7 +22,7 @@ class Specialite extends Model implements JsonSerializable, Formattable
 	 * Format the model data.
 	 */
 	public format(): string {
-		return `${this.libelle}: ${this._description}`;
+		return this.description ? `${this.libelle}: ${this.description}` : this.libelle;
 	}
 
 	/**
