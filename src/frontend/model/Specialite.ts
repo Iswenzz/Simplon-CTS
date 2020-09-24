@@ -7,7 +7,7 @@ class Specialite extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private libelle: string;
-	private _description: string;
+	private description: string;
 
 	/**
 	 * Initialize a new Specialite object.
@@ -56,6 +56,23 @@ class Specialite extends Model implements JsonSerializable, Formattable
 	public setLibelle(libelle: string): void
 	{
 		this.libelle = libelle;
+	}
+
+	/**
+	 * Get the value of description
+	 */
+	public getDescription(): string
+	{
+		return this.description;
+	}
+
+	/**
+	 * Set the value of description
+	 * @param description
+	 */
+	public setDescription(description: string): void
+	{
+		this.description = description;
 	}
 
 	/**

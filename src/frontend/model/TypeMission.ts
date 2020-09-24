@@ -58,6 +58,23 @@ class TypeMission extends Model implements JsonSerializable, Formattable
 	}
 
 	/**
+	 * Get the value of description
+	 */
+	public getDescription(): string
+	{
+		return this.description;
+	}
+
+	/**
+	 * Set the value of description
+	 * @param description
+	 */
+	public setDescription(description: string): void
+	{
+		this.description = description;
+	}
+
+	/**
 	 * Serialize the object.
 	 */
 	public jsonSerialize(): Record<string, unknown>
