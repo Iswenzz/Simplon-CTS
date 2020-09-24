@@ -6,7 +6,7 @@ class Execution
 	private int $codeAgent;
 
 	/**
-	 * Initailize a new Execution object.
+	 * Initialize a new Execution object.
 	 */
 	public function __construct(int $codeMission, int $codeAgent)
 	{

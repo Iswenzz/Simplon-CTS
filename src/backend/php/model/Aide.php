@@ -6,7 +6,7 @@ class Aide
 	private int $codeContact;
 
 	/**
-	 * Initailize a new Aide object.
+	 * Initialize a new Aide object.
 	 */
 	public function __construct(int $codeMission, int $codeContact)
 	{

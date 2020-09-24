@@ -6,7 +6,7 @@ class Abri
 	private int $codePlanque;
 
 	/**
-	 * Initailize a new Abri object.
+	 * Initialize a new Abri object.
 	 */
 	public function __construct(int $codeMission, int $codePlanque)
 	{

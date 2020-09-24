@@ -8,7 +8,7 @@ class Planque implements JsonSerializable
 	private int $codeType;
 
 	/**
-	 * Initailize a new Planque object.
+	 * Initialize a new Planque object.
 	 */
 	public function __construct(?int $code, string $adresse, int $codePays, int $codeType)
 	{

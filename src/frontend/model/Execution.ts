@@ -6,7 +6,7 @@ class Execution extends Model
 	private codeAgent: number;
 
 	/**
-	 * Initailize a new Execution object.
+	 * Initialize a new Execution object.
 	 */
 	public constructor(codeMission: number, codeAgent: number)
 	{

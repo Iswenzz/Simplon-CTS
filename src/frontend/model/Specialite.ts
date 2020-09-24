@@ -10,7 +10,7 @@ class Specialite extends Model implements JsonSerializable, Formattable
 	private description: string;
 
 	/**
-	 * Initailize a new Specialite object.
+	 * Initialize a new Specialite object.
 	 */
 	public constructor(code: number | null, libelle: string)
 	{

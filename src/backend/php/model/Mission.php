@@ -15,7 +15,7 @@ class Mission implements JsonSerializable
 	private MissionController $controller;
 
 	/**
-	 * Initailize a new Mission object.
+	 * Initialize a new Mission object.
 	 * @param int|null $code - The mission primary key.
 	 * @param string $titre - The mission title.
 	 * @param string $description - The mission description.

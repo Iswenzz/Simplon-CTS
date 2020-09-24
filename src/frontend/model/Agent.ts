@@ -11,7 +11,7 @@ class Agent extends Model implements JsonSerializable, Formattable
 	private codePays: number;
 
 	/**
-	 * Initailize a new Agent object.
+	 * Initialize a new Agent object.
 	 */
 	public constructor(code: number | null, nom: string, prenom: string,
 		dateNaissance: Date, codePays: number)

@@ -11,7 +11,7 @@ class Cible extends Model implements JsonSerializable, Formattable
 	private codePays: number;
 
 	/**
-	 * Initailize a new Cible object.
+	 * Initialize a new Cible object.
 	 */
 	public constructor(code: number | null, nom: string, prenom: string,
 		dateNaissance: Date, codePays: number)

@@ -8,7 +8,7 @@ class Pays extends Model implements JsonSerializable, Formattable
 	private libelle: string;
 
 	/**
-	 * Initailize a new Pays object.
+	 * Initialize a new Pays object.
 	 */
 	public constructor(code: number | null, libelle: string)
 	{

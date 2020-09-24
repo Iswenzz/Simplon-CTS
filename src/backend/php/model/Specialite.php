@@ -6,7 +6,7 @@ class Specialite implements JsonSerializable
 	private string $libelle;
 
 	/**
-	 * Initailize a new Specialite object.
+	 * Initialize a new Specialite object.
 	 */
 	public function __construct(?int $code, string $libelle)
 	{

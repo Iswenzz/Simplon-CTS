@@ -9,7 +9,7 @@ class TypePlanque extends Model implements JsonSerializable, Formattable
 	private description: string;
 
 	/**
-	 * Initailize a new TypePlanque object.
+	 * Initialize a new TypePlanque object.
 	 */
 	public constructor(code: number | null, libelle: string)
 	{

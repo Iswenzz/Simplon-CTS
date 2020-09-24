@@ -6,7 +6,7 @@ class Statut implements JsonSerializable
 	private string $libelle;
 
 	/**
-	 * Initailize a new Statut object.
+	 * Initialize a new Statut object.
 	 */
 	public function __construct(?int $code, string $libelle)
 	{

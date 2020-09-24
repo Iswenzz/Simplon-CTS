@@ -6,7 +6,7 @@ class Specilisation
 	private int $codeAgent;
 
 	/**
-	 * Initailize a new Specilisation object.
+	 * Initialize a new Specilisation object.
 	 */
 	public function __construct(int $codeSpecialite, int $codeAgent)
 	{

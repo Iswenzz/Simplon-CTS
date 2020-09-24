@@ -6,7 +6,7 @@ class TypeMission implements JsonSerializable
 	private string $libelle;
 
 	/**
-	 * Initailize a new TypeMission object.
+	 * Initialize a new TypeMission object.
 	 */
 	public function __construct(?int $code, string $libelle)
 	{

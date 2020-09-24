@@ -6,7 +6,7 @@ class Pays implements JsonSerializable
 	private string $libelle;
 
 	/**
-	 * Initailize a new Pays object.
+	 * Initialize a new Pays object.
 	 */
 	public function __construct(?int $code, string $libelle)
 	{

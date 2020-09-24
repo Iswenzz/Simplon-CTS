@@ -8,7 +8,7 @@ class Statut extends Model implements JsonSerializable, Formattable
 	private libelle: string;
 
 	/**
-	 * Initailize a new Statut object.
+	 * Initialize a new Statut object.
 	 */
 	public constructor(code: number | null, libelle: string)
 	{

@@ -12,7 +12,7 @@ class Agent implements JsonSerializable
 	private AgentController $controller;
 
 	/**
-	 * Initailize a new Agent object.
+	 * Initialize a new Agent object.
 	 */
 	public function __construct(?int $code, string $nom, string $prenom, 
 		DateTime $dateNaissance, int $codePays)

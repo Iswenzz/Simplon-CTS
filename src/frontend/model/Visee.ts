@@ -6,7 +6,7 @@ class Visee extends Model
 	private codeCible: number;
 
 	/**
-	 * Initailize a new Visee object.
+	 * Initialize a new Visee object.
 	 */
 	public constructor(codeMission: number, codeCible: number)
 	{

@@ -12,7 +12,7 @@ class Contact implements JsonSerializable
 	private ContactController $controller;
 
 	/**
-	 * Initailize a new Contact object.
+	 * Initialize a new Contact object.
 	 * @param int|null $code - The contact code.
 	 * @param string $nom - The contact name.
 	 * @param string $prenom - The contact firstname.

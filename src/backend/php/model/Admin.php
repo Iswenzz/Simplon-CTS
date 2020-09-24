@@ -14,7 +14,7 @@ class Admin implements JsonSerializable
     private AdminController $controller;
 
     /**
-     * Initailize a new Admin object.
+     * Initialize a new Admin object.
      */
     public function __construct(
         string $email,

@@ -10,7 +10,7 @@ class Planque extends Model implements JsonSerializable, Formattable
 	private codeType: number;
 
 	/**
-	 * Initailize a new Planque object.
+	 * Initialize a new Planque object.
 	 */
 	public constructor(code: number | null, adresse: string, codePays: number, codeType: number)
 	{

@@ -6,7 +6,7 @@ class Specilisation extends Model
 	private codeAgent: number;
 
 	/**
-	 * Initailize a new Specilisation object.
+	 * Initialize a new Specilisation object.
 	 */
 	public constructor(codeSpecialite: number, codeAgent: number)
 	{

@@ -14,7 +14,7 @@ class Mission extends Model implements JsonSerializable, Formattable
 	private codeSpecialite: number;
 
 	/**
-	 * Initailize a new Mission object.
+	 * Initialize a new Mission object.
 	 * @param code - The mission primary key.
 	 * @param titre - The mission title.
 	 * @param description - The mission description.

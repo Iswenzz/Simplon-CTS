@@ -6,7 +6,7 @@ class TypePlanque implements JsonSerializable
 	private string $libelle;
 
 	/**
-	 * Initailize a new TypePlanque object.
+	 * Initialize a new TypePlanque object.
 	 */
 	public function __construct(?int $code, string $libelle)
 	{

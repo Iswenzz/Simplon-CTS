@@ -6,7 +6,7 @@ class Aide extends Model
 	private codeContact: number;
 
 	/**
-	 * Initailize a new Aide object.
+	 * Initialize a new Aide object.
 	 */
 	public constructor(codeMission: number, codeContact: number)
 	{

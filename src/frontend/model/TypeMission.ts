@@ -9,7 +9,7 @@ class TypeMission extends Model implements JsonSerializable, Formattable
 	private description: string;
 
 	/**
-	 * Initailize a new TypeMission object.
+	 * Initialize a new TypeMission object.
 	 */
 	public constructor(code: number | null, libelle: string)
 	{

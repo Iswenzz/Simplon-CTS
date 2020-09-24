@@ -7,7 +7,7 @@ class Abri extends Model
 	private codePlanque: number;
 
 	/**
-	 * Initailize a new Abri object.
+	 * Initialize a new Abri object.
 	 */
 	public constructor(codeMission: number, codePlanque: number)
 	{

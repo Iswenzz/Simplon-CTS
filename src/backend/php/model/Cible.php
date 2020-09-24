@@ -12,7 +12,7 @@ class Cible implements JsonSerializable
 	private CibleController $controller;
 
 	/**
-	 * Initailize a new Cible object.
+	 * Initialize a new Cible object.
 	 */
 	public function __construct(?int $code, string $nom, string $prenom, 
 		DateTime $dateNaissance, int $codePays)

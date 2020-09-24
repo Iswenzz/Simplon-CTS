@@ -6,7 +6,7 @@ class Visee
 	private int $codeCible;
 
 	/**
-	 * Initailize a new Visee object.
+	 * Initialize a new Visee object.
 	 */
 	public function __construct(int $codeMission, int $codeCible)
 	{

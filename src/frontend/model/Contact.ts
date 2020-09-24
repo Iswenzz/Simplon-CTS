@@ -11,7 +11,7 @@ class Contact extends Model implements JsonSerializable, Formattable
 	private codePays: number;
 
 	/**
-	 * Initailize a new Contact object.
+	 * Initialize a new Contact object.
 	 * @param code - The contact code.
 	 * @param nom - The contact name.
 	 * @param prenom - The contact firstname.
