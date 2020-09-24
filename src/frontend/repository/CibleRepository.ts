@@ -19,8 +19,8 @@ export default class CibleRepository implements Repository {
 
 		const res : Cible[] = [];
 
-		for (const contact of response.data.body) {
-			res.push(new Deserializer(new Cible(), contact).deserialize());
+		for (const cible of response.data.body) {
+			res.push(new Deserializer(new Cible(), cible).deserialize());
 		}
 
 		return res;
@@ -36,29 +36,29 @@ export default class CibleRepository implements Repository {
 	}
 
 
-	public async add(contact: Cible) : Promise<boolean> {
+	public async add(cible: Cible) : Promise<boolean> {
 		const response =  await Axios.post("../src/backend/php/api/CibleAPI.php", {
 			method: "add",
-			contact: contact.jsonSerialize()
+			cible: cible.jsonSerialize()
 		});
 
 		return response.data.success;
 	}
 
 
-	public async delete(contact: Cible) : Promise<boolean> {
+	public async delete(cible: Cible) : Promise<boolean> {
 		const response =  await Axios.post("../src/backend/php/api/CibleAPI.php", {
 			method: "delete",
-			contact: contact.jsonSerialize()
+			cible: cible.jsonSerialize()
 		});
 
 		return response.data.success;
 	}
 
-	public async update(contact: Cible) : Promise<Cible> {
+	public async update(cible: Cible) : Promise<Cible> {
 		const response =  await Axios.post("../src/backend/php/api/CibleAPI.php", {
 			method: "update",
-			contact: contact.jsonSerialize()
+			cible: cible.jsonSerialize()
 		});
 
 		return new Deserializer(new Cible(), response.data.body).deserialize();
@@ -70,19 +70,19 @@ export default class CibleRepository implements Repository {
 	public async listAll(): Promise<void> {
 
 		try {
-			const contacts = await this.getAll();
+			const cibles = await this.getAll();
 
-			// display all contacts gotten from the DB
-			for (const contact of contacts) {
+			// display all cibles gotten from the DB
+			for (const cible of cibles) {
 				const item = document.createElement("li") as HTMLLIElement;
-				item.innerText = contact.format();
+				item.innerText = cible.format();
 				this.list.append(item);
 
 				item.setAttribute("id", "");
 				item.classList.add("list-item");
 
 				// personal delete button
-				const del = new DeleteButton(item, contact, this);
+				const del = new DeleteButton(item, cible, this);
 				item.append(del.getButton());
 			}
 		} catch (error) {
