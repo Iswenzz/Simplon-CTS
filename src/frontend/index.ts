@@ -7,6 +7,7 @@ import ContactRepository from "./repository/ContactRepository";
 import CibleRepository from "./repository/CibleRepository";
 import AgentRepository from "./repository/AgentRepository";
 import SpecialiteRepository from "./repository/SpecialiteRepository";
+import PlanqueRepository from "./repository/PlanqueRepository";
 
 // initializing components
 document.addEventListener("DOMContentLoaded", () => {
@@ -60,4 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	agentRepo.listAll();
 	const specialiteRepo = new SpecialiteRepository("specialite-list");
 	specialiteRepo.listAll();
+	const planqueRepo = new PlanqueRepository("hideout-list");
+	planqueRepo.listAll();
 });

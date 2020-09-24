@@ -6,18 +6,18 @@ class Planque extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private adresse: string;
-	private codePays: number;
-	private codeType: number;
+	private codePays: number | null;
+	private codeTypePlanque: number | null;
 
 	/**
 	 * Initialize a new Planque object.
 	 */
-	public constructor(code: number | null, adresse: string, codePays: number, codeType: number)
+	public constructor(code: number | null = null, adresse = "", codePays: number | null = null, codeTypePlanque: number | null = null)
 	{
 		super();
 		this.code = code;
 		this.codePays = codePays;
-		this.codeType = codeType;
+		this.codeTypePlanque = codeTypePlanque;
 		this.adresse = adresse;
 	}
 
@@ -77,19 +77,19 @@ class Planque extends Model implements JsonSerializable, Formattable
 	}
 
 	/**
-	 * Get the value of codeType
+	 * Get the value of codeTypePlanque
 	 */ 
-	public getCodeType(): number
+	public getCodeTypePlanque(): number
 	{
-		return this.codeType;
+		return this.codeTypePlanque;
 	}
 
 	/**
-	 * Set the value of codeType
+	 * Set the value of codeTypePlanque
 	 */ 
-	public setCodeType(codeType: number): void
+	public setCodeTypePlanque(codeTypePlanque: number): void
 	{
-		this.codeType = codeType;
+		this.codeTypePlanque = codeTypePlanque;
 	}
 
 	/**
@@ -101,7 +101,7 @@ class Planque extends Model implements JsonSerializable, Formattable
 			code: this.getCode(),
 			adresse: this.getAdresse(),
 			codePays: this.getCodePays(),
-			codeType: this.getCodeType()
+			codeTypePlanque: this.getCodeTypePlanque()
 		};
 	}
 }
