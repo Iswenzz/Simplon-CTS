@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/Response.php";
 require_once __DIR__ . "/Controller.php";
+require_once __DIR__ . "/CRUD.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
@@ -9,7 +10,7 @@ require_once __DIR__ . "/../dao/MissionDAO.php";
 /**
  * Controller for mission requests.
  */
-class MissionAPI extends Controller
+class MissionAPI extends Controller implements CRUD
 {
 	private static ?MissionAPI $instance = null;
 
@@ -36,7 +37,7 @@ class MissionAPI extends Controller
 	/**
 	 * Get a specific Mission.
 	 */
-	private function get(): Response
+	public function get(): Response
 	{
 		/**
 		 * @var MissionDAO $dao
@@ -51,7 +52,7 @@ class MissionAPI extends Controller
 	/**
 	 * Get all Missions.
 	 */
-	private function getAll(): Response
+	public function getAll(): Response
 	{
 		/**
 		 * @var MissionDAO $dao
@@ -65,7 +66,7 @@ class MissionAPI extends Controller
 	/**
 	 * Update a specific Mission.
 	 */
-	private function update(): Response
+	public function update(): Response
     {
 		/**
 		 * @var MissionDAO $dao
@@ -82,7 +83,7 @@ class MissionAPI extends Controller
 	/**
 	 * Delete a specific Mission.
 	 */
-	private function delete(): Response
+	public function delete(): Response
 	{
 		/**
 		 * @var MissionDAO $dao

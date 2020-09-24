@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/Response.php";
 require_once __DIR__ . "/Controller.php";
+require_once __DIR__ . "/CRUD.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
@@ -9,7 +10,7 @@ require_once __DIR__ . "/../dao/CibleDAO.php";
 /**
  * Controller for cible requests.
  */
-class CibleAPI extends Controller
+class CibleAPI extends Controller implements CRUD
 {
     private static ?CibleAPI $instance = null;
 
@@ -37,7 +38,7 @@ class CibleAPI extends Controller
     /**
      * Get a specific Cible.
      */
-    private function get(): Response
+    public function get(): Response
     {
         /**
          * @var CibleDAO $dao
@@ -56,7 +57,7 @@ class CibleAPI extends Controller
     /**
      * Get all Cibles.
      */
-    private function getAll(): Response
+	public function getAll(): Response
     {
         /**
          * @var CibleDAO $dao
@@ -74,7 +75,7 @@ class CibleAPI extends Controller
     /**
      * Update a specific Cible.
      */
-    private function update(): Response
+	public function update(): Response
     {
         /**
          * @var CibleDAO $dao
@@ -95,7 +96,7 @@ class CibleAPI extends Controller
     /**
      * Delete a specific Cible.
      */
-    private function delete(): Response
+	public function delete(): Response
     {
         /**
          * @var CibleDAO $dao
