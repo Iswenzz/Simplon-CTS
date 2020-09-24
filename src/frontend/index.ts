@@ -3,7 +3,7 @@ import "materialize-css";
 import "./signUp";
 import "./logout";
 import "./login";
-import ContactController from "./controller/ContactController";
+import ContactRepository from "./controller/ContactRepository";
 
 // initializing components
 document.addEventListener("DOMContentLoaded", () => {
@@ -49,6 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 	// lists
-	const contactCtrl = new ContactController("contact-list");
+	const contactCtrl = new ContactRepository("contact-list");
 	contactCtrl.listAll();
 });
