@@ -46,7 +46,7 @@ class MissionAPI extends Controller implements CRUD
 		$dao = $this->dao;
 		$deserializer = new Deserializer(Mission::class, $this->req->Mission);
 		$mission = $deserializer->deserialize();
-		$dao->addMission($mission);
+		$dao->add($mission);
 		return $this->res->prepare(Response::OK, true,
 			"Add successful", $mission);
 	}
@@ -61,7 +61,7 @@ class MissionAPI extends Controller implements CRUD
 		 * @var Mission $mission
 		 */
 		$dao = $this->dao;
-		$mission = $dao->getMission($this->req->code);
+		$mission = $dao->get($this->req->code);
 		return $this->res->prepare(Response::OK, true,
 			"Get successful", $mission);
 	}
@@ -75,7 +75,7 @@ class MissionAPI extends Controller implements CRUD
 		 * @var MissionDAO $dao
 		 */
 		$dao = $this->dao;
-		$missions = $dao->getAllMissions();
+		$missions = $dao->getAll();
 		return $this->res->prepare(Response::OK, true,
             "GetAll successful", $missions);
 	}
@@ -92,7 +92,7 @@ class MissionAPI extends Controller implements CRUD
 		$dao = $this->dao;
 		$deserializer = new Deserializer(Mission::class, $this->req->Mission);
 		$mission = $deserializer->deserialize();
-		$dao->updateMission($mission);
+		$dao->update($mission);
 		return $this->res->prepare(Response::OK, true,
 			"Update successful", $mission);
 	}
@@ -109,7 +109,7 @@ class MissionAPI extends Controller implements CRUD
 		$dao = $this->dao;
 		$deserializer = new Deserializer(Mission::class, $this->req->Mission);
 		$mission = $deserializer->deserialize();
-		$dao->deleteMission($mission);
+		$dao->delete($mission);
 		return $this->res->prepare(Response::OK, true,
 			"Delete successful", $mission);
 	}

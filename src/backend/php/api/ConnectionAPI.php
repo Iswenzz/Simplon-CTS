@@ -48,7 +48,7 @@ class ConnectionAPI extends Controller
 		 * @var AdminDAO $dao
 		 */
 		$dao = $this->dao;
-		$admin = $dao->getAdmin($requestBody->mail);
+		$admin = $dao->get($requestBody->mail);
 
 		if ($admin)
 		{

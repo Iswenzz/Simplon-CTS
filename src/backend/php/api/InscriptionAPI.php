@@ -48,7 +48,7 @@ class InscriptionAPI extends Controller
 		 * @var AdminDAO $dao
 		 */
 		$dao = $this->dao;
-		$admin = $dao->getAdmin($requestBody->mail);
+		$admin = $dao->get($requestBody->mail);
 
 		// create a new admin
 		if (!$admin)
@@ -58,7 +58,7 @@ class InscriptionAPI extends Controller
 			// register a new admin
 			$admin = new Admin($requestBody->mail, $requestBody->name, 
 				$requestBody->firstName, new Datetime(), $hashed);
-			$isAdminCreated = $dao->addAdmin($admin);
+			$isAdminCreated = $dao->add($admin);
 			$this->res->setSuccess($isAdminCreated);
 		
 			// error while registering
