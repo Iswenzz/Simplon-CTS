@@ -1,8 +1,8 @@
+import Formattable from "../Formattable";
 import JsonSerializable from "../JsonSerializable";
 import Model from "./Model";
-import Visee from "./Visee";
 
-class Planque extends Model implements JsonSerializable
+class Planque extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private adresse: string;
@@ -19,6 +19,10 @@ class Planque extends Model implements JsonSerializable
 		this.codePays = codePays;
 		this.codeType = codeType;
 		this.adresse = adresse;
+	}
+
+	public format(): string {
+		return `${this.code} (${this.adresse})`;
 	}
 
 	/**

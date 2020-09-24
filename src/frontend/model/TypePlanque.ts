@@ -1,11 +1,12 @@
+import Formattable from "../Formattable";
 import JsonSerializable from "../JsonSerializable";
 import Model from "./Model";
-import Visee from "./Visee";
 
-class TypePlanque extends Model implements JsonSerializable
+class TypePlanque extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private libelle: string;
+	private description: string;
 
 	/**
 	 * Initailize a new TypePlanque object.
@@ -15,6 +16,10 @@ class TypePlanque extends Model implements JsonSerializable
 		super();
 		this.code = code;
 		this.libelle = libelle;
+	}
+
+	public format(): string {
+		return `${this.libelle}: ${this.description}`;
 	}
 
 	/**

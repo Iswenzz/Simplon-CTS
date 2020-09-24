@@ -1,7 +1,8 @@
+import Formattable from "../Formattable";
 import JsonSerializable from "../JsonSerializable";
 import Model from "./Model";
 
-class Cible extends Model implements JsonSerializable
+class Cible extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private nom: string;
@@ -21,6 +22,10 @@ class Cible extends Model implements JsonSerializable
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
 		this.codePays = codePays;
+	}
+
+	public format(): string {
+		return `${this.prenom} ${this.nom} (CI${this.code})`;
 	}
 
 	/**

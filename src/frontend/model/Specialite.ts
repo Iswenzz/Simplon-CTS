@@ -1,11 +1,13 @@
+import Formattable from "../Formattable";
 import JsonSerializable from "../JsonSerializable";
 import Model from "./Model";
 import Visee from "./Visee";
 
-class Specialite extends Model implements JsonSerializable
+class Specialite extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private libelle: string;
+	private description: string;
 
 	/**
 	 * Initailize a new Specialite object.
@@ -15,6 +17,10 @@ class Specialite extends Model implements JsonSerializable
 		super();
 		this.code = code;
 		this.libelle = libelle;
+	}
+
+	public format(): string {
+		return `${this.libelle}: ${this.description}`;
 	}
 
 	/**

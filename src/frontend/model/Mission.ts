@@ -1,7 +1,8 @@
+import Formattable from "../Formattable";
 import JsonSerializable from "../JsonSerializable";
-import Visee from "./Visee";
+import Model from "./Model";
 
-class Mission extends Model implements JsonSerializable
+class Mission extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private titre: string;
@@ -36,6 +37,10 @@ class Mission extends Model implements JsonSerializable
 		this.codeStatut = codeStatut;
 		this.codeType = codeType;
 		this.codeSpecialite = codeSpecialite;
+	}
+
+	public format(): string {
+		return `${this.titre} (M${this.code})`;
 	}
 
 	/**

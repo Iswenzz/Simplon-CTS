@@ -1,7 +1,8 @@
+import Formattable from "../Formattable";
 import JsonSerializable from "../JsonSerializable";
 import Model from "./Model";
 
-class Pays extends Model implements JsonSerializable
+class Pays extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private libelle: string;
@@ -14,6 +15,10 @@ class Pays extends Model implements JsonSerializable
 		super();
 		this.code = code;
 		this.libelle = libelle;
+	}
+
+	public format(): string {
+		return `${this.libelle}`;
 	}
 
 	/**

@@ -1,8 +1,8 @@
+import Formattable from "../Formattable";
 import JsonSerializable from "../JsonSerializable";
 import Model from "./Model";
-import Visee from "./Visee";
 
-class Statut extends Model implements JsonSerializable
+class Statut extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private libelle: string;
@@ -15,6 +15,10 @@ class Statut extends Model implements JsonSerializable
 		super();
 		this.code = code;
 		this.libelle = libelle;
+	}
+
+	public format(): string {
+		return this.libelle;
 	}
 
 	/**

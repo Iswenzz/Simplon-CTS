@@ -1,5 +1,4 @@
 import Model from "./Model";
-import Visee from "./Visee";
 
 class Aide extends Model
 {
