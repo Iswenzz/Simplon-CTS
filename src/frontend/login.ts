@@ -39,7 +39,7 @@ form.addEventListener("submit", async (ev) => {
 			// feedback : failure
 			swal({
 				title: "Connexion échouée!",
-				text: response.data.body.message,
+				text: response.data.message,
 				icon: "error",
 			});
 		}
