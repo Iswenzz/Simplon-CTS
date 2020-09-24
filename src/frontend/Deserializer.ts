@@ -14,7 +14,6 @@ class Deserializer<T>
 		const rgx = new RegExp(/^\d{4}-\d{2}-\d{2}$/);
 		Object.entries(this.data).forEach(([k, v]) => rgx.test(v) ? this.data[k] = new Date(v) : null);
 		Object.assign(this.instance, this.data);
-		console.log(this.instance);
 		
 		return this.instance;
 	}
