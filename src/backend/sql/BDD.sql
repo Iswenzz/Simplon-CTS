@@ -113,53 +113,53 @@ CREATE TABLE Abri (
 -- ------- ADDING FOREIGN KEYS ------- --
 -- contact
 ALTER TABLE Contact
-ADD CONSTRAINT fk_contact_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
+ADD CONSTRAINT fk_contact_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays) ON DELETE CASCADE ON UPDATE CASCADE;
 -- cible
 ALTER TABLE Cible
-ADD CONSTRAINT fk_cible_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
+ADD CONSTRAINT fk_cible_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays) ON DELETE CASCADE ON UPDATE CASCADE;
 -- agent
 ALTER TABLE Agent
-ADD CONSTRAINT fk_agent_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
+ADD CONSTRAINT fk_agent_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays) ON DELETE CASCADE ON UPDATE CASCADE;
 -- mission
 ALTER TABLE Mission
-ADD CONSTRAINT fk_mission_statut FOREIGN KEY (codeStatutMission) REFERENCES Statut (codeStatutMission);
+ADD CONSTRAINT fk_mission_statut FOREIGN KEY (codeStatutMission) REFERENCES Statut (codeStatutMission) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE Mission
-ADD CONSTRAINT fk_mission_typemission FOREIGN KEY (codeTypeMission) REFERENCES TypeMission (codeTypeMission);
+ADD CONSTRAINT fk_mission_typemission FOREIGN KEY (codeTypeMission) REFERENCES TypeMission (codeTypeMission) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE Mission
-ADD CONSTRAINT fk_mission_specialite FOREIGN KEY (codeSpecialite) REFERENCES Specialite (codeSpecialite);
+ADD CONSTRAINT fk_mission_specialite FOREIGN KEY (codeSpecialite) REFERENCES Specialite (codeSpecialite) ON DELETE CASCADE ON UPDATE CASCADE;
 -- planque
 ALTER TABLE Planque
-ADD CONSTRAINT fk_planque_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays);
+ADD CONSTRAINT fk_planque_pays FOREIGN KEY (codePays) REFERENCES Pays (codePays) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE Planque
-ADD CONSTRAINT fk_planque_typeplanque FOREIGN KEY (codeTypePlanque) REFERENCES TypePlanque (codeTypePlanque);
+ADD CONSTRAINT fk_planque_typeplanque FOREIGN KEY (codeTypePlanque) REFERENCES TypePlanque (codeTypePlanque) ON DELETE CASCADE ON UPDATE CASCADE;
 -- specialité
 ALTER TABLE Specialite
-ADD CONSTRAINT fk_specialite_typemission FOREIGN KEY (codeTypeMission) REFERENCES TypeMission (codeTypeMission);
+ADD CONSTRAINT fk_specialite_typemission FOREIGN KEY (codeTypeMission) REFERENCES TypeMission (codeTypeMission) ON DELETE CASCADE ON UPDATE CASCADE;
 -- aide
 ALTER TABLE Aide
-ADD CONSTRAINT fk_aide_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
+ADD CONSTRAINT fk_aide_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE Aide
-ADD CONSTRAINT fk_aide_contact FOREIGN KEY (codeContact) REFERENCES Contact (codeContact);
+ADD CONSTRAINT fk_aide_contact FOREIGN KEY (codeContact) REFERENCES Contact (codeContact) ON DELETE CASCADE ON UPDATE CASCADE;
 -- visee
 ALTER TABLE Visee
-ADD CONSTRAINT fk_visee_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
+ADD CONSTRAINT fk_visee_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE Visee
-ADD CONSTRAINT fk_visee_cible FOREIGN KEY (codeCible) REFERENCES Cible (codeCible);
+ADD CONSTRAINT fk_visee_cible FOREIGN KEY (codeCible) REFERENCES Cible (codeCible) ON DELETE CASCADE ON UPDATE CASCADE;
 -- specialisation
 ALTER TABLE Specialisation
-ADD CONSTRAINT fk_specialisation_specialite FOREIGN KEY (codeSpecialite) REFERENCES Specialite (codeSpecialite);
+ADD CONSTRAINT fk_specialisation_specialite FOREIGN KEY (codeSpecialite) REFERENCES Specialite (codeSpecialite) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE Specialisation
-ADD CONSTRAINT fk_specialisation_agent FOREIGN KEY (codeAgent) REFERENCES Agent (codeAgent);
+ADD CONSTRAINT fk_specialisation_agent FOREIGN KEY (codeAgent) REFERENCES Agent (codeAgent) ON DELETE CASCADE ON UPDATE CASCADE;
 -- execution
 ALTER TABLE Execution
-ADD CONSTRAINT fk_execution_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
+ADD CONSTRAINT fk_execution_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE Execution
-ADD CONSTRAINT fk_execution_agent FOREIGN KEY (codeAgent) REFERENCES Agent (codeAgent);
+ADD CONSTRAINT fk_execution_agent FOREIGN KEY (codeAgent) REFERENCES Agent (codeAgent) ON DELETE CASCADE ON UPDATE CASCADE;
 -- abri
 ALTER TABLE Abri
-ADD CONSTRAINT fk_abri_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
+ADD CONSTRAINT fk_abri_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE Abri
-ADD CONSTRAINT fk_abri_planque FOREIGN KEY (codePlanque) REFERENCES Planque (codePlanque);
+ADD CONSTRAINT fk_abri_planque FOREIGN KEY (codePlanque) REFERENCES Planque (codePlanque) ON DELETE CASCADE ON UPDATE CASCADE;
 -- pays
 INSERT INTO Pays (libellePays)
 VALUES ("Afghanistan"),
