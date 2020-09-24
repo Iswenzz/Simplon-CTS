@@ -8,6 +8,7 @@ import CibleRepository from "./repository/CibleRepository";
 import AgentRepository from "./repository/AgentRepository";
 import SpecialiteRepository from "./repository/SpecialiteRepository";
 import PlanqueRepository from "./repository/PlanqueRepository";
+import MissionRepository from "./repository/MissionRepository";
 
 // initializing components
 document.addEventListener("DOMContentLoaded", () => {
@@ -63,4 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	specialiteRepo.listAll();
 	const planqueRepo = new PlanqueRepository("hideout-list");
 	planqueRepo.listAll();
+	const missionRepo = new MissionRepository("mission-list");
+	missionRepo.listAll();
 });
