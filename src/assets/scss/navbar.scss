@@ -1,0 +1,30 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	height: initial;
+	line-height: initial;
+	background-color: transparentize($color: black, $amount: 0.5);
+
+	h1 {
+		margin: 0;
+		text-align: center;
+	}
+
+	a {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	form {
+		height: initial;
+	}
+
+	button {
+		margin-top: 2em;
+		margin-bottom: 2em;
+	}
+}
