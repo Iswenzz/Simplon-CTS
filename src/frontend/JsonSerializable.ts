@@ -1,6 +1,6 @@
 interface JsonSerializable
 {
-	jsonSerialize: () => Record<string, unknown>
+	jsonSerialize(): Record<string, unknown>
 }
 
 export default JsonSerializable;

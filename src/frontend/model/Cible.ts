@@ -24,6 +24,9 @@ class Cible extends Model implements JsonSerializable, Formattable
 		this.codePays = codePays;
 	}
 
+	/**
+	 * Format the model data.
+	 */
 	public format(): string {
 		return `${this.prenom} ${this.nom} (CI${this.code})`;
 	}

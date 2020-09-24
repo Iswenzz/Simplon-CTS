@@ -21,6 +21,9 @@ class Planque extends Model implements JsonSerializable, Formattable
 		this.adresse = adresse;
 	}
 
+	/**
+	 * Format the model data.
+	 */
 	public format(): string {
 		return `${this.code} (${this.adresse})`;
 	}

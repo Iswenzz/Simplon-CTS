@@ -39,6 +39,9 @@ class Mission extends Model implements JsonSerializable, Formattable
 		this.codeSpecialite = codeSpecialite;
 	}
 
+	/**
+	 * Format the model data.
+	 */
 	public format(): string {
 		return `${this.titre} (M${this.code})`;
 	}
