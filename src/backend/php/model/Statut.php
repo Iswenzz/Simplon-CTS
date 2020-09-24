@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . "/Model.php";
 
-class Statut implements JsonSerializable
+class Statut extends Model implements JsonSerializable
 {
 	private ?int $code;
 	private string $libelle;

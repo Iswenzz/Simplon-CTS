@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . "/Model.php";
 require_once __DIR__ . "/../controller/CibleController.php";
 
-class Cible implements JsonSerializable
+class Cible extends Model implements JsonSerializable
 {
     private ?int $code;
     private string $nom;

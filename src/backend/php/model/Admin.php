@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . "/Model.php";
 require_once __DIR__ . "/../controller/AdminController.php";
 
-class Admin implements JsonSerializable
+class Admin extends Model implements JsonSerializable
 {
     private string $email;
     private string $nom;

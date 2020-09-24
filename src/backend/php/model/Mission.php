@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . "/Model.php";
 require_once __DIR__ . "/../controller/MissionController.php";
 
-class Mission implements JsonSerializable
+class Mission extends Model implements JsonSerializable
 {
 	private ?int $code;
 	private string $titre;

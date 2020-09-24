@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . "/Model.php";
 require_once __DIR__ . "/../controller/ContactController.php";
 
-class Contact implements JsonSerializable
+class Contact extends Model implements JsonSerializable
 {
 	private ?int $code;
 	private string $nom;

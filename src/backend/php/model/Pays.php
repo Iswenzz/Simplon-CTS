@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . "/Model.php";
 
-class Pays implements JsonSerializable
+class Pays extends Model implements JsonSerializable
 {
 	private ?int $code;
 	private string $libelle;

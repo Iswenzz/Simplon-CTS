@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . "/Model.php";
 
-class TypeMission implements JsonSerializable
+class TypeMission extends Model implements JsonSerializable
 {
 	private ?int $code;
 	private string $libelle;

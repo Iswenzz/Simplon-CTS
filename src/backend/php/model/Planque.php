@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . "/Model.php";
 
-class Planque implements JsonSerializable
+class Planque extends Model implements JsonSerializable
 {
 	private ?int $code;
 	private string $adresse;

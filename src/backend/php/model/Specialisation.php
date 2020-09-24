@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . "/Model.php";
 
-class Specilisation
+class Specilisation extends Model
 {
 	private int $codeSpecialite;
 	private int $codeAgent;

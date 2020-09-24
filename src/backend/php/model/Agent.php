@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . "/Model.php";
 require_once __DIR__ . "/../controller/AgentController.php";
 
-class Agent implements JsonSerializable
+class Agent extends Model implements JsonSerializable
 {
     private ?int $code;
     private string $nom;

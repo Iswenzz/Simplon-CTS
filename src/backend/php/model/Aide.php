@@ -1,6 +1,7 @@
 <?php
+require_once __DIR__ . "/Model.php";
 
-class Aide
+class Aide extends Model
 {
 	private int $codeMission;
 	private int $codeContact;
