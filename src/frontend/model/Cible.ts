@@ -13,8 +13,8 @@ class Cible extends Model implements JsonSerializable, Formattable
 	/**
 	 * Initialize a new Cible object.
 	 */
-	public constructor(code: number | null, nom: string, prenom: string,
-		dateNaissance: Date, codePays: number)
+	public constructor(code: number | null = null, nom = "", prenom = "",
+		dateNaissance: Date = null, codePays = 0)
 	{
 		super();
 		this.code = code;

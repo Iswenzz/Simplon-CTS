@@ -4,6 +4,7 @@ import "./signUp";
 import "./logout";
 import "./login";
 import ContactRepository from "./repository/ContactRepository";
+import CibleRepository from "./repository/CibleRepository";
 
 // initializing components
 document.addEventListener("DOMContentLoaded", () => {
@@ -49,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 	// lists
-	const contactCtrl = new ContactRepository("contact-list");
-	contactCtrl.listAll();
+	const contactRepo = new ContactRepository("contact-list");
+	contactRepo.listAll();
+	const targetRepo = new CibleRepository("target-list");
+	targetRepo.listAll();
 });
