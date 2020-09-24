@@ -3,6 +3,7 @@ import "materialize-css";
 import "./signUp";
 import "./logout";
 import "./login";
+import ContactController from "./controller/ContactController";
 
 // initializing login dropdown & inscription modal
 document.addEventListener("DOMContentLoaded", () => {
@@ -35,4 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	// tabs
 	const tabs = document.querySelectorAll(".tabs");
 	M.Tabs.init(tabs);
+
+
+	// lists
+	const contactCtrl = new ContactController("contact-list");
+	contactCtrl.listAll();
 });

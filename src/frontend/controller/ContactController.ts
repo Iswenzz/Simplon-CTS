@@ -14,15 +14,19 @@ export default class ContactController implements Controller {
 		this.model = new Contact();
 	}
 	
-	public async fetchAll() : Promise<Array<Contact>> {
+	public async fetchAll() : Promise<Contact[]> {
 		const response =  await Axios.post("../src/backend/php/api/ContactAPI.php", {
 			method: "getAll"
 		});
 
-		const res : Array<Contact> = [];
+		const res : Contact[] = [];
 
 		for (const contact of response.data.body) {
-			res.push(new Deserializer(new Contact(), contact).deserialize());
+			console.log(`récup contact : ${JSON.stringify(contact)}`);
+
+			const dsr = new Deserializer(new Contact(), contact);
+			console.log(dsr);
+			res.push(dsr.deserialize());
 		}
 
 		return res;
@@ -57,7 +61,7 @@ export default class ContactController implements Controller {
 
 				// personal delete button
 				const del = new DeleteButton(item);
-				item.append(del);
+				item.append(del.getButton());
 			}
 		} catch (error) {
 			console.log(error);

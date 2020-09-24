@@ -1,4 +1,5 @@
-export default class DeleteButton extends HTMLButtonElement {
+export default class DeleteButton {
+	private button : HTMLButtonElement;
 	private target : HTMLElement;
 
 	/**
@@ -6,18 +7,25 @@ export default class DeleteButton extends HTMLButtonElement {
 	 * @param target element to be removed
 	 */
 	constructor(target : HTMLElement) {
-		super();
+		this.button = document.createElement("button");
 
 		this.target = target;
-		this.classList.add("btn");
-		this.classList.add("visible-when-connected");
+		this.button.classList.add("btn");
+		this.button.classList.add("visible-when-connected");
 
-		this.addEventListener("click", () => {
+		// TODO ajouter icône poubelle
+
+		this.button.addEventListener("click", () => {
 			this.target.remove();
+			// TODO delete de la base
 		});
 	}
 
 	public getTarget() : HTMLElement {
 		return this.target;
+	}
+
+	public getButton(): HTMLButtonElement {
+		return this.button;
 	}
 }
