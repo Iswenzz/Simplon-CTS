@@ -12,27 +12,28 @@ require_once __DIR__ . "/../dao/AgentDAO.php";
  */
 class AgentAPI extends Controller implements CRUD
 {
-	private static ?AgentAPI $instance = null;
+    private static ?AgentAPI $instance = null;
 
-	/**
-	 * Agent singleton instance.
-	 */
-	private function __construct()
-	{
-		DAOFactory::registerDAO(AgentDAO::class);
-		$this->dao = DAOFactory::getDAO(AgentDAO::class);
-		$this->res = new Response();
-	}
+    /**
+     * Agent singleton instance.
+     */
+    private function __construct()
+    {
+        DAOFactory::registerDAO(AgentDAO::class);
+        $this->dao = DAOFactory::getDAO(AgentDAO::class);
+        $this->res = new Response();
+    }
 
-	/**
-	 * Get the singleton instance.
-	 */
-	public static function getInstance(): ?AgentAPI
-	{
-		if (!AgentAPI::$instance)
-			AgentAPI::$instance = new AgentAPI();
-		return AgentAPI::$instance;
-	}
+    /**
+     * Get the singleton instance.
+     */
+    public static function getInstance(): ?AgentAPI
+    {
+        if (!AgentAPI::$instance) {
+            AgentAPI::$instance = new AgentAPI();
+        }
+        return AgentAPI::$instance;
+    }
 
 	/**
 	 * Add a specific Agent.
@@ -80,10 +81,10 @@ class AgentAPI extends Controller implements CRUD
             "Query successful", $Agents);
 	}
 
-	/**
-	 * Update a specific Agent.
-	 */
-	public function update(): Response
+    /**
+     * Update a specific Agent.
+     */
+    private function update(): Response
     {
 		/**
 		 * @var AgentDAO $dao
@@ -114,20 +115,24 @@ class AgentAPI extends Controller implements CRUD
 			"Query successful", $agent);
 	}
 
-	/**
-	 * Prepare the request response.
-	 */
-	public function response(): Response
-	{
-		$requestBody = file_get_contents('php://input');
-		if (!$requestBody) // empty request
-			return $this->res->prepare(Response::BAD_REQUEST, false,
-				"Mauvaise syntaxe de requête / paramètres manquants :(");
-		$requestBody = json_decode($requestBody);
-		$this->req = $requestBody;
+    /**
+     * Prepare the request response.
+     */
+    public function response(): Response
+    {
+        $requestBody = file_get_contents('php://input');
+        if (!$requestBody) { // empty request
+            return $this->res->prepare(
+                Response::BAD_REQUEST,
+                false,
+                "Mauvaise syntaxe de requête / paramètres manquants :("
+            );
+        }
+        $requestBody = json_decode($requestBody);
+        $this->req = $requestBody;
 
-		// call the right response callback
-		return call_user_func([$this, $requestBody->method]);
-	}
+        // call the right response callback
+        return call_user_func([$this, $requestBody->method]);
+    }
 }
 AgentAPI::getInstance()->response()->send();

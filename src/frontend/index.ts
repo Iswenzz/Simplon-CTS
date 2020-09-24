@@ -5,6 +5,7 @@ import "./logout";
 import "./login";
 import ContactRepository from "./repository/ContactRepository";
 import CibleRepository from "./repository/CibleRepository";
+import AgentRepository from "./repository/AgentRepository";
 
 // initializing components
 document.addEventListener("DOMContentLoaded", () => {
@@ -54,4 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	contactRepo.listAll();
 	const targetRepo = new CibleRepository("target-list");
 	targetRepo.listAll();
+	const agentRepo = new AgentRepository("agent-list");
+	agentRepo.listAll();
 });
