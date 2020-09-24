@@ -4,14 +4,16 @@ class Specialite implements JsonSerializable
 {
 	private ?int $code;
 	private string $libelle;
+	private string $description;
 
 	/**
 	 * Initailize a new Specialite object.
 	 */
-	public function __construct(?int $code, string $libelle)
+	public function __construct(?int $code, string $libelle, string $description)
 	{
 		$this->code = $code;
 		$this->libelle = $libelle;
+		$this->description = $description;
 	}
 
 	/**
@@ -44,6 +46,24 @@ class Specialite implements JsonSerializable
 	public function setLibelle(string $libelle): void
 	{
 		$this->libelle = $libelle;
+	}
+
+	/**
+	 * Get the value of description
+	 * @return string
+	 */
+	public function getDescription(): string
+	{
+		return $this->description;
+	}
+
+	/**
+	 * Set the value of description
+	 * @param string $description
+	 */
+	public function setDescription(string $description): void
+	{
+		$this->description = $description;
 	}
 
 	/**
