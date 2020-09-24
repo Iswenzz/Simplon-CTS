@@ -48,6 +48,21 @@ class ContactAPI extends Controller
 	}
 
 	/**
+	 * Get a specific Contact.
+	 */
+	private function get(): Response
+	{
+		/**
+		 * @var ContactDAO $dao
+		 * @var Contact $contact
+		 */
+		$dao = $this->dao;
+		$contact = $dao->getContact($this->req->code);
+		return $this->res->prepare(Response::OK, true,
+			"Query successful", $contact);
+	}
+
+	/**
 	 * Update a specific Contact.
 	 */
 	private function update(): Response

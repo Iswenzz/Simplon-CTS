@@ -34,6 +34,21 @@ class AgentAPI extends Controller
 	}
 
 	/**
+	 * Get a specific Agent.
+	 */
+	private function get(): Response
+	{
+		/**
+		 * @var AgentDAO $dao
+		 * @var Agent $agent
+		 */
+		$dao = $this->dao;
+		$agent = $dao->getAgent($this->req->code);
+		return $this->res->prepare(Response::OK, true,
+			"Query successful", $agent);
+	}
+
+	/**
 	 * Get all Agents.
 	 */
 	private function getAll(): Response

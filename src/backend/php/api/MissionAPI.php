@@ -34,6 +34,21 @@ class MissionAPI extends Controller
 	}
 
 	/**
+	 * Get a specific Mission.
+	 */
+	private function get(): Response
+	{
+		/**
+		 * @var MissionDAO $dao
+		 * @var Mission $mission
+		 */
+		$dao = $this->dao;
+		$mission = $dao->getMission($this->req->code);
+		return $this->res->prepare(Response::OK, true,
+			"Query successful", $mission);
+	}
+
+	/**
 	 * Get all Missions.
 	 */
 	private function getAll(): Response
