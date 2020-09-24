@@ -38,7 +38,7 @@ class MissionDAO implements DAO
 	 * @param int $code - The primary key code.
 	 * @return Mission|null
 	 */
-	public function get(int $code): ?Mission
+	public function get($code): ?Mission
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(MissionDAO::SELECT_ONE_QUERY);
 		$stmt->execute([
@@ -58,9 +58,10 @@ class MissionDAO implements DAO
 
 	/**
 	 * Update a mission row.
+	 * @param Mission $mission - The mission.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function update(Mission $mission): bool
+	public function update($mission): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(MissionDAO::UPDATE_QUERY);
 		return $stmt->execute([
@@ -77,9 +78,10 @@ class MissionDAO implements DAO
 
 	/**
 	 * Delete a mission row.
+	 * @param Mission $mission - The mission.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function delete(Mission $mission): bool
+	public function delete($mission): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(MissionDAO::DELETE_QUERY);
 		return $stmt->execute([
@@ -89,9 +91,10 @@ class MissionDAO implements DAO
 
 	/**
 	 * Add a new mission row.
+	 * @param Mission $mission - The mission.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function add(Mission $mission): bool
+	public function add($mission): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(MissionDAO::ADD_QUERY);
 		$res = $stmt->execute([

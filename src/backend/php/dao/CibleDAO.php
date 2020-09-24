@@ -36,7 +36,7 @@ class CibleDAO implements DAO
 	 * @param int $code - The primary key code.
 	 * @return Cible|null
 	 */
-	public function get(int $code): ?Cible
+	public function get($code): ?Cible
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(CibleDAO::SELECT_ONE_QUERY);
 		$stmt->execute([
@@ -54,9 +54,10 @@ class CibleDAO implements DAO
 
 	/**
 	 * Update a cible row.
+	 * @param Cible $cible - The cible.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function update(Cible $cible): bool
+	public function update($cible): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(CibleDAO::UPDATE_QUERY);
 		return $stmt->execute([
@@ -70,9 +71,10 @@ class CibleDAO implements DAO
 
 	/**
 	 * Delete a cible row.
+	 * @param Cible $cible - The cible.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function delete(Cible $cible): bool
+	public function delete($cible): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(CibleDAO::DELETE_QUERY);
 		return $stmt->execute([
@@ -82,9 +84,10 @@ class CibleDAO implements DAO
 
 	/**
 	 * Add a new cible row.
+	 * @param Cible $cible - The cible.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function add(Cible $cible): bool
+	public function add($cible): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(CibleDAO::ADD_QUERY);
 		$res = $stmt->execute([

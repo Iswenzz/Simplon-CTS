@@ -70,9 +70,10 @@ class ContactDAO implements DAO
 
 	/**
 	 * Delete a contact row.
+	 * @param Contact $contact - The contact.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function delete(Contact $contact): bool
+	public function delete($contact): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::DELETE_QUERY);
 		return $stmt->execute([
@@ -82,9 +83,10 @@ class ContactDAO implements DAO
 
 	/**
 	 * Add a new contact row.
+	 * @param Contact $contact - The contact.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function add(Contact $contact): bool
+	public function add($contact): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::ADD_QUERY);
 		$res = $stmt->execute([

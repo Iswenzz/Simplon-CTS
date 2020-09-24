@@ -1,7 +1,6 @@
 import Formattable from "../Formattable";
 import JsonSerializable from "../JsonSerializable";
 import Model from "./Model";
-import Visee from "./Visee";
 
 class Specialite extends Model implements JsonSerializable, Formattable
 {

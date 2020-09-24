@@ -38,7 +38,7 @@ class AdminDAO implements DAO
 	 * @param string $mail - The admin email.
 	 * @return Admin|null
 	 */
-    public function get(string $mail): ?Admin
+    public function get($mail): ?Admin
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::SELECT_ONE_QUERY);
 		$stmt->execute(["mail" => $mail]);
@@ -73,9 +73,10 @@ class AdminDAO implements DAO
 
     /**
      * Delete a admin row.
+     * @param Admin $admin - The admin.
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function delete(Admin $admin): bool
+    public function delete($admin): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::DELETE_QUERY);
         return $stmt->execute([
@@ -85,9 +86,10 @@ class AdminDAO implements DAO
 
     /**
      * Add a new admin row.
+     * @param Admin $admin - The admin.
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function add(Admin $admin): bool
+    public function add($admin): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::ADD_QUERY);
         $res = $stmt->execute([
@@ -102,9 +104,10 @@ class AdminDAO implements DAO
 
     /**
      * Update the admin api key.
+     * @param Admin $admin - The admin.
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function updateApiKey(Admin $admin): bool
+    public function updateApiKey($admin): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::UPDATE_APIKEY_QUERY);
         return $stmt->execute([
