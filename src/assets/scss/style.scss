@@ -177,3 +177,9 @@ h3 {
 	position: absolute;
 	white-space: nowrap;
 }
+
+// visibilité
+.disconnected .visible-when-connected,
+.connected .hidden-when-connected {
+	display: none;
+}

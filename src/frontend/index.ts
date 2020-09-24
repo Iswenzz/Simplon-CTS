@@ -5,8 +5,18 @@ import "./logout";
 import "./login";
 import ContactController from "./controller/ContactController";
 
-// initializing login dropdown & inscription modal
+// initializing components
 document.addEventListener("DOMContentLoaded", () => {
+	// visible / hidden depending on connect status
+	if (sessionStorage["apiKey"]) { // connected
+		document.body.classList.add("connected");
+		document.body.classList.remove("disconnected");
+	} else {
+		document.body.classList.add("disconnected");
+		document.body.classList.remove("connected");
+	}
+
+
 	// dropdown
 	const lognumberrigger = document.getElementById("login");
 	const loginInstance = M.Dropdown.init(lognumberrigger, {
