@@ -47,11 +47,11 @@ class SpecialiteAPI extends Controller implements CRUD
         $dao = $this->dao;
         $deserializer = new Deserializer(Specialite::class, $this->req->specialite);
         $specialite = $deserializer->deserialize();
-        $dao->addSpecialite($specialite);
+        $success = $dao->add($specialite);
         return $this->res->prepare(
             Response::OK,
-            true,
-            "Add successful",
+            $success,
+            $success ? "Add successful" : "Add failed",
             $specialite
         );
     }
@@ -65,8 +65,8 @@ class SpecialiteAPI extends Controller implements CRUD
          * @var SpecialiteDAO $dao
          */
         $dao = $this->dao;
-        $success = $specialites = $dao->getAllSpecialites();
-        $success = !is_null($success);
+        $specialites = $dao->getAll();
+        $success = !is_null($specialites);
         return $this->res->prepare(
             Response::OK,
             $success,
@@ -85,8 +85,8 @@ class SpecialiteAPI extends Controller implements CRUD
          * @var Specialite $specialite
          */
         $dao = $this->dao;
-        $success = $specialite = $dao->getSpecialite($this->req->code);
-        $success = !is_null($success);
+        $specialite = $dao->get($this->req->code);
+        $success = !is_null($specialite);
         return $this->res->prepare(
             Response::OK,
             $success,
@@ -107,7 +107,7 @@ class SpecialiteAPI extends Controller implements CRUD
         $dao = $this->dao;
         $deserializer = new Deserializer(Specialite::class, $this->req->specialite);
         $specialite = $deserializer->deserialize();
-        $success = $dao->updateSpecialite($specialite);
+        $success = $dao->update($specialite);
         return $this->res->prepare(
             Response::OK,
             $success,
@@ -120,7 +120,7 @@ class SpecialiteAPI extends Controller implements CRUD
      * Delete a specific Specialite.
      */
     public function delete(): Response
-    { // TODO delete fail à cause des FK non cascadées ??
+    {
         /**
          * @var SpecialiteDAO $dao
          * @var Specialite $specialite
@@ -128,7 +128,7 @@ class SpecialiteAPI extends Controller implements CRUD
         $dao = $this->dao;
         $deserializer = new Deserializer(Specialite::class, $this->req->specialite);
         $specialite = $deserializer->deserialize();
-        $success = $dao->deleteSpecialite($specialite);
+        $success = $dao->delete($specialite);
         return $this->res->prepare(
             Response::OK,
             $success,
