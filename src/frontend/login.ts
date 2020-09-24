@@ -5,10 +5,9 @@ const form : HTMLFormElement = document.getElementsByTagName("form")[0];
 const mailInput = document.getElementById("mail") as HTMLInputElement;
 const pwdInput = document.getElementById("motDePasse") as HTMLInputElement;
 
-
-form.addEventListener("submit", async (ev) => {
+form.addEventListener("submit", async (ev) => 
+{
 	ev.preventDefault();
-
 	console.log(`connexion : "${mailInput.value}" & "${pwdInput.value}"`);
 
 	try {
@@ -31,10 +30,9 @@ form.addEventListener("submit", async (ev) => {
 				title: "Connexion réussie!",
 				text: `Connexion en tant que ${mailInput.value}...`,
 				icon: "success",
-			  })
-			  .then(() => {
-				  window.location.reload();
-			  });
+			  }).then(() => {
+				window.location.reload();
+			});
 		} else {
 			// feedback : failure
 			swal({

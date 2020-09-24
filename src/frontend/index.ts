@@ -1,14 +1,20 @@
-import "../assets/scss/style.scss";
-import "materialize-css";
 import "./signUp";
 import "./logout";
 import "./login";
+import "./canvas";
+import Canvas from "./canvas";
 import ContactRepository from "./repository/ContactRepository";
 import CibleRepository from "./repository/CibleRepository";
 import AgentRepository from "./repository/AgentRepository";
+import "../assets/scss/index.scss";
+import "materialize-css";
 
 // initializing components
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => 
+{
+	// 3D scene
+	new Canvas();
+
 	// visible / hidden depending on connect status
 	if (sessionStorage["apiKey"]) { // connected
 		document.body.classList.add("connected");
@@ -18,18 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.body.classList.remove("connected");
 	}
 
-
 	// dropdown
 	const lognumberrigger = document.getElementById("login");
 	const loginInstance = M.Dropdown.init(lognumberrigger, {
-		// aligned ?
-		alignment: null,
-		// appears below the trigger
-		coverTrigger: false,
-		// not closing when clicked
-		closeOnClick: false,
-		// free width
-		constrainWidth: false
+		alignment: null, 		// aligned ?
+		coverTrigger: false, 	// appears below the trigger
+		closeOnClick: false, 	// not closing when clicked
+		constrainWidth: false 	// free width
 	});
 
 	const inscriptionTrigger = document.getElementById("inscription");
@@ -48,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	// tabs
 	const tabs = document.querySelectorAll(".tabs");
 	M.Tabs.init(tabs);
-
 
 	// lists
 	const contactRepo = new ContactRepository("contact-list");

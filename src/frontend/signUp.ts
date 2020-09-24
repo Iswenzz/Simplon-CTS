@@ -1,8 +1,5 @@
-import "../assets/scss/style.scss";
 import Axios from "axios";
 import swal from "sweetalert";
-import "./logout";
-
 
 const form = document.getElementById("inscription-form") as HTMLFormElement;
 const nameInput = document.getElementById("inscription-nom") as HTMLInputElement;
@@ -10,9 +7,9 @@ const firstNameInput = document.getElementById("inscription-prenom") as HTMLInpu
 const mailInput = document.getElementById("inscription-mail") as HTMLInputElement;
 const pwdInput = document.getElementById("inscription-motDePasse") as HTMLInputElement;
 
-form.addEventListener("submit", async (ev) => {
+form.addEventListener("submit", async (ev) => 
+{
 	ev.preventDefault();
-
 	console.log(`inscription : "${nameInput.value}" & "${firstNameInput.value}" & "${mailInput.value}" & "${pwdInput.value}"`);
 
 	try {
@@ -23,7 +20,6 @@ form.addEventListener("submit", async (ev) => {
 			"mail": mailInput.value,
 			"password": pwdInput.value
 		});
-		
 		console.log(response.data);
 
 		// if the signup was succesful
@@ -37,17 +33,16 @@ form.addEventListener("submit", async (ev) => {
 				title: "Inscription réussie!",
 				text: `Connexion en tant que ${mailInput.value}...`,
 				icon: "success",
-			  })
-			  .then(() => {
-				  window.location.reload();
-			  });
+			}).then(() => {
+				window.location.reload();
+			});
 		} else {
 			// feedback : failure
 			swal({
 				title: "Inscription échouée!",
 				text: response.data.message,
 				icon: "error",
-			  });
+			});
 		}
 	} catch (error) {
 		console.log(error);
