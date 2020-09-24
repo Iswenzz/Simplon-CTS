@@ -47,7 +47,7 @@ class AgentAPI extends Controller implements CRUD
 		$dao = $this->dao;
 		$agent = $dao->getAgent($this->req->code);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $agent);
+			"Get successful", $agent);
 	}
 
 	/**
@@ -64,7 +64,7 @@ class AgentAPI extends Controller implements CRUD
 		$agent = $deserializer->deserialize();
 		$dao->addAgent($agent);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $agent);
+			"Add successful", $agent);
 	}
 
 	/**
@@ -78,13 +78,13 @@ class AgentAPI extends Controller implements CRUD
 		$dao = $this->dao;
 		$Agents = $dao->getAllAgents();
 		return $this->res->prepare(Response::OK, true,
-            "Query successful", $Agents);
+            "GetAll successful", $Agents);
 	}
 
     /**
      * Update a specific Agent.
      */
-    private function update(): Response
+    public function update(): Response
     {
 		/**
 		 * @var AgentDAO $dao
@@ -95,7 +95,7 @@ class AgentAPI extends Controller implements CRUD
 		$agent = $deserializer->deserialize();
 		$dao->updateAgent($agent);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $agent);
+			"Update successful", $agent);
 	}
 
 	/**
@@ -112,7 +112,7 @@ class AgentAPI extends Controller implements CRUD
 		$agent = $deserializer->deserialize();
 		$dao->deleteAgent($agent);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $agent);
+			"Delete successful", $agent);
 	}
 
     /**
@@ -122,11 +122,8 @@ class AgentAPI extends Controller implements CRUD
     {
         $requestBody = file_get_contents('php://input');
         if (!$requestBody) { // empty request
-            return $this->res->prepare(
-                Response::BAD_REQUEST,
-                false,
-                "Mauvaise syntaxe de requête / paramètres manquants :("
-            );
+            return $this->res->prepare(Response::BAD_REQUEST, false,
+                "Mauvaise syntaxe de requête / paramètres manquants :(");
         }
         $requestBody = json_decode($requestBody);
         $this->req = $requestBody;

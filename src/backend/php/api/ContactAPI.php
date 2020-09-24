@@ -48,7 +48,7 @@ class ContactAPI extends Controller implements CRUD
 		$contact = $deserializer->deserialize();
 		$dao->addContact($contact);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $contact);
+			"Add successful", $contact);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class ContactAPI extends Controller implements CRUD
 		$dao = $this->dao;
 		$contacts = $dao->getAllContacts();
 		return $this->res->prepare(Response::OK, true,
-            "Query successful", $contacts);
+            "GetAll successful", $contacts);
 	}
 
 	/**
@@ -77,7 +77,7 @@ class ContactAPI extends Controller implements CRUD
 		$dao = $this->dao;
 		$contact = $dao->getContact($this->req->code);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $contact);
+			"Get successful", $contact);
 	}
 
 	/**
@@ -94,7 +94,7 @@ class ContactAPI extends Controller implements CRUD
 		$contact = $deserializer->deserialize();
 		$dao->updateContact($contact);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $contact);
+			"Update successful", $contact);
 	}
 
 	/**
@@ -111,7 +111,7 @@ class ContactAPI extends Controller implements CRUD
 		$contact = $deserializer->deserialize();
 		$dao->deleteContact($contact);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $contact);
+			"Delete successful", $contact);
 	}
 
 	/**

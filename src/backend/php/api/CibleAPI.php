@@ -49,7 +49,7 @@ class CibleAPI extends Controller implements CRUD
 		$cible = $deserializer->deserialize();
 		$dao->addCible($cible);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $cible);
+			"Add successful", $cible);
 	}
 
     /**
@@ -64,7 +64,7 @@ class CibleAPI extends Controller implements CRUD
         $dao = $this->dao;
         $cible = $dao->getCible($this->req->code);
         return $this->res->prepare(Response::OK, true,
-            "Query successful", $cible);
+            "Get successful", $cible);
     }
 
     /**
@@ -78,7 +78,7 @@ class CibleAPI extends Controller implements CRUD
         $dao = $this->dao;
         $cibles = $dao->getAllCibles();
         return $this->res->prepare(Response::OK, true,
-        	"Query successful", $cibles);
+        	"GetAll successful", $cibles);
     }
 
     /**
@@ -95,7 +95,7 @@ class CibleAPI extends Controller implements CRUD
         $cible = $deserializer->deserialize();
         $dao->updateCible($cible);
         return $this->res->prepare(Response::OK, true,
-            "Query successful", $cible);
+            "Update successful", $cible);
     }
 
     /**
@@ -112,7 +112,7 @@ class CibleAPI extends Controller implements CRUD
         $cible = $deserializer->deserialize();
         $dao->deleteCible($cible);
         return $this->res->prepare(Response::OK, true,
-        	"Query successful", $cible);
+        	"Delete successful", $cible);
     }
 
     /**

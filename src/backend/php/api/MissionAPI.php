@@ -48,7 +48,7 @@ class MissionAPI extends Controller implements CRUD
 		$mission = $deserializer->deserialize();
 		$dao->addMission($mission);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $mission);
+			"Add successful", $mission);
 	}
 
 	/**
@@ -63,7 +63,7 @@ class MissionAPI extends Controller implements CRUD
 		$dao = $this->dao;
 		$mission = $dao->getMission($this->req->code);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $mission);
+			"Get successful", $mission);
 	}
 
 	/**
@@ -77,7 +77,7 @@ class MissionAPI extends Controller implements CRUD
 		$dao = $this->dao;
 		$missions = $dao->getAllMissions();
 		return $this->res->prepare(Response::OK, true,
-            "Query successful", $missions);
+            "GetAll successful", $missions);
 	}
 
 	/**
@@ -94,7 +94,7 @@ class MissionAPI extends Controller implements CRUD
 		$mission = $deserializer->deserialize();
 		$dao->updateMission($mission);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $mission);
+			"Update successful", $mission);
 	}
 
 	/**
@@ -111,7 +111,7 @@ class MissionAPI extends Controller implements CRUD
 		$mission = $deserializer->deserialize();
 		$dao->deleteMission($mission);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $mission);
+			"Delete successful", $mission);
 	}
 
 	/**
