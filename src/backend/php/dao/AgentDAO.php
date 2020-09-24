@@ -15,7 +15,7 @@ class AgentDAO implements DAO
      * Fetch all rows to get all Agent objects.
      * @return Agent[]
      */
-    public function getAllAgents(): array
+    public function getAll(): array
     {
         $agents = [];
         $stmt = DatabaseFactory::getConnection()->prepare(AgentDAO::SELECT_QUERY);
@@ -39,7 +39,7 @@ class AgentDAO implements DAO
      * @param int $code - The primary key code.
      * @return Agent|null
      */
-    public function getAgent(int $code): ?Agent
+    public function get(int $code): ?Agent
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AgentDAO::SELECT_ONE_QUERY);
         $stmt->execute([
@@ -62,7 +62,7 @@ class AgentDAO implements DAO
      * Update a agent row.
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function updateAgent(Agent $agent): bool
+    public function update(Agent $agent): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AgentDAO::UPDATE_QUERY);
         return $stmt->execute([
@@ -78,7 +78,7 @@ class AgentDAO implements DAO
      * Delete a agent row.
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function deleteAgent(Agent $agent): bool
+    public function delete(Agent $agent): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AgentDAO::DELETE_QUERY);
         return $stmt->execute([
@@ -90,7 +90,7 @@ class AgentDAO implements DAO
      * Add a new agent row.
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function addAgent(Agent $agent): bool
+    public function add(Agent $agent): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AgentDAO::ADD_QUERY);
         $res = $stmt->execute([

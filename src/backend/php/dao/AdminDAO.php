@@ -16,7 +16,7 @@ class AdminDAO implements DAO
      * Fetch all rows to get all Admin objects.
      * @return Admin[]
      */
-    public function getAllAdmins(): array
+    public function getAll(): array
 	{
 		$admins = [];
 		$stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::SELECT_QUERY);
@@ -38,7 +38,7 @@ class AdminDAO implements DAO
 	 * @param string $mail - The admin email.
 	 * @return Admin|null
 	 */
-    public function getAdmin(string $mail): ?Admin
+    public function get(string $mail): ?Admin
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::SELECT_ONE_QUERY);
 		$stmt->execute(["mail" => $mail]);
@@ -56,17 +56,18 @@ class AdminDAO implements DAO
 
     /**
      * Update a admin row.
+	 * @param Admin $admin
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function updateAdmin(Admin $admin): bool
+    public function update($admin): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::UPDATE_QUERY);
         return $stmt->execute([
-            ":mail" => $admin->getEmail(),
-            ":nom" => $admin->getNom(),
-            ":prenom" => $admin->getPrenom(),
-            ":dateCreation" => $admin->getDateCreation()->format("Y-m-d"),
-            ":mdp" => $admin->getMdp()
+            "mail" => $admin->getEmail(),
+            "nom" => $admin->getNom(),
+            "prenom" => $admin->getPrenom(),
+            "dateCreation" => $admin->getDateCreation()->format("Y-m-d"),
+            "mdp" => $admin->getMdp()
         ]);
     }
 
@@ -74,11 +75,11 @@ class AdminDAO implements DAO
      * Delete a admin row.
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function deleteAdmin(Admin $admin): bool
+    public function delete(Admin $admin): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::DELETE_QUERY);
         return $stmt->execute([
-            ":mail" => $admin->getEmail()
+            "mail" => $admin->getEmail()
         ]);
     }
 
@@ -86,15 +87,15 @@ class AdminDAO implements DAO
      * Add a new admin row.
      * @return bool - TRUE on success or FALSE on failure.
      */
-    public function addAdmin(Admin $admin): bool
+    public function add(Admin $admin): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::ADD_QUERY);
         $res = $stmt->execute([
-            ":mail" => $admin->getEmail(),
-            ":nom" => $admin->getNom(),
-            ":prenom" => $admin->getPrenom(),
-            ":dateCreation" => $admin->getDateCreation()->format("Y-m-d"),
-            ":mdp" => $admin->getMdp()
+            "mail" => $admin->getEmail(),
+            "nom" => $admin->getNom(),
+            "prenom" => $admin->getPrenom(),
+            "dateCreation" => $admin->getDateCreation()->format("Y-m-d"),
+            "mdp" => $admin->getMdp()
         ]);
         return $res;
     }

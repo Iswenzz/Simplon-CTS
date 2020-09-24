@@ -15,7 +15,7 @@ class ContactDAO implements DAO
 	 * Fetch all rows to get all Contact objects.
 	 * @return Contact[]
 	 */
-	public function getAllContacts(): array
+	public function getAll(): array
 	{
 		$contacts = [];
 		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::SELECT_QUERY);
@@ -36,7 +36,7 @@ class ContactDAO implements DAO
 	 * @param int $code - The primary key code.
 	 * @return Contact|null
 	 */
-	public function getContact(int $code): ?Contact
+	public function get($code): ?Contact
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::SELECT_ONE_QUERY);
 		$stmt->execute([
@@ -56,7 +56,7 @@ class ContactDAO implements DAO
 	 * Update a contact row.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function updateContact(Contact $contact): bool
+	public function update($contact): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::UPDATE_QUERY);
 		return $stmt->execute([
@@ -72,7 +72,7 @@ class ContactDAO implements DAO
 	 * Delete a contact row.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function deleteContact(Contact $contact): bool
+	public function delete(Contact $contact): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::DELETE_QUERY);
 		return $stmt->execute([
@@ -84,7 +84,7 @@ class ContactDAO implements DAO
 	 * Add a new contact row.
 	 * @return bool - TRUE on success or FALSE on failure.
 	 */
-	public function addContact(Contact $contact): bool
+	public function add(Contact $contact): bool
 	{
 		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::ADD_QUERY);
 		$res = $stmt->execute([
