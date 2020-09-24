@@ -18,6 +18,9 @@ class TypePlanque extends Model implements JsonSerializable, Formattable
 		this.libelle = libelle;
 	}
 
+	/**
+	 * Format the model data.
+	 */
 	public format(): string {
 		return `${this.libelle}: ${this.description}`;
 	}
@@ -52,6 +55,23 @@ class TypePlanque extends Model implements JsonSerializable, Formattable
 	public setLibelle(libelle: string): void
 	{
 		this.libelle = libelle;
+	}
+
+	/**
+	 * Get the value of description
+	 */
+	public getDescription(): string
+	{
+		return this.description;
+	}
+
+	/**
+	 * Set the value of description
+	 * @param description
+	 */
+	public setDescription(description: string): void
+	{
+		this.description = description;
 	}
 
 	/**

@@ -29,6 +29,9 @@ class Contact extends Model implements JsonSerializable, Formattable
 		this.codePays = codePays;
 	}
 
+	/**
+	 * Format the model data.
+	 */
 	public format(): string {
 		return `${this.prenom} ${this.nom} (CO${this.code})`;
 	}

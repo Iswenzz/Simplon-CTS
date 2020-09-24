@@ -19,13 +19,16 @@ class Specialite extends Model implements JsonSerializable, Formattable
 		this.libelle = libelle;
 	}
 
+	/**
+	 * Format the model data.
+	 */
 	public format(): string {
-		return `${this.libelle}: ${this.description}`;
+		return `${this.libelle}: ${this._description}`;
 	}
 
 	/**
 	 * Get the value of code
-	 */ 
+	 */
 	public getCode(): number | null
 	{
 		return this.code;
@@ -33,7 +36,7 @@ class Specialite extends Model implements JsonSerializable, Formattable
 
 	/**
 	 * Set the value of code
-	 */ 
+	 */
 	public setCode(code: number | null): void
 	{
 		this.code = code;
@@ -41,7 +44,7 @@ class Specialite extends Model implements JsonSerializable, Formattable
 
 	/**
 	 * Get the value of libelle
-	 */ 
+	 */
 	public getLibelle(): string
 	{
 		return this.libelle;
@@ -49,10 +52,27 @@ class Specialite extends Model implements JsonSerializable, Formattable
 
 	/**
 	 * Set the value of libelle
-	 */ 
+	 */
 	public setLibelle(libelle: string): void
 	{
 		this.libelle = libelle;
+	}
+
+	/**
+	 * Get the value of description
+	 */
+	public getDescription(): string
+	{
+		return this.description;
+	}
+
+	/**
+	 * Set the value of description
+	 * @param description
+	 */
+	public setDescription(description: string): void
+	{
+		this.description = description;
 	}
 
 	/**
