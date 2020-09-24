@@ -1,14 +1,14 @@
-import ContactRepository from "../controller/ContactRepository";
-import Contact from "../model/Contact";
+import Model from "../model/Model";
+import Repository from "../repository/Repository";
 
-export default class DeleteButton {
+export default class DeleteButton<M extends Model, R extends Repository> {
 	private button : HTMLButtonElement;
 
 	/**
 	 * Creates a new button that removes the target element when clicked.
 	 * @param target element to be removed
 	 */
-	constructor(target : HTMLElement, model: Contact, repo: ContactRepository) {
+	constructor(target : HTMLElement, model: M, repo: R) {
 		this.button = document.createElement("button");
 
 		this.button.classList.add("btn");
