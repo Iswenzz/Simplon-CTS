@@ -6,6 +6,7 @@ import "./login";
 import ContactRepository from "./repository/ContactRepository";
 import CibleRepository from "./repository/CibleRepository";
 import AgentRepository from "./repository/AgentRepository";
+import SpecialiteRepository from "./repository/SpecialiteRepository";
 
 // initializing components
 document.addEventListener("DOMContentLoaded", () => {
@@ -57,4 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	targetRepo.listAll();
 	const agentRepo = new AgentRepository("agent-list");
 	agentRepo.listAll();
+	const specialiteRepo = new SpecialiteRepository("specialite-list");
+	specialiteRepo.listAll();
 });
