@@ -35,6 +35,23 @@ class CibleAPI extends Controller implements CRUD
         return CibleAPI::$instance;
     }
 
+	/**
+	 * Add a specific Cible.
+	 */
+	public function add(): Response
+	{
+		/**
+		 * @var CibleDAO $dao
+		 * @var Cible $cible
+		 */
+		$dao = $this->dao;
+		$deserializer = new Deserializer(Cible::class, $this->req->Cible);
+		$cible = $deserializer->deserialize();
+		$dao->addCible($cible);
+		return $this->res->prepare(Response::OK, true,
+			"Query successful", $cible);
+	}
+
     /**
      * Get a specific Cible.
      */
@@ -46,12 +63,8 @@ class CibleAPI extends Controller implements CRUD
          */
         $dao = $this->dao;
         $cible = $dao->getCible($this->req->code);
-        return $this->res->prepare(
-            Response::OK,
-            true,
-            "Query successful",
-            $cible
-        );
+        return $this->res->prepare(Response::OK, true,
+            "Query successful", $cible);
     }
 
     /**
@@ -63,13 +76,9 @@ class CibleAPI extends Controller implements CRUD
          * @var CibleDAO $dao
          */
         $dao = $this->dao;
-        $Cibles = $dao->getAllCibles();
-        return $this->res->prepare(
-            Response::OK,
-            true,
-            "Query successful",
-            $Cibles
-        );
+        $cibles = $dao->getAllCibles();
+        return $this->res->prepare(Response::OK, true,
+        	"Query successful", $cibles);
     }
 
     /**
@@ -79,18 +88,14 @@ class CibleAPI extends Controller implements CRUD
     {
         /**
          * @var CibleDAO $dao
-         * @var Cible $Cible
+         * @var Cible $cible
          */
         $dao = $this->dao;
         $deserializer = new Deserializer(Cible::class, $this->req->Cible);
-        $Cible = $deserializer->deserialize();
-        $dao->updateCible($Cible);
-        return $this->res->prepare(
-            Response::OK,
-            true,
-            "Query successful",
-            $deserializer->deserialize()
-        );
+        $cible = $deserializer->deserialize();
+        $dao->updateCible($cible);
+        return $this->res->prepare(Response::OK, true,
+            "Query successful", $cible);
     }
 
     /**
@@ -100,18 +105,14 @@ class CibleAPI extends Controller implements CRUD
     {
         /**
          * @var CibleDAO $dao
-         * @var Cible $Cible
+         * @var Cible $cible
          */
         $dao = $this->dao;
         $deserializer = new Deserializer(Cible::class, $this->req->cible);
-        $Cible = $deserializer->deserialize();
-        $dao->deleteCible($Cible);
-        return $this->res->prepare(
-            Response::OK,
-            true,
-            "Query successful",
-            $deserializer->deserialize()
-        );
+        $cible = $deserializer->deserialize();
+        $dao->deleteCible($cible);
+        return $this->res->prepare(Response::OK, true,
+        	"Query successful", $cible);
     }
 
     /**
@@ -121,11 +122,8 @@ class CibleAPI extends Controller implements CRUD
     {
         $requestBody = file_get_contents('php://input');
         if (!$requestBody) { // empty request
-            return $this->res->prepare(
-                Response::BAD_REQUEST,
-                false,
-                "Mauvaise syntaxe de requête / paramètres manquants :("
-            );
+            return $this->res->prepare(Response::BAD_REQUEST, false,
+            	"Mauvaise syntaxe de requête / paramètres manquants :(");
         }
         $requestBody = json_decode($requestBody);
         $this->req = $requestBody;

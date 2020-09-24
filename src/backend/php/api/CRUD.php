@@ -7,4 +7,5 @@ interface CRUD
 	function delete(): Response;
 	function get(): Response;
 	function getAll(): Response;
+	function add(): Response;
 }

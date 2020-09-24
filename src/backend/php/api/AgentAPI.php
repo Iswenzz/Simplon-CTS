@@ -35,7 +35,7 @@ class AgentAPI extends Controller implements CRUD
 	}
 
 	/**
-	 * Get a specific Agent.
+	 * Add a specific Agent.
 	 */
 	public function get(): Response
 	{
@@ -45,6 +45,23 @@ class AgentAPI extends Controller implements CRUD
 		 */
 		$dao = $this->dao;
 		$agent = $dao->getAgent($this->req->code);
+		return $this->res->prepare(Response::OK, true,
+			"Query successful", $agent);
+	}
+
+	/**
+	 * Add a specific Agent.
+	 */
+	public function add(): Response
+	{
+		/**
+		 * @var AgentDAO $dao
+		 * @var Agent $agent
+		 */
+		$dao = $this->dao;
+		$deserializer = new Deserializer(Agent::class, $this->req->Agent);
+		$agent = $deserializer->deserialize();
+		$dao->addAgent($agent);
 		return $this->res->prepare(Response::OK, true,
 			"Query successful", $agent);
 	}
@@ -70,14 +87,14 @@ class AgentAPI extends Controller implements CRUD
     {
 		/**
 		 * @var AgentDAO $dao
-		 * @var Agent $Agent
+		 * @var Agent $agent
 		 */
 		$dao = $this->dao;
 		$deserializer = new Deserializer(Agent::class, $this->req->Agent);
-		$Agent = $deserializer->deserialize();
-		$dao->updateAgent($Agent);
+		$agent = $deserializer->deserialize();
+		$dao->updateAgent($agent);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $deserializer->deserialize());
+			"Query successful", $agent);
 	}
 
 	/**
@@ -87,14 +104,14 @@ class AgentAPI extends Controller implements CRUD
 	{
 		/**
 		 * @var AgentDAO $dao
-		 * @var Agent $Agent
+		 * @var Agent $agent
 		 */
 		$dao = $this->dao;
 		$deserializer = new Deserializer(Agent::class, $this->req->Agent);
-		$Agent = $deserializer->deserialize();
-		$dao->deleteAgent($Agent);
+		$agent = $deserializer->deserialize();
+		$dao->deleteAgent($agent);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $deserializer->deserialize());
+			"Query successful", $agent);
 	}
 
 	/**

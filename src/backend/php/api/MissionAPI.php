@@ -35,6 +35,23 @@ class MissionAPI extends Controller implements CRUD
 	}
 
 	/**
+	 * Add a specific Mission.
+	 */
+	public function add(): Response
+	{
+		/**
+		 * @var MissionDAO $dao
+		 * @var Mission $mission
+		 */
+		$dao = $this->dao;
+		$deserializer = new Deserializer(Mission::class, $this->req->Mission);
+		$mission = $deserializer->deserialize();
+		$dao->addMission($mission);
+		return $this->res->prepare(Response::OK, true,
+			"Query successful", $mission);
+	}
+
+	/**
 	 * Get a specific Mission.
 	 */
 	public function get(): Response
@@ -58,9 +75,9 @@ class MissionAPI extends Controller implements CRUD
 		 * @var MissionDAO $dao
 		 */
 		$dao = $this->dao;
-		$Missions = $dao->getAllMissions();
+		$missions = $dao->getAllMissions();
 		return $this->res->prepare(Response::OK, true,
-            "Query successful", $Missions);
+            "Query successful", $missions);
 	}
 
 	/**
@@ -70,14 +87,14 @@ class MissionAPI extends Controller implements CRUD
     {
 		/**
 		 * @var MissionDAO $dao
-		 * @var Mission $Mission
+		 * @var Mission $mission
 		 */
 		$dao = $this->dao;
 		$deserializer = new Deserializer(Mission::class, $this->req->Mission);
-		$Mission = $deserializer->deserialize();
-		$dao->updateMission($Mission);
+		$mission = $deserializer->deserialize();
+		$dao->updateMission($mission);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $deserializer->deserialize());
+			"Query successful", $mission);
 	}
 
 	/**
@@ -87,14 +104,14 @@ class MissionAPI extends Controller implements CRUD
 	{
 		/**
 		 * @var MissionDAO $dao
-		 * @var Mission $Mission
+		 * @var Mission $mission
 		 */
 		$dao = $this->dao;
 		$deserializer = new Deserializer(Mission::class, $this->req->Mission);
-		$Mission = $deserializer->deserialize();
-		$dao->deleteMission($Mission);
+		$mission = $deserializer->deserialize();
+		$dao->deleteMission($mission);
 		return $this->res->prepare(Response::OK, true,
-			"Query successful", $deserializer->deserialize());
+			"Query successful", $mission);
 	}
 
 	/**
