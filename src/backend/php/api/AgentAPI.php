@@ -35,85 +35,107 @@ class AgentAPI extends Controller implements CRUD
         return AgentAPI::$instance;
     }
 
-	/**
-	 * Add a specific Agent.
-	 */
-	public function get(): Response
-	{
-		/**
-		 * @var AgentDAO $dao
-		 * @var Agent $agent
-		 */
-		$dao = $this->dao;
-		$agent = $dao->get($this->req->code);
-		return $this->res->prepare(Response::OK, true,
-			"Get successful", $agent);
-	}
+    /**
+     * Add a specific Agent.
+     */
+    public function get(): Response
+    {
+        /**
+         * @var AgentDAO $dao
+         * @var Agent $agent
+         */
+        $dao = $this->dao;
+        $agent = $dao->get($this->req->code);
+        $success = !is_null($agent);
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "Get successful" : "Get failed",
+            $agent
+        );
+    }
 
-	/**
-	 * Add a specific Agent.
-	 */
-	public function add(): Response
-	{
-		/**
-		 * @var AgentDAO $dao
-		 * @var Agent $agent
-		 */
-		$dao = $this->dao;
-		$deserializer = new Deserializer(Agent::class, $this->req->Agent);
-		$agent = $deserializer->deserialize();
-		$dao->add($agent);
-		return $this->res->prepare(Response::OK, true,
-			"Add successful", $agent);
-	}
+    /**
+     * Add a specific Agent.
+     */
+    public function add(): Response
+    {
+        /**
+         * @var AgentDAO $dao
+         * @var Agent $agent
+         */
+        $dao = $this->dao;
+        $deserializer = new Deserializer(Agent::class, $this->req->agent);
+        $agent = $deserializer->deserialize();
+        $success = $dao->add($agent);
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "Add successful" : "Add failed",
+            $agent
+        );
+    }
 
-	/**
-	 * Get all Agents.
-	 */
-	public function getAll(): Response
-	{
-		/**
-		 * @var AgentDAO $dao
-		 */
-		$dao = $this->dao;
-		$Agents = $dao->getAll();
-		return $this->res->prepare(Response::OK, true,
-            "GetAll successful", $Agents);
-	}
+    /**
+     * Get all Agents.
+     */
+    public function getAll(): Response
+    {
+        /**
+         * @var AgentDAO $dao
+         */
+        $dao = $this->dao;
+        $Agents = $dao->getAll();
+        $success = !is_null($Agents);
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "GetAll successful" : "GetAll failed",
+            $Agents
+        );
+    }
 
     /**
      * Update a specific Agent.
      */
     public function update(): Response
     {
-		/**
-		 * @var AgentDAO $dao
-		 * @var Agent $agent
-		 */
-		$dao = $this->dao;
-		$deserializer = new Deserializer(Agent::class, $this->req->Agent);
-		$agent = $deserializer->deserialize();
-		$dao->update($agent);
-		return $this->res->prepare(Response::OK, true,
-			"Update successful", $agent);
-	}
+        /**
+         * @var AgentDAO $dao
+         * @var Agent $agent
+         */
+        $dao = $this->dao;
+        $deserializer = new Deserializer(Agent::class, $this->req->agent);
+        $agent = $deserializer->deserialize();
+        $success = !is_null($dao->update($agent));
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "Update successful" : "Update failed",
+            $agent
+        );
+    }
 
-	/**
-	 * Delete a specific Agent.
-	 */
-	public function delete(): Response
-	{
-		/**
-		 * @var AgentDAO $dao
-		 * @var Agent $agent
-		 */
-		$dao = $this->dao;
-		$deserializer = new Deserializer(Agent::class, $this->req->Agent);
-		$agent = $deserializer->deserialize();
-		$dao->delete($agent);
-		return $this->res->prepare(Response::OK, true,
-			"Delete successful", $agent);
-	}
+    /**
+     * Delete a specific Agent.
+     */
+    public function delete(): Response
+    {
+        /**
+         * @var AgentDAO $dao
+         * @var Agent $agent
+         */
+        $dao = $this->dao;
+        $deserializer = new Deserializer(Agent::class, $this->req->agent);
+        $agent = $deserializer->deserialize();
+        $success = $dao->delete($agent);
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "Delete successful" : "Delete failed",
+            $agent
+        );
+    }
 
     /**
      * Prepare the request response.
@@ -122,8 +144,11 @@ class AgentAPI extends Controller implements CRUD
     {
         $requestBody = file_get_contents('php://input');
         if (!$requestBody) { // empty request
-            return $this->res->prepare(Response::BAD_REQUEST, false,
-                "Mauvaise syntaxe de requête / paramètres manquants :(");
+            return $this->res->prepare(
+                Response::BAD_REQUEST,
+                false,
+                "Mauvaise syntaxe de requête / paramètres manquants :("
+            );
         }
         $requestBody = json_decode($requestBody);
         $this->req = $requestBody;

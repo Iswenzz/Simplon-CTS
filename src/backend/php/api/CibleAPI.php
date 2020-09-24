@@ -35,22 +35,26 @@ class CibleAPI extends Controller implements CRUD
         return CibleAPI::$instance;
     }
 
-	/**
-	 * Add a specific Cible.
-	 */
-	public function add(): Response
-	{
-		/**
-		 * @var CibleDAO $dao
-		 * @var Cible $cible
-		 */
-		$dao = $this->dao;
-		$deserializer = new Deserializer(Cible::class, $this->req->Cible);
-		$cible = $deserializer->deserialize();
-		$dao->add($cible);
-		return $this->res->prepare(Response::OK, true,
-			"Add successful", $cible);
-	}
+    /**
+     * Add a specific Cible.
+     */
+    public function add(): Response
+    {
+        /**
+         * @var CibleDAO $dao
+         * @var Cible $cible
+         */
+        $dao = $this->dao;
+        $deserializer = new Deserializer(Cible::class, $this->req->cible);
+        $cible = $deserializer->deserialize();
+        $success = $dao->add($cible);
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "Add successful" : "Add failed",
+            $cible
+        );
+    }
 
     /**
      * Get a specific Cible.
@@ -63,28 +67,38 @@ class CibleAPI extends Controller implements CRUD
          */
         $dao = $this->dao;
         $cible = $dao->get($this->req->code);
-        return $this->res->prepare(Response::OK, true,
-            "Get successful", $cible);
+        $success = !is_null($cible);
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "Get successful" : "Get failed",
+            $cible
+        );
     }
 
     /**
      * Get all Cibles.
      */
-	public function getAll(): Response
+    public function getAll(): Response
     {
         /**
          * @var CibleDAO $dao
          */
         $dao = $this->dao;
         $cibles = $dao->getAll();
-        return $this->res->prepare(Response::OK, true,
-        	"GetAll successful", $cibles);
+        $success = !is_null($cibles);
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "GetAll successful" : "GetAll failed",
+            $cibles
+        );
     }
 
     /**
      * Update a specific Cible.
      */
-	public function update(): Response
+    public function update(): Response
     {
         /**
          * @var CibleDAO $dao
@@ -93,15 +107,19 @@ class CibleAPI extends Controller implements CRUD
         $dao = $this->dao;
         $deserializer = new Deserializer(Cible::class, $this->req->Cible);
         $cible = $deserializer->deserialize();
-        $dao->update($cible);
-        return $this->res->prepare(Response::OK, true,
-            "Update successful", $cible);
+        $success = !is_null($dao->update($cible));
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "Update successful" : "Update failed",
+            $cible
+        );
     }
 
     /**
      * Delete a specific Cible.
      */
-	public function delete(): Response
+    public function delete(): Response
     {
         /**
          * @var CibleDAO $dao
@@ -110,9 +128,13 @@ class CibleAPI extends Controller implements CRUD
         $dao = $this->dao;
         $deserializer = new Deserializer(Cible::class, $this->req->cible);
         $cible = $deserializer->deserialize();
-        $dao->delete($cible);
-        return $this->res->prepare(Response::OK, true,
-        	"Delete successful", $cible);
+        $success = $dao->delete($cible);
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "Delete successful" : "Delete failed",
+            $cible
+        );
     }
 
     /**
@@ -122,8 +144,11 @@ class CibleAPI extends Controller implements CRUD
     {
         $requestBody = file_get_contents('php://input');
         if (!$requestBody) { // empty request
-            return $this->res->prepare(Response::BAD_REQUEST, false,
-            	"Mauvaise syntaxe de requête / paramètres manquants :(");
+            return $this->res->prepare(
+                Response::BAD_REQUEST,
+                false,
+                "Mauvaise syntaxe de requête / paramètres manquants :("
+            );
         }
         $requestBody = json_decode($requestBody);
         $this->req = $requestBody;

@@ -6,6 +6,7 @@ import Canvas from "./canvas";
 import ContactRepository from "./repository/ContactRepository";
 import CibleRepository from "./repository/CibleRepository";
 import AgentRepository from "./repository/AgentRepository";
+import SpecialiteRepository from "./repository/SpecialiteRepository";
 import "../assets/scss/index.scss";
 import "materialize-css";
 
@@ -57,4 +58,6 @@ document.addEventListener("DOMContentLoaded", () =>
 	targetRepo.listAll();
 	const agentRepo = new AgentRepository("agent-list");
 	agentRepo.listAll();
+	const specialiteRepo = new SpecialiteRepository("specialite-list");
+	specialiteRepo.listAll();
 });

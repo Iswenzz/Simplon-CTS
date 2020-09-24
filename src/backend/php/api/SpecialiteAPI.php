@@ -5,135 +5,135 @@ require_once __DIR__ . "/CRUD.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
-require_once __DIR__ . "/../dao/ContactDAO.php";
+require_once __DIR__ . "/../dao/SpecialiteDAO.php";
 
 /**
- * Controller for contact request.
+ * Controller for specialite request.
  */
-class ContactAPI extends Controller implements CRUD
+class SpecialiteAPI extends Controller implements CRUD
 {
-    private static ?ContactAPI $instance = null;
+    private static ?SpecialiteAPI $instance = null;
 
     /**
-     * Contact singleton instance.
+     * Specialite singleton instance.
      */
     private function __construct()
     {
-        DAOFactory::registerDAO(ContactDAO::class);
-        $this->dao = DAOFactory::getDAO(ContactDAO::class);
+        DAOFactory::registerDAO(SpecialiteDAO::class);
+        $this->dao = DAOFactory::getDAO(SpecialiteDAO::class);
         $this->res = new Response();
     }
 
     /**
      * Get the singleton instance.
      */
-    public static function getInstance(): ?ContactAPI
+    public static function getInstance(): ?SpecialiteAPI
     {
-        if (!ContactAPI::$instance) {
-            ContactAPI::$instance = new ContactAPI();
+        if (!SpecialiteAPI::$instance) {
+            SpecialiteAPI::$instance = new SpecialiteAPI();
         }
-        return ContactAPI::$instance;
+        return SpecialiteAPI::$instance;
     }
 
     /**
-     * Add a specific Contact.
+     * Add a specific Specialite.
      */
     public function add(): Response
     {
         /**
-         * @var ContactDAO $dao
-         * @var Contact $contact
+         * @var SpecialiteDAO $dao
+         * @var Specialite $specialite
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Contact::class, $this->req->Contact);
-        $contact = $deserializer->deserialize();
-        $success = $dao->add($contact);
+        $deserializer = new Deserializer(Specialite::class, $this->req->specialite);
+        $specialite = $deserializer->deserialize();
+        $success = $dao->add($specialite);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "Add successful" : "Add failed",
-            $contact
+            $specialite
         );
     }
 
     /**
-     * Get all contacts.
+     * Get all specialites.
      */
     public function getAll(): Response
     {
         /**
-         * @var ContactDAO $dao
+         * @var SpecialiteDAO $dao
          */
         $dao = $this->dao;
-        $contacts = $dao->getAll();
-        $success = !is_null($contacts);
+        $specialites = $dao->getAll();
+        $success = !is_null($specialites);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "GetAll successful" : "GetAll failed",
-            $contacts
+            $specialites
         );
     }
 
     /**
-     * Get a specific Contact.
+     * Get a specific Specialite.
      */
     public function get(): Response
     {
         /**
-         * @var ContactDAO $dao
-         * @var Contact $contact
+         * @var SpecialiteDAO $dao
+         * @var Specialite $specialite
          */
         $dao = $this->dao;
-        $contact = $dao->get($this->req->code);
-        $success = !is_null($contact);
+        $specialite = $dao->get($this->req->code);
+        $success = !is_null($specialite);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "Get successful" : "Get failed",
-            $contact
+            $specialite
         );
     }
 
     /**
-     * Update a specific Contact.
+     * Update a specific Specialite.
      */
     public function update(): Response
     {
         /**
-         * @var ContactDAO $dao
-         * @var Contact $contact
+         * @var SpecialiteDAO $dao
+         * @var Specialite $specialite
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Contact::class, $this->req->contact);
-        $contact = $deserializer->deserialize();
-        $success = !is_null($dao->update($contact));
+        $deserializer = new Deserializer(Specialite::class, $this->req->specialite);
+        $specialite = $deserializer->deserialize();
+        $success = $dao->update($specialite);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "Update successful" : "Update failed",
-            $contact
+            $specialite
         );
     }
 
     /**
-     * Delete a specific Contact.
+     * Delete a specific Specialite.
      */
     public function delete(): Response
     {
         /**
-         * @var ContactDAO $dao
-         * @var Contact $contact
+         * @var SpecialiteDAO $dao
+         * @var Specialite $specialite
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Contact::class, $this->req->contact);
-        $contact = $deserializer->deserialize();
-        $success = $dao->delete($contact);
+        $deserializer = new Deserializer(Specialite::class, $this->req->specialite);
+        $specialite = $deserializer->deserialize();
+        $success = $dao->delete($specialite);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "Delete successful" : "Delete failed",
-            $contact
+            $specialite
         );
     }
 
@@ -157,4 +157,4 @@ class ContactAPI extends Controller implements CRUD
         return call_user_func([$this, $requestBody->method]);
     }
 }
-ContactAPI::getInstance()->response()->send();
+SpecialiteAPI::getInstance()->response()->send();
