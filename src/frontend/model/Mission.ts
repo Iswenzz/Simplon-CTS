@@ -43,7 +43,8 @@ class Mission extends Model implements JsonSerializable, Formattable
 	 * Format the model data.
 	 */
 	public format(): string {
-		return `${this.titre} (M${this.code})`;
+		const s = this.code ? `${this.titre} (M${this.code})` : this.titre;
+		return s;
 	}
 
 	/**
