@@ -76,6 +76,25 @@ class PlanqueAPI extends Controller implements CRUD
     }
 
     /**
+     * Get all planques.
+     */
+    public function getAllInCountry(): Response
+    {
+        /**
+         * @var PlanqueDAO $dao
+         */
+        $dao = $this->dao;
+        $planques = $dao->getAllInCountry($this->req->code);
+        $success = !is_null($planques);
+        return $this->res->prepare(
+            Response::OK,
+            $success,
+            $success ? "GetAllInCountry successful" : "GetAllInCountry failed",
+            $planques
+        );
+    }
+
+    /**
      * Get a specific Planque.
      */
     public function get(): Response

@@ -65,8 +65,7 @@ document.addEventListener("DOMContentLoaded", async () =>
 
 	// MISSIONS
 	const missionRepo = new MissionRepository("mission-list");
-	const missionInputs = [...document.querySelectorAll("#mission input"), ...document.querySelectorAll("#mission textarea")] as HTMLElement[];
-	const missionTab = new MissionTab(missionRepo, missionInputs, null);
+	const missionTab = new MissionTab(missionRepo, null);
 	await missionTab.init();
 
 

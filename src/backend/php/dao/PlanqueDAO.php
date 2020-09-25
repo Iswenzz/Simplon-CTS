@@ -7,6 +7,7 @@ class PlanqueDAO implements DAO
 {
     public const SELECT_QUERY = "SELECT codePlanque, adressePlanque, codePays, codeTypePlanque from Planque";
     public const SELECT_ONE_QUERY = "SELECT codePlanque, adressePlanque, codePays, codeTypePlanque from Planque WHERE codePlanque = :code";
+    public const SELECT_IN_COUNTRY_QUERY = "SELECT codePlanque, adressePlanque, codePays, codeTypePlanque from Planque WHERE codePays = :code";
     public const ADD_QUERY = "INSERT INTO Planque (adressePlanque, codePays, codeTypePlanque) VALUES (:adresse, :codePays, :codeTP)";
     public const DELETE_QUERY = "DELETE FROM Planque WHERE codePlanque = :code";
     public const UPDATE_QUERY = "UPDATE Planque SET adressePlanque = :adresse, codePays = :codePays, codeTypePlanque = :codeTP WHERE codePlanque = :code";
@@ -20,6 +21,31 @@ class PlanqueDAO implements DAO
         $planques = [];
         $stmt = DatabaseFactory::getConnection()->prepare(PlanqueDAO::SELECT_QUERY);
         $stmt->execute();
+        
+        while ($row = $stmt->fetch()) {
+            $planque = new Planque(
+                (int)$row["codePlanque"],
+                $row["adressePlanque"],
+                (int)$row["codePays"],
+                (int)$row["codeTypePlanque"]
+            );
+            $planques[] = $planque;
+        }
+        return $planques;
+    }
+
+    /**
+     * Fetch all rows to get all Planque objects.
+     * @param int $code - The country's code (foreign key).
+     * @return Planque[]
+     */
+    public function getAllInCountry($code): array
+    {
+        $planques = [];
+        $stmt = DatabaseFactory::getConnection()->prepare(PlanqueDAO::SELECT_IN_COUNTRY_QUERY);
+        $stmt->execute([
+            "code" => $code
+        ]);
         
         while ($row = $stmt->fetch()) {
             $planque = new Planque(
