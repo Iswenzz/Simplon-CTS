@@ -5,7 +5,6 @@ import "./logout";
 import "./login";
 import "./canvas";
 import Canvas from "./canvas";
-import swal from "sweetalert";
 import ContactRepository from "./repository/ContactRepository";
 import CibleRepository from "./repository/CibleRepository";
 import AgentRepository from "./repository/AgentRepository";
@@ -19,12 +18,11 @@ import Mission from "./model/Mission";
 // import Contact from "./model/Contact";
 // import Agent from "./model/Agent";
 // import Cible from "./model/Cible";
-import InputComponent from "./component/InputComponent";
 
 document.addEventListener("DOMContentLoaded", () => 
 {
 	// GLOBAL MODELS
-	let missionModel = null;
+	// let missionModel = null;
 	// const planqueModel = null;
 	// const specialiteModel = null;
 	// const agentModel = null;
@@ -68,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () =>
 	// MISSIONS
 	const missionRepo = new MissionRepository("mission-list");
 	const missionInputs = [...document.querySelectorAll("#mission input"), ...document.querySelectorAll("#mission textarea")] as HTMLElement[];
-	const missionTab = new MissionTab(missionRepo, missionInputs, missionModel);
+	const missionTab = new MissionTab(missionRepo, missionInputs, null);
 	missionTab.init();
 
 
@@ -110,35 +108,4 @@ document.addEventListener("DOMContentLoaded", () =>
 	specialiteRepo.listAll();
 	const planqueRepo = new PlanqueRepository("hideout-list");
 	planqueRepo.listAll();
-
-
-	// ----- buttons actions -----
-	const creators = document.getElementsByClassName("creator") as HTMLCollectionOf<HTMLButtonElement>;
-	for (const item of creators) {
-		item.addEventListener("click", async () => {
-			const target = item.dataset["target"];
-			switch (target) {
-				case "mission":
-					// inner form
-					const input = new InputComponent("text", "mission-list-add-name", "Titre de la mission :");
-					// alert 
-					const res = await swal({
-						title: "Ajouter une nouvelle mission",
-						buttons: ["Annuler", "Confirmer"],
-						content: {element: input.getContainer()}
-					});
-					// handling the results
-					if (res) {
-						missionModel = new Mission(null, input.getInput().value);
-						missionTab.setMission(missionModel);
-						console.log("Nouvelle mission : " + missionModel.format());
-					}
-					break;
-			
-				default:
-					console.warn(target + " TODO");
-					break;
-			}
-		});
-	}
 });

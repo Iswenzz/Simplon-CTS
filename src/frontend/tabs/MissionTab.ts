@@ -1,5 +1,8 @@
+import * as dayjs from "dayjs";
 import Mission from "../model/Mission";
 import MissionRepository from "../repository/MissionRepository";
+import swal from "sweetalert";
+import InputComponent from "../component/InputComponent";
 
 export default class MissionTab {
 	/**
@@ -14,7 +17,12 @@ export default class MissionTab {
 	 * The HTML inputs (in the back-office)
 	 */
 	private inputs: HTMLElement[];
+	// outputs
 	private titre : HTMLInputElement;
+	private description : HTMLTextAreaElement;
+	private dateDebut : HTMLInputElement;
+	private dateFin : HTMLInputElement;
+	private type : HTMLParagraphElement;
 
 	public constructor(repo: MissionRepository, inputs: HTMLElement[], mission: Mission | null = null) {
 		this.inputs = [];
@@ -25,6 +33,7 @@ export default class MissionTab {
 		this.repo = repo;
 
 		this.titre = document.getElementById("mission-details-name") as HTMLInputElement;
+		this.description = document.getElementById("mission-details-desc") as HTMLTextAreaElement;
 	}
 
 	public init(): void {
@@ -35,6 +44,24 @@ export default class MissionTab {
 			input.addEventListener("blur", () => {
 				// this.mission.
 			});
+		});
+
+		// "add new" button
+		document.getElementById("mission-list-add").addEventListener("click", async () => {
+			// inner form
+			const input = new InputComponent("text", "mission-list-add-name", "Titre de la mission :");
+			// alert 
+			const res = await swal({
+				title: "Ajouter une nouvelle mission",
+				buttons: ["Annuler", "Confirmer"],
+				content: {element: input.getContainer()}
+			});
+			// handling the results
+			if (res) {
+				const missionModel = new Mission(null, input.getInput().value);
+				this.setMission(missionModel);
+				console.log("Nouvelle mission : " + missionModel.format());
+			}
 		});
 	}
 
@@ -48,6 +75,9 @@ export default class MissionTab {
 		this.mission = mission;
 
 		this.titre.value = this.mission.getTitre();
+		this.description.value = this.mission.getDescription();
+		this.dateDebut.value = dayjs(this.mission.getDateDebut()).format("YYYY-MM-DD");
+		this.dateFin.value = dayjs(this.mission.getDateFin()).format("YYYY-MM-DD");
 	}
 	public getMission(): Mission {
 		return this.mission;
