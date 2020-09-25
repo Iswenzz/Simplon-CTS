@@ -105,8 +105,7 @@
 					<h3>Mission
 						<span class="input-field inline">
 							<label for="mission-details-name" class="sr-only">Opération</label>
-							<input type="text" name="mission-name" id="mission-details-name" placeholder="opération"
-								disabled>
+							<input type="text" name="mission-name" id="mission-details-name" placeholder="opération">
 						</span>
 					</h3>
 					<div class="details-header">
@@ -158,7 +157,7 @@
 						<section class="row">
 							<h5 class="col s12">Description</h5>
 							<div class="col m12 l5">
-								<textarea name="mission-details-desc" id="mission-details-desc" disabled>
+								<textarea name="mission-details-desc" id="mission-details-desc">
 								Pendant une nuit sombre orageuse...
 								</textarea>
 							</div>
@@ -175,38 +174,47 @@
 							</div>
 						</section>
 						<!-- pays -->
-						<!-- <section class="row">
+						<section class="row">
 							<h5 class="col s12">Pays</h5>
 							<p id="mission-details-country-desc" class="col m12 l5">"Pays" est un beau pays... mais
 								dangereux ! Aucune planque pour n'est prévue pour nos agents lors de de cette mission.
 							</p>
 							<div class="logo-container col m12 l5">
-								<button id="mission-details-country-edit" title="Changer le pays"
-									class="btn visible-when-connected modal-trigger"
-									data-target="mission-details-country-edit-modal">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
-										<path
-											d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
-									</svg>
-									<span class="sr-only">Changer le pays</span>
-								</button>
+								<h6>Changer le pays</h6>
+
+								<form>
+									<div class="input-field">
+										<label for="mission-details-country-edit-select">Pays où se déroulera la
+											mission
+											:</label>
+										<select name="mission-details-country-edit-select"
+											id="mission-details-country-edit-select">
+											<option value="allemagne">Allemagne</option>
+											<option value="france">France</option>
+											<option value="italie">Italie</option>
+										</select>
+									</div>
+								</form>
 							</div>
-						</section> -->
+						</section>
 						<!-- planque -->
 						<section class="row">
 							<h5 class="col s12">Planque(s)</h5>
 							<p id="mission-details-hideout-desc" class="col m12 l5">"type" : Parfait pour récupérer en
 								mouvement.</p>
 							<div class="logo-container col m12 l5">
-								<button id="mission-details-hideout-add" title="Ajouter une planque"
-									class="btn visible-when-connected modal-trigger"
-									data-target="mission-details-hideout-add-modal">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448">
-										<path
-											d="M408 184H272a8 8 0 0 1-8-8V40a40 40 0 1 0-80 0v136a8 8 0 0 1-8 8H40a40 40 0 1 0 0 80h136a8 8 0 0 1 8 8v136a40 40 0 1 0 80 0V272a8 8 0 0 1 8-8h136a40 40 0 1 0 0-80zm0 0" />
-									</svg>
-									<span class="sr-only">Ajouter une planque</span>
-								</button>
+								<h6>Ajouter une ou des planque(s)</h6>
+
+								<form>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>34 avenue du Grand-Schtroumpf</span>
+									</label>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>12 boulevard de la Salsepareille</span>
+									</label>
+								</form>
 							</div>
 						</section>
 
@@ -216,15 +224,38 @@
 							<p id="mission-details-type-desc" class="col m12 l5">"type" : Assassiner, abattre,
 								neutraliser... Vous savez de quoi il s'agit.</p>
 							<div class="logo-container col m12 l5">
-								<button id="mission-details-specialite-edit" title="Changer la spécialité de mission"
-									class="btn visible-when-connected modal-trigger"
-									data-target="mission-details-specialite-edit-modal">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
-										<path
-											d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
-									</svg>
-									<span class="sr-only">Changer la spécialité de mission</span>
-								</button>
+								<h6>Changer la spécialité de mission</h6>
+
+								<form>
+									<label>
+										<input type="radio" name="mission-details-specialisation" class="with-gap" />
+										<span>Armes à feu</span>
+									</label>
+									<label>
+										<input type="radio" name="mission-details-specialisation" class="with-gap" />
+										<span>Armes blanches</span>
+									</label>
+								</form>
+							</div>
+						</section>
+
+						<!-- cible(s) -->
+						<section class="row">
+							<h5 class="col s12">Agent(s)</h5>
+							<p id="mission-details-agent-desc" class="col m12 l5">Les victimes du jour : "cible".</p>
+							<div class="logo-container col m12 l5">
+								<h6>Ajouter une ou des cible(s)</h6>
+
+								<form>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>Muffet</span>
+									</label>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>Mettaton</span>
+									</label>
+								</form>
 							</div>
 						</section>
 
@@ -234,16 +265,18 @@
 							<p id="mission-details-agent-desc" class="col m12 l5">Qui surmontera ce défi ? "Agent", code
 								"code", spécialiste de "spécialisation", bien sûr.</p>
 							<div class="logo-container col m12 l5">
-								<!-- portrait(s) agent TODO -->
-								<button id="mission-details-agent-add" title="Ajouter un agent"
-									class="btn visible-when-connected modal-trigger"
-									data-target="mission-details-agent-add-modal">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448">
-										<path
-											d="M408 184H272a8 8 0 0 1-8-8V40a40 40 0 1 0-80 0v136a8 8 0 0 1-8 8H40a40 40 0 1 0 0 80h136a8 8 0 0 1 8 8v136a40 40 0 1 0 80 0V272a8 8 0 0 1 8-8h136a40 40 0 1 0 0-80zm0 0" />
-									</svg>
-									<span class="sr-only">Ajouter un agent</span>
-								</button>
+								<h6>Ajouter un ou des agent(s)</h6>
+
+								<form>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>Lorem</span>
+									</label>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>Ipsum</span>
+									</label>
+								</form>
 							</div>
 						</section>
 
@@ -254,16 +287,18 @@
 								de
 								cette mission.</p>
 							<div class="logo-container col m12 l5">
-								<!-- portrait(s) contact TODO -->
-								<button id="mission-details-contact-add" title="Ajouter un contact"
-									class="btn visible-when-connected modal-trigger"
-									data-target="mission-details-contact-add-modal">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448">
-										<path
-											d="M408 184H272a8 8 0 0 1-8-8V40a40 40 0 1 0-80 0v136a8 8 0 0 1-8 8H40a40 40 0 1 0 0 80h136a8 8 0 0 1 8 8v136a40 40 0 1 0 80 0V272a8 8 0 0 1 8-8h136a40 40 0 1 0 0-80zm0 0" />
-									</svg>
-									<span class="sr-only">Ajouter un contact</span>
-								</button>
+								<h6>Ajouter un ou des contact(s)</h6>
+
+								<form>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>Lorem</span>
+									</label>
+									<label>
+										<input type="checkbox" class="filled-in" />
+										<span>Ipsum</span>
+									</label>
+								</form>
 							</div>
 						</section>
 
@@ -272,11 +307,10 @@
 							<h5 class="col s12">Dates de la mission</h5>
 							<form class="logo-container col s12">
 								<span>Votre mission, si vous l'acceptez, se déroulera du...</span>
-								<input type="date" name="missions-details-date-start" id="missions-details-date-start"
-									disabled />
+								<input type="date" name="missions-details-date-start"
+									id="missions-details-date-start" />
 								<span>... au ...</span>
-								<input type="date" name="missions-details-date-end" id="missions-details-date-end"
-									disabled />
+								<input type="date" name="missions-details-date-end" id="missions-details-date-end" />
 							</form>
 						</section>
 					</section>
@@ -326,223 +360,6 @@
 						</p>
 					</div>
 				</section>
-
-				<!-- MISSIONS MODALS -->
-				<div id="mission-details-country-edit-modal" class="modal">
-					<button class="modal-close btn-flat">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-							<path
-								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-						</svg>
-						<span class="sr-only">Annuler</span>
-					</button>
-					<div class="modal-content">
-						<h5>Changer le pays</h5>
-
-						<form>
-							<div class="input-field">
-								<label for="mission-details-country-edit-select">Pays où se déroulera la
-									mission
-									:</label>
-								<select name="mission-details-country-edit-select"
-									id="mission-details-country-edit-select">
-									<option value="allemagne">Allemagne</option>
-									<option value="france">France</option>
-									<option value="italie">Italie</option>
-									<!-- rempli par un fetch -->
-								</select>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-								<path
-									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-							</svg>
-							<span class="sr-only">Valider</span>
-						</a>
-					</div>
-				</div>
-				<div id="mission-details-hideout-add-modal" class="modal">
-					<button class="modal-close btn-flat">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-							<path
-								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-						</svg>
-						<span class="sr-only">Annuler</span>
-					</button>
-					<div class="modal-content">
-						<h5>Ajouter une ou des planque(s)</h5>
-
-						<form>
-							<label>
-								<input type="checkbox" class="filled-in" />
-								<span>34 avenue du Grand-Schtroumpf</span>
-							</label>
-							<label>
-								<input type="checkbox" class="filled-in" />
-								<span>12 boulevard de la Salsepareille</span>
-							</label>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-								<path
-									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-							</svg>
-							<span class="sr-only">Valider</span>
-						</a>
-					</div>
-				</div>
-				<div id="mission-details-specialite-edit-modal" class="modal">
-					<button class="modal-close btn-flat">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-							<path
-								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-						</svg>
-						<span class="sr-only">Annuler</span>
-					</button>
-					<div class="modal-content">
-						<h5>Changer la spécialité de mission</h5>
-
-						<form>
-							<label>
-								<input type="radio" name="mission-details-specialisation" class="with-gap" />
-								<span>Armes à feu</span>
-							</label>
-							<label>
-								<input type="radio" name="mission-details-specialisation" class="with-gap" />
-								<span>Armes blanches</span>
-							</label>
-						</form>
-					</div>
-				</div>
-				<div id="mission-details-target-add-modal" class="modal">
-					<button class="modal-close btn-flat">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-							<path
-								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-						</svg>
-						<span class="sr-only">Annuler</span>
-					</button>
-					<div class="modal-content">
-						<h5>Ajouter une ou des cible(s)</h5>
-
-						<form>
-							<label>
-								<input type="checkbox" class="filled-in" />
-								<span>Muffet</span>
-							</label>
-							<label>
-								<input type="checkbox" class="filled-in" />
-								<span>Mettaton</span>
-							</label>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-								<path
-									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-							</svg>
-							<span class="sr-only">Valider</span>
-						</a>
-					</div>
-				</div>
-
-				<div id="mission-details-agent-add-modal" class="modal">
-					<button class="modal-close btn-flat">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-							<path
-								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-						</svg>
-						<span class="sr-only">Annuler</span>
-					</button>
-					<div class="modal-content">
-						<h5>Ajouter un ou des agent(s)</h5>
-
-						<form>
-							<label>
-								<input type="checkbox" class="filled-in" />
-								<span>Lorem</span>
-							</label>
-							<label>
-								<input type="checkbox" class="filled-in" />
-								<span>Ipsum</span>
-							</label>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-								<path
-									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-							</svg>
-							<span class="sr-only">Valider</span>
-						</a>
-					</div>
-				</div>
-
-				<div id="mission-details-contact-add-modal" class="modal">
-					<button class="modal-close btn-flat">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-							<path
-								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-						</svg>
-						<span class="sr-only">Annuler</span>
-					</button>
-					<div class="modal-content">
-						<h5>Ajouter un ou des contact(s)</h5>
-
-						<form>
-							<label>
-								<input type="checkbox" class="filled-in" />
-								<span>Lorem</span>
-							</label>
-							<label>
-								<input type="checkbox" class="filled-in" />
-								<span>Ipsum</span>
-							</label>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-								<path
-									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-							</svg>
-							<span class="sr-only">Valider</span>
-						</a>
-					</div>
-				</div>
-				<div id="mission-list-add-modal" class="modal new" data-target="mission">
-					<button class="modal-close btn-flat">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-							<path
-								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-						</svg>
-						<span class="sr-only">Annuler</span>
-					</button>
-					<div class="modal-content">
-						<h5>Ajouter une mission</h5>
-						<div class="input-field">
-							<label for="mission-list-name-input">Nom de la mission :</label>
-							<input type="text" name="mission-list-name-input" id="mission-list-name-input">
-						</div>
-						<!-- </form> -->
-					</div>
-					<div class="modal-footer">
-						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-								<path
-									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-							</svg>
-							<span class="sr-only">Valider</span>
-						</a>
-					</div>
-				</div>
 			</div>
 		</div>
 		<!-- PLANQUES -->
@@ -650,10 +467,10 @@
 									<label for="hideout-details-type-desc-libelle" class="sr-only">libellé</label>
 									<input type="text" name="hideout-details-type-desc-libelle"
 										id="hideout-details-type-desc-libelle" class="hideout-details-type-desc"
-										placeholder="Type :" disabled>
+										placeholder="Type :">
 								</span>
 								<textarea name="hideout-details-type-desc" id="hideout-details-type-desc"
-									class="hideout-details-type-desc" disabled>
+									class="hideout-details-type-desc">
 							Parfait pour récupérer en mouvement.
 						</textarea>
 							</div>
@@ -815,13 +632,12 @@
 					<h3>Agent
 						<span class="input-field inline">
 							<label for="agent-details-name" class="sr-only">Nom</label><input type="text"
-								name="agent-details-name" id="agent-details-name" class="agent-name" placeholder="nom"
-								disabled>
+								name="agent-details-name" id="agent-details-name" class="agent-name" placeholder="nom">
 						</span>
 						<span class="input-field inline">
 							<label for="agent-details-firstname" class="sr-only">Prénom</label><input type="text"
 								name="agent-details-firstname" id="agent-details-firstname" class="agent-name"
-								placeholder="prénom" disabled>
+								placeholder="prénom">
 						</span>
 					</h3>
 					<div class="details-header">
@@ -933,7 +749,7 @@
 								exactement
 								l'âge qu'il faut.</p>
 							<form class="logo-container col m12 l5">
-								<input type="date" name="agent-details-dob" id="agent-details-dob" disabled />
+								<input type="date" name="agent-details-dob" id="agent-details-dob" />
 							</form>
 						</section>
 						<!-- spécialisation -->
@@ -1090,12 +906,12 @@
 						<span class="input-field inline">
 							<label for="contact-details-name" class="sr-only">Nom</label><input type="text"
 								name="contact-details-name" id="contact-details-name" class="contact-name"
-								placeholder="nom" disabled>
+								placeholder="nom">
 						</span>
 						<span class="input-field inline">
 							<label for="contact-details-firstname" class="sr-only">Prénom</label><input type="text"
 								name="contact-details-firstname" id="contact-details-firstname" class="contact-name"
-								placeholder="prénom" disabled>
+								placeholder="prénom">
 						</span>
 					</h3>
 					<div class="details-header">
@@ -1205,7 +1021,7 @@
 							<p class="col m12 l5">Est-ce que l'âge de "contact" importe vraiment ?... Non, à vrai dire.
 							</p>
 							<form class="logo-container col m12 l5">
-								<input type="date" name="contact-details-dob" id="contact-details-dob" disabled />
+								<input type="date" name="contact-details-dob" id="contact-details-dob" />
 							</form>
 						</section>
 					</section>
@@ -1312,12 +1128,12 @@
 						<span class="input-field inline">
 							<label for="target-details-name" class="sr-only">Nom</label><input type="text"
 								name="target-details-name" id="target-details-name" class="target-name"
-								placeholder="nom" disabled>
+								placeholder="nom">
 						</span>
 						<span class="input-field inline">
 							<label for="target-details-firstname" class="sr-only">Prénom</label><input type="text"
 								name="target-details-firstname" id="target-details-firstname" class="target-name"
-								placeholder="prénom" disabled>
+								placeholder="prénom">
 						</span>
 					</h3>
 					<div class="details-header">
@@ -1424,7 +1240,7 @@
 							<h5 class="col s12">Date de naissance</h5>
 							<p class="col m12 l5">Est-ce que l'âge de "cible" importe vraiment ?... Oui, parfois.</p>
 							<form class="logo-container col m12 l5">
-								<input type="date" name="target-details-dob" id="target-details-dob" disabled />
+								<input type="date" name="target-details-dob" id="target-details-dob" />
 							</form>
 						</section>
 					</section>
@@ -1529,8 +1345,8 @@
 					<h3>Spécialité
 						<span class="input-field inline">
 							<label for="specialite-details-name" class="sr-only">libellé</label>
-							<input type="text" name="specialite-name" id="specialite-details-name" placeholder="libellé"
-								disabled>
+							<input type="text" name="specialite-name" id="specialite-details-name"
+								placeholder="libellé">
 						</span>
 					</h3>
 					<div class="details-header">
@@ -1583,9 +1399,9 @@
 							<div class="col m12 l5">
 								<input type="text" name="specialite-details-desc-libelle"
 									id="specialite-details-desc-libelle" class="specialite-details-desc"
-									placeholder="Libelle :" disabled>
+									placeholder="Libelle :">
 								<textarea id="specialite-details-desc" name="specialite-details-desc"
-									class="specialite-details-desc" disabled>
+									class="specialite-details-desc">
 							Des explosions, encore et toujours plus !
 						</textarea>
 							</div>
@@ -1608,9 +1424,9 @@
 							<div class="col m12 l5">
 								<input type="text" name="specialite-details-desc-type-libelle"
 									id="specialite-details-desc-type-libelle" class="specialite-details-desc-type"
-									placeholder="Type :" disabled>
+									placeholder="Type :">
 								<textarea id="specialite-details-desc-type" name="specialite-details-desc-type"
-									class="specialite-details-desc-type" disabled>
+									class="specialite-details-desc-type">
 								Assassiner, abattre, neutraliser... Vous savez de quoi il s'agit.
 						</textarea>
 							</div>

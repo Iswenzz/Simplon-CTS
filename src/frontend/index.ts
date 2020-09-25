@@ -39,14 +39,27 @@ document.addEventListener("DOMContentLoaded", () =>
 		document.body.classList.add("connected");
 		document.body.classList.remove("disconnected");
 
-		// date inputs
-		const datePickers = document.querySelectorAll("input[type=\"date\"]");
-		for (const datePicker of datePickers) {
-			datePicker.removeAttribute("disabled");
+		// enable inputs
+		const inputs = [...document.getElementsByTagName("input"), ...document.getElementsByTagName("textarea")];
+		for (const input of inputs) {
+			input.removeAttribute("disabled");
 		}
+
+
 	} else {
 		document.body.classList.add("disconnected");
 		document.body.classList.remove("connected");
+
+		// disable inputs
+		const inputs = [...document.getElementsByTagName("input"), ...document.getElementsByTagName("textarea")];
+		for (const input of inputs) {
+			input.setAttribute("disabled", "true");
+		}
+		// ...minus those for login & signup
+		const logInputs = document.querySelectorAll("#login-dropdown input, #inscription-modal input");
+		for (const input of logInputs) {
+			input.removeAttribute("disabled");
+		}
 	}
 
 	// dropdown
