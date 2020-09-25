@@ -3,6 +3,7 @@ import Mission from "../model/Mission";
 import MissionRepository from "../repository/MissionRepository";
 import swal from "sweetalert";
 import InputComponent from "../component/InputComponent";
+import PaysRepository from "../repository/PaysRepository";
 
 export default class MissionTab {
 	/**
@@ -13,7 +14,7 @@ export default class MissionTab {
 	 * The link with the API
 	 */
 	private missionRepo: MissionRepository;
-	// private paysRepo: PaysRepository;
+	private paysRepo: PaysRepository;
 	/**
 	 * The HTML inputs (in the back-office)
 	 */
@@ -36,6 +37,7 @@ export default class MissionTab {
 		});
 		this.mission = mission;
 		this.missionRepo = missionRepo;
+		this.paysRepo = new PaysRepository();
 
 		this.titre = document.getElementById("mission-details-name") as HTMLInputElement;
 		this.description = document.getElementById("mission-details-desc") as HTMLTextAreaElement;
@@ -43,8 +45,17 @@ export default class MissionTab {
 		this.dateFin = document.getElementById("missions-details-date-end") as HTMLInputElement;
 	}
 
-	public init(): void {
+	public async init(): Promise<void> {
 		this.missionRepo.listAll();
+
+		const listPays = await this.paysRepo.getAll();
+		const select = document.getElementById("mission-details-country-edit-select") as HTMLSelectElement;
+		for (const pays of listPays) {
+			const opt = document.createElement("option") as HTMLOptionElement;
+			opt.value= pays.getCode().toString();
+			opt.innerText = pays.getLibelle();
+			select.append(opt);
+		}
 
 		this.inputs.forEach((input) => {
 			// TODO on leaving the input, updates the model's relevant values

@@ -10,7 +10,7 @@ class Pays extends Model implements JsonSerializable, Formattable
 	/**
 	 * Initialize a new Pays object.
 	 */
-	public constructor(code: number | null, libelle: string)
+	public constructor(code: number | null = null, libelle = "")
 	{
 		super();
 		this.code = code;

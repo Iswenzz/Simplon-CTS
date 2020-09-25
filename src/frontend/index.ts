@@ -12,14 +12,14 @@ import SpecialiteRepository from "./repository/SpecialiteRepository";
 import PlanqueRepository from "./repository/PlanqueRepository";
 import MissionRepository from "./repository/MissionRepository";
 import MissionTab from "./tabs/MissionTab";
-import Mission from "./model/Mission";
+// import Mission from "./model/Mission";
 // import Planque from "./model/Planque";
 // import Specialite from "./model/Specialite";
 // import Contact from "./model/Contact";
 // import Agent from "./model/Agent";
 // import Cible from "./model/Cible";
 
-document.addEventListener("DOMContentLoaded", () => 
+document.addEventListener("DOMContentLoaded", async () => 
 {
 	// GLOBAL MODELS
 	// let missionModel = null;
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () =>
 	const missionRepo = new MissionRepository("mission-list");
 	const missionInputs = [...document.querySelectorAll("#mission input"), ...document.querySelectorAll("#mission textarea")] as HTMLElement[];
 	const missionTab = new MissionTab(missionRepo, missionInputs, null);
-	missionTab.init();
+	await missionTab.init();
 
 
 	// ------ Materialize components ------
@@ -98,14 +98,14 @@ document.addEventListener("DOMContentLoaded", () =>
 	M.Tabs.init(tabs);
 
 	// lists
-	const contactRepo = new ContactRepository("contact-list");
-	contactRepo.listAll();
-	const targetRepo = new CibleRepository("target-list");
-	targetRepo.listAll();
-	const agentRepo = new AgentRepository("agent-list");
-	agentRepo.listAll();
-	const specialiteRepo = new SpecialiteRepository("specialite-list");
-	specialiteRepo.listAll();
-	const planqueRepo = new PlanqueRepository("hideout-list");
-	planqueRepo.listAll();
+	// const contactRepo = new ContactRepository("contact-list");
+	// contactRepo.listAll();
+	// const targetRepo = new CibleRepository("target-list");
+	// targetRepo.listAll();
+	// const agentRepo = new AgentRepository("agent-list");
+	// agentRepo.listAll();
+	// const specialiteRepo = new SpecialiteRepository("specialite-list");
+	// specialiteRepo.listAll();
+	// const planqueRepo = new PlanqueRepository("hideout-list");
+	// planqueRepo.listAll();
 });
