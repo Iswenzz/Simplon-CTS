@@ -74,23 +74,28 @@ export default class MissionRepository implements Repository {
 
 			// display all missions gotten from the DB
 			for (const mission of missions) {
-				const item = document.createElement("li") as HTMLLIElement;
-				item.innerText = mission.format();
-				this.list.append(item);
-
-				item.setAttribute("id", "");
-				item.classList.add("list-item");
-
-				item.addEventListener("hover", () => {
-					document.querySelector("#mission .transparent").classList.remove("transparent");
-				});
-
-				// personal delete button
-				const del = new DeleteButton(item, mission, this);
-				item.append(del.getButton());
+				this.addItem(mission);
 			}
 		} catch (error) {
 			console.log(error);
 		}
+	}
+
+	public addItem(mission: Mission): void {
+		const item = document.createElement("li") as HTMLLIElement;
+		item.innerText = mission.format();
+		this.list.append(item);
+
+		item.setAttribute("id", "");
+		item.classList.add("list-item");
+
+		item.addEventListener("mouseenter", () => {
+			console.log("enlevé la transparence");
+			document.getElementById("mission-details").classList.remove("transparent");
+		});
+
+		// personal delete button
+		const del = new DeleteButton(item, mission, this);
+		item.append(del.getButton());
 	}
 }
