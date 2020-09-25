@@ -53,12 +53,12 @@ CREATE TABLE Specialite (
 CREATE TABLE Mission (
 	codeMission INT NOT NULL AUTO_INCREMENT,
 	titreMission VARCHAR(127) NOT NULL,
-	descriptionMission TEXT NOT NULL,
-	dateDebut DATE NOT NULL,
-	dateFin DATE NOT NULL,
-	codeStatutMission INT NOT NULL,
-	codeTypeMission INT NOT NULL,
-	codeSpecialite INT NOT NULL,
+	descriptionMission TEXT,
+	dateDebut DATE,
+	dateFin DATE,
+	codeStatutMission INT,
+	codeTypeMission INT,
+	codeSpecialite INT,
 	CONSTRAINT pk_mission PRIMARY KEY (codeMission)
 );
 CREATE TABLE Statut (
