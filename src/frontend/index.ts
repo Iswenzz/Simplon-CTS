@@ -22,6 +22,12 @@ document.addEventListener("DOMContentLoaded", () =>
 	if (sessionStorage["apiKey"]) { // connected
 		document.body.classList.add("connected");
 		document.body.classList.remove("disconnected");
+
+		// date inputs
+		const datePickers = document.querySelectorAll("input[type=\"date\"]");
+		for (const datePicker of datePickers) {
+			datePicker.removeAttribute("disabled");
+		}
 	} else {
 		document.body.classList.add("disconnected");
 		document.body.classList.remove("connected");
