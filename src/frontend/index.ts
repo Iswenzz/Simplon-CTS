@@ -11,10 +11,26 @@ import AgentRepository from "./repository/AgentRepository";
 import SpecialiteRepository from "./repository/SpecialiteRepository";
 import PlanqueRepository from "./repository/PlanqueRepository";
 import MissionRepository from "./repository/MissionRepository";
+import MissionTab from "./tabs/MissionTab";
+import Mission from "./model/Mission";
+import Planque from "./model/Planque";
+import Specialite from "./model/Specialite";
+import Contact from "./model/Contact";
+import Agent from "./model/Agent";
+import Cible from "./model/Cible";
 
 // initializing components
 document.addEventListener("DOMContentLoaded", () => 
 {
+	// GLOBAL MODELS
+	let missionModel = null;
+	let planqueModel = null;
+	let specialiteModel = null;
+	let agentModel = null;
+	let contactModel = null;
+	let cibleModel = null;
+
+
 	// 3D scene
 	new Canvas();
 
@@ -49,7 +65,47 @@ document.addEventListener("DOMContentLoaded", () =>
 
 	// modal
 	const modals = document.querySelectorAll(".modal");
-	M.Modal.init(modals);
+	modals.forEach((modal) => {
+		const modalEl = modal as HTMLElement;
+		if (modalEl.classList.contains("new")) {
+			// modals for adding new models
+			M.Modal.init(modal, {
+				// when modal closes => creates a new model of the relevant type
+				onCloseEnd: () => {
+					const target = modalEl.dataset["target"];
+					switch (target) {
+						case "mission":
+							missionModel = new Mission();
+							const titreInput = document.getElementById("mission-list-name-input") as HTMLInputElement;
+							missionModel.setTitre(titreInput.value);
+							break;
+						case "hideout":
+							planqueModel = new Planque();
+							break;
+						case "specialite":
+							specialiteModel = new Specialite();
+							break;
+						case "agent":
+							agentModel = new Agent();
+							break;
+						case "contact":
+							contactModel = new Contact();
+							break;
+						case "target":
+							cibleModel = new Cible();
+							break;
+						default:
+							console.error("Cible modal inconnue : " + target);
+							break;
+					}
+					console.log(`${modalEl.id}: New ${target} !`);
+				}
+			});
+			
+		} else { // TODO others modals
+			M.Modal.init(modal);
+		}
+	});
 
 	// select
 	const selects = document.querySelectorAll("select");
@@ -70,8 +126,11 @@ document.addEventListener("DOMContentLoaded", () =>
 	specialiteRepo.listAll();
 	const planqueRepo = new PlanqueRepository("hideout-list");
 	planqueRepo.listAll();
+	// MISSIONS
 	const missionRepo = new MissionRepository("mission-list");
-	missionRepo.listAll();
+	// const missionInputs = [...document.querySelectorAll("#mission input, #mission textarea")] as HTMLElement[];
+	// const mission = new MissionTab(missionRepo, missionInputs, missionModel);
+	// mission.init();
 
 	// text edit buttons
 	const textTriggers = document.getElementsByClassName("text-edit-trigger") as HTMLCollectionOf<HTMLButtonElement>;

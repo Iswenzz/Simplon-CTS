@@ -175,7 +175,7 @@
 							</div>
 						</section>
 						<!-- pays -->
-						<section class="row">
+						<!-- <section class="row">
 							<h5 class="col s12">Pays</h5>
 							<p id="mission-details-country-desc" class="col m12 l5">"Pays" est un beau pays... mais
 								dangereux ! Aucune planque pour n'est prévue pour nos agents lors de de cette mission.
@@ -191,43 +191,7 @@
 									<span class="sr-only">Changer le pays</span>
 								</button>
 							</div>
-							<div id="mission-details-country-edit-modal" class="modal">
-								<button class="modal-close btn-flat">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-										<path
-											d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-									</svg>
-									<span class="sr-only">Annuler</span>
-								</button>
-								<div class="modal-content">
-									<h5>Changer le pays</h5>
-
-									<form>
-										<div class="input-field">
-											<label for="mission-details-country-edit-select">Pays où se déroulera la
-												mission
-												:</label>
-											<select name="mission-details-country-edit-select"
-												id="mission-details-country-edit-select">
-												<option value="allemagne">Allemagne</option>
-												<option value="france">France</option>
-												<option value="italie">Italie</option>
-												<!-- rempli par un fetch -->
-											</select>
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-											<path
-												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-										</svg>
-										<span class="sr-only">Valider</span>
-									</a>
-								</div>
-							</div>
-						</section>
+						</section> -->
 						<!-- planque -->
 						<section class="row">
 							<h5 class="col s12">Planque(s)</h5>
@@ -243,38 +207,6 @@
 									</svg>
 									<span class="sr-only">Ajouter une planque</span>
 								</button>
-							</div>
-							<div id="mission-details-hideout-add-modal" class="modal">
-								<button class="modal-close btn-flat">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-										<path
-											d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-									</svg>
-									<span class="sr-only">Annuler</span>
-								</button>
-								<div class="modal-content">
-									<h5>Ajouter une ou des planque(s)</h5>
-
-									<form>
-										<label>
-											<input type="checkbox" class="filled-in" />
-											<span>34 avenue du Grand-Schtroumpf</span>
-										</label>
-										<label>
-											<input type="checkbox" class="filled-in" />
-											<span>12 boulevard de la Salsepareille</span>
-										</label>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-											<path
-												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-										</svg>
-										<span class="sr-only">Valider</span>
-									</a>
-								</div>
 							</div>
 						</section>
 
@@ -293,63 +225,6 @@
 									</svg>
 									<span class="sr-only">Changer la spécialité de mission</span>
 								</button>
-							</div>
-							<div id="mission-details-specialite-edit-modal" class="modal">
-								<button class="modal-close btn-flat">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-										<path
-											d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-									</svg>
-									<span class="sr-only">Annuler</span>
-								</button>
-								<div class="modal-content">
-									<h5>Changer la spécialité de mission</h5>
-
-									<form>
-										<label>
-											<input type="radio" name="mission-details-specialisation"
-												class="with-gap" />
-											<span>Armes à feu</span>
-										</label>
-										<label>
-											<input type="radio" name="mission-details-specialisation"
-												class="with-gap" />
-											<span>Armes blanches</span>
-										</label>
-									</form>
-								</div>
-							</div>
-							<div id="mission-details-target-add-modal" class="modal">
-								<button class="modal-close btn-flat">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-										<path
-											d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-									</svg>
-									<span class="sr-only">Annuler</span>
-								</button>
-								<div class="modal-content">
-									<h5>Ajouter une ou des cible(s)</h5>
-
-									<form>
-										<label>
-											<input type="checkbox" class="filled-in" />
-											<span>Muffet</span>
-										</label>
-										<label>
-											<input type="checkbox" class="filled-in" />
-											<span>Mettaton</span>
-										</label>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-											<path
-												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-										</svg>
-										<span class="sr-only">Valider</span>
-									</a>
-								</div>
 							</div>
 						</section>
 
@@ -370,39 +245,6 @@
 									<span class="sr-only">Ajouter un agent</span>
 								</button>
 							</div>
-
-							<div id="mission-details-agent-add-modal" class="modal">
-								<button class="modal-close btn-flat">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-										<path
-											d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-									</svg>
-									<span class="sr-only">Annuler</span>
-								</button>
-								<div class="modal-content">
-									<h5>Ajouter un ou des agent(s)</h5>
-
-									<form>
-										<label>
-											<input type="checkbox" class="filled-in" />
-											<span>Lorem</span>
-										</label>
-										<label>
-											<input type="checkbox" class="filled-in" />
-											<span>Ipsum</span>
-										</label>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-											<path
-												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-										</svg>
-										<span class="sr-only">Valider</span>
-									</a>
-								</div>
-							</div>
 						</section>
 
 						<!-- contact(s) -->
@@ -422,39 +264,6 @@
 									</svg>
 									<span class="sr-only">Ajouter un contact</span>
 								</button>
-							</div>
-
-							<div id="mission-details-contact-add-modal" class="modal">
-								<button class="modal-close btn-flat">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-										<path
-											d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-									</svg>
-									<span class="sr-only">Annuler</span>
-								</button>
-								<div class="modal-content">
-									<h5>Ajouter un ou des contact(s)</h5>
-
-									<form>
-										<label>
-											<input type="checkbox" class="filled-in" />
-											<span>Lorem</span>
-										</label>
-										<label>
-											<input type="checkbox" class="filled-in" />
-											<span>Ipsum</span>
-										</label>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-											<path
-												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-										</svg>
-										<span class="sr-only">Valider</span>
-									</a>
-								</div>
 							</div>
 						</section>
 
@@ -508,47 +317,6 @@
 							<span class="sr-only">Ajouter une mission</span>
 						</button>
 
-
-						<div id="mission-list-add-modal" class="modal">
-							<button class="modal-close btn-flat">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
-									<path
-										d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
-								</svg>
-								<span class="sr-only">Annuler</span>
-							</button>
-							<div class="modal-content">
-								<h5>Ajouter une mission</h5>
-
-								<form>
-									<div class="input-field">
-										<label for="mission-list-country-select">Pays où se déroulera la mission
-											:</label>
-										<select name="mission-list-country-select" id="mission-list-country-select">
-											<option value="allemagne">Allemagne</option>
-											<option value="france">France</option>
-											<option value="italie">Italie</option>
-											<!-- rempli par un fetch -->
-										</select>
-									</div>
-
-									<div class="input-field">
-										<label for="mission-list-name-input">Nom de la mission :</label>
-										<input type="text" name="mission-list-name-input" id="mission-list-name-input">
-									</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-										<path
-											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-									</svg>
-									<span class="sr-only">Valider</span>
-								</a>
-							</div>
-						</div>
-
 						<p id="mission-list-number">
 							Missions <span id="mission-list-mission-start">début</span>-<span
 								id="mission-list-mission-end">fin</span>
@@ -558,6 +326,223 @@
 						</p>
 					</div>
 				</section>
+
+				<!-- MISSIONS MODALS -->
+				<div id="mission-details-country-edit-modal" class="modal">
+					<button class="modal-close btn-flat">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+							<path
+								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+						</svg>
+						<span class="sr-only">Annuler</span>
+					</button>
+					<div class="modal-content">
+						<h5>Changer le pays</h5>
+
+						<form>
+							<div class="input-field">
+								<label for="mission-details-country-edit-select">Pays où se déroulera la
+									mission
+									:</label>
+								<select name="mission-details-country-edit-select"
+									id="mission-details-country-edit-select">
+									<option value="allemagne">Allemagne</option>
+									<option value="france">France</option>
+									<option value="italie">Italie</option>
+									<!-- rempli par un fetch -->
+								</select>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path
+									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+							</svg>
+							<span class="sr-only">Valider</span>
+						</a>
+					</div>
+				</div>
+				<div id="mission-details-hideout-add-modal" class="modal">
+					<button class="modal-close btn-flat">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+							<path
+								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+						</svg>
+						<span class="sr-only">Annuler</span>
+					</button>
+					<div class="modal-content">
+						<h5>Ajouter une ou des planque(s)</h5>
+
+						<form>
+							<label>
+								<input type="checkbox" class="filled-in" />
+								<span>34 avenue du Grand-Schtroumpf</span>
+							</label>
+							<label>
+								<input type="checkbox" class="filled-in" />
+								<span>12 boulevard de la Salsepareille</span>
+							</label>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path
+									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+							</svg>
+							<span class="sr-only">Valider</span>
+						</a>
+					</div>
+				</div>
+				<div id="mission-details-specialite-edit-modal" class="modal">
+					<button class="modal-close btn-flat">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+							<path
+								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+						</svg>
+						<span class="sr-only">Annuler</span>
+					</button>
+					<div class="modal-content">
+						<h5>Changer la spécialité de mission</h5>
+
+						<form>
+							<label>
+								<input type="radio" name="mission-details-specialisation" class="with-gap" />
+								<span>Armes à feu</span>
+							</label>
+							<label>
+								<input type="radio" name="mission-details-specialisation" class="with-gap" />
+								<span>Armes blanches</span>
+							</label>
+						</form>
+					</div>
+				</div>
+				<div id="mission-details-target-add-modal" class="modal">
+					<button class="modal-close btn-flat">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+							<path
+								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+						</svg>
+						<span class="sr-only">Annuler</span>
+					</button>
+					<div class="modal-content">
+						<h5>Ajouter une ou des cible(s)</h5>
+
+						<form>
+							<label>
+								<input type="checkbox" class="filled-in" />
+								<span>Muffet</span>
+							</label>
+							<label>
+								<input type="checkbox" class="filled-in" />
+								<span>Mettaton</span>
+							</label>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path
+									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+							</svg>
+							<span class="sr-only">Valider</span>
+						</a>
+					</div>
+				</div>
+
+				<div id="mission-details-agent-add-modal" class="modal">
+					<button class="modal-close btn-flat">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+							<path
+								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+						</svg>
+						<span class="sr-only">Annuler</span>
+					</button>
+					<div class="modal-content">
+						<h5>Ajouter un ou des agent(s)</h5>
+
+						<form>
+							<label>
+								<input type="checkbox" class="filled-in" />
+								<span>Lorem</span>
+							</label>
+							<label>
+								<input type="checkbox" class="filled-in" />
+								<span>Ipsum</span>
+							</label>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path
+									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+							</svg>
+							<span class="sr-only">Valider</span>
+						</a>
+					</div>
+				</div>
+
+				<div id="mission-details-contact-add-modal" class="modal">
+					<button class="modal-close btn-flat">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+							<path
+								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+						</svg>
+						<span class="sr-only">Annuler</span>
+					</button>
+					<div class="modal-content">
+						<h5>Ajouter un ou des contact(s)</h5>
+
+						<form>
+							<label>
+								<input type="checkbox" class="filled-in" />
+								<span>Lorem</span>
+							</label>
+							<label>
+								<input type="checkbox" class="filled-in" />
+								<span>Ipsum</span>
+							</label>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path
+									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+							</svg>
+							<span class="sr-only">Valider</span>
+						</a>
+					</div>
+				</div>
+				<div id="mission-list-add-modal" class="modal new" data-target="mission">
+					<button class="modal-close btn-flat">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
+							<path
+								d="M194.8 164.8L323 36.6c8.3-8.3 8.3-21.8 0-30.2s-21.8-8.3-30.2 0L164.6 134.6 36.4 6.4C28-2 14.6-2 6.3 6.4s-8.3 21.8 0 30.2l128.2 128.2L6.3 293c-8.3 8.3-8.3 21.8 0 30.2 4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2L164.6 195 292.8 323c4.2 4.2 9.6 6.3 15 6.3s11-2 15-6.2c8.3-8.3 8.3-21.8 0-30.2zm-10 -10" />
+						</svg>
+						<span class="sr-only">Annuler</span>
+					</button>
+					<div class="modal-content">
+						<h5>Ajouter une mission</h5>
+						<div class="input-field">
+							<label for="mission-list-name-input">Nom de la mission :</label>
+							<input type="text" name="mission-list-name-input" id="mission-list-name-input">
+						</div>
+						<!-- </form> -->
+					</div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path
+									d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+							</svg>
+							<span class="sr-only">Valider</span>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- PLANQUES -->
@@ -646,7 +631,7 @@
 									</form>
 								</div>
 								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 											<path
 												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -718,7 +703,7 @@
 									</form>
 								</div>
 								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 											<path
 												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -767,7 +752,7 @@
 						</button>
 
 
-						<div id="hideout-list-add-modal" class="modal">
+						<div id="hideout-list-add-modal" class="modal new" data-target="hideout">
 							<button class="modal-close btn-flat">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
 									<path
@@ -801,7 +786,7 @@
 								</form>
 							</div>
 							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 										<path
 											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -931,7 +916,7 @@
 									</form>
 								</div>
 								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 											<path
 												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -992,7 +977,7 @@
 									</form>
 								</div>
 								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 											<path
 												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -1041,7 +1026,7 @@
 						</button>
 
 
-						<div id="agent-list-add-modal" class="modal">
+						<div id="agent-list-add-modal" class="modal new" data-target="agent">
 							<button class="modal-close btn-flat">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
 									<path
@@ -1075,7 +1060,7 @@
 								</form>
 							</div>
 							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 										<path
 											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -1203,7 +1188,7 @@
 									</form>
 								</div>
 								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 											<path
 												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -1262,7 +1247,7 @@
 						</button>
 
 
-						<div id="contact-list-add-modal" class="modal">
+						<div id="contact-list-add-modal" class="modal new" data-target="contact">
 							<button class="modal-close btn-flat">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
 									<path
@@ -1297,7 +1282,7 @@
 								</form>
 							</div>
 							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 										<path
 											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -1423,7 +1408,7 @@
 									</form>
 								</div>
 								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 											<path
 												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -1481,7 +1466,7 @@
 						</button>
 
 
-						<div id="target-list-add-modal" class="modal">
+						<div id="target-list-add-modal" class="modal new" data-target="target">
 							<button class="modal-close btn-flat">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
 									<path
@@ -1515,7 +1500,7 @@
 								</form>
 							</div>
 							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 										<path
 											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -1674,7 +1659,7 @@
 									</form>
 								</div>
 								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 											<path
 												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -1724,7 +1709,7 @@
 									</form>
 								</div>
 								<div class="modal-footer">
-									<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+									<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 											<path
 												d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
@@ -1773,7 +1758,7 @@
 						</button>
 
 
-						<div id="specialite-list-add-modal" class="modal">
+						<div id="specialite-list-add-modal" class="modal new" data-target="specialite">
 							<button class="modal-close btn-flat">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 350.3 350">
 									<path
@@ -1806,7 +1791,7 @@
 								</form>
 							</div>
 							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat agree">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
 										<path
 											d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
