@@ -24,6 +24,8 @@
 	],
 	"dependencies": {
 		"@babel/runtime": "^7.11.2",
+		"@dicebear/avatars": "^4.2.5",
+		"@dicebear/avatars-human-sprites": "^4.2.5",
 		"axios": "^0.20.0",
 		"dayjs": "^1.8.36",
 		"materialize-css": "^1.0.0",
