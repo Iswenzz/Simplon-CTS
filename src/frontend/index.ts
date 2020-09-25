@@ -5,6 +5,7 @@ import "./logout";
 import "./login";
 import "./canvas";
 import Canvas from "./canvas";
+import swal from "sweetalert";
 import ContactRepository from "./repository/ContactRepository";
 import CibleRepository from "./repository/CibleRepository";
 import AgentRepository from "./repository/AgentRepository";
@@ -18,17 +19,18 @@ import Specialite from "./model/Specialite";
 import Contact from "./model/Contact";
 import Agent from "./model/Agent";
 import Cible from "./model/Cible";
+import InputComponent from "./component/InputComponent";
 
 // initializing components
 document.addEventListener("DOMContentLoaded", () => 
 {
 	// GLOBAL MODELS
 	let missionModel = null;
-	let planqueModel = null;
-	let specialiteModel = null;
-	let agentModel = null;
-	let contactModel = null;
-	let cibleModel = null;
+	const planqueModel = null;
+	const specialiteModel = null;
+	const agentModel = null;
+	const contactModel = null;
+	const cibleModel = null;
 
 
 	// 3D scene
@@ -78,47 +80,35 @@ document.addEventListener("DOMContentLoaded", () =>
 
 	// modal
 	const modals = document.querySelectorAll(".modal");
-	modals.forEach((modal) => {
-		const modalEl = modal as HTMLElement;
-		if (modalEl.classList.contains("new")) {
-			// modals for adding new models
-			M.Modal.init(modal, {
-				// when modal closes => creates a new model of the relevant type
-				onCloseEnd: () => {
-					const target = modalEl.dataset["target"];
-					switch (target) {
-						case "mission":
-							missionModel = new Mission();
-							const titreInput = document.getElementById("mission-list-name-input") as HTMLInputElement;
-							missionModel.setTitre(titreInput.value);
-							break;
-						case "hideout":
-							planqueModel = new Planque();
-							break;
-						case "specialite":
-							specialiteModel = new Specialite();
-							break;
-						case "agent":
-							agentModel = new Agent();
-							break;
-						case "contact":
-							contactModel = new Contact();
-							break;
-						case "target":
-							cibleModel = new Cible();
-							break;
-						default:
-							console.error("Cible modal inconnue : " + target);
-							break;
+	M.Modal.init(modals);
+
+	const creators = document.getElementsByClassName("creator") as HTMLCollectionOf<HTMLButtonElement>;
+	for (const item of creators) {
+		item.addEventListener("click", async () => {
+			const target = item.dataset["target"];
+			switch (target) {
+				case "mission":
+					// inner form
+					const input = new InputComponent("text", "mission-list-add-name", "Titre de la mission :");
+					// alert 
+					const res = await swal({
+						title: "Ajouter une nouvelle mission",
+						buttons: ["Annuler", "Confirmer"],
+						content: {element: input.getContainer()}
+					});
+					// handling the results
+					if (res) {
+						missionModel = new Mission(null, input.getInput().value);
+						console.log("Nouvelle mission : " + missionModel.format());
 					}
-					console.log(`${modalEl.id}: New ${target} !`);
-				}
-			});
+					break;
 			
-		} else { // TODO others modals
-			M.Modal.init(modal);
-		}
-	});
+				default:
+					console.warn(target + " TODO");
+					break;
+			}
+		});
+	}
 
 	// select
 	const selects = document.querySelectorAll("select");
