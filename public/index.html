@@ -154,7 +154,27 @@
 					<!-- résumé écrit -->
 					<section class="description">
 						<h4>Résumé</h4>
-						<!-- lieu -->
+						<!-- description -->
+						<section class="row">
+							<h5 class="col s12">Description</h5>
+							<div class="col m12 l5">
+								<textarea name="mission-details-desc" id="mission-details-desc" disabled>
+								Pendant une nuit sombre orageuse...
+								</textarea>
+							</div>
+							<div class="logo-container col m12 l5">
+								<button id="mission-details-desc-edit"
+									class="btn text-edit-trigger visible-when-connected"
+									title="Éditer la description de la planque" data-target="#mission-details-desc">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+										<path
+											d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
+									</svg>
+									<span class="sr-only">Éditer la description de la planque</span>
+								</button>
+							</div>
+						</section>
+						<!-- pays -->
 						<section class="row">
 							<h5 class="col s12">Pays</h5>
 							<p id="mission-details-country-desc" class="col m12 l5">"Pays" est un beau pays... mais
@@ -208,7 +228,7 @@
 								</div>
 							</div>
 						</section>
-						<!-- lieu -->
+						<!-- planque -->
 						<section class="row">
 							<h5 class="col s12">Planque(s)</h5>
 							<p id="mission-details-hideout-desc" class="col m12 l5">"type" : Parfait pour récupérer en
@@ -435,6 +455,19 @@
 									</a>
 								</div>
 							</div>
+						</section>
+
+						<!-- dates de mission -->
+						<section class="row">
+							<h5 class="col s12">Dates de la mission</h5>
+							<form class="logo-container col s12">
+								<span>Votre mission, si vous l'acceptez, se déroulera du...</span>
+								<input type="date" name="missions-details-date-start" id="missions-details-date-start"
+									disabled />
+								<span>... au ...</span>
+								<input type="date" name="missions-details-date-end" id="missions-details-date-end"
+									disabled />
+							</form>
 						</section>
 					</section>
 				</section>
