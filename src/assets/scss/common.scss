@@ -17,11 +17,39 @@ $queries: (
 
 // buttons
 .btn {
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
 	height: initial;
 	line-height: initial;
-	padding: 5px 16px;
 	margin: 2px;
+	background-color: blue !important;
+	padding: 8px !important;
 }
+
+// tabs
+.tabs .tab a {
+	color: blue !important;
+	box-shadow: none !important;
+}
+
+.tabs .tab a:hover {
+	background-color: rgb(44, 44, 44) !important;
+	color: blue !important;
+	box-shadow: none !important;
+}
+
+.tabs .tab a .active {
+	background-color: #111 !important;
+	color: blue !important;
+	box-shadow: none !important;
+}
+
+.tabs .indicator {
+	background-color: blue !important;
+	box-shadow: none !important;
+}
+
 
 // materialize
 @import "node_modules/materialize-css/sass/materialize";
