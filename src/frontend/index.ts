@@ -72,4 +72,23 @@ document.addEventListener("DOMContentLoaded", () =>
 	planqueRepo.listAll();
 	const missionRepo = new MissionRepository("mission-list");
 	missionRepo.listAll();
+
+	// text edit buttons
+	const textTriggers = document.getElementsByClassName("text-edit-trigger") as HTMLCollectionOf<HTMLButtonElement>;
+	for (const trig of textTriggers) {
+		const targetSel = trig.dataset["target"];
+		const targets = document.querySelectorAll(targetSel);
+
+		trig.addEventListener("click", () => {
+			for (const target of targets) {
+				target.removeAttribute("disabled");
+			}
+		});
+
+		for (const target of targets) {
+			target.addEventListener("blur", () => {
+				target.setAttribute("disabled", "true");
+			});
+		}
+	}
 });
