@@ -57,6 +57,14 @@ button {
 .list-item {
 	display: flex;
 	justify-content: space-between;
+
+	border: 1px solid transparent;
+	transition: border-color 0.5s;
+
+	&:hover {
+		border-color: white;
+		transition: border-color 0.5s;
+	}
 }
 
 // dropdown connexion
