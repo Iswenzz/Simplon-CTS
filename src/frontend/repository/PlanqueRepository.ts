@@ -3,11 +3,12 @@ import DeleteButton from "../component/DeleteButton";
 import Deserializer from "../util/Deserializer";
 import Planque from "../model/Planque";
 import Repository from "./Repository";
+import Pays from "../model/Pays";
 
 export default class PlanqueRepository implements Repository {
 	list: HTMLUListElement;
 
-	constructor(listId : string) {
+	constructor(listId  = "hideout-list") {
 		this.list = document.getElementById(listId) as HTMLUListElement;
 	}
 	
@@ -33,6 +34,21 @@ export default class PlanqueRepository implements Repository {
 		});
 
 		return new Deserializer(new Planque(), response.data.body).deserialize();
+	}
+
+	public async getAllInCountry(pays: Pays) : Promise<Planque[]> {
+		const response =  await Axios.post("../src/backend/php/api/PlanqueAPI.php", {
+			method: "getAllInCountry",
+			code: pays.getCode()
+		});
+
+		const res : Planque[] = [];
+
+		for (const planque of response.data.body) {
+			res.push(new Deserializer(new Planque(), planque).deserialize());
+		}
+
+		return res;
 	}
 
 

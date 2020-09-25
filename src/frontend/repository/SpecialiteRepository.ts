@@ -7,7 +7,7 @@ import Repository from "./Repository";
 export default class SpecialiteRepository implements Repository {
 	list: HTMLUListElement;
 
-	constructor(listId : string) {
+	constructor(listId = "specialite-list") {
 		this.list = document.getElementById(listId) as HTMLUListElement;
 	}
 	
