@@ -130,3 +130,9 @@ button {
 .connected .hidden-when-connected {
 	display: none !important;
 }
+
+.transparent {
+	opacity: 0;
+
+	transition: opacity 1s;
+}

@@ -7,7 +7,7 @@ import Repository from "./Repository";
 export default class MissionRepository implements Repository {
 	list: HTMLUListElement;
 
-	constructor(listId : string) {
+	constructor(listId = "mission-list") {
 		this.list = document.getElementById(listId) as HTMLUListElement;
 	}
 	
@@ -80,6 +80,10 @@ export default class MissionRepository implements Repository {
 
 				item.setAttribute("id", "");
 				item.classList.add("list-item");
+
+				item.addEventListener("hover", () => {
+					document.querySelector("#mission .transparent").classList.remove("transparent");
+				});
 
 				// personal delete button
 				const del = new DeleteButton(item, mission, this);
