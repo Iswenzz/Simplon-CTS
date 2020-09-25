@@ -136,15 +136,6 @@
 								<span class="sr-only">Réinitialiser la mission</span>
 							</button>
 						</div>
-						<button id="mission-details-title-edit" class="btn text-edit-trigger visible-when-connected"
-							title="Éditer le nom de la mission" data-target="#mission-details-name">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-								<path
-									d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
-							</svg>
-							<span class="sr-only">Éditer le nom de la mission</span>
-						</button>
-
 					</div>
 
 					<!-- résumé visuel -->
@@ -156,21 +147,10 @@
 						<!-- description -->
 						<section class="row">
 							<h5 class="col s12">Description</h5>
-							<div class="col m12 l5">
+							<div class="col m12">
 								<textarea name="mission-details-desc" id="mission-details-desc">
 								Pendant une nuit sombre orageuse...
 								</textarea>
-							</div>
-							<div class="logo-container col m12 l5">
-								<button id="mission-details-desc-edit"
-									class="btn text-edit-trigger visible-when-connected"
-									title="Éditer la description de la planque" data-target="#mission-details-desc">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-										<path
-											d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
-									</svg>
-									<span class="sr-only">Éditer la description de la planque</span>
-								</button>
 							</div>
 						</section>
 						<!-- pays -->
@@ -461,7 +441,7 @@
 						<!-- cible(s) -->
 						<section class="row">
 							<h5 class="col s12">Type</h5>
-							<div class="col m12 l5">
+							<div class="col m12">
 								<span class="input-field inline">
 									<label for="hideout-details-type-desc-libelle" class="sr-only">libellé</label>
 									<input type="text" name="hideout-details-type-desc-libelle"
@@ -472,27 +452,6 @@
 									class="hideout-details-type-desc">
 							Parfait pour récupérer en mouvement.
 						</textarea>
-							</div>
-							<div class="logo-container col m12 l5">
-								<button id="hideout-details-type-desc-edit"
-									class="btn text-edit-trigger visible-when-connected"
-									title="Éditer la description de la planque"
-									data-target=".hideout-details-type-desc">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-										<path
-											d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
-									</svg>
-									<span class="sr-only">Éditer la description de la planque</span>
-								</button>
-								<button id="hideout-details-type-edit" title="Changer le type de planque"
-									class="btn visible-when-connected modal-trigger"
-									data-target="hideout-details-type-edit-modal">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
-										<path
-											d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
-									</svg>
-									<span class="sr-only">Changer le type de planque</span>
-								</button>
 							</div>
 
 							<!-- modal -->
@@ -671,15 +630,6 @@
 								<span class="sr-only">Réinitialiser l'agent</span>
 							</button>
 						</div>
-						<button id="agent-details-title-edit" class="btn text-edit-trigger visible-when-connected"
-							title="Éditer le nom de l'agent" data-target=".agent-name">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-								<path
-									d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
-							</svg>
-							<span class="sr-only">Éditer le nom de l'agent</span>
-						</button>
-
 					</div>
 
 					<!-- résumé visuel -->
@@ -941,15 +891,6 @@
 								<span class="sr-only">Réinitialiser le contact</span>
 							</button>
 						</div>
-						<button id="contact-details-title-edit" class="btn text-edit-trigger visible-when-connected"
-							title="Éditer le nom du contact" data-target=".contact-name">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-								<path
-									d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
-							</svg>
-							<span class="sr-only">Éditer le nom du contact</span>
-						</button>
-
 					</div>
 
 					<!-- résumé visuel -->
@@ -1163,15 +1104,6 @@
 								<span class="sr-only">Réinitialiser la cible</span>
 							</button>
 						</div>
-						<button id="target-details-title-edit" class="btn text-edit-trigger visible-when-connected"
-							title="Éditer le nom de la cible" data-target=".target-name">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-								<path
-									d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
-							</svg>
-							<span class="sr-only">Éditer le nom de la cible</span>
-						</button>
-
 					</div>
 
 					<!-- résumé visuel -->
@@ -1376,14 +1308,6 @@
 								<span class="sr-only">Réinitialiser la spécialité</span>
 							</button>
 						</div>
-						<button id="specialite-details-title-edit" class="btn text-edit-trigger visible-when-connected"
-							title="Éditer le libellé de la specialisation" data-target="#specialite-details-name">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-								<path
-									d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
-							</svg>
-							<span class="sr-only">Éditer le libellé de la spécialité</span>
-						</button>
 					</div>
 
 					<!-- résumé visuel -->
@@ -1395,7 +1319,7 @@
 						<!-- description -->
 						<section class="row">
 							<h5 class="col s12">Description</h5>
-							<div class="col m12 l5">
+							<div class="col m12">
 								<input type="text" name="specialite-details-desc-libelle"
 									id="specialite-details-desc-libelle" class="specialite-details-desc"
 									placeholder="Libelle :">
@@ -1403,18 +1327,6 @@
 									class="specialite-details-desc">
 							Des explosions, encore et toujours plus !
 						</textarea>
-							</div>
-							<div class="logo-container col m12 l5">
-								<button id="specialite-details-desc-edit"
-									class="btn text-edit-trigger visible-when-connected"
-									title="Éditer la description de la spécialisation"
-									data-target=".specialite-details-desc">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-										<path
-											d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
-									</svg>
-									<span class="sr-only">Éditer la description de la spécialisation</span>
-								</button>
 							</div>
 						</section>
 						<!-- type -->
@@ -1430,16 +1342,6 @@
 						</textarea>
 							</div>
 							<div class="logo-container col m12 l5">
-								<button id="specialite-details-type-desc-type-edit"
-									class="btn text-edit-trigger visible-when-connected"
-									title="Éditer la description du type de mission"
-									data-target="#specialite-details-type-desc">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-										<path
-											d="M0 44.8v128.9h31.35v-35.12H385.4v35.12h31.35l.01-128.9zm255.27 391.05V169.97H161.5v265.88h-31.3v31.35h156.37v-31.35zM512 76.15V44.8h-76.77v31.35h23.4v359.7h-23.4v31.35H512v-31.35h-22.03V76.15z" />
-									</svg>
-									<span class="sr-only">Éditer la description du type de mission</span>
-								</button>
 								<button id="specialite-details-type-edit" title="Changer le type de spécialité"
 									class="btn visible-when-connected modal-trigger"
 									data-target="specialite-details-type-edit-modal">
