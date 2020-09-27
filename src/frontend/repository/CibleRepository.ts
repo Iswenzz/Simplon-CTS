@@ -7,7 +7,7 @@ import Repository from "./Repository";
 export default class CibleRepository implements Repository {
 	list: HTMLUListElement;
 
-	constructor(listId : string) {
+	constructor(listId = "target-list") {
 		this.list = document.getElementById(listId) as HTMLUListElement;
 	}
 	

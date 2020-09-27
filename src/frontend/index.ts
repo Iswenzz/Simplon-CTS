@@ -11,10 +11,27 @@ import AgentRepository from "./repository/AgentRepository";
 import SpecialiteRepository from "./repository/SpecialiteRepository";
 import PlanqueRepository from "./repository/PlanqueRepository";
 import MissionRepository from "./repository/MissionRepository";
+import MissionTab from "./tabs/MissionTab";
+// import Mission from "./model/Mission";
+// import Planque from "./model/Planque";
+// import Specialite from "./model/Specialite";
+// import Contact from "./model/Contact";
+// import Agent from "./model/Agent";
+// import Cible from "./model/Cible";
 
-// initializing components
-document.addEventListener("DOMContentLoaded", () => 
+document.addEventListener("DOMContentLoaded", async () => 
 {
+	// GLOBAL MODELS
+	// let missionModel = null;
+	// const planqueModel = null;
+	// const specialiteModel = null;
+	// const agentModel = null;
+	// const contactModel = null;
+	// const cibleModel = null;
+
+
+
+	// ----- initializing components -----
 	// 3D scene
 	new Canvas();
 
@@ -23,16 +40,36 @@ document.addEventListener("DOMContentLoaded", () =>
 		document.body.classList.add("connected");
 		document.body.classList.remove("disconnected");
 
-		// date inputs
-		const datePickers = document.querySelectorAll("input[type=\"date\"]");
-		for (const datePicker of datePickers) {
-			datePicker.removeAttribute("disabled");
+		// enable inputs
+		const inputs = [...document.getElementsByTagName("input"), ...document.getElementsByTagName("textarea")];
+		for (const input of inputs) {
+			input.removeAttribute("disabled");
 		}
+
+
 	} else {
 		document.body.classList.add("disconnected");
 		document.body.classList.remove("connected");
+
+		// disable inputs
+		const inputs = [...document.getElementsByTagName("input"), ...document.getElementsByTagName("textarea")];
+		for (const input of inputs) {
+			input.setAttribute("disabled", "true");
+		}
+		// ...minus those for login & signup
+		const logInputs = document.querySelectorAll("#login-dropdown input, #inscription-modal input");
+		for (const input of logInputs) {
+			input.removeAttribute("disabled");
+		}
 	}
 
+	// MISSIONS
+	const missionRepo = new MissionRepository("mission-list");
+	const missionTab = new MissionTab(missionRepo, null);
+	await missionTab.init();
+
+
+	// ------ Materialize components ------
 	// dropdown
 	const lognumberrigger = document.getElementById("login");
 	const loginInstance = M.Dropdown.init(lognumberrigger, {
@@ -60,16 +97,14 @@ document.addEventListener("DOMContentLoaded", () =>
 	M.Tabs.init(tabs);
 
 	// lists
-	const contactRepo = new ContactRepository("contact-list");
-	contactRepo.listAll();
-	const targetRepo = new CibleRepository("target-list");
-	targetRepo.listAll();
-	const agentRepo = new AgentRepository("agent-list");
-	agentRepo.listAll();
-	const specialiteRepo = new SpecialiteRepository("specialite-list");
-	specialiteRepo.listAll();
-	const planqueRepo = new PlanqueRepository("hideout-list");
-	planqueRepo.listAll();
-	const missionRepo = new MissionRepository("mission-list");
-	missionRepo.listAll();
+	// const contactRepo = new ContactRepository("contact-list");
+	// contactRepo.listAll();
+	// const targetRepo = new CibleRepository("target-list");
+	// targetRepo.listAll();
+	// const agentRepo = new AgentRepository("agent-list");
+	// agentRepo.listAll();
+	// const specialiteRepo = new SpecialiteRepository("specialite-list");
+	// specialiteRepo.listAll();
+	// const planqueRepo = new PlanqueRepository("hideout-list");
+	// planqueRepo.listAll();
 });

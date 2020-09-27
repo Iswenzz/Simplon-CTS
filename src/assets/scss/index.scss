@@ -45,7 +45,8 @@ h3 {
 }
 
 // icons
-a, button {
+a,
+button {
 	svg {
 		width: 30px;
 		fill: currentColor;
@@ -56,6 +57,14 @@ a, button {
 .list-item {
 	display: flex;
 	justify-content: space-between;
+
+	border: 1px solid transparent;
+	transition: border-color 0.5s;
+
+	&:hover {
+		border-color: white;
+		transition: border-color 0.5s;
+	}
 }
 
 // dropdown connexion
@@ -127,5 +136,10 @@ a, button {
 // visibilité
 .disconnected .visible-when-connected,
 .connected .hidden-when-connected {
-	display: none;
+	display: none !important;
+}
+
+.transparent {
+	opacity: 0;
+	transition: opacity 1s;
 }

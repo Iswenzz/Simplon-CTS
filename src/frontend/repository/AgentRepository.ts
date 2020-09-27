@@ -7,7 +7,7 @@ import Repository from "./Repository";
 export default class AgentRepository implements Repository {
 	list: HTMLUListElement;
 
-	constructor(listId : string) {
+	constructor(listId = "agent-list") {
 		this.list = document.getElementById(listId) as HTMLUListElement;
 	}
 	

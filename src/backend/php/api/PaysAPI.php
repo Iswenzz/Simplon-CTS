@@ -5,154 +5,135 @@ require_once __DIR__ . "/CRUD.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
-require_once __DIR__ . "/../dao/PlanqueDAO.php";
+require_once __DIR__ . "/../dao/PaysDAO.php";
 
 /**
- * Controller for planque request.
+ * Controller for pays request.
  */
-class PlanqueAPI extends Controller implements CRUD
+class PaysAPI extends Controller implements CRUD
 {
-    private static ?PlanqueAPI $instance = null;
+    private static ?PaysAPI $instance = null;
 
     /**
-     * Planque singleton instance.
+     * Pays singleton instance.
      */
     private function __construct()
     {
-        DAOFactory::registerDAO(PlanqueDAO::class);
-        $this->dao = DAOFactory::getDAO(PlanqueDAO::class);
+        DAOFactory::registerDAO(PaysDAO::class);
+        $this->dao = DAOFactory::getDAO(PaysDAO::class);
         $this->res = new Response();
     }
 
     /**
      * Get the singleton instance.
      */
-    public static function getInstance(): ?PlanqueAPI
+    public static function getInstance(): ?PaysAPI
     {
-        if (!PlanqueAPI::$instance) {
-            PlanqueAPI::$instance = new PlanqueAPI();
+        if (!PaysAPI::$instance) {
+            PaysAPI::$instance = new PaysAPI();
         }
-        return PlanqueAPI::$instance;
+        return PaysAPI::$instance;
     }
 
     /**
-     * Add a specific Planque.
+     * Add a specific Pays.
      */
     public function add(): Response
     {
         /**
-         * @var PlanqueDAO $dao
-         * @var Planque $planque
+         * @var PaysDAO $dao
+         * @var Pays $pays
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Planque::class, $this->req->planque);
-        $planque = $deserializer->deserialize();
-        $success = $dao->add($planque);
+        $deserializer = new Deserializer(Pays::class, $this->req->pays);
+        $pays = $deserializer->deserialize();
+        $success = $dao->add($pays);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "Add successful" : "Add failed",
-            $planque
+            $pays
         );
     }
 
     /**
-     * Get all planques.
+     * Get all payss.
      */
     public function getAll(): Response
     {
         /**
-         * @var PlanqueDAO $dao
+         * @var PaysDAO $dao
          */
         $dao = $this->dao;
-        $planques = $dao->getAll();
-        $success = !is_null($planques);
+        $payss = $dao->getAll();
+        $success = !is_null($payss);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "GetAll successful" : "GetAll failed",
-            $planques
+            $payss
         );
     }
 
     /**
-     * Get all planques.
-     */
-    public function getAllInCountry(): Response
-    {
-        /**
-         * @var PlanqueDAO $dao
-         */
-        $dao = $this->dao;
-        $planques = $dao->getAllInCountry($this->req->code);
-        $success = !is_null($planques);
-        return $this->res->prepare(
-            Response::OK,
-            $success,
-            $success ? "GetAllInCountry successful" : "GetAllInCountry failed",
-            $planques
-        );
-    }
-
-    /**
-     * Get a specific Planque.
+     * Get a specific Pays.
      */
     public function get(): Response
     {
         /**
-         * @var PlanqueDAO $dao
-         * @var Planque $planque
+         * @var PaysDAO $dao
+         * @var Pays $pays
          */
         $dao = $this->dao;
-        $planque = $dao->get($this->req->code);
-        $success = !is_null($planque);
+        $pays = $dao->get($this->req->code);
+        $success = !is_null($pays);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "Get successful" : "Get failed",
-            $planque
+            $pays
         );
     }
 
     /**
-     * Update a specific Planque.
+     * Update a specific Pays.
      */
     public function update(): Response
     {
         /**
-         * @var PlanqueDAO $dao
-         * @var Planque $planque
+         * @var PaysDAO $dao
+         * @var Pays $pays
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Planque::class, $this->req->planque);
-        $planque = $deserializer->deserialize();
-        $success = $dao->update($planque);
+        $deserializer = new Deserializer(Pays::class, $this->req->pays);
+        $pays = $deserializer->deserialize();
+        $success = $dao->update($pays);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "Update successful" : "Update failed",
-            $planque
+            $pays
         );
     }
 
     /**
-     * Delete a specific Planque.
+     * Delete a specific Pays.
      */
     public function delete(): Response
     {
         /**
-         * @var PlanqueDAO $dao
-         * @var Planque $planque
+         * @var PaysDAO $dao
+         * @var Pays $pays
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Planque::class, $this->req->planque);
-        $planque = $deserializer->deserialize();
-        $success = $dao->delete($planque);
+        $deserializer = new Deserializer(Pays::class, $this->req->pays);
+        $pays = $deserializer->deserialize();
+        $success = $dao->delete($pays);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "Delete successful" : "Delete failed",
-            $planque
+            $pays
         );
     }
 
@@ -176,4 +157,4 @@ class PlanqueAPI extends Controller implements CRUD
         return call_user_func([$this, $requestBody->method]);
     }
 }
-PlanqueAPI::getInstance()->response()->send();
+PaysAPI::getInstance()->response()->send();
