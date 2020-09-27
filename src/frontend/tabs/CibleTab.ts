@@ -30,8 +30,6 @@ export default class CibleTab
 	 */
 	public async listAll(): Promise<void>
 	{
-		console.log(document.getElementById("target-list"));
-		console.log(this.list);
 		try
 		{
 			const cibles = await this.cibleRepo.getAll();
