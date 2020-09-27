@@ -3,7 +3,7 @@ import Repository from "../repository/Repository";
 
 export default class DeleteButton<M extends Model, R extends Repository>
 {
-	private button: HTMLButtonElement;
+	private readonly button: HTMLButtonElement;
 
 	/**
 	 * Creates a new button that removes the target element when clicked.
@@ -31,7 +31,8 @@ export default class DeleteButton<M extends Model, R extends Repository>
 	/**
 	 * Get the button HTML element.
 	 */
-	public getButton(): HTMLButtonElement {
+	public getButton(): HTMLButtonElement
+	{
 		return this.button;
 	}
 }
