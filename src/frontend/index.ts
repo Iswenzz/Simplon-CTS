@@ -1,5 +1,3 @@
-import "../assets/scss/index.scss";
-import "materialize-css";
 import "./signUp";
 import "./logout";
 import "./login";
@@ -12,26 +10,12 @@ import SpecialiteRepository from "./repository/SpecialiteRepository";
 import PlanqueRepository from "./repository/PlanqueRepository";
 import MissionRepository from "./repository/MissionRepository";
 import MissionTab from "./tabs/MissionTab";
-// import Mission from "./model/Mission";
-// import Planque from "./model/Planque";
-// import Specialite from "./model/Specialite";
-// import Contact from "./model/Contact";
-// import Agent from "./model/Agent";
-// import Cible from "./model/Cible";
+import "../assets/scss/index.scss";
+import "materialize-css";
+import ContactTab from "./tabs/ContactTab";
 
 document.addEventListener("DOMContentLoaded", async () => 
 {
-	// GLOBAL MODELS
-	// let missionModel = null;
-	// const planqueModel = null;
-	// const specialiteModel = null;
-	// const agentModel = null;
-	// const contactModel = null;
-	// const cibleModel = null;
-
-
-
-	// ----- initializing components -----
 	// 3D scene
 	new Canvas();
 
@@ -45,8 +29,6 @@ document.addEventListener("DOMContentLoaded", async () =>
 		for (const input of inputs) {
 			input.removeAttribute("disabled");
 		}
-
-
 	} else {
 		document.body.classList.add("disconnected");
 		document.body.classList.remove("connected");
@@ -56,6 +38,7 @@ document.addEventListener("DOMContentLoaded", async () =>
 		for (const input of inputs) {
 			input.setAttribute("disabled", "true");
 		}
+
 		// ...minus those for login & signup
 		const logInputs = document.querySelectorAll("#login-dropdown input, #inscription-modal input");
 		for (const input of logInputs) {
@@ -63,48 +46,29 @@ document.addEventListener("DOMContentLoaded", async () =>
 		}
 	}
 
-	// MISSIONS
-	const missionRepo = new MissionRepository("mission-list");
-	const missionTab = new MissionTab(missionRepo, null);
-	await missionTab.init();
-
-
-	// ------ Materialize components ------
-	// dropdown
-	const lognumberrigger = document.getElementById("login");
-	const loginInstance = M.Dropdown.init(lognumberrigger, {
+	// materialize elems
+	const loginInstance = M.Dropdown.init(document.getElementById("login"), {
 		alignment: null, 		// aligned ?
 		coverTrigger: false, 	// appears below the trigger
 		closeOnClick: false, 	// not closing when clicked
 		constrainWidth: false 	// free width
 	});
-
-	const inscriptionTrigger = document.getElementById("inscription");
-	inscriptionTrigger.addEventListener("click", () => {
+	document.getElementById("inscription").addEventListener("click", () => {
 		loginInstance.close();
 	});
+	M.Modal.init(document.querySelectorAll(".modal"));
+	M.FormSelect.init(document.querySelectorAll("select"));
+	M.Tabs.init(document.querySelectorAll(".tabs"));
 
-	// modal
-	const modals = document.querySelectorAll(".modal");
-	M.Modal.init(modals);
-
-	// select
-	const selects = document.querySelectorAll("select");
-	M.FormSelect.init(selects);
+	// repositories
+	const missionRepo = new MissionRepository();
+	const contactRepo = new ContactRepository();
+	const cibleRepo = new CibleRepository();
+	const agentRepo = new AgentRepository();
+	const specialiteRepo = new SpecialiteRepository();
+	const planqueRepo = new PlanqueRepository();
 
 	// tabs
-	const tabs = document.querySelectorAll(".tabs");
-	M.Tabs.init(tabs);
-
-	// lists
-	// const contactRepo = new ContactRepository("contact-list");
-	// contactRepo.listAll();
-	// const targetRepo = new CibleRepository("target-list");
-	// targetRepo.listAll();
-	// const agentRepo = new AgentRepository("agent-list");
-	// agentRepo.listAll();
-	// const specialiteRepo = new SpecialiteRepository("specialite-list");
-	// specialiteRepo.listAll();
-	// const planqueRepo = new PlanqueRepository("hideout-list");
-	// planqueRepo.listAll();
+	new MissionTab(missionRepo, document.getElementById("mission-list"));
+	new ContactTab(contactRepo, document.getElementById("contact-list"));
 });
