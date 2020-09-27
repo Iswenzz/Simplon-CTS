@@ -936,4 +936,14 @@ VALUES (1, 1),
 	(14, 14),
 	(15, 15),
 	(16, 16);
+-- mission
+INSERT INTO Mission (titreMission, descriptionMission, dateDebut, dateFin, codeStatutMission, codeTypeMission, codeSpecialite) VALUES
+("Test", "Ceci est une mission test", "2020-01-01", "2021-01-01", 1, 1, 1);
+INSERT INTO Visee (codeMission, codeCible) VALUES
+(1, 4),
+(1, 11);
+INSERT INTO Abri (codeMission, codePlanque) VALUES
+(1, 7);
+INSERT INTO Execution (codeMission, codeAgent) VALUES
+(1, 1);
 COMMIT;
