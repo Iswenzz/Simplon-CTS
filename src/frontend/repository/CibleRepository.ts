@@ -1,5 +1,4 @@
 import Axios from "axios";
-import DeleteButton from "../component/DeleteButton";
 import Deserializer from "../util/Deserializer";
 import Cible from "../model/Cible";
 import Repository from "./Repository";
@@ -72,30 +71,4 @@ export default class CibleRepository implements Repository
 		});
 		return new Deserializer(new Cible(), response.data.body).deserialize();
 	}
-
-	// public async listAll(): Promise<void>
-	// {
-	// 	try
-	// 	{
-	// 		const cibles = await this.getAll();
-	// 		// display all cibles gotten from the DB
-	// 		for (const cible of cibles)
-	// 		{
-	// 			const item = document.createElement("li") as HTMLLIElement;
-	// 			item.innerText = cible.format();
-	// 			this.list.append(item);
-	//
-	// 			item.setAttribute("id", "");
-	// 			item.classList.add("list-item");
-	//
-	// 			// personal delete button
-	// 			const del = new DeleteButton(item, cible, this);
-	// 			item.append(del.getButton());
-	// 		}
-	// 	}
-	// 	catch (error)
-	// 	{
-	// 		console.log(error);
-	// 	}
-	// }
 }

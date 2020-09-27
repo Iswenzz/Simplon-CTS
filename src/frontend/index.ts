@@ -13,6 +13,10 @@ import MissionTab from "./tabs/MissionTab";
 import "../assets/scss/index.scss";
 import "materialize-css";
 import ContactTab from "./tabs/ContactTab";
+import CibleTab from "./tabs/CibleTab";
+import AgentTab from "./tabs/AgentTab";
+import SpecialiteTab from "./tabs/SpecialiteTab";
+import PlanqueTab from "./tabs/PlanqueTab";
 
 document.addEventListener("DOMContentLoaded", async () => 
 {
@@ -71,4 +75,8 @@ document.addEventListener("DOMContentLoaded", async () =>
 	// tabs
 	new MissionTab(missionRepo, document.getElementById("mission-list"));
 	new ContactTab(contactRepo, document.getElementById("contact-list"));
+	new CibleTab(cibleRepo, document.getElementById("target-list"));
+	new AgentTab(agentRepo, document.getElementById("agent-list"));
+	new SpecialiteTab(specialiteRepo, document.getElementById("specialite-list"));
+	new PlanqueTab(planqueRepo, document.getElementById("hideout-list"));
 });

@@ -1,5 +1,4 @@
 import Axios from "axios";
-import DeleteButton from "../component/DeleteButton";
 import Deserializer from "../util/Deserializer";
 import Planque from "../model/Planque";
 import Repository from "./Repository";
@@ -90,30 +89,4 @@ export default class PlanqueRepository implements Repository
 		});
 		return new Deserializer(new Planque(), response.data.body).deserialize();
 	}
-
-	// public async listAll(): Promise<void>
-	// {
-	// 	try
-	// 	{
-	// 		const planques = await this.getAll();
-	// 		// display all planques gotten from the DB
-	// 		for (const planque of planques)
-	// 		{
-	// 			const item = document.createElement("li") as HTMLLIElement;
-	// 			item.innerText = planque.format();
-	// 			this.list.append(item);
-	//
-	// 			item.setAttribute("id", "");
-	// 			item.classList.add("list-item");
-	//
-	// 			// personal delete button
-	// 			const del = new DeleteButton(item, planque, this);
-	// 			item.append(del.getButton());
-	// 		}
-	// 	}
-	// 	catch (error)
-	// 	{
-	// 		console.log(error);
-	// 	}
-	// }
 }

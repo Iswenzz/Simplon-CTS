@@ -1,5 +1,4 @@
 import Axios from "axios";
-import DeleteButton from "../component/DeleteButton";
 import Deserializer from "../util/Deserializer";
 import Specialite from "../model/Specialite";
 import Repository from "./Repository";
@@ -72,30 +71,4 @@ export default class SpecialiteRepository implements Repository
 		});
 		return new Deserializer(new Specialite(), response.data.body).deserialize();
 	}
-
-	// public async listAll(): Promise<void>
-	// {
-	// 	try
-	// 	{
-	// 		const specialites = await this.getAll();
-	// 		// display all specialites gotten from the DB
-	// 		for (const specialite of specialites)
-	// 		{
-	// 			const item = document.createElement("li") as HTMLLIElement;
-	// 			item.innerText = specialite.format();
-	// 			this.list.append(item);
-	//
-	// 			item.setAttribute("id", "");
-	// 			item.classList.add("list-item");
-	//
-	// 			// personal delete button
-	// 			const del = new DeleteButton(item, specialite, this);
-	// 			item.append(del.getButton());
-	// 		}
-	// 	}
-	// 	catch (error)
-	// 	{
-	// 		console.log(error);
-	// 	}
-	// }
 }

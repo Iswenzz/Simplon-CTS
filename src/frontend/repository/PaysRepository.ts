@@ -37,7 +37,8 @@ export default class PaysRepository implements Repository
 	 * Add a pays.
 	 * @param model
 	 */
-	add(model: Pays): Promise<boolean> {
+	add(model: Pays): Promise<boolean>
+	{
 		throw new Error("Method not implemented.");
 	}
 
@@ -45,7 +46,8 @@ export default class PaysRepository implements Repository
 	 * Delete a pays.
 	 * @param model
 	 */
-	delete(model: Pays): Promise<boolean> {
+	delete(model: Pays): Promise<boolean>
+	{
 		throw new Error("Method not implemented.");
 	}
 
@@ -53,7 +55,8 @@ export default class PaysRepository implements Repository
 	 * Update a pays.
 	 * @param model
 	 */
-	update(model: Pays): Promise<Pays> {
+	update(model: Pays): Promise<Pays>
+	{
 		throw new Error("Method not implemented.");
 	}
 }

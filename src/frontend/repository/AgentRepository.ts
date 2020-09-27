@@ -1,5 +1,4 @@
 import Axios from "axios";
-import DeleteButton from "../component/DeleteButton";
 import Deserializer from "../util/Deserializer";
 import Agent from "../model/Agent";
 import Repository from "./Repository";
@@ -72,30 +71,4 @@ export default class AgentRepository implements Repository
 		});
 		return new Deserializer(new Agent(), response.data.body).deserialize();
 	}
-
-	// public async listAll(): Promise<void>
-	// {
-	// 	try
-	// 	{
-	// 		const agents = await this.getAll();
-	// 		// display all agents gotten from the DB
-	// 		for (const agent of agents)
-	// 		{
-	// 			const item = document.createElement("li") as HTMLLIElement;
-	// 			item.innerText = agent.format();
-	// 			this.list.append(item);
-	//
-	// 			item.setAttribute("id", "");
-	// 			item.classList.add("list-item");
-	//
-	// 			// personal delete button
-	// 			const del = new DeleteButton(item, agent, this);
-	// 			item.append(del.getButton());
-	// 		}
-	// 	}
-	// 	catch (error)
-	// 	{
-	// 		console.log(error);
-	// 	}
-	// }
 }
