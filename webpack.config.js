@@ -36,7 +36,7 @@ module.exports = (_, argv) =>
 				chunkFilename: "[id].css",
 			}),
 			...["index"].map(html => new HtmlWebpackPlugin({
-				filename: `${html}.html.ejs`,
+				filename: `${html}.html`,
 				chunks: [html],
 				inject: true,
 				favicon: "src/assets/images/icons/favicon-32x32.png",
