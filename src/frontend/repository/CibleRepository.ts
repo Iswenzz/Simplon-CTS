@@ -26,7 +26,7 @@ export default class CibleRepository implements Repository
 	 */
 	public async get(model: Cible) : Promise<Cible>
 	{
-		const response =  await Axios.post("../src/backend/php/api/CibleAPI.php", {
+		const response = await Axios.post("../src/backend/php/api/CibleAPI.php", {
 			method: "get",
 			code: model.getCode()
 		});

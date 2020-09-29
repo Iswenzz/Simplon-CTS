@@ -36,11 +36,11 @@ module.exports = (_, argv) =>
 				chunkFilename: "[id].css",
 			}),
 			...["index"].map(html => new HtmlWebpackPlugin({
-				filename: `${html}.html`,
+				filename: `${html}.html.ejs`,
 				chunks: [html],
 				inject: true,
 				favicon: "src/assets/images/icons/favicon-32x32.png",
-				template: `public/${html}.html`,
+				template: `public/${html}.html.ejs`,
 				minify: {
 					collapseWhitespace: true,
 					removeComments: true,
