@@ -80,6 +80,10 @@ button {
 	color: gainsboro;
 	background: inherit;
 
+	label {
+		font-size: 1.2em !important;
+	}
+
 	&::before {
 		content: "";
 		position: absolute;

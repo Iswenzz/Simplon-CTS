@@ -18,38 +18,37 @@ import AgentTab from "./tabs/AgentTab";
 import SpecialiteTab from "./tabs/SpecialiteTab";
 import PlanqueTab from "./tabs/PlanqueTab";
 
-document.addEventListener("DOMContentLoaded", async () => 
+document.addEventListener("DOMContentLoaded", async () =>
 {
 	// 3D scene
 	new Canvas();
 
 	// visible / hidden depending on connect status
-	if (sessionStorage["apiKey"]) { // connected
+	if (sessionStorage["apiKey"] || true)
+	{ // connected
 		document.body.classList.add("connected");
 		document.body.classList.remove("disconnected");
 
 		// enable inputs
 		const inputs = [...document.getElementsByTagName("input"), ...document.getElementsByTagName("textarea")];
-		for (const input of inputs) {
+		for (const input of inputs)
 			input.removeAttribute("disabled");
-		}
-	} else {
+	}
+	else
+	{
 		document.body.classList.add("disconnected");
 		document.body.classList.remove("connected");
 
 		// disable inputs
 		const inputs = [...document.getElementsByTagName("input"), ...document.getElementsByTagName("textarea")];
-		for (const input of inputs) {
+		for (const input of inputs)
 			input.setAttribute("disabled", "true");
-		}
 
 		// ...minus those for login & signup
 		const logInputs = document.querySelectorAll("#login-dropdown input, #inscription-modal input");
-		for (const input of logInputs) {
+		for (const input of logInputs)
 			input.removeAttribute("disabled");
-		}
 	}
-
 	// materialize elems
 	const loginInstance = M.Dropdown.init(document.getElementById("login"), {
 		alignment: null, 		// aligned ?
@@ -63,6 +62,7 @@ document.addEventListener("DOMContentLoaded", async () =>
 	M.Modal.init(document.querySelectorAll(".modal"));
 	M.FormSelect.init(document.querySelectorAll("select"));
 	M.Tabs.init(document.querySelectorAll(".tabs"));
+	M.updateTextFields();
 
 	// repositories
 	const missionRepo = new MissionRepository();

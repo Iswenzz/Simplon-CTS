@@ -1,59 +1,42 @@
 <!-- PLANQUES -->
 <article id="hideouts">
 	<div class="row">
-		<!-- page gauche : détails -->
-		<section class="page col m11 l5">
+		<!-- LEFT visible-when-connected -->
+		<section class="page col m12 l5">
 			<h3>Planque <span id="hideout-details-code">001</span></h3>
-			<div class="details-header">
-				<!-- contrôle planque entière -->
-				<div class="controls visible-when-connected">
-					<!-- TODO confirmation explicite -->
-					<button id="hideout-details-confirm" title="Confirmer la planque" class="btn">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
-							<path d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
-						</svg>
-						<span class="sr-only">Confirmer la planque</span>
-					</button>
-				</div>
-			</div>
-
-			<!-- résumé écrit -->
-			<section>
-				<h4>Résumé</h4>
-				<!-- lieu -->
-				<section class="row">
-					<h5 class="col s12">Pays</h5>
-					<p id="hideout-details-location-desc" class="col m12 l5">Il existe aussi "n" autres planques
-						dans "pays".</p>
-					<div class="logo-container col m12 l5">
-						<button id="hideout-details-country-edit" title="Changer le pays"
-								class="btn visible-when-connected modal-trigger"
-								data-target="hideout-details-country-edit-modal">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 401.5 401">
-								<path d="M370.6 251a10 10 0 0 0-10 10v88.8a30 30 0 0 1-30 30H50a30 30 0 0 1-30-30V89.2a30 30 0 0 1 30-30h88.8a10 10 0 1 0 0-20H50a50 50 0 0 0-50 50v260.6a50 50 0 0 0 50 50h280.6a50 50 0 0 0 50-50V261a10 10 0 0 0-10-10zm6-237.6a45 45 0 0 0-63.6 0L134.6 191.8a10 10 0 0 0-2.6 4.4L108.6 281a10 10 0 0 0 12.3 12.3l84.7-23.5a10 10 0 0 0 4.4-2.6L388.4 88.8a45 45 0 0 0 0-63.6zm-220.3 185l146-146 47 47-146 146zm-9.4 19l37.6 37.6-52 14.4zM374.2 74.7l-10.6 10.6-47-47L327 27.6a25 25 0 0 1 35.4 0L374 39.3a25 25 0 0 1 0 35.4zm0 0" />
+			<!-- SUBMIT -->
+			<form id="hideout-form" novalidate>
+				<header class="details-header">
+					<section class="controls">
+						<button id="hideout-details-confirm" title="Confirmer la planque" class="btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
 							</svg>
-							<span class="sr-only">Changer le pays</span>
+							<span class="sr-only">Confirmer la planque</span>
 						</button>
+					</section>
+				</header>
+				<section>
+					<div class="input-field">
+						<label for="hideout-adresse">Adresse</label>
+						<input id="hideout-adresse" type="text">
+					</div>
+					<div class="input-field">
+						<label for="hideout-pays">Pays</label>
+						<select id="hideout-pays"></select>
+					</div>
+					<div class="input-field">
+						<label for="hideout-pays">Type</label>
+						<select id="hideout-pays"></select>
 					</div>
 				</section>
-
-				<!-- cible(s) -->
-				<section class="row">
-					<h5 class="col s12">Type</h5>
-					<div class="col m12">
-						<span class="input-field inline">
-							<label for="hideout-details-type-desc-libelle" class="sr-only">libellé</label>
-							<input type="text" name="hideout-details-type-desc-libelle" id="hideout-details-type-desc-libelle" class="hideout-details-type-desc" placeholder="Type :">
-						</span>
-						<textarea name="hideout-details-type-desc" id="hideout-details-type-desc" class="hideout-details-type-desc">Parfait pour récupérer en mouvement.</textarea>
-					</div>
-				</section>
-			</section>
+			</form>
 		</section>
-		<!-- page droite : liste -->
-		<section id="hideout-list-page" class="page col m11 l5">
+		
+		<!-- RIGHT -->
+		<section id="hideout-list-page" class="page col m12 l5">
 			<!-- changement de page -->
-			<div id="hideout-list-pagination" class="pagination">
+			<header id="hideout-list-pagination" class="pagination">
 				<button title="Passer à la page précédente" id="hideout-list-previous" class="btn">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.5 444.5">
 						<path d="M213 222.4L352 83.7a35 35 0 0 0 10.6-25.8A35 35 0 0 0 351.9 32l-21.4-21.4A35 35 0 0 0 304.6 0a35 35 0 0 0-25.8 10.6l-186 186a35 35 0 0 0-10.6 25.8 35 35 0 0 0 10.6 25.8l186 186a35 35 0 0 0 25.8 10.6 35 35 0 0 0 25.8-10.6l21.4-21.4a35 35 0 0 0 10.6-25.7 36 36 0 0 0-10.6-26L213 222.4z" />
@@ -66,7 +49,7 @@
 					</svg>
 					<span class="sr-only">Passer à la page suivante</span>
 				</button>
-			</div>
+			</header>
 			<h3>Liste des planques :</h3>
 			<ul id="hideout-list"></ul>
 		</section>
