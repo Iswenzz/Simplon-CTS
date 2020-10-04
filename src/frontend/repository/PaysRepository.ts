@@ -55,7 +55,7 @@ export default class PaysRepository implements Repository
 	 * Update a pays.
 	 * @param model
 	 */
-	update(model: Pays): Promise<Pays>
+	update(model: Pays): Promise<boolean>
 	{
 		throw new Error("Method not implemented.");
 	}

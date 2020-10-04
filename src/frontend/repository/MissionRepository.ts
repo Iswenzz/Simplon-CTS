@@ -63,12 +63,12 @@ export default class MissionRepository implements Repository
 	 * Update a mission.
 	 * @param mission
 	 */
-	public async update(mission: Mission) : Promise<Mission>
+	public async update(mission: Mission) : Promise<boolean>
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
 			method: "update",
 			mission: mission.jsonSerialize()
 		});
-		return new Deserializer(new Mission(), response.data.body).deserialize();
+		return response.data.success;
 	}
 }

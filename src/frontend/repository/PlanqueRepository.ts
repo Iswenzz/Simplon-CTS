@@ -56,8 +56,13 @@ export default class PlanqueRepository implements Repository
 		});
 
 		const res : Planque[] = [];
-		for (const planque of response.data.body)
-			res.push(new Deserializer(new Planque(), planque).deserialize());
+		for (const planqueData of response.data.body)
+		{
+			const planque: Planque = new Deserializer(new Planque(), planqueData).deserialize();
+			const typePlanque: TypePlanque = new Deserializer(new TypePlanque(), planqueData.typePlanque).deserialize();
+			planque.setTypePlanque(typePlanque);
+			res.push(planque);
+		}
 		return res;
 	}
 
@@ -91,12 +96,12 @@ export default class PlanqueRepository implements Repository
 	 * Update a planque.
 	 * @param planque
 	 */
-	public async update(planque: Planque) : Promise<Planque>
+	public async update(planque: Planque) : Promise<boolean>
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "update",
 			planque: planque.jsonSerialize()
 		});
-		return new Deserializer(new Planque(), response.data.body).deserialize();
+		return response.data.success;
 	}
 }

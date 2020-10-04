@@ -63,12 +63,12 @@ export default class AgentRepository implements Repository
 	 * Update an agent.
 	 * @param agent
 	 */
-	public async update(agent: Agent) : Promise<Agent>
+	public async update(agent: Agent) : Promise<boolean>
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/AgentAPI.php", {
 			method: "update",
 			agent: agent.jsonSerialize()
 		});
-		return new Deserializer(new Agent(), response.data.body).deserialize();
+		return response.data.success;
 	}
 }

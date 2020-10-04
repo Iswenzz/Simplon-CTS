@@ -5,5 +5,5 @@ export default interface Repository {
 	get(model: Model): Promise<Model>;
 	add(model: Model): Promise<boolean>;
 	delete(model: Model): Promise<boolean>;
-	update(model: Model): Promise<Model>;
+	update(model: Model): Promise<boolean>;
 }

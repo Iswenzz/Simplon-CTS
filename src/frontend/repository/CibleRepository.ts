@@ -63,12 +63,12 @@ export default class CibleRepository implements Repository
 	 * Update a cible.
 	 * @param cible
 	 */
-	public async update(cible: Cible) : Promise<Cible>
+	public async update(cible: Cible) : Promise<boolean>
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
 			method: "update",
 			cible: cible.jsonSerialize()
 		});
-		return new Deserializer(new Cible(), response.data.body).deserialize();
+		return response.data.success;
 	}
 }

@@ -63,12 +63,12 @@ export default class ContactRepository implements Repository
 	 * Update a contact.
 	 * @param contact
 	 */
-	public async update(contact: Contact) : Promise<Contact>
+	public async update(contact: Contact) : Promise<boolean>
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "update",
 			contact: contact.jsonSerialize()
 		});
-		return new Deserializer(new Contact(), response.data.body).deserialize();
+		return response.data.success;
 	}
 }

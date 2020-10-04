@@ -63,12 +63,12 @@ export default class SpecialiteRepository implements Repository
 	 * Update a specialite.
 	 * @param specialite
 	 */
-	public async update(specialite: Specialite) : Promise<Specialite>
+	public async update(specialite: Specialite) : Promise<boolean>
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "update",
 			specialite: specialite.jsonSerialize()
 		});
-		return new Deserializer(new Specialite(), response.data.body).deserialize();
+		return response.data.success;
 	}
 }
