@@ -9,6 +9,9 @@ class TypePlanque extends Model implements JsonSerializable
 
 	/**
 	 * Initialize a new TypePlanque object.
+	 * @param int|null $code
+	 * @param string $libelle
+	 * @param string|null $description
 	 */
 	public function __construct(?int $code = null, string $libelle = "", ?string $description = null)
 	{
@@ -27,7 +30,8 @@ class TypePlanque extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of code
-	 */ 
+	 * @param int|null $code
+	 */
 	public function setCode(?int $code): void
 	{
 		$this->code = $code;
@@ -43,7 +47,8 @@ class TypePlanque extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of libelle
-	 */ 
+	 * @param string $libelle
+	 */
 	public function setLibelle(string $libelle): void
 	{
 		$this->libelle = $libelle;
@@ -75,7 +80,7 @@ class TypePlanque extends Model implements JsonSerializable
 		return [
 			"code" => $this->getCode(),
 			"libelle" => $this->getLibelle(),
-			"description" => $this->$this->getDescription()
+			"description" => $this->getDescription()
 		];
 	}
 }

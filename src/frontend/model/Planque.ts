@@ -103,11 +103,7 @@ class Planque extends Model implements JsonSerializable, Formattable
 			code: this.getCode(),
 			adresse: this.getAdresse(),
 			codePays: this.getCodePays(),
-			typePlanque: {
-				code: this.getTypePlanque().getCode(),
-				libelle: this.getTypePlanque().getLibelle(),
-				desc: this.getTypePlanque().getDescription()
-			}
+			typePlanque: this.getTypePlanque().jsonSerialize()
 		};
 	}
 }

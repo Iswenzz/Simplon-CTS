@@ -35,18 +35,21 @@ class PlanqueAPI extends Controller implements CRUD
         return PlanqueAPI::$instance;
     }
 
-    /**
-     * Add a specific Planque.
-     */
+	/**
+	 * Add a specific Planque.
+	 */
     public function add(): Response
     {
         /**
          * @var PlanqueDAO $dao
          * @var Planque $planque
+		 * @var TypePlanque $typePlanque
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Planque::class, $this->req->planque);
-        $planque = $deserializer->deserialize();
+        $planque = (new Deserializer(Planque::class, $this->req->planque))->deserialize();
+        $typePlanque = (new Deserializer(TypePlanque::class, $this->req->planque->typePlanque))->deserialize();
+        $planque->setTypePlanque($typePlanque);
+
         $success = $dao->add($planque);
         return $this->res->prepare(
             Response::OK,
@@ -119,13 +122,16 @@ class PlanqueAPI extends Controller implements CRUD
      */
     public function update(): Response
     {
-        /**
-         * @var PlanqueDAO $dao
-         * @var Planque $planque
-         */
-        $dao = $this->dao;
-        $deserializer = new Deserializer(Planque::class, $this->req->planque);
-        $planque = $deserializer->deserialize();
+		/**
+		 * @var PlanqueDAO $dao
+		 * @var Planque $planque
+		 * @var TypePlanque $typePlanque
+		 */
+		$dao = $this->dao;
+		$planque = (new Deserializer(Planque::class, $this->req->planque))->deserialize();
+		$typePlanque = (new Deserializer(TypePlanque::class, $this->req->planque->typePlanque))->deserialize();
+		$planque->setTypePlanque($typePlanque);
+
         $success = $dao->update($planque);
         return $this->res->prepare(
             Response::OK,
@@ -140,13 +146,16 @@ class PlanqueAPI extends Controller implements CRUD
      */
     public function delete(): Response
     {
-        /**
-         * @var PlanqueDAO $dao
-         * @var Planque $planque
-         */
-        $dao = $this->dao;
-        $deserializer = new Deserializer(Planque::class, $this->req->planque);
-        $planque = $deserializer->deserialize();
+		/**
+		 * @var PlanqueDAO $dao
+		 * @var Planque $planque
+		 * @var TypePlanque $typePlanque
+		 */
+		$dao = $this->dao;
+		$planque = (new Deserializer(Planque::class, $this->req->planque))->deserialize();
+		$typePlanque = (new Deserializer(TypePlanque::class, $this->req->planque->typePlanque))->deserialize();
+		$planque->setTypePlanque($typePlanque);
+
         $success = $dao->delete($planque);
         return $this->res->prepare(
             Response::OK,

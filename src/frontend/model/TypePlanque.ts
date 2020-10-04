@@ -82,7 +82,8 @@ class TypePlanque extends Model implements JsonSerializable, Formattable
 	{
 		return {
 			code: this.getCode(),
-			libelle: this.getLibelle()
+			libelle: this.getLibelle(),
+			description: this.getDescription()
 		};
 	}
 }

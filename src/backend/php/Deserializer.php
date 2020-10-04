@@ -21,26 +21,33 @@ class Deserializer
         $this->data = $data;
     }
 
-    /**
-     * Deserialize the data to a new instance.
-     * @return object|null - The new instance.
-     */
+	/**
+	 * Deserialize the data to a new instance.
+	 * @return object|null - The new instance.
+	 * @throws Exception
+	 */
     public function deserialize()
     {
-        try {
+        try
+		{
             $this->reflection = new ReflectionClass($this->className);
             $this->instance = $this->reflection->newInstance();
-            foreach ($this->data as $key => $value) {
+            foreach ($this->data as $key => $value)
+            {
+            	if (is_object($value)) continue;
                 $prop = $this->reflection->getProperty($key);
                 $prop->setAccessible(true);
-                // gestion dates
-                if (preg_match("/^\d{4}-\d{2}-\d{2}$/", $value)) {
+
+                // DateTime workaround
+                if (preg_match("/^\d{4}-\d{2}-\d{2}$/", $value))
                     $value = new DateTime($value);
-                }
+
                 $prop->setValue($this->instance, $value);
             }
             return $this->instance;
-        } catch (ReflectionException $e) {
+        }
+        catch (ReflectionException $e)
+		{
             print_r($e->getMessage());
         }
         return null;

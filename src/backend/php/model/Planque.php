@@ -61,16 +61,16 @@ class Planque extends Model implements JsonSerializable
     /**
      * Get the value of codePays
      */
-    public function getCodePays(): int
+    public function getCodePays(): ?int
     {
         return $this->codePays;
     }
 
 	/**
 	 * Set the value of codePays
-	 * @param int $codePays
+	 * @param ?int $codePays
 	 */
-    public function setCodePays(int $codePays): void
+    public function setCodePays(?int $codePays): void
     {
         $this->codePays = $codePays;
     }
@@ -101,11 +101,7 @@ class Planque extends Model implements JsonSerializable
             "code" => $this->getCode(),
             "adresse" => $this->getAdresse(),
             "codePays" => $this->getCodePays(),
-            "typePlanque" => [
-            	"code" => $this->getTypePlanque()->getCode(),
-            	"libelle" => $this->getTypePlanque()->getLibelle(),
-            	"desc" => $this->getTypePlanque()->getDescription()
-			]
+            "typePlanque" => $this->getTypePlanque()->jsonSerialize()
         ];
     }
 }
