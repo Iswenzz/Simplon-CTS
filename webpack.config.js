@@ -26,6 +26,18 @@ module.exports = (_, argv) =>
 			transportMode: "ws",
 			port: 3000,
 			hot: true,
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Headers": "*"
+			},
+			proxy: {
+				"/": {
+					// Apache PHP
+					target: "http://localhost",
+					secure: false,
+				},
+			}
 		},
 		plugins: [
 			new CleanWebpackPlugin({
