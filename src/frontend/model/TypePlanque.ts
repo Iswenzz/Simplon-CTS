@@ -11,7 +11,7 @@ class TypePlanque extends Model implements JsonSerializable, Formattable
 	/**
 	 * Initialize a new TypePlanque object.
 	 */
-	public constructor(code: number | null, libelle: string)
+	public constructor(code?: number | null, libelle?: string)
 	{
 		super();
 		this.code = code;
@@ -21,7 +21,8 @@ class TypePlanque extends Model implements JsonSerializable, Formattable
 	/**
 	 * Format the model data.
 	 */
-	public format(): string {
+	public format(): string
+	{
 		return `${this.libelle}: ${this.description}`;
 	}
 

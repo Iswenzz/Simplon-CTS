@@ -26,6 +26,18 @@ module.exports = (_, argv) =>
 			transportMode: "ws",
 			port: 3000,
 			hot: true,
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "*",
+				"Access-Control-Allow-Headers": "*"
+			},
+			proxy: {
+				"/": {
+					// Apache PHP
+					target: "http://localhost",
+					secure: false,
+				},
+			}
 		},
 		plugins: [
 			new CleanWebpackPlugin({
@@ -40,7 +52,7 @@ module.exports = (_, argv) =>
 				chunks: [html],
 				inject: true,
 				favicon: "src/assets/images/icons/favicon-32x32.png",
-				template: `public/${html}.html`,
+				template: `public/${html}.html.ejs`,
 				minify: {
 					collapseWhitespace: true,
 					removeComments: true,

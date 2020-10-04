@@ -1,30 +1,32 @@
 import Formattable from "./Formattable";
 import JsonSerializable from "../util/JsonSerializable";
 import Model from "./Model";
+import TypePlanque from "./TypePlanque";
 
 class Planque extends Model implements JsonSerializable, Formattable
 {
 	private code: number | null;
 	private adresse: string;
 	private codePays: number | null;
-	private codeTypePlanque: number | null;
+	private typePlanque: TypePlanque;
 
 	/**
 	 * Initialize a new Planque object.
 	 */
-	public constructor(code: number | null = null, adresse = "", codePays: number | null = null, codeTypePlanque: number | null = null)
+	public constructor(code: number | null = null, adresse = "", codePays: number | null = null, typePlanque: TypePlanque = null)
 	{
 		super();
 		this.code = code;
 		this.codePays = codePays;
-		this.codeTypePlanque = codeTypePlanque;
+		this.typePlanque = typePlanque;
 		this.adresse = adresse;
 	}
 
 	/**
 	 * Format the model data.
 	 */
-	public format(): string {
+	public format(): string
+	{
 		return `${this.code} (${this.adresse})`;
 	}
 
@@ -77,19 +79,19 @@ class Planque extends Model implements JsonSerializable, Formattable
 	}
 
 	/**
-	 * Get the value of codeTypePlanque
+	 * Get the value of typePlanque
 	 */ 
-	public getCodeTypePlanque(): number
+	public getTypePlanque(): TypePlanque
 	{
-		return this.codeTypePlanque;
+		return this.typePlanque;
 	}
 
 	/**
-	 * Set the value of codeTypePlanque
+	 * Set the value of typePlanque
 	 */ 
-	public setCodeTypePlanque(codeTypePlanque: number): void
+	public setTypePlanque(typePlanque: TypePlanque): void
 	{
-		this.codeTypePlanque = codeTypePlanque;
+		this.typePlanque = typePlanque;
 	}
 
 	/**
@@ -101,7 +103,11 @@ class Planque extends Model implements JsonSerializable, Formattable
 			code: this.getCode(),
 			adresse: this.getAdresse(),
 			codePays: this.getCodePays(),
-			codeTypePlanque: this.getCodeTypePlanque()
+			typePlanque: {
+				code: this.getTypePlanque().getCode(),
+				libelle: this.getTypePlanque().getLibelle(),
+				desc: this.getTypePlanque().getDescription()
+			}
 		};
 	}
 }

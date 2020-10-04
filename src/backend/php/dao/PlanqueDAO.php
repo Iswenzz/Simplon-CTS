@@ -1,16 +1,32 @@
 <?php
 require_once __DIR__ . "/DAO.php";
+require_once __DIR__ . "/DAOFactory.php";
+require_once __DIR__ . "/TypePlanqueDAO.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../model/Planque.php";
+require_once __DIR__ . "/../model/TypePlanque.php";
 
 class PlanqueDAO implements DAO
 {
-    public const SELECT_QUERY = "SELECT codePlanque, adressePlanque, codePays, codeTypePlanque from Planque";
+	public TypePlanqueDAO $typePlanqueDAO;
+    public const SELECT_QUERY = "SELECT codePlanque, adressePlanque, codePays, codeTypePlanque FROM Planque";
     public const SELECT_ONE_QUERY = "SELECT codePlanque, adressePlanque, codePays, codeTypePlanque from Planque WHERE codePlanque = :code";
-    public const SELECT_IN_COUNTRY_QUERY = "SELECT codePlanque, adressePlanque, codePays, codeTypePlanque from Planque WHERE codePays = :code";
-    public const ADD_QUERY = "INSERT INTO Planque (adressePlanque, codePays, codeTypePlanque) VALUES (:adresse, :codePays, :codeTP)";
+    public const ADD_QUERY = "INSERT INTO Planque (adressePlanque, codePays, codeTypePlanque) VALUES (:adresse, :codePays, :typePlanque)";
     public const DELETE_QUERY = "DELETE FROM Planque WHERE codePlanque = :code";
-    public const UPDATE_QUERY = "UPDATE Planque SET adressePlanque = :adresse, codePays = :codePays, codeTypePlanque = :codeTP WHERE codePlanque = :code";
+    public const UPDATE_QUERY = "UPDATE Planque SET adressePlanque = :adresse, codePays = :codePays, codeTypePlanque = :typePlanque WHERE codePlanque = :code";
+
+	/**
+	 * PlanqueDAO constructor.
+	 */
+	public function __construct()
+	{
+		DAOFactory::registerDAO(TypePlanqueDAO::class);
+		/**
+		 * @var TypePlanqueDAO $typePlanqueDAO
+		 */
+		$typePlanqueDAO = DAOFactory::getDAO(TypePlanqueDAO::class);
+		$this->typePlanqueDAO = $typePlanqueDAO;
+    }
 
     /**
      * Fetch all rows to get all Planque objects.
@@ -21,13 +37,14 @@ class PlanqueDAO implements DAO
         $planques = [];
         $stmt = DatabaseFactory::getConnection()->prepare(PlanqueDAO::SELECT_QUERY);
         $stmt->execute();
-        
-        while ($row = $stmt->fetch()) {
+
+        while ($row = $stmt->fetch())
+		{
             $planque = new Planque(
-                (int)$row["codePlanque"],
-                $row["adressePlanque"],
-                (int)$row["codePays"],
-                (int)$row["codeTypePlanque"]
+            	(int)$row["codePlanque"],
+				$row["adressePlanque"],
+				(int)$row["codePays"],
+				$this->typePlanqueDAO->get((int)$row["codeTypePlanque"])
             );
             $planques[] = $planque;
         }
@@ -50,9 +67,9 @@ class PlanqueDAO implements DAO
         while ($row = $stmt->fetch()) {
             $planque = new Planque(
                 (int)$row["codePlanque"],
-                $row["adressePlanque"],
-                (int)$row["codePays"],
-                (int)$row["codeTypePlanque"]
+				$row["adressePlanque"],
+				(int)$row["codePays"],
+				$this->typePlanqueDAO->get((int)$row["codePlanque"])
             );
             $planques[] = $planque;
         }
@@ -74,9 +91,8 @@ class PlanqueDAO implements DAO
         if ($row = $stmt->fetch()) {
             return new Planque(
                 (int)$row["codePlanque"],
-                $row["adressePlanque"],
-                (int)$row["codePays"],
-                (int)$row["codeTypePlanque"]
+				$row["adressePlanque"],
+				(int)$row["codePays"],
             );
         }
         return null;
@@ -94,7 +110,7 @@ class PlanqueDAO implements DAO
             ":code" => $planque->getCode(),
             ":adresse" => $planque->getAdresse(),
             ":codePays" => $planque->getCodePays(),
-            ":codeTP" => $planque->getCodeTypePlanque()
+            ":typePlanque" => $planque->getTypePlanque()
         ]);
     }
 
@@ -123,7 +139,7 @@ class PlanqueDAO implements DAO
             ":code" => $planque->getCode(),
             ":adresse" => $planque->getAdresse(),
             ":codePays" => $planque->getCodePays(),
-            ":codeTP" => $planque->getCodeTypePlanque()
+            ":typePlanque" => $planque->getTypePlanque()
         ]);
         if ($planque->getCode() == null) {
             $planque->setCode(DatabaseFactory::getConnection()->lastInsertId());

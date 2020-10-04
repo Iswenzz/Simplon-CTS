@@ -1,0 +1,57 @@
+<!-- PLANQUES -->
+<article id="hideouts">
+	<div class="row">
+		<!-- LEFT visible-when-connected -->
+		<section class="page col m12 l5">
+			<h3>Planque <span id="hideout-details-code">001</span></h3>
+			<!-- SUBMIT -->
+			<form id="hideout-form" method="POST">
+				<header class="details-header">
+					<section class="controls">
+						<button id="hideout-details-confirm" title="Confirmer la planque" class="btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492">
+								<path d="M484 104.5l-16-16c-5-5-11.8-8-19-8s-14 2.8-19 8L203.5 314.8 62 173.3c-5-5-11.8-8-19-8s-14 2.8-19 8l-16 16c-5 5-8 11.8-8 19s2.8 14 8 19l159.7 159.7c.2.3.4.6.7.8l16 16c5 5 11.8 7.6 19 7.6h.1c7.2 0 14-2.5 19-7.6L484 142.5a27 27 0 0 0 0-38z" />
+							</svg>
+							<span class="sr-only">Confirmer la planque</span>
+						</button>
+					</section>
+				</header>
+				<section>
+					<div>
+						<label for="hideout-adresse">Adresse</label>
+						<input id="hideout-adresse" type="text">
+					</div>
+					<div>
+						<label for="hideout-pays">Pays</label>
+						<select id="hideout-pays"></select>
+					</div>
+					<div>
+						<label for="hideout-type">Type</label>
+						<select id="hideout-type"></select>
+					</div>
+				</section>
+			</form>
+		</section>
+		
+		<!-- RIGHT -->
+		<section id="hideout-list-page" class="page col m12 l5">
+			<!-- changement de page -->
+			<header id="hideout-list-pagination" class="pagination">
+				<button title="Passer à la page précédente" id="hideout-list-previous" class="btn">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.5 444.5">
+						<path d="M213 222.4L352 83.7a35 35 0 0 0 10.6-25.8A35 35 0 0 0 351.9 32l-21.4-21.4A35 35 0 0 0 304.6 0a35 35 0 0 0-25.8 10.6l-186 186a35 35 0 0 0-10.6 25.8 35 35 0 0 0 10.6 25.8l186 186a35 35 0 0 0 25.8 10.6 35 35 0 0 0 25.8-10.6l21.4-21.4a35 35 0 0 0 10.6-25.7 36 36 0 0 0-10.6-26L213 222.4z" />
+					</svg>
+					<span class="sr-only">Passer à la page précédente</span>
+				</button>
+				<button title="Passer à la page suivante" id="hideout-list-next" class="btn">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.8 444.8">
+						<path d="M352 196.7l-186-186A34 34 0 0 0 140.2 0a34 34 0 0 0-25.7 10.8L92.8 32.3A35 35 0 0 0 82.2 58c0 10 3.5 18.6 10.6 26l138.8 138.5L92.8 361.2a35 35 0 0 0-10.6 25.7c0 10 3.5 18.6 10.6 26l21.7 21.4a35 35 0 0 0 25.7 10.6 35 35 0 0 0 25.7-10.6l186-186c7-7.4 10.6-16 10.6-26a35 35 0 0 0-10.6-25.7z" />
+					</svg>
+					<span class="sr-only">Passer à la page suivante</span>
+				</button>
+			</header>
+			<h3>Liste des planques :</h3>
+			<ul id="hideout-list"></ul>
+		</section>
+	</div>
+</article>
