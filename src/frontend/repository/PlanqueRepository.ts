@@ -3,6 +3,7 @@ import Deserializer from "../util/Deserializer";
 import Planque from "../model/Planque";
 import Repository from "./Repository";
 import Pays from "../model/Pays";
+import TypePlanque from "../model/TypePlanque";
 
 export default class PlanqueRepository implements Repository
 {
@@ -11,13 +12,18 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async getAll() : Promise<Planque[]>
 	{
-		const response =  await Axios.post("../src/backend/php/api/PlanqueAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "getAll"
 		});
 
 		const res : Planque[] = [];
-		for (const planque of response.data.body)
-			res.push(new Deserializer(new Planque(), planque).deserialize());
+		for (const planqueData of response.data.body)
+		{
+			const planque: Planque = new Deserializer(new Planque(), planqueData).deserialize();
+			const typePlanque: TypePlanque = new Deserializer(new TypePlanque(), planqueData.typePlanque).deserialize();
+			planque.setTypePlanque(typePlanque);
+			res.push(planque);
+		}
 		return res;
 	}
 
@@ -27,11 +33,15 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async get(model: Planque) : Promise<Planque>
 	{
-		const response =  await Axios.post("../src/backend/php/api/PlanqueAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "get",
 			code: model.getCode()
 		});
-		return new Deserializer(new Planque(), response.data.body).deserialize();
+
+		const planque: Planque = new Deserializer(new Planque(), response.data.body).deserialize();
+		const typePlanque: TypePlanque = new Deserializer(new TypePlanque(), response.data.body.typePlanque).deserialize();
+		planque.setTypePlanque(typePlanque);
+		return planque;
 	}
 
 	/**
@@ -40,7 +50,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async getAllInCountry(pays: Pays) : Promise<Planque[]>
 	{
-		const response =  await Axios.post("../src/backend/php/api/PlanqueAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "getAllInCountry",
 			code: pays.getCode()
 		});
@@ -57,7 +67,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async add(planque: Planque) : Promise<boolean>
 	{
-		const response =  await Axios.post("../src/backend/php/api/PlanqueAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "add",
 			planque: planque.jsonSerialize()
 		});
@@ -70,7 +80,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async delete(planque: Planque) : Promise<boolean>
 	{
-		const response =  await Axios.post("../src/backend/php/api/PlanqueAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "delete",
 			planque: planque.jsonSerialize()
 		});
@@ -83,7 +93,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async update(planque: Planque) : Promise<Planque>
 	{
-		const response =  await Axios.post("../src/backend/php/api/PlanqueAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "update",
 			planque: planque.jsonSerialize()
 		});

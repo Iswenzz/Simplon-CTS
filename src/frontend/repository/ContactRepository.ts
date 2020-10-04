@@ -10,7 +10,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async getAll() : Promise<Contact[]>
 	{
-		const response =  await Axios.post("../src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "getAll"
 		});
 
@@ -26,7 +26,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async get(model: Contact) : Promise<Contact>
 	{
-		const response =  await Axios.post("../src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "get",
 			code: model.getCode()
 		});
@@ -39,7 +39,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async add(contact: Contact) : Promise<boolean>
 	{
-		const response =  await Axios.post("../src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "add",
 			contact: contact.jsonSerialize()
 		});
@@ -52,7 +52,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async delete(contact: Contact) : Promise<boolean>
 	{
-		const response =  await Axios.post("../src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "delete",
 			contact: contact.jsonSerialize()
 		});
@@ -65,7 +65,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async update(contact: Contact) : Promise<Contact>
 	{
-		const response =  await Axios.post("../src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "update",
 			contact: contact.jsonSerialize()
 		});

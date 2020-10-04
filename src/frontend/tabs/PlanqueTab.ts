@@ -1,39 +1,44 @@
 import PlanqueRepository from "../repository/PlanqueRepository";
 import DeleteButton from "../component/DeleteButton";
 import Planque from "../model/Planque";
+import PaysRepository from "../repository/PaysRepository";
+import TypePlanque from "../model/TypePlanque";
 
 export default class PlanqueTab
 {
-	// API Links
 	private readonly planqueRepo: PlanqueRepository;
+	private readonly paysRepo: PaysRepository;
 
 	// inputs
-	private list: HTMLUListElement;
-
-	// outputs
+	private readonly list: HTMLUListElement;
+	private readonly adresse: HTMLInputElement;
+	private readonly pays: HTMLSelectElement;
+	private readonly type: HTMLSelectElement;
 
 	/**
 	 * Initialize a new PlanqueTab.
-	 * @param planqueRepo
-	 * @param view
 	 */
-	public constructor(planqueRepo: PlanqueRepository, view: HTMLElement)
+	public constructor()
 	{
-		this.list = view as HTMLUListElement;
-		this.planqueRepo = planqueRepo;
+		this.list = document.getElementById("hideout-list") as HTMLUListElement;
+		this.adresse = document.getElementById("hideout-adresse") as HTMLInputElement;
+		this.pays = document.getElementById("hideout-pays") as HTMLSelectElement;
+		this.type = document.getElementById("hideout-type") as HTMLSelectElement;
+		this.planqueRepo = new PlanqueRepository();
+		this.paysRepo = new PaysRepository();
 
-		this.listAll();
+		this.initialize();
 	}
 
 	/**
-	 * List all planque in the view element.
+	 * Render the tab content.
 	 */
-	public async listAll(): Promise<void>
+	public async initialize(): Promise<void>
 	{
 		try
 		{
+			// Planques
 			const planques = await this.planqueRepo.getAll();
-			// display all planques gotten from the DB
 			for (const planque of planques)
 			{
 				const item = document.createElement("li") as HTMLLIElement;
@@ -48,6 +53,27 @@ export default class PlanqueTab
 					item, planque, this.planqueRepo);
 				item.append(del.getButton());
 			}
+
+			// Pays
+			const pays = await this.paysRepo.getAll();
+			for (const p of pays)
+			{
+				const item = document.createElement("option") as HTMLOptionElement;
+				item.innerText = p.getLibelle();
+				this.pays.appendChild(item);
+			}
+			M.FormSelect.init(this.pays);
+
+			// Type
+			const typePlanques: Record<string, TypePlanque> = {};
+			planques.forEach((p: Planque) => typePlanques[p.getTypePlanque().getLibelle()] = p.getTypePlanque());
+			for (const typePlanque of Object.values(typePlanques))
+			{
+				const item = document.createElement("option") as HTMLOptionElement;
+				item.innerText = typePlanque.getLibelle();
+				this.type.appendChild(item);
+			}
+			M.FormSelect.init(this.type);
 		}
 		catch (error)
 		{

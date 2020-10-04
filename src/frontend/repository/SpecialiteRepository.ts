@@ -10,7 +10,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async getAll() : Promise<Specialite[]>
 	{
-		const response =  await Axios.post("../src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "getAll"
 		});
 
@@ -26,7 +26,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async get(model: Specialite) : Promise<Specialite>
 	{
-		const response =  await Axios.post("../src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "get",
 			code: model.getCode()
 		});
@@ -39,7 +39,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async add(specialite: Specialite) : Promise<boolean>
 	{
-		const response =  await Axios.post("../src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "add",
 			specialite: specialite.jsonSerialize()
 		});
@@ -52,7 +52,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async delete(specialite: Specialite) : Promise<boolean>
 	{
-		const response =  await Axios.post("../src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "delete",
 			specialite: specialite.jsonSerialize()
 		});
@@ -65,7 +65,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async update(specialite: Specialite) : Promise<Specialite>
 	{
-		const response =  await Axios.post("../src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "update",
 			specialite: specialite.jsonSerialize()
 		});
