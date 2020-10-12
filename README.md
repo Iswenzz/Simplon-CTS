@@ -32,7 +32,7 @@ Il vous est ensuite demandé de créer une interface front-office, accessible à
 
 De plus, il faudra créer une interface back-office, uniquement accessible aux utilisateurs de rôle ADMIN, qui va permettre de gérer la base de données de la bibliothèque. Ce back-office va permettre de lister, créer, modifier et supprimer chaque données des différentes tables, grâce à des formulaires et des tableaux. Il faut que ces pages ne soient pas accessibles à tout le monde ! Il faudra donc créer une page de connexion et de déconnexion (pas de page d'inscription)
 
-Il faut réaliser le projet en programmation orienté objet, de type MVC (Model Vue Controller). Chaque table de la base de données sera représentée par un objet PHP.
+Il faut réaliser le projet en programmation orienté objet, de type MVC (ResponseAPI Vue Controller). Chaque table de la base de données sera représentée par un objet PHP.
 
 __BONUS__:
 * Intégrer un système de pagination sur toutes les listes du site (front-office / back-office)

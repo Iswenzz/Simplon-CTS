@@ -1,4 +1,4 @@
-import Model from "../model/Model";
+import Model from "../model/ResponseAPI";
 import Repository from "../repository/Repository";
 
 export default class DeleteButton<M extends Model, R extends Repository>

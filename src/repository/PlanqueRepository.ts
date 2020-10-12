@@ -1,9 +1,22 @@
 import Axios from "axios";
-import Deserializer from "../util/Deserializer";
-import Planque from "../model/Planque";
 import Repository from "./Repository";
-import Pays from "../model/Pays";
-import TypePlanque from "../model/TypePlanque";
+import {Pays} from "./PaysRepository";
+import ResponseAPI from "./ResponseAPI";
+
+export interface Planque extends ResponseAPI
+{
+	code: number,
+	adresse: string,
+	pays: Pays,
+	typePlanque: TypePlanque
+}
+
+export interface TypePlanque
+{
+	code: number,
+	libelle: string,
+	description: string
+}
 
 export default class PlanqueRepository implements Repository
 {
@@ -15,16 +28,7 @@ export default class PlanqueRepository implements Repository
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "getAll"
 		});
-
-		const res : Planque[] = [];
-		for (const planqueData of response.data.body)
-		{
-			const planque: Planque = new Deserializer(new Planque(), planqueData).deserialize();
-			const typePlanque: TypePlanque = new Deserializer(new TypePlanque(), planqueData.typePlanque).deserialize();
-			planque.setTypePlanque(typePlanque);
-			res.push(planque);
-		}
-		return res;
+		return response.data;
 	}
 
 	/**
@@ -35,13 +39,9 @@ export default class PlanqueRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "get",
-			code: model.getCode()
+			code: model.code
 		});
-
-		const planque: Planque = new Deserializer(new Planque(), response.data.body).deserialize();
-		const typePlanque: TypePlanque = new Deserializer(new TypePlanque(), response.data.body.typePlanque).deserialize();
-		planque.setTypePlanque(typePlanque);
-		return planque;
+		return response.data;
 	}
 
 	/**
@@ -52,18 +52,9 @@ export default class PlanqueRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "getAllInCountry",
-			code: pays.getCode()
+			code: pays.code
 		});
-
-		const res : Planque[] = [];
-		for (const planqueData of response.data.body)
-		{
-			const planque: Planque = new Deserializer(new Planque(), planqueData).deserialize();
-			const typePlanque: TypePlanque = new Deserializer(new TypePlanque(), planqueData.typePlanque).deserialize();
-			planque.setTypePlanque(typePlanque);
-			res.push(planque);
-		}
-		return res;
+		return response.data;
 	}
 
 	/**
@@ -74,7 +65,7 @@ export default class PlanqueRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "add",
-			planque: planque.jsonSerialize()
+			planque: planque
 		});
 		return response.data.success;
 	}
@@ -87,7 +78,7 @@ export default class PlanqueRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "delete",
-			planque: planque.jsonSerialize()
+			planque: planque
 		});
 		return response.data.success;
 	}
@@ -100,7 +91,7 @@ export default class PlanqueRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
 			method: "update",
-			planque: planque.jsonSerialize()
+			planque: planque
 		});
 		return response.data.success;
 	}

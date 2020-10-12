@@ -1,7 +1,32 @@
 import Axios from "axios";
-import Deserializer from "../util/Deserializer";
-import Mission from "../model/Mission";
 import Repository from "./Repository";
+import {Specialite} from "./SpecialiteRepository";
+import ResponseAPI from "./ResponseAPI";
+
+export interface Mission extends ResponseAPI
+{
+	code: number,
+	titre: string,
+	description: string,
+	dateDebut: string,
+	dateFin: string,
+	statut: Statut,
+	type: TypeMission,
+	specialite: Specialite
+}
+
+export interface Statut
+{
+	code: number,
+	libelle: string
+}
+
+export interface TypeMission
+{
+	code: number,
+	libelle: string,
+	description: string
+}
 
 export default class MissionRepository implements Repository
 {
@@ -13,11 +38,7 @@ export default class MissionRepository implements Repository
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
 			method: "getAll"
 		});
-
-		const res : Mission[] = [];
-		for (const mission of response.data.body)
-			res.push(new Deserializer(new Mission(), mission).deserialize());
-		return res;
+		return response.data;
 	}
 
 	/**
@@ -28,9 +49,9 @@ export default class MissionRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
 			method: "get",
-			code: model.getCode()
+			code: model.code
 		});
-		return new Deserializer(new Mission(), response.data.body).deserialize();
+		return response.data;
 	}
 
 	/**
@@ -41,7 +62,7 @@ export default class MissionRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
 			method: "add",
-			mission: mission.jsonSerialize()
+			mission: mission
 		});
 		return response.data.success;
 	}
@@ -54,7 +75,7 @@ export default class MissionRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
 			method: "delete",
-			mission: mission.jsonSerialize()
+			mission: mission
 		});
 		return response.data.success;
 	}
@@ -67,7 +88,7 @@ export default class MissionRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
 			method: "update",
-			mission: mission.jsonSerialize()
+			mission: mission
 		});
 		return response.data.success;
 	}

@@ -1,5 +1,5 @@
 node_modules/
 dist/
 .vscode
-src/backend/php/config/config.php
+server/src/config/config.php
 .idea/workspace.xml

@@ -1,7 +1,15 @@
 import Axios from "axios";
-import Deserializer from "../util/Deserializer";
-import Specialite from "../model/Specialite";
 import Repository from "./Repository";
+import ResponseAPI from "./ResponseAPI";
+import {TypeMission} from "./MissionRepository";
+
+export interface Specialite extends ResponseAPI
+{
+	code: number,
+	libelle: string,
+	typeMission: TypeMission,
+	description: string
+}
 
 export default class SpecialiteRepository implements Repository
 {
@@ -13,11 +21,7 @@ export default class SpecialiteRepository implements Repository
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "getAll"
 		});
-
-		const res : Specialite[] = [];
-		for (const specialite of response.data.body)
-			res.push(new Deserializer(new Specialite(), specialite).deserialize());
-		return res;
+		return response.data;
 	}
 
 	/**
@@ -28,9 +32,9 @@ export default class SpecialiteRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "get",
-			code: model.getCode()
+			code: model.code
 		});
-		return new Deserializer(new Specialite(), response.data.body).deserialize();
+		return response.data;
 	}
 
 	/**
@@ -41,7 +45,7 @@ export default class SpecialiteRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "add",
-			specialite: specialite.jsonSerialize()
+			specialite: specialite
 		});
 		return response.data.success;
 	}
@@ -54,7 +58,7 @@ export default class SpecialiteRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "delete",
-			specialite: specialite.jsonSerialize()
+			specialite: specialite
 		});
 		return response.data.success;
 	}
@@ -67,7 +71,7 @@ export default class SpecialiteRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
 			method: "update",
-			specialite: specialite.jsonSerialize()
+			specialite: specialite
 		});
 		return response.data.success;
 	}

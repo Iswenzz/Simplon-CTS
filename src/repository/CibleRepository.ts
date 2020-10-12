@@ -1,7 +1,16 @@
 import Axios from "axios";
-import Deserializer from "../util/Deserializer";
-import Cible from "../model/Cible";
 import Repository from "./Repository";
+import {Pays} from "./PaysRepository";
+import ResponseAPI from "./ResponseAPI";
+
+export interface Cible extends ResponseAPI
+{
+	code: number,
+	nom: string,
+	prenom: string,
+	dateNaissance: string,
+	pays: Pays
+}
 
 export default class CibleRepository implements Repository
 {
@@ -10,14 +19,10 @@ export default class CibleRepository implements Repository
 	 */
 	public async getAll() : Promise<Cible[]>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
+		const response = await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
 			method: "getAll"
 		});
-
-		const res : Cible[] = [];
-		for (const cible of response.data.body)
-			res.push(new Deserializer(new Cible(), cible).deserialize());
-		return res;
+		return response.data;
 	}
 
 	/**
@@ -28,9 +33,9 @@ export default class CibleRepository implements Repository
 	{
 		const response = await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
 			method: "get",
-			code: model.getCode()
+			code: model.code
 		});
-		return new Deserializer(new Cible(), response.data.body).deserialize();
+		return response.data;
 	}
 
 	/**
@@ -41,7 +46,7 @@ export default class CibleRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
 			method: "add",
-			cible: cible.jsonSerialize()
+			cible: cible
 		});
 		return response.data.success;
 	}
@@ -54,7 +59,7 @@ export default class CibleRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
 			method: "delete",
-			cible: cible.jsonSerialize()
+			cible: cible
 		});
 		return response.data.success;
 	}
@@ -67,7 +72,7 @@ export default class CibleRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
 			method: "update",
-			cible: cible.jsonSerialize()
+			cible: cible
 		});
 		return response.data.success;
 	}

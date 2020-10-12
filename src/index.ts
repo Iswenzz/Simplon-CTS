@@ -9,7 +9,7 @@ import CibleTab from "./tabs/CibleTab";
 import AgentTab from "./tabs/AgentTab";
 import SpecialiteTab from "./tabs/SpecialiteTab";
 import PlanqueTab from "./tabs/PlanqueTab";
-import "../assets/scss/index.scss";
+import "./assets/scss/index.scss";
 import "materialize-css";
 
 document.addEventListener("DOMContentLoaded", async () =>

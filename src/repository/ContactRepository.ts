@@ -1,7 +1,16 @@
 import Axios from "axios";
-import Deserializer from "../util/Deserializer";
-import Contact from "../model/Contact";
 import Repository from "./Repository";
+import {Pays} from "./PaysRepository";
+import ResponseAPI from "./ResponseAPI";
+
+export interface Contact extends ResponseAPI
+{
+	code: number,
+	nom: string,
+	prenom: string,
+	dateNaissance: string,
+	pays: Pays
+}
 
 export default class ContactRepository implements Repository
 {
@@ -13,11 +22,8 @@ export default class ContactRepository implements Repository
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "getAll"
 		});
-
-		const res : Contact[] = [];
-		for (const contact of response.data.body)
-			res.push(new Deserializer(new Contact(), contact).deserialize());
-		return res;
+		console.log(response.data);
+		return response.data;
 	}
 
 	/**
@@ -28,9 +34,9 @@ export default class ContactRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "get",
-			code: model.getCode()
+			code: model.code
 		});
-		return new Deserializer(new Contact(), response.data.body).deserialize();
+		return response.data;
 	}
 
 	/**
@@ -41,7 +47,7 @@ export default class ContactRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "add",
-			contact: contact.jsonSerialize()
+			contact: contact
 		});
 		return response.data.success;
 	}
@@ -54,7 +60,7 @@ export default class ContactRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "delete",
-			contact: contact.jsonSerialize()
+			contact: contact
 		});
 		return response.data.success;
 	}
@@ -67,7 +73,7 @@ export default class ContactRepository implements Repository
 	{
 		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
 			method: "update",
-			contact: contact.jsonSerialize()
+			contact: contact
 		});
 		return response.data.success;
 	}

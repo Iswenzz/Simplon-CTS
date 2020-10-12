@@ -13,7 +13,7 @@ class Response
 	private $data;
 
 	/**
-	 * Initialize a new Response object.
+	 * Initialize a new ResponseAPI object.
 	 * @param int $httpCode - The response code.
 	 * @param bool $success - The success state.
 	 * @param string $message - The response message.
