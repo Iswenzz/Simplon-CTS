@@ -19,7 +19,7 @@ export default class AgentRepository implements Repository
 	 */
 	public async getAll() : Promise<Agent[]>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/AgentAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "getAll"
 		});
 		return response.data;
@@ -31,7 +31,7 @@ export default class AgentRepository implements Repository
 	 */
 	public async get(model: Agent) : Promise<Agent>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/AgentAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "get",
 			code: model.code
 		});
@@ -44,7 +44,7 @@ export default class AgentRepository implements Repository
 	 */
 	public async add(agent: Agent) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/AgentAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "add",
 			agent: agent
 		});
@@ -57,7 +57,7 @@ export default class AgentRepository implements Repository
 	 */
 	public async delete(agent: Agent) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/AgentAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "delete",
 			agent: agent
 		});
@@ -70,7 +70,7 @@ export default class AgentRepository implements Repository
 	 */
 	public async update(agent: Agent) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/AgentAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "update",
 			agent: agent
 		});

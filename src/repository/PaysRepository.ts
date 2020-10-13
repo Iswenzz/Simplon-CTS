@@ -15,7 +15,7 @@ export default class PaysRepository implements Repository
 	 */
 	public async getAll(): Promise<Pays[]>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PaysAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PaysAPI.php`, {
 			method: "getAll"
 		});
 		return response.data;
@@ -27,7 +27,7 @@ export default class PaysRepository implements Repository
 	 */
 	public async get(model: Pays): Promise<Pays>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PaysAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PaysAPI.php`, {
 			method: "get",
 			code: model.code
 		});

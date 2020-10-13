@@ -18,7 +18,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async getAll() : Promise<Specialite[]>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/SpecialiteAPI.php`, {
 			method: "getAll"
 		});
 		return response.data;
@@ -30,7 +30,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async get(model: Specialite) : Promise<Specialite>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/SpecialiteAPI.php`, {
 			method: "get",
 			code: model.code
 		});
@@ -43,7 +43,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async add(specialite: Specialite) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/SpecialiteAPI.php`, {
 			method: "add",
 			specialite: specialite
 		});
@@ -56,7 +56,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async delete(specialite: Specialite) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/SpecialiteAPI.php`, {
 			method: "delete",
 			specialite: specialite
 		});
@@ -69,7 +69,7 @@ export default class SpecialiteRepository implements Repository
 	 */
 	public async update(specialite: Specialite) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/SpecialiteAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/SpecialiteAPI.php`, {
 			method: "update",
 			specialite: specialite
 		});

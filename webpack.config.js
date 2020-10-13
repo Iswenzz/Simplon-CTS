@@ -3,6 +3,7 @@ const StylelintPlugin = require("stylelint-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const DotEnv = require("dotenv-webpack");
 
 module.exports = (_, argv) => 
 {
@@ -40,6 +41,7 @@ module.exports = (_, argv) =>
 			}
 		},
 		plugins: [
+			new DotEnv(),
 			new CleanWebpackPlugin({
 				cleanStaleWebpackAssets: false,
 			}),

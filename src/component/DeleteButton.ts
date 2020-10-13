@@ -1,7 +1,7 @@
-import Model from "../model/ResponseAPI";
 import Repository from "../repository/Repository";
+import ResponseAPI from "../repository/ResponseAPI";
 
-export default class DeleteButton<M extends Model, R extends Repository>
+export default class DeleteButton<M extends ResponseAPI, R extends Repository>
 {
 	private readonly button: HTMLButtonElement;
 

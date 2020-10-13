@@ -101,7 +101,7 @@ class Planque extends Model implements JsonSerializable
             "code" => $this->getCode(),
             "adresse" => $this->getAdresse(),
             "codePays" => $this->getCodePays(),
-            "typePlanque" => $this->getTypePlanque()->jsonSerialize()
+            "typePlanque" => $this->getTypePlanque() ? $this->getTypePlanque()->jsonSerialize() : null
         ];
     }
 }

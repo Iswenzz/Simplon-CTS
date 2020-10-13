@@ -19,7 +19,7 @@ export default class CibleRepository implements Repository
 	 */
 	public async getAll() : Promise<Cible[]>
 	{
-		const response = await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
+		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "getAll"
 		});
 		return response.data;
@@ -31,7 +31,7 @@ export default class CibleRepository implements Repository
 	 */
 	public async get(model: Cible) : Promise<Cible>
 	{
-		const response = await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
+		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "get",
 			code: model.code
 		});
@@ -44,7 +44,7 @@ export default class CibleRepository implements Repository
 	 */
 	public async add(cible: Cible) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "add",
 			cible: cible
 		});
@@ -57,7 +57,7 @@ export default class CibleRepository implements Repository
 	 */
 	public async delete(cible: Cible) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "delete",
 			cible: cible
 		});
@@ -70,7 +70,7 @@ export default class CibleRepository implements Repository
 	 */
 	public async update(cible: Cible) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/CibleAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "update",
 			cible: cible
 		});

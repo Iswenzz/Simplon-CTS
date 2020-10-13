@@ -25,10 +25,10 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async getAll() : Promise<Planque[]>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
+		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "getAll"
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -37,11 +37,11 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async get(model: Planque) : Promise<Planque>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
+		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "get",
 			code: model.code
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -50,11 +50,11 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async getAllInCountry(pays: Pays) : Promise<Planque[]>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
+		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "getAllInCountry",
 			code: pays.code
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -63,7 +63,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async add(planque: Planque) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
+		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "add",
 			planque: planque
 		});
@@ -76,7 +76,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async delete(planque: Planque) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
+		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "delete",
 			planque: planque
 		});
@@ -89,7 +89,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async update(planque: Planque) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/PlanqueAPI.php", {
+		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "update",
 			planque: planque
 		});

@@ -35,7 +35,7 @@ export default class MissionRepository implements Repository
 	 */
 	public async getAll() : Promise<Mission[]>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "getAll"
 		});
 		return response.data;
@@ -47,7 +47,7 @@ export default class MissionRepository implements Repository
 	 */
 	public async get(model: Mission) : Promise<Mission>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "get",
 			code: model.code
 		});
@@ -60,7 +60,7 @@ export default class MissionRepository implements Repository
 	 */
 	public async add(mission: Mission) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "add",
 			mission: mission
 		});
@@ -73,7 +73,7 @@ export default class MissionRepository implements Repository
 	 */
 	public async delete(mission: Mission) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "delete",
 			mission: mission
 		});
@@ -86,7 +86,7 @@ export default class MissionRepository implements Repository
 	 */
 	public async update(mission: Mission) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/MissionAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "update",
 			mission: mission
 		});

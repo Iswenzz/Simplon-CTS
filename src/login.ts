@@ -12,7 +12,7 @@ form.addEventListener("submit", async (ev) =>
 
 	try {
 		// TODO : passage en prod => mettre un URL absolu par rapport au serveur hébergeur
-		const response = await Axios.post("http://localhost:80/~alexisn/simplon_php_sql/courses/tp1/server/src/api/ConnectionAPI.php", {
+		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ConnectionAPI.php`, {
 			"mail": mailInput.value,
 			"motDePasse": pwdInput.value
 		});

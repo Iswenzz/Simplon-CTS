@@ -19,7 +19,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async getAll() : Promise<Contact[]>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post("${process.env.BACKEND_URL}/api/ContactAPI.php", {
 			method: "getAll"
 		});
 		console.log(response.data);
@@ -32,7 +32,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async get(model: Contact) : Promise<Contact>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
 			method: "get",
 			code: model.code
 		});
@@ -45,7 +45,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async add(contact: Contact) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
 			method: "add",
 			contact: contact
 		});
@@ -58,7 +58,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async delete(contact: Contact) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
 			method: "delete",
 			contact: contact
 		});
@@ -71,7 +71,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async update(contact: Contact) : Promise<boolean>
 	{
-		const response =  await Axios.post("http://localhost:3000/simplon_php_sql/courses/tp1/src/backend/php/api/ContactAPI.php", {
+		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
 			method: "update",
 			contact: contact
 		});
