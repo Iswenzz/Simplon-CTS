@@ -53,26 +53,26 @@ export default class PlanqueTab
 				item.append(del.getButton());
 			}
 
-			// // Pays
-			// const pays = await this.paysRepo.getAll();
-			// for (const p of pays)
-			// {
-			// 	const item = document.createElement("option") as HTMLOptionElement;
-			// 	item.innerText = p.libelle;
-			// 	this.pays.appendChild(item);
-			// }
-			// M.FormSelect.init(this.pays);
-			//
-			// // Type
-			// const typePlanques: Record<string, TypePlanque> = {};
-			// planques.forEach((p: Planque) => typePlanques[p.typePlanque.libelle] = p.typePlanque);
-			// for (const typePlanque of Object.values(typePlanques))
-			// {
-			// 	const item = document.createElement("option") as HTMLOptionElement;
-			// 	item.innerText = typePlanque.libelle;
-			// 	this.type.appendChild(item);
-			// }
-			// M.FormSelect.init(this.type);
+			// Pays
+			const pays = await this.paysRepo.getAll();
+			for (const p of pays)
+			{
+				const item = document.createElement("option") as HTMLOptionElement;
+				item.innerText = p.libelle;
+				this.pays.appendChild(item);
+			}
+			M.FormSelect.init(this.pays);
+
+			// Type
+			const typePlanques: Record<string, TypePlanque> = {};
+			planques.forEach((p: Planque) => typePlanques[p.typePlanque.libelle] = p.typePlanque);
+			for (const typePlanque of Object.values(typePlanques))
+			{
+				const item = document.createElement("option") as HTMLOptionElement;
+				item.innerText = typePlanque.libelle;
+				this.type.appendChild(item);
+			}
+			M.FormSelect.init(this.type);
 		}
 		catch (error)
 		{

@@ -8,4 +8,5 @@ DAOFactory::registerDAO(PlanqueDAO::class);
  * @var PlanqueDAO $planqueDAO
  */
 $planqueDAO = DAOFactory::getDAO(PlanqueDAO::class);
-var_dump($planqueDAO->getAll());
+$result = $planqueDAO->getAll();
+var_dump($result);

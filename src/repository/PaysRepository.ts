@@ -1,8 +1,9 @@
-import Axios from "axios";
+import Axios, {AxiosResponse} from "axios";
 import Repository from "./Repository";
 import ResponseAPI from "./ResponseAPI";
+import Model from "./Model";
 
-export interface Pays extends ResponseAPI
+export interface Pays extends Model
 {
 	code: number,
 	libelle: string
@@ -15,10 +16,10 @@ export default class PaysRepository implements Repository
 	 */
 	public async getAll(): Promise<Pays[]>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PaysAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Pays[]>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PaysAPI.php`, {
 			method: "getAll"
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -27,11 +28,11 @@ export default class PaysRepository implements Repository
 	 */
 	public async get(model: Pays): Promise<Pays>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PaysAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Pays>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PaysAPI.php`, {
 			method: "get",
 			code: model.code
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**

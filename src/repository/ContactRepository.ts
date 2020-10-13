@@ -1,9 +1,10 @@
-import Axios from "axios";
+import Axios, {AxiosResponse} from "axios";
 import Repository from "./Repository";
 import {Pays} from "./PaysRepository";
 import ResponseAPI from "./ResponseAPI";
+import Model from "./Model";
 
-export interface Contact extends ResponseAPI
+export interface Contact extends Model
 {
 	code: number,
 	nom: string,
@@ -19,11 +20,10 @@ export default class ContactRepository implements Repository
 	 */
 	public async getAll() : Promise<Contact[]>
 	{
-		const response =  await Axios.post("${process.env.BACKEND_URL}/api/ContactAPI.php", {
+		const response: AxiosResponse<ResponseAPI<Contact[]>> = await Axios.post("${process.env.BACKEND_URL}/api/ContactAPI.php", {
 			method: "getAll"
 		});
-		console.log(response.data);
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -32,11 +32,11 @@ export default class ContactRepository implements Repository
 	 */
 	public async get(model: Contact) : Promise<Contact>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Contact>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
 			method: "get",
 			code: model.code
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -45,7 +45,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async add(contact: Contact) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Contact>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
 			method: "add",
 			contact: contact
 		});
@@ -58,7 +58,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async delete(contact: Contact) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Contact>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
 			method: "delete",
 			contact: contact
 		});
@@ -71,7 +71,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async update(contact: Contact) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Contact>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
 			method: "update",
 			contact: contact
 		});

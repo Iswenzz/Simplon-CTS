@@ -1,9 +1,10 @@
-import Axios from "axios";
+import Axios, {AxiosResponse} from "axios";
 import Repository from "./Repository";
 import {Specialite} from "./SpecialiteRepository";
 import ResponseAPI from "./ResponseAPI";
+import Model from "./Model";
 
-export interface Mission extends ResponseAPI
+export interface Mission extends Model
 {
 	code: number,
 	titre: string,
@@ -15,13 +16,13 @@ export interface Mission extends ResponseAPI
 	specialite: Specialite
 }
 
-export interface Statut
+export interface Statut extends Model
 {
 	code: number,
 	libelle: string
 }
 
-export interface TypeMission
+export interface TypeMission extends Model
 {
 	code: number,
 	libelle: string,
@@ -35,10 +36,10 @@ export default class MissionRepository implements Repository
 	 */
 	public async getAll() : Promise<Mission[]>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Mission[]>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "getAll"
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -47,11 +48,11 @@ export default class MissionRepository implements Repository
 	 */
 	public async get(model: Mission) : Promise<Mission>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Mission>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "get",
 			code: model.code
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -60,7 +61,7 @@ export default class MissionRepository implements Repository
 	 */
 	public async add(mission: Mission) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Mission>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "add",
 			mission: mission
 		});
@@ -73,7 +74,7 @@ export default class MissionRepository implements Repository
 	 */
 	public async delete(mission: Mission) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Mission>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "delete",
 			mission: mission
 		});
@@ -86,7 +87,7 @@ export default class MissionRepository implements Repository
 	 */
 	public async update(mission: Mission) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Mission>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/MissionAPI.php`, {
 			method: "update",
 			mission: mission
 		});

@@ -1,9 +1,10 @@
-import Axios from "axios";
+import Axios, {AxiosResponse} from "axios";
 import Repository from "./Repository";
 import {Pays} from "./PaysRepository";
 import ResponseAPI from "./ResponseAPI";
+import Model from "./Model";
 
-export interface Planque extends ResponseAPI
+export interface Planque extends Model
 {
 	code: number,
 	adresse: string,
@@ -25,7 +26,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async getAll() : Promise<Planque[]>
 	{
-		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Planque[]>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "getAll"
 		});
 		return response.data.body;
@@ -37,7 +38,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async get(model: Planque) : Promise<Planque>
 	{
-		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Planque>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "get",
 			code: model.code
 		});
@@ -50,7 +51,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async getAllInCountry(pays: Pays) : Promise<Planque[]>
 	{
-		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Planque[]>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "getAllInCountry",
 			code: pays.code
 		});
@@ -63,7 +64,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async add(planque: Planque) : Promise<boolean>
 	{
-		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Planque>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "add",
 			planque: planque
 		});
@@ -76,7 +77,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async delete(planque: Planque) : Promise<boolean>
 	{
-		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Planque>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "delete",
 			planque: planque
 		});
@@ -89,7 +90,7 @@ export default class PlanqueRepository implements Repository
 	 */
 	public async update(planque: Planque) : Promise<boolean>
 	{
-		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Planque>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/PlanqueAPI.php`, {
 			method: "update",
 			planque: planque
 		});

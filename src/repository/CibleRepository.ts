@@ -1,9 +1,10 @@
-import Axios from "axios";
+import Axios, {AxiosResponse} from "axios";
 import Repository from "./Repository";
 import {Pays} from "./PaysRepository";
 import ResponseAPI from "./ResponseAPI";
+import Model from "./Model";
 
-export interface Cible extends ResponseAPI
+export interface Cible extends Model
 {
 	code: number,
 	nom: string,
@@ -19,10 +20,10 @@ export default class CibleRepository implements Repository
 	 */
 	public async getAll() : Promise<Cible[]>
 	{
-		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Cible[]>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "getAll"
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -31,11 +32,11 @@ export default class CibleRepository implements Repository
 	 */
 	public async get(model: Cible) : Promise<Cible>
 	{
-		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Cible>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "get",
 			code: model.code
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -44,7 +45,7 @@ export default class CibleRepository implements Repository
 	 */
 	public async add(cible: Cible) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Cible>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "add",
 			cible: cible
 		});
@@ -57,7 +58,7 @@ export default class CibleRepository implements Repository
 	 */
 	public async delete(cible: Cible) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Cible>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "delete",
 			cible: cible
 		});
@@ -70,7 +71,7 @@ export default class CibleRepository implements Repository
 	 */
 	public async update(cible: Cible) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Cible>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/CibleAPI.php`, {
 			method: "update",
 			cible: cible
 		});

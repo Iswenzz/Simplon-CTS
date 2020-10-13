@@ -1,8 +1,11 @@
 /**
  * Default API ResponseAPI
  */
-export default interface ResponseAPI
+import Model from "./Model";
+
+export default interface ResponseAPI<T extends Model>
 {
 	success?: boolean,
+	body: T,
 	error?: string
 }

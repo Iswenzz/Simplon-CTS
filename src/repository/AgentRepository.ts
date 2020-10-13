@@ -1,9 +1,10 @@
-import Axios from "axios";
+import Axios, {AxiosResponse} from "axios";
 import Repository from "./Repository";
 import ResponseAPI from "./ResponseAPI";
 import {Pays} from "./PaysRepository";
+import Model from "./Model";
 
-export interface Agent extends ResponseAPI
+export interface Agent extends Model
 {
 	code: number,
 	nom: string,
@@ -19,10 +20,10 @@ export default class AgentRepository implements Repository
 	 */
 	public async getAll() : Promise<Agent[]>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Agent[]>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "getAll"
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -31,11 +32,11 @@ export default class AgentRepository implements Repository
 	 */
 	public async get(model: Agent) : Promise<Agent>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Agent>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "get",
 			code: model.code
 		});
-		return response.data;
+		return response.data.body;
 	}
 
 	/**
@@ -44,11 +45,11 @@ export default class AgentRepository implements Repository
 	 */
 	public async add(agent: Agent) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Agent>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "add",
 			agent: agent
 		});
-		return response.data;
+		return response.data.success;
 	}
 
 	/**
@@ -57,11 +58,11 @@ export default class AgentRepository implements Repository
 	 */
 	public async delete(agent: Agent) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Agent>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "delete",
 			agent: agent
 		});
-		return response.data.sucess;
+		return response.data.success;
 	}
 
 	/**
@@ -70,7 +71,7 @@ export default class AgentRepository implements Repository
 	 */
 	public async update(agent: Agent) : Promise<boolean>
 	{
-		const response =  await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
+		const response: AxiosResponse<ResponseAPI<Agent>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/AgentAPI.php`, {
 			method: "update",
 			agent: agent
 		});
