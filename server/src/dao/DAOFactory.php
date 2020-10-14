@@ -8,13 +8,13 @@ class DAOFactory
 	/**
 	 * Get a DAO object instance from the specified class name.
 	 * @param string $class - The DAO class name to get.
+	 * @return DAO
 	 */
 	public static function getDAO(string $class): DAO
 	{
-		$result = DAOFactory::$daoMap[$class];
-		if (!$result)
+		if (!array_key_exists($class, DAOFactory::$daoMap))
 			throw new RuntimeException("DAO for class " . $class . " is not implemented.");
-		return $result;
+		return DAOFactory::$daoMap[$class];
 	}
 
 	/**
@@ -23,14 +23,9 @@ class DAOFactory
 	 */
 	public static function registerDAO(string $class): void
 	{
-		/**
-		 * @var DAO $dao
-		 */
-		$dao = new $class;
-		if (array_key_exists($dao->getClassName(), DAOFactory::$daoMap))
+		if (array_key_exists($class, DAOFactory::$daoMap))
 			throw new RuntimeException("DAO for class " . $class . " already exists.");
-		else
-			DAOFactory::$daoMap[$class] = $dao;
+		DAOFactory::$daoMap[$class] = new $class;
 	}
 
 	/**

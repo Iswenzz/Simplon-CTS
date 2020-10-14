@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/DAO.php";
 require_once __DIR__ . "/DAOFactory.php";
+require_once __DIR__ . "/PaysDAO.php";
 require_once __DIR__ . "/TypePlanqueDAO.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../model/Planque.php";
@@ -8,7 +9,9 @@ require_once __DIR__ . "/../model/TypePlanque.php";
 
 class PlanqueDAO implements DAO
 {
+	public PaysDAO $paysDAO;
 	public TypePlanqueDAO $typePlanqueDAO;
+
     public const SELECT_QUERY = "SELECT codePlanque, adressePlanque, codePays, codeTypePlanque FROM Planque";
     public const SELECT_ONE_QUERY = "SELECT codePlanque, adressePlanque, codePays, codeTypePlanque from Planque WHERE codePlanque = :code";
     public const ADD_QUERY = "INSERT INTO Planque (adressePlanque, codePays, codeTypePlanque) VALUES (:adresse, :codePays, :typePlanque)";
@@ -21,11 +24,15 @@ class PlanqueDAO implements DAO
 	public function __construct()
 	{
 		DAOFactory::registerDAO(TypePlanqueDAO::class);
+		DAOFactory::registerDAO(PaysDAO::class);
 		/**
+		 * @var PaysDAO $paysDAO
 		 * @var TypePlanqueDAO $typePlanqueDAO
 		 */
 		$typePlanqueDAO = DAOFactory::getDAO(TypePlanqueDAO::class);
+		$paysDAO = DAOFactory::getDAO(PaysDAO::class);
 		$this->typePlanqueDAO = $typePlanqueDAO;
+		$this->paysDAO = $paysDAO;
     }
 
     /**
@@ -43,7 +50,7 @@ class PlanqueDAO implements DAO
             $planque = new Planque(
             	(int)$row["codePlanque"],
 				$row["adressePlanque"],
-				(int)$row["codePays"],
+				$this->paysDAO->get((int)$row["codePays"]),
 				$this->typePlanqueDAO->get((int)$row["codeTypePlanque"])
             );
             $planques[] = $planque;
@@ -68,7 +75,7 @@ class PlanqueDAO implements DAO
             $planque = new Planque(
                 (int)$row["codePlanque"],
 				$row["adressePlanque"],
-				(int)$row["codePays"],
+				$this->paysDAO->get((int)$row["codePays"]),
 				$this->typePlanqueDAO->get((int)$row["codePlanque"])
             );
             $planques[] = $planque;
@@ -92,7 +99,7 @@ class PlanqueDAO implements DAO
             return new Planque(
                 (int)$row["codePlanque"],
 				$row["adressePlanque"],
-				(int)$row["codePays"],
+				$this->paysDAO->get((int)$row["codePays"]),
             );
         }
         return null;
@@ -109,7 +116,7 @@ class PlanqueDAO implements DAO
         return $stmt->execute([
             ":code" => $planque->getCode(),
             ":adresse" => $planque->getAdresse(),
-            ":codePays" => $planque->getCodePays(),
+            ":codePays" => $planque->getPays(),
             ":typePlanque" => $planque->getTypePlanque()
         ]);
     }
@@ -138,7 +145,7 @@ class PlanqueDAO implements DAO
         $res = $stmt->execute([
             ":code" => $planque->getCode(),
             ":adresse" => $planque->getAdresse(),
-            ":codePays" => $planque->getCodePays(),
+            ":codePays" => $planque->getPays(),
             ":typePlanque" => $planque->getTypePlanque()
         ]);
         if ($planque->getCode() == null) {
