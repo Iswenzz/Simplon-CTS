@@ -116,8 +116,8 @@ class PlanqueDAO implements DAO
         return $stmt->execute([
             ":code" => $planque->getCode(),
             ":adresse" => $planque->getAdresse(),
-            ":codePays" => $planque->getPays(),
-            ":typePlanque" => $planque->getTypePlanque()
+            ":codePays" => $planque->getPays()->getCode(),
+            ":typePlanque" => $planque->getTypePlanque()->getCode()
         ]);
     }
 
@@ -145,8 +145,8 @@ class PlanqueDAO implements DAO
         $res = $stmt->execute([
             ":code" => $planque->getCode(),
             ":adresse" => $planque->getAdresse(),
-            ":codePays" => $planque->getPays(),
-            ":typePlanque" => $planque->getTypePlanque()
+            ":codePays" => $planque->getPays()->getCode(),
+            ":typePlanque" => $planque->getTypePlanque()->getCode()
         ]);
         if ($planque->getCode() == null) {
             $planque->setCode(DatabaseFactory::getConnection()->lastInsertId());

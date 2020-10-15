@@ -11,7 +11,7 @@ export default class PlanqueTab
 	private readonly paysRepo: PaysRepository;
 
 	private readonly list: HTMLUListElement;
-	private readonly code: HTMLSpanElement;
+	private readonly code: HTMLHeadingElement;
 	private readonly adresse: HTMLInputElement;
 	private readonly pays: HTMLSelectElement;
 	private readonly type: HTMLSelectElement;
@@ -22,12 +22,17 @@ export default class PlanqueTab
 	public constructor()
 	{
 		this.list = document.getElementById("hideout-list") as HTMLUListElement;
-		this.code = document.getElementById("hideout-details-code") as HTMLSpanElement;
+		this.code = document.getElementById("hideout-header") as HTMLHeadingElement;
 		this.adresse = document.getElementById("hideout-adresse") as HTMLInputElement;
 		this.pays = document.getElementById("hideout-pays") as HTMLSelectElement;
 		this.type = document.getElementById("hideout-type") as HTMLSelectElement;
 		this.planqueRepo = new PlanqueRepository();
 		this.paysRepo = new PaysRepository();
+
+		this.adresse.value = "";
+		this.pays.value = null;
+		this.type.value = null;
+		document.getElementById("hideout-form").addEventListener("submit", this.submitModel.bind(this));
 
 		this.initialize();
 	}
@@ -41,6 +46,7 @@ export default class PlanqueTab
 		{
 			// Planques
 			this.planques = await this.planqueRepo.getAll();
+			this.list.innerHTML = "";
 			for (const planque of this.planques)
 			{
 				const item = document.createElement("li") as HTMLLIElement;
@@ -59,6 +65,7 @@ export default class PlanqueTab
 
 			// Pays
 			const pays = await this.paysRepo.getAll();
+			this.pays.innerHTML = "";
 			for (const p of pays)
 			{
 				const item = document.createElement("option") as HTMLOptionElement;
@@ -70,6 +77,7 @@ export default class PlanqueTab
 			// Type
 			const typePlanques: Record<string, TypePlanque> = {};
 			this.planques.forEach((p: Planque) => typePlanques[p.typePlanque.libelle] = p.typePlanque);
+			this.type.innerHTML = "";
 			for (const typePlanque of Object.values(typePlanques))
 			{
 				const item = document.createElement("option") as HTMLOptionElement;
@@ -85,11 +93,39 @@ export default class PlanqueTab
 	}
 
 	/**
+	 * Update the selected model data and send it to the backend.
+	 */
+	public submitModel(e: Event): void
+	{
+		e.preventDefault();
+		if (!this.selectedPlanque) return;
+
+		this.selectedPlanque.adresse = this.adresse.value;
+
+		if (!this.pays.selectedOptions[0]) return;
+		this.selectedPlanque.pays = {
+			...this.selectedPlanque.pays,
+			code: this.pays.selectedIndex,
+			libelle: this.pays.selectedOptions[0].value,
+		};
+
+		if (!this.type.selectedOptions[0]) return;
+		this.selectedPlanque.typePlanque = {
+			...this.selectedPlanque.typePlanque,
+			code: this.type.selectedIndex,
+			libelle: this.type.selectedOptions[0].value,
+		};
+
+		this.planqueRepo.update(this.selectedPlanque);
+		this.initialize();
+	}
+
+	/**
 	 * Render the entry to the DOM.
 	 */
 	public renderEntryView(): void
 	{
-		this.code.innerText = this.selectedPlanque.code.toString();
+		this.code.innerText = `Planque ${this.selectedPlanque.code}`;
 		this.adresse.value = this.selectedPlanque.adresse;
 		this.pays.childNodes.forEach((i: HTMLOptionElement) => i.selected =
 			i.value === this.selectedPlanque.pays?.libelle);

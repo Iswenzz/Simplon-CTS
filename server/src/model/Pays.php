@@ -9,7 +9,7 @@ class Pays extends Model implements JsonSerializable
 	/**
 	 * Initialize a new Pays object.
 	 */
-	public function __construct(?int $code, string $libelle)
+	public function __construct(?int $code = null, string $libelle = "")
 	{
 		$this->code = $code;
 		$this->libelle = $libelle;

@@ -125,11 +125,17 @@ class PlanqueAPI extends Controller implements CRUD
 		/**
 		 * @var PlanqueDAO $dao
 		 * @var Planque $planque
+		 * @var Pays $pays
 		 * @var TypePlanque $typePlanque
 		 */
 		$dao = $this->dao;
-		$planque = (new Deserializer(Planque::class, $this->req->planque))->deserialize();
-		$typePlanque = (new Deserializer(TypePlanque::class, $this->req->planque->typePlanque))->deserialize();
+		$planque = (new Deserializer(Planque::class,
+			$this->req->planque))->deserialize();
+		$pays = (new Deserializer(Pays::class,
+			$this->req->planque->pays))->deserialize();
+		$typePlanque = (new Deserializer(TypePlanque::class,
+			$this->req->planque->typePlanque))->deserialize();
+		$planque->setPays($pays);
 		$planque->setTypePlanque($typePlanque);
 
         $success = $dao->update($planque);
