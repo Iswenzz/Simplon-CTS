@@ -79,7 +79,7 @@ export default class PlanqueTab implements Tab<Planque>
 				item.setAttribute("data-libelle", p.libelle);
 				this.pays.appendChild(item);
 			}
-			M.FormSelect.init(this.pays);
+			M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
 
 			// Type
 			const typePlanques: Record<string, TypePlanque> = {};
@@ -93,7 +93,7 @@ export default class PlanqueTab implements Tab<Planque>
 				item.setAttribute("data-libelle", typePlanque.libelle);
 				this.type.appendChild(item);
 			}
-			M.FormSelect.init(this.type);
+			M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
 		}
 		catch (error)
 		{
@@ -145,10 +145,10 @@ export default class PlanqueTab implements Tab<Planque>
 		this.adresse.value = this.selected?.adresse ?? "";
 		this.pays.childNodes.forEach((i: HTMLOptionElement) => i.selected =
 			i.value === this.selected?.pays?.libelle);
-		M.FormSelect.init(this.pays);
+		M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
 		this.type.childNodes.forEach((i: HTMLOptionElement) => i.selected =
 			i.value === this.selected?.typePlanque?.libelle);
-		M.FormSelect.init(this.type);
+		M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
 	}
 
 	/**

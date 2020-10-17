@@ -13,7 +13,7 @@ input {
 }
 
 canvas {
-	z-index: -1;
+	z-index: -2;
 	display: block;
 	position: fixed;
 	top: 0;
@@ -30,6 +30,7 @@ main {
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
+		z-index: -1 !important;
 
 		.col {
 			margin: 0 !important;
@@ -128,6 +129,7 @@ button {
 .details-header {
 	display: flex;
 	justify-content: space-between;
+	margin: 0.5em 0;
 }
 
 .controls {
