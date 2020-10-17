@@ -53,7 +53,7 @@ export default class PlanqueTab
 				item.innerText = `${planque.code} ${planque.adresse}`;
 				this.list.append(item);
 
-				item.setAttribute("data-id", planque.code.toString());
+				item.setAttribute("data-code", planque.code.toString());
 				item.classList.add("list-item");
 				item.addEventListener("click", this.onEntryClick.bind(this, item));
 
@@ -70,6 +70,8 @@ export default class PlanqueTab
 			{
 				const item = document.createElement("option") as HTMLOptionElement;
 				item.innerText = p.libelle;
+				item.setAttribute("data-code", p.code.toString());
+				item.setAttribute("data-libelle", p.libelle);
 				this.pays.appendChild(item);
 			}
 			M.FormSelect.init(this.pays);
@@ -82,6 +84,8 @@ export default class PlanqueTab
 			{
 				const item = document.createElement("option") as HTMLOptionElement;
 				item.innerText = typePlanque.libelle;
+				item.setAttribute("data-code", typePlanque.code.toString());
+				item.setAttribute("data-libelle", typePlanque.libelle);
 				this.type.appendChild(item);
 			}
 			M.FormSelect.init(this.type);
@@ -95,7 +99,7 @@ export default class PlanqueTab
 	/**
 	 * Update the selected model data and send it to the backend.
 	 */
-	public submitModel(e: Event): void
+	public async submitModel(e: Event): Promise<void>
 	{
 		e.preventDefault();
 		if (!this.selectedPlanque) return;
@@ -105,19 +109,20 @@ export default class PlanqueTab
 		if (!this.pays.selectedOptions[0]) return;
 		this.selectedPlanque.pays = {
 			...this.selectedPlanque.pays,
-			code: this.pays.selectedIndex,
-			libelle: this.pays.selectedOptions[0].value,
+			code: parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10),
+			libelle: this.pays.selectedOptions[0].getAttribute("data-libelle")
 		};
 
 		if (!this.type.selectedOptions[0]) return;
 		this.selectedPlanque.typePlanque = {
 			...this.selectedPlanque.typePlanque,
-			code: this.type.selectedIndex,
-			libelle: this.type.selectedOptions[0].value,
+			code: parseInt(this.type.selectedOptions[0].getAttribute("data-code"), 10),
+			libelle: this.type.selectedOptions[0].getAttribute("data-libelle")
 		};
 
-		this.planqueRepo.update(this.selectedPlanque);
-		this.initialize();
+		await this.planqueRepo.update(this.selectedPlanque);
+		await this.initialize();
+		this.renderEntryView();
 	}
 
 	/**
@@ -133,7 +138,6 @@ export default class PlanqueTab
 		this.type.childNodes.forEach((i: HTMLOptionElement) => i.selected =
 			i.value === this.selectedPlanque.typePlanque?.libelle);
 		M.FormSelect.init(this.type);
-		console.log(this.selectedPlanque);
 	}
 
 	/**
@@ -142,7 +146,7 @@ export default class PlanqueTab
 	 */
 	public onEntryClick(sender: HTMLLIElement): void
 	{
-		const idx: number = parseInt(sender.getAttribute("data-id"), 10);
+		const idx: number = parseInt(sender.getAttribute("data-code"), 10);
 		this.selectedPlanque = this.planques.find(p => p.code === idx);
 		this.renderEntryView();
 	}

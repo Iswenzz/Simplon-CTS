@@ -113,6 +113,7 @@ class PlanqueDAO implements DAO
     public function update($planque): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(PlanqueDAO::UPDATE_QUERY);
+        var_dump($planque);
         return $stmt->execute([
             ":code" => $planque->getCode(),
             ":adresse" => $planque->getAdresse(),
