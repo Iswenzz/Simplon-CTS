@@ -1,11 +1,12 @@
 import PlanqueRepository, {Planque, TypePlanque} from "../repository/PlanqueRepository";
 import DeleteButton from "../component/DeleteButton";
 import PaysRepository from "../repository/PaysRepository";
+import Tab from "./Tab";
 
-export default class PlanqueTab
+export default class PlanqueTab implements Tab<Planque>
 {
-	public selectedPlanque: Planque;
-	public planques: Planque[];
+	public selected: Planque;
+	public models: Planque[];
 
 	private readonly planqueRepo: PlanqueRepository;
 	private readonly paysRepo: PaysRepository;
@@ -45,9 +46,9 @@ export default class PlanqueTab
 		try
 		{
 			// Planques
-			this.planques = await this.planqueRepo.getAll();
+			this.models = await this.planqueRepo.getAll();
 			this.list.innerHTML = "";
-			for (const planque of this.planques)
+			for (const planque of this.models)
 			{
 				const item = document.createElement("li") as HTMLLIElement;
 				item.innerText = `${planque.code} ${planque.adresse}`;
@@ -78,7 +79,7 @@ export default class PlanqueTab
 
 			// Type
 			const typePlanques: Record<string, TypePlanque> = {};
-			this.planques.forEach((p: Planque) => typePlanques[p.typePlanque.libelle] = p.typePlanque);
+			this.models.forEach((p: Planque) => typePlanques[p.typePlanque.libelle] = p.typePlanque);
 			this.type.innerHTML = "";
 			for (const typePlanque of Object.values(typePlanques))
 			{
@@ -102,25 +103,25 @@ export default class PlanqueTab
 	public async submitModel(e: Event): Promise<void>
 	{
 		e.preventDefault();
-		if (!this.selectedPlanque) return;
+		if (!this.selected) return;
 
-		this.selectedPlanque.adresse = this.adresse.value;
+		this.selected.adresse = this.adresse.value;
 
 		if (!this.pays.selectedOptions[0]) return;
-		this.selectedPlanque.pays = {
-			...this.selectedPlanque.pays,
+		this.selected.pays = {
+			...this.selected.pays,
 			code: parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10),
 			libelle: this.pays.selectedOptions[0].getAttribute("data-libelle")
 		};
 
 		if (!this.type.selectedOptions[0]) return;
-		this.selectedPlanque.typePlanque = {
-			...this.selectedPlanque.typePlanque,
+		this.selected.typePlanque = {
+			...this.selected.typePlanque,
 			code: parseInt(this.type.selectedOptions[0].getAttribute("data-code"), 10),
 			libelle: this.type.selectedOptions[0].getAttribute("data-libelle")
 		};
 
-		await this.planqueRepo.update(this.selectedPlanque);
+		await this.planqueRepo.update(this.selected);
 		await this.initialize();
 		this.renderEntryView();
 	}
@@ -130,13 +131,13 @@ export default class PlanqueTab
 	 */
 	public renderEntryView(): void
 	{
-		this.code.innerText = `Planque ${this.selectedPlanque.code}`;
-		this.adresse.value = this.selectedPlanque.adresse;
+		this.code.innerText = `Planque ${this.selected.code}`;
+		this.adresse.value = this.selected.adresse;
 		this.pays.childNodes.forEach((i: HTMLOptionElement) => i.selected =
-			i.value === this.selectedPlanque.pays?.libelle);
+			i.value === this.selected.pays?.libelle);
 		M.FormSelect.init(this.pays);
 		this.type.childNodes.forEach((i: HTMLOptionElement) => i.selected =
-			i.value === this.selectedPlanque.typePlanque?.libelle);
+			i.value === this.selected.typePlanque?.libelle);
 		M.FormSelect.init(this.type);
 	}
 
@@ -147,7 +148,7 @@ export default class PlanqueTab
 	public onEntryClick(sender: HTMLLIElement): void
 	{
 		const idx: number = parseInt(sender.getAttribute("data-code"), 10);
-		this.selectedPlanque = this.planques.find(p => p.code === idx);
+		this.selected = this.models.find(p => p.code === idx);
 		this.renderEntryView();
 	}
 }
