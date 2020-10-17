@@ -5,6 +5,10 @@ const form : HTMLFormElement = document.getElementsByTagName("form")[0];
 const mailInput = document.getElementById("mail") as HTMLInputElement;
 const pwdInput = document.getElementById("motDePasse") as HTMLInputElement;
 
+// prevent closing the dropdown with keydown.
+mailInput.addEventListener("keydown", (e: KeyboardEvent) => e.stopPropagation());
+pwdInput.addEventListener("keydown", (e: KeyboardEvent) => e.stopPropagation());
+
 form.addEventListener("submit", async (ev) => 
 {
 	ev.preventDefault();
