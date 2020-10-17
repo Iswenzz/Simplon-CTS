@@ -113,7 +113,6 @@ class PlanqueDAO implements DAO
     public function update($planque): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(PlanqueDAO::UPDATE_QUERY);
-        var_dump($planque);
         return $stmt->execute([
             ":code" => $planque->getCode(),
             ":adresse" => $planque->getAdresse(),
@@ -144,7 +143,6 @@ class PlanqueDAO implements DAO
     {
         $stmt = DatabaseFactory::getConnection()->prepare(PlanqueDAO::ADD_QUERY);
         $res = $stmt->execute([
-            ":code" => $planque->getCode(),
             ":adresse" => $planque->getAdresse(),
             ":codePays" => $planque->getPays()->getCode(),
             ":typePlanque" => $planque->getTypePlanque()->getCode()

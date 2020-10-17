@@ -28,4 +28,9 @@ export default interface Tab<M extends Model>
 	 * @param sender - The entry element.
 	 */
 	onEntryClick(sender: HTMLElement): void;
+
+	/**
+	 * Callback on entry add.
+	 */
+	onEntryAdd(): void;
 }
