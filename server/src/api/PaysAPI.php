@@ -42,11 +42,9 @@ class PaysAPI extends Controller implements CRUD
     {
         /**
          * @var PaysDAO $dao
-         * @var Pays $pays
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Pays::class, $this->req->pays);
-        $pays = $deserializer->deserialize();
+        $pays = $this->deserializeModel();
         $success = $dao->add($pays);
         return $this->res->prepare(
             Response::OK,
@@ -65,13 +63,13 @@ class PaysAPI extends Controller implements CRUD
          * @var PaysDAO $dao
          */
         $dao = $this->dao;
-        $payss = $dao->getAll();
-        $success = !is_null($payss);
+        $pays = $dao->getAll();
+        $success = !is_null($pays);
         return $this->res->prepare(
             Response::OK,
             $success,
             $success ? "GetAll successful" : "GetAll failed",
-            $payss
+            $pays
         );
     }
 
@@ -82,7 +80,6 @@ class PaysAPI extends Controller implements CRUD
     {
         /**
          * @var PaysDAO $dao
-         * @var Pays $pays
          */
         $dao = $this->dao;
         $pays = $dao->get($this->req->code);
@@ -102,11 +99,9 @@ class PaysAPI extends Controller implements CRUD
     {
         /**
          * @var PaysDAO $dao
-         * @var Pays $pays
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Pays::class, $this->req->pays);
-        $pays = $deserializer->deserialize();
+		$pays = $this->deserializeModel();
         $success = $dao->update($pays);
         return $this->res->prepare(
             Response::OK,
@@ -123,11 +118,9 @@ class PaysAPI extends Controller implements CRUD
     {
         /**
          * @var PaysDAO $dao
-         * @var Pays $pays
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Pays::class, $this->req->pays);
-        $pays = $deserializer->deserialize();
+		$pays = $this->deserializeModel();
         $success = $dao->delete($pays);
         return $this->res->prepare(
             Response::OK,
@@ -136,6 +129,26 @@ class PaysAPI extends Controller implements CRUD
             $pays
         );
     }
+
+	/**
+	 * Deserialize the JSON request.
+	 * @return Pays
+	 */
+	public function deserializeModel(): Pays
+	{
+		/**
+		 * @var Pays $pays
+		 */
+		try
+		{
+			$pays = (new Deserializer(Pays::class, $this->req->pays))->deserialize();
+		}
+		catch (Exception $e)
+		{
+			print_r(e);
+		}
+		return $pays;
+	}
 
     /**
      * Prepare the request response.

@@ -12,4 +12,10 @@ abstract class Controller
 	 * Prepare the request response.
 	 */
 	public abstract function response(): Response;
+
+	/**
+	 * Deserialize the JSON request.
+	 * @return Model
+	 */
+	public abstract function deserializeModel(): Model;
 }

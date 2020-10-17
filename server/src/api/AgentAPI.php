@@ -62,11 +62,9 @@ class AgentAPI extends Controller implements CRUD
     {
         /**
          * @var AgentDAO $dao
-         * @var Agent $agent
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Agent::class, $this->req->agent);
-        $agent = $deserializer->deserialize();
+		$agent = $this->deserializeModel();
         $success = $dao->add($agent);
         return $this->res->prepare(
             Response::OK,
@@ -102,11 +100,9 @@ class AgentAPI extends Controller implements CRUD
     {
         /**
          * @var AgentDAO $dao
-         * @var Agent $agent
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Agent::class, $this->req->agent);
-        $agent = $deserializer->deserialize();
+		$agent = $this->deserializeModel();
         $success = !is_null($dao->update($agent));
         return $this->res->prepare(
             Response::OK,
@@ -123,11 +119,9 @@ class AgentAPI extends Controller implements CRUD
     {
         /**
          * @var AgentDAO $dao
-         * @var Agent $agent
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Agent::class, $this->req->agent);
-        $agent = $deserializer->deserialize();
+		$agent = $this->deserializeModel();
         $success = $dao->delete($agent);
         return $this->res->prepare(
             Response::OK,
@@ -136,6 +130,26 @@ class AgentAPI extends Controller implements CRUD
             $agent
         );
     }
+
+	/**
+	 * Deserialize the JSON request.
+	 * @return Agent
+	 */
+	public function deserializeModel(): Agent
+	{
+		/**
+		 * @var Agent $agent
+		 */
+		try
+		{
+			$agent = (new Deserializer(Agent::class, $this->req->pays))->deserialize();
+		}
+		catch (Exception $e)
+		{
+			print_r(e);
+		}
+		return $agent;
+	}
 
     /**
      * Prepare the request response.

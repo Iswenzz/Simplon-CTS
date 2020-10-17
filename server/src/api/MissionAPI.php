@@ -42,11 +42,9 @@ class MissionAPI extends Controller implements CRUD
     {
         /**
          * @var MissionDAO $dao
-         * @var Mission $mission
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Mission::class, $this->req->Mission);
-        $mission = $deserializer->deserialize();
+		$mission = $this->deserializeModel();
         $success = $dao->add($mission);
         return $this->res->prepare(
             Response::OK,
@@ -102,11 +100,9 @@ class MissionAPI extends Controller implements CRUD
     {
         /**
          * @var MissionDAO $dao
-         * @var Mission $mission
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Mission::class, $this->req->Mission);
-        $mission = $deserializer->deserialize();
+		$mission = $this->deserializeModel();
         $success = !is_null($dao->update($mission));
         return $this->res->prepare(
             Response::OK,
@@ -123,11 +119,9 @@ class MissionAPI extends Controller implements CRUD
     {
         /**
          * @var MissionDAO $dao
-         * @var Mission $mission
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Mission::class, $this->req->Mission);
-        $mission = $deserializer->deserialize();
+		$mission = $this->deserializeModel();
         $success = $dao->delete($mission);
         return $this->res->prepare(
             Response::OK,
@@ -136,6 +130,26 @@ class MissionAPI extends Controller implements CRUD
             $mission
         );
     }
+
+	/**
+	 * Deserialize the JSON request.
+	 * @return Mission
+	 */
+	public function deserializeModel(): Mission
+	{
+		/**
+		 * @var Mission $mission
+		 */
+		try
+		{
+			$mission = (new Deserializer(Mission::class, $this->req->pays))->deserialize();
+		}
+		catch (Exception $e)
+		{
+			print_r(e);
+		}
+		return $mission;
+	}
 
     /**
      * Prepare the request response.

@@ -33,6 +33,16 @@ class ConnectionAPI extends Controller
 	}
 
 	/**
+	 * Deserialize the JSON request.
+	 * @return Model
+	 * @throws Exception
+	 */
+	public function deserializeModel(): Model
+	{
+		throw new Exception("Not implemented.");
+	}
+
+	/**
 	 * Prepare the request response.
 	 */
 	public function response(): Response

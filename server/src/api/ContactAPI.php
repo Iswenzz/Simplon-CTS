@@ -42,11 +42,9 @@ class ContactAPI extends Controller implements CRUD
     {
         /**
          * @var ContactDAO $dao
-         * @var Contact $contact
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Contact::class, $this->req->Contact);
-        $contact = $deserializer->deserialize();
+		$contact = $this->deserializeModel();
         $success = $dao->add($contact);
         return $this->res->prepare(
             Response::OK,
@@ -102,11 +100,9 @@ class ContactAPI extends Controller implements CRUD
     {
         /**
          * @var ContactDAO $dao
-         * @var Contact $contact
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Contact::class, $this->req->contact);
-        $contact = $deserializer->deserialize();
+		$contact = $this->deserializeModel();
         $success = !is_null($dao->update($contact));
         return $this->res->prepare(
             Response::OK,
@@ -123,11 +119,9 @@ class ContactAPI extends Controller implements CRUD
     {
         /**
          * @var ContactDAO $dao
-         * @var Contact $contact
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Contact::class, $this->req->contact);
-        $contact = $deserializer->deserialize();
+		$contact = $this->deserializeModel();
         $success = $dao->delete($contact);
         return $this->res->prepare(
             Response::OK,
@@ -136,6 +130,26 @@ class ContactAPI extends Controller implements CRUD
             $contact
         );
     }
+
+	/**
+	 * Deserialize the JSON request.
+	 * @return Contact
+	 */
+	public function deserializeModel(): Contact
+	{
+		/**
+		 * @var Contact $contact
+		 */
+		try
+		{
+			$contact = (new Deserializer(Contact::class, $this->req->pays))->deserialize();
+		}
+		catch (Exception $e)
+		{
+			print_r(e);
+		}
+		return $contact;
+	}
 
     /**
      * Prepare the request response.

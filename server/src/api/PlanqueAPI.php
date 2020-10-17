@@ -42,13 +42,9 @@ class PlanqueAPI extends Controller implements CRUD
     {
         /**
          * @var PlanqueDAO $dao
-         * @var Planque $planque
-		 * @var TypePlanque $typePlanque
          */
         $dao = $this->dao;
-        $planque = (new Deserializer(Planque::class, $this->req->planque))->deserialize();
-        $typePlanque = (new Deserializer(TypePlanque::class, $this->req->planque->typePlanque))->deserialize();
-        $planque->setTypePlanque($typePlanque);
+		$planque = $this->deserializeModel();
 
         $success = $dao->add($planque);
         return $this->res->prepare(
@@ -124,20 +120,9 @@ class PlanqueAPI extends Controller implements CRUD
     {
 		/**
 		 * @var PlanqueDAO $dao
-		 * @var Planque $planque
-		 * @var Pays $pays
-		 * @var TypePlanque $typePlanque
 		 */
 		$dao = $this->dao;
-		$planque = (new Deserializer(Planque::class,
-			$this->req->planque))->deserialize();
-		$pays = (new Deserializer(Pays::class,
-			$this->req->planque->pays))->deserialize();
-		$typePlanque = (new Deserializer(TypePlanque::class,
-			$this->req->planque->typePlanque))->deserialize();
-		$planque->setPays($pays);
-		$planque->setTypePlanque($typePlanque);
-
+		$planque = $this->deserializeModel();
         $success = $dao->update($planque);
         return $this->res->prepare(
             Response::OK,
@@ -154,14 +139,9 @@ class PlanqueAPI extends Controller implements CRUD
     {
 		/**
 		 * @var PlanqueDAO $dao
-		 * @var Planque $planque
-		 * @var TypePlanque $typePlanque
 		 */
 		$dao = $this->dao;
-		$planque = (new Deserializer(Planque::class, $this->req->planque))->deserialize();
-		$typePlanque = (new Deserializer(TypePlanque::class, $this->req->planque->typePlanque))->deserialize();
-		$planque->setTypePlanque($typePlanque);
-
+		$planque = $this->deserializeModel();
         $success = $dao->delete($planque);
         return $this->res->prepare(
             Response::OK,
@@ -170,6 +150,32 @@ class PlanqueAPI extends Controller implements CRUD
             $planque
         );
     }
+
+	/**
+	 * Deserialize the JSON request.
+	 * @return Planque
+	 */
+	public function deserializeModel(): Planque
+	{
+		/**
+		 * @var Planque $planque
+		 * @var Pays $pays
+		 * @var TypePlanque $typePlanque
+		 */
+		try
+		{
+			$planque = (new Deserializer(Planque::class, $this->req->planque))->deserialize();
+			$pays = (new Deserializer(Pays::class, $this->req->planque->pays))->deserialize();
+			$typePlanque = (new Deserializer(TypePlanque::class, $this->req->planque->typePlanque))->deserialize();
+			$planque->setPays($pays);
+			$planque->setTypePlanque($typePlanque);
+		}
+		catch (Exception $e)
+		{
+			print_r(e);
+		}
+		return $planque;
+	}
 
     /**
      * Prepare the request response.

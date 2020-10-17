@@ -42,11 +42,9 @@ class SpecialiteAPI extends Controller implements CRUD
     {
         /**
          * @var SpecialiteDAO $dao
-         * @var Specialite $specialite
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Specialite::class, $this->req->specialite);
-        $specialite = $deserializer->deserialize();
+		$specialite = $this->deserializeModel();
         $success = $dao->add($specialite);
         return $this->res->prepare(
             Response::OK,
@@ -82,7 +80,6 @@ class SpecialiteAPI extends Controller implements CRUD
     {
         /**
          * @var SpecialiteDAO $dao
-         * @var Specialite $specialite
          */
         $dao = $this->dao;
         $specialite = $dao->get($this->req->code);
@@ -102,11 +99,9 @@ class SpecialiteAPI extends Controller implements CRUD
     {
         /**
          * @var SpecialiteDAO $dao
-         * @var Specialite $specialite
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Specialite::class, $this->req->specialite);
-        $specialite = $deserializer->deserialize();
+		$specialite = $this->deserializeModel();
         $success = $dao->update($specialite);
         return $this->res->prepare(
             Response::OK,
@@ -123,11 +118,9 @@ class SpecialiteAPI extends Controller implements CRUD
     {
         /**
          * @var SpecialiteDAO $dao
-         * @var Specialite $specialite
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Specialite::class, $this->req->specialite);
-        $specialite = $deserializer->deserialize();
+		$specialite = $this->deserializeModel();
         $success = $dao->delete($specialite);
         return $this->res->prepare(
             Response::OK,
@@ -136,6 +129,26 @@ class SpecialiteAPI extends Controller implements CRUD
             $specialite
         );
     }
+
+	/**
+	 * Deserialize the JSON request.
+	 * @return Specialite
+	 */
+	public function deserializeModel(): Specialite
+	{
+		/**
+		 * @var Specialite $specialite
+		 */
+		try
+		{
+			$specialite = (new Deserializer(Specialite::class, $this->req->pays))->deserialize();
+		}
+		catch (Exception $e)
+		{
+			print_r(e);
+		}
+		return $specialite;
+	}
 
     /**
      * Prepare the request response.

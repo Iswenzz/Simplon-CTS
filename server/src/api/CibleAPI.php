@@ -42,11 +42,9 @@ class CibleAPI extends Controller implements CRUD
     {
         /**
          * @var CibleDAO $dao
-         * @var Cible $cible
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Cible::class, $this->req->cible);
-        $cible = $deserializer->deserialize();
+		$cible = $this->deserializeModel();
         $success = $dao->add($cible);
         return $this->res->prepare(
             Response::OK,
@@ -102,11 +100,9 @@ class CibleAPI extends Controller implements CRUD
     {
         /**
          * @var CibleDAO $dao
-         * @var Cible $cible
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Cible::class, $this->req->Cible);
-        $cible = $deserializer->deserialize();
+		$cible = $this->deserializeModel();
         $success = !is_null($dao->update($cible));
         return $this->res->prepare(
             Response::OK,
@@ -123,11 +119,9 @@ class CibleAPI extends Controller implements CRUD
     {
         /**
          * @var CibleDAO $dao
-         * @var Cible $cible
          */
         $dao = $this->dao;
-        $deserializer = new Deserializer(Cible::class, $this->req->cible);
-        $cible = $deserializer->deserialize();
+		$cible = $this->deserializeModel();
         $success = $dao->delete($cible);
         return $this->res->prepare(
             Response::OK,
@@ -136,6 +130,26 @@ class CibleAPI extends Controller implements CRUD
             $cible
         );
     }
+
+	/**
+	 * Deserialize the JSON request.
+	 * @return Cible
+	 */
+	public function deserializeModel(): Cible
+	{
+		/**
+		 * @var Cible $cible
+		 */
+		try
+		{
+			$cible = (new Deserializer(Cible::class, $this->req->pays))->deserialize();
+		}
+		catch (Exception $e)
+		{
+			print_r(e);
+		}
+		return $cible;
+	}
 
     /**
      * Prepare the request response.

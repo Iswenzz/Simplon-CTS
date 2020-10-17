@@ -31,7 +31,17 @@ class InscriptionAPI extends Controller
 			InscriptionAPI::$instance = new InscriptionAPI();
 		return InscriptionAPI::$instance;
 	}
-	
+
+	/**
+	 * Deserialize the JSON request.
+	 * @return Model
+	 * @throws Exception
+	 */
+	public function deserializeModel(): Model
+	{
+		throw new Exception("Not implemented.");
+	}
+
 	/**
 	 * Prepare the request response.
 	 */
