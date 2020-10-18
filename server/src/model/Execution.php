@@ -8,8 +8,12 @@ class Execution extends Model
 
 	/**
 	 * Initialize a new Execution object.
+	 * @param int $codeMission
+	 * @param int $codeAgent
 	 */
-	public function __construct(int $codeMission, int $codeAgent)
+	public function __construct(
+		int $codeMission,
+		int $codeAgent)
 	{
 		$this->codeMission = $codeMission;
 		$this->codeAgent = $codeAgent;
@@ -25,7 +29,8 @@ class Execution extends Model
 
 	/**
 	 * Set the value of codeAgent
-	 */ 
+	 * @param int $codeAgent
+	 */
 	public function setCodeAgent(int $codeAgent): void
 	{
 		$this->codeAgent = $codeAgent;
@@ -41,9 +46,8 @@ class Execution extends Model
 
 	/**
 	 * Set the value of codeMission
-	 *
-	 * @return  self
-	 */ 
+	 * @param int $codeMission
+	 */
 	public function setCodeMission(int $codeMission): void
 	{
 		$this->codeMission = $codeMission;

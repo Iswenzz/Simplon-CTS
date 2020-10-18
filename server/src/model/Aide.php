@@ -8,8 +8,12 @@ class Aide extends Model
 
 	/**
 	 * Initialize a new Aide object.
+	 * @param int $codeMission
+	 * @param int $codeContact
 	 */
-	public function __construct(int $codeMission, int $codeContact)
+	public function __construct(
+		int $codeMission,
+		int $codeContact)
 	{
 		$this->codeMission = $codeMission;
 		$this->codeContact = $codeContact;
@@ -25,7 +29,8 @@ class Aide extends Model
 
 	/**
 	 * Set the value of codeMission
-	 */ 
+	 * @param int $codeMission
+	 */
 	public function setCodeMission(int $codeMission): void
 	{
 		$this->codeMission = $codeMission;
@@ -41,7 +46,8 @@ class Aide extends Model
 
 	/**
 	 * Set the value of codeContact
-	 */ 
+	 * @param int $codeContact
+	 */
 	public function setCodeContact(int $codeContact): void
 	{
 		$this->codeContact = $codeContact;

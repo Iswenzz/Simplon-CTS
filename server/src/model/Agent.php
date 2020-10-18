@@ -10,33 +10,26 @@ class Agent extends Model implements JsonSerializable
     private DateTime $dateNaissance;
     private int $codePays;
 
-    private AgentController $controller;
-
-    /**
-     * Initialize a new Agent object.
-     */
+	/**
+	 * Initialize a new Agent object.
+	 * @param int|null $code
+	 * @param string $nom
+	 * @param string $prenom
+	 * @param DateTime|null $dateNaissance
+	 * @param int $codePays
+	 */
     public function __construct(
         ?int $code = null,
         string $nom = "",
         string $prenom = "",
         DateTime $dateNaissance = null,
-        int $codePays = 0
-    )
+        int $codePays = 0)
     {
         $this->code = $code;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->dateNaissance = $dateNaissance ?? new DateTime();
         $this->codePays = $codePays;
-        $this->controller = new AgentController($this, new AgentView($this));
-    }
-
-    /**
-     * Get the Agent controller instance.
-     */
-    public function getController(): AgentController
-    {
-        return $this->controller;
     }
 
     /**
@@ -47,9 +40,10 @@ class Agent extends Model implements JsonSerializable
         return $this->code;
     }
 
-    /**
-     * Set the value of code.
-     */
+	/**
+	 * Set the value of code.
+	 * @param int|null $code
+	 */
     public function setCode(?int $code): void
     {
         $this->code = $code;
@@ -63,9 +57,10 @@ class Agent extends Model implements JsonSerializable
         return $this->nom;
     }
 
-    /**
-     * Set the value of nom.
-     */
+	/**
+	 * Set the value of nom.
+	 * @param string $nom
+	 */
     public function setNom(string $nom): void
     {
         $this->nom = $nom;
@@ -79,9 +74,10 @@ class Agent extends Model implements JsonSerializable
         return $this->prenom;
     }
 
-    /**
-     * Set the value of prenom.
-     */
+	/**
+	 * Set the value of prenom.
+	 * @param string $prenom
+	 */
     public function setPrenom(string $prenom): void
     {
         $this->prenom = $prenom;
@@ -95,9 +91,10 @@ class Agent extends Model implements JsonSerializable
         return $this->dateNaissance;
     }
 
-    /**
-     * Set the value of dateNaissance.
-     */
+	/**
+	 * Set the value of dateNaissance.
+	 * @param DateTime $dateNaissance
+	 */
     public function setDateNaissance(DateTime $dateNaissance): void
     {
         $this->dateNaissance = $dateNaissance;
@@ -111,9 +108,10 @@ class Agent extends Model implements JsonSerializable
         return $this->codePays;
     }
 
-    /**
-     * Set the value of codePays
-     */
+	/**
+	 * Set the value of codePays
+	 * @param int $codePays
+	 */
     public function setCodePays(int $codePays): void
     {
         $this->codePays = $codePays;

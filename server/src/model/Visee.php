@@ -8,8 +8,12 @@ class Visee extends Model
 
 	/**
 	 * Initialize a new Visee object.
+	 * @param int $codeMission
+	 * @param int $codeCible
 	 */
-	public function __construct(int $codeMission, int $codeCible)
+	public function __construct(
+		int $codeMission,
+		int $codeCible)
 	{
 		$this->codeMission = $codeMission;
 		$this->codeCible = $codeCible;
@@ -25,7 +29,8 @@ class Visee extends Model
 
 	/**
 	 * Set the value of codeMission
-	 */ 
+	 * @param int $codeMission
+	 */
 	public function setCodeMission(int $codeMission): void
 	{
 		$this->codeMission = $codeMission;
@@ -41,7 +46,8 @@ class Visee extends Model
 
 	/**
 	 * Set the value of codeCible
-	 */ 
+	 * @param int $codeCible
+	 */
 	public function setCodeCible(int $codeCible): void
 	{
 		$this->codeCible = $codeCible;

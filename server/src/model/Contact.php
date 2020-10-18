@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/Model.php";
-require_once __DIR__ . "/../controller/ContactController.php";
 
 class Contact extends Model implements JsonSerializable
 {
@@ -10,8 +9,6 @@ class Contact extends Model implements JsonSerializable
 	private DateTime $dateNaissance;
 	private int $codePays;
 
-	private ContactController $controller;
-
 	/**
 	 * Initialize a new Contact object.
 	 * @param int|null $code - The contact code.
@@ -20,23 +17,18 @@ class Contact extends Model implements JsonSerializable
 	 * @param DateTime|null $dateNaissance - The contact birthdate.
 	 * @param int $codePays - The contact country code.
 	 */
-	public function __construct(?int $code = null, string $nom = "",
-		string $prenom = "", DateTime $dateNaissance = null, int $codePays = 0)
+	public function __construct(
+		?int $code = null,
+		string $nom = "",
+		string $prenom = "",
+		DateTime $dateNaissance = null,
+		int $codePays = 0)
 	{
 		$this->code = $code;
 		$this->nom = $nom;
 		$this->prenom = $prenom;
 		$this->dateNaissance = $dateNaissance ?? new DateTime();
 		$this->codePays = $codePays;
-		$this->controller = new ContactController($this, new ContactView($this));
-	}
-
-	/**
-	 * Get the Contact controller instance.
-	 */
-	public function getController(): ContactController
-	{
-		return $this->controller;
 	}
 
 	/**
@@ -49,6 +41,7 @@ class Contact extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of code.
+	 * @param int|null $code
 	 */
 	public function setCode(?int $code): void
 	{
@@ -65,7 +58,8 @@ class Contact extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of nom.
-	 */ 
+	 * @param string $nom
+	 */
 	public function setNom(string $nom): void
 	{
 		$this->nom = $nom;
@@ -81,7 +75,8 @@ class Contact extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of prenom.
-	 */ 
+	 * @param string $prenom
+	 */
 	public function setPrenom(string $prenom): void
 	{
 		$this->prenom = $prenom;
@@ -97,7 +92,8 @@ class Contact extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of dateNaissance.
-	 */ 
+	 * @param DateTime $dateNaissance
+	 */
 	public function setDateNaissance(DateTime $dateNaissance): void
 	{
 		$this->dateNaissance = $dateNaissance;
@@ -113,7 +109,8 @@ class Contact extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of codePays
-	 */ 
+	 * @param int $codePays
+	 */
 	public function setCodePays(int $codePays): void
 	{
 		$this->codePays = $codePays;

@@ -92,14 +92,13 @@ class AdminDAO implements DAO
     public function add($admin): bool
     {
         $stmt = DatabaseFactory::getConnection()->prepare(AdminDAO::ADD_QUERY);
-        $res = $stmt->execute([
-            "mail" => $admin->getEmail(),
-            "nom" => $admin->getNom(),
-            "prenom" => $admin->getPrenom(),
-            "dateCreation" => $admin->getDateCreation()->format("Y-m-d"),
-            "mdp" => $admin->getMdp()
-        ]);
-        return $res;
+		return $stmt->execute([
+			"mail" => $admin->getEmail(),
+			"nom" => $admin->getNom(),
+			"prenom" => $admin->getPrenom(),
+			"dateCreation" => $admin->getDateCreation()->format("Y-m-d"),
+			"mdp" => $admin->getMdp()
+		]);
     }
 
     /**

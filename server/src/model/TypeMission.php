@@ -9,8 +9,14 @@ class TypeMission extends Model implements JsonSerializable
 
 	/**
 	 * Initialize a new TypeMission object.
+	 * @param int|null $code
+	 * @param string $libelle
+	 * @param string $description
 	 */
-	public function __construct(?int $code, string $libelle, string $description)
+	public function __construct(
+		?int $code,
+		string $libelle,
+		string $description)
 	{
 		$this->code = $code;
 		$this->libelle = $libelle;
@@ -27,7 +33,8 @@ class TypeMission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of code
-	 */ 
+	 * @param int|null $code
+	 */
 	public function setCode(?int $code): void
 	{
 		$this->code = $code;
@@ -43,7 +50,8 @@ class TypeMission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of libelle
-	 */ 
+	 * @param string $libelle
+	 */
 	public function setLibelle(string $libelle): void
 	{
 		$this->libelle = $libelle;

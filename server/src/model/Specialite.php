@@ -8,10 +8,18 @@ class Specialite extends Model implements JsonSerializable
     private ?int $codeTypeMission;
     private ?string $description;
 
-    /**
-     * Initialize a new Specialite object.
-     */
-    public function __construct(?int $code = null, string $libelle = "", ?int $codeTypeMission = null, ?string $description = "")
+	/**
+	 * Initialize a new Specialite object.
+	 * @param int|null $code
+	 * @param string $libelle
+	 * @param int|null $codeTypeMission
+	 * @param string|null $description
+	 */
+    public function __construct(
+    	?int $code = null,
+		string $libelle = "",
+		?int $codeTypeMission = null,
+		?string $description = "")
     {
         $this->code = $code;
         $this->libelle = $libelle;
@@ -27,9 +35,10 @@ class Specialite extends Model implements JsonSerializable
         return $this->code;
     }
 
-    /**
-     * Set the value of code
-     */
+	/**
+	 * Set the value of code
+	 * @param int|null $code
+	 */
     public function setCode(?int $code): void
     {
         $this->code = $code;
@@ -43,9 +52,10 @@ class Specialite extends Model implements JsonSerializable
         return $this->libelle;
     }
 
-    /**
-     * Set the value of libelle
-     */
+	/**
+	 * Set the value of libelle
+	 * @param string $libelle
+	 */
     public function setLibelle(string $libelle): void
     {
         $this->libelle = $libelle;
@@ -78,16 +88,14 @@ class Specialite extends Model implements JsonSerializable
         return $this->codeTypeMission;
     }
 
-    /**
-     * Set the value of codeTypeMission
-     *
-     * @return  self
-     */
+	/**
+	 * Set the value of codeTypeMission
+	 *
+	 * @param $codeTypeMission
+	 */
     public function setCodeTypeMission($codeTypeMission)
     {
         $this->codeTypeMission = $codeTypeMission;
-
-        return $this;
     }
     
     /**

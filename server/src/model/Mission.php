@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/Model.php";
-require_once __DIR__ . "/../controller/MissionController.php";
 
 class Mission extends Model implements JsonSerializable
 {
@@ -13,8 +12,6 @@ class Mission extends Model implements JsonSerializable
 	private int $codeType;
 	private int $codeSpecialite;
 
-	private MissionController $controller;
-
 	/**
 	 * Initialize a new Mission object.
 	 * @param int|null $code - The mission primary key.
@@ -26,9 +23,15 @@ class Mission extends Model implements JsonSerializable
 	 * @param int $codeType - The mission type code.
 	 * @param int $codeSpecialite - The mission speciality code.
 	 */
-	public function __construct(?int $code = 0, string $titre = "", string $description = "",
-		DateTime $dateDebut = null, DateTime $dateFin = null, int $codeStatut = 0,
-		int $codeType = 0, int $codeSpecialite = 0)
+	public function __construct(
+		?int $code = 0,
+		string $titre = "",
+		string $description = "",
+		DateTime $dateDebut = null,
+		DateTime $dateFin = null,
+		int $codeStatut = 0,
+		int $codeType = 0,
+		int $codeSpecialite = 0)
 	{
 		$this->code = $code;
 		$this->titre = $titre;
@@ -38,15 +41,6 @@ class Mission extends Model implements JsonSerializable
 		$this->codeStatut = $codeStatut;
 		$this->codeType = $codeType;
 		$this->codeSpecialite = $codeSpecialite;
-		$this->controller = new MissionController($this, new MissionView($this));
-	}
-
-	/**
-	 * Get the Mission controller instance.
-	 */
-	public function getController(): MissionController
-	{
-		return $this->controller;
 	}
 
 	/**
@@ -59,7 +53,8 @@ class Mission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of code
-	 */ 
+	 * @param int|null $code
+	 */
 	public function setCode(?int $code): void
 	{
 		$this->code = $code;
@@ -75,7 +70,8 @@ class Mission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of titre
-	 */ 
+	 * @param string $titre
+	 */
 	public function setTitre(string $titre): void
 	{
 		$this->titre = $titre;
@@ -91,7 +87,8 @@ class Mission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of description
-	 */ 
+	 * @param string $description
+	 */
 	public function setDescription(string $description): void
 	{
 		$this->description = $description;
@@ -107,7 +104,8 @@ class Mission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of dateDebut
-	 */ 
+	 * @param DateTime $dateDebut
+	 */
 	public function setDateDebut(DateTime $dateDebut): void
 	{
 		$this->dateDebut = $dateDebut;
@@ -123,7 +121,8 @@ class Mission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of dateFin
-	 */ 
+	 * @param DateTime $dateFin
+	 */
 	public function setDateFin(DateTime $dateFin): void
 	{
 		$this->dateFin = $dateFin;
@@ -139,7 +138,8 @@ class Mission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of codeStatut
-	 */ 
+	 * @param int $codeStatut
+	 */
 	public function setCodeStatut(int $codeStatut): void
 	{
 		$this->codeStatut = $codeStatut;
@@ -155,7 +155,8 @@ class Mission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of codeType
-	 */ 
+	 * @param int $codeType
+	 */
 	public function setCodeType(int $codeType): void
 	{
 		$this->codeType = $codeType;
@@ -171,7 +172,8 @@ class Mission extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of codeSpecialite
-	 */ 
+	 * @param int $codeSpecialite
+	 */
 	public function setCodeSpecialite(int $codeSpecialite): void
 	{
 		$this->codeSpecialite = $codeSpecialite;

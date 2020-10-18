@@ -15,7 +15,6 @@ form.addEventListener("submit", async (ev) =>
 	console.log(`connexion : "${mailInput.value}" & "${pwdInput.value}"`);
 
 	try {
-		// TODO : passage en prod => mettre un URL absolu par rapport au serveur hébergeur
 		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ConnectionAPI.php`, {
 			"mail": mailInput.value,
 			"motDePasse": pwdInput.value

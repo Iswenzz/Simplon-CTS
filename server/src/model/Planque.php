@@ -17,7 +17,11 @@ class Planque extends Model implements JsonSerializable
 	 * @param Pays|null $pays
 	 * @param TypePlanque|null $typePlanque
 	 */
-    public function __construct(?int $code = null, string $adresse = "", ?Pays $pays = null, ?TypePlanque $typePlanque = null)
+    public function __construct(
+    	?int $code = null,
+		string $adresse = "",
+		?Pays $pays = null,
+		?TypePlanque $typePlanque = null)
     {
         $this->code = $code;
         $this->adresse = $adresse;

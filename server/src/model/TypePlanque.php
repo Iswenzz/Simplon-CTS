@@ -13,7 +13,10 @@ class TypePlanque extends Model implements JsonSerializable
 	 * @param string $libelle
 	 * @param string|null $description
 	 */
-	public function __construct(?int $code = null, string $libelle = "", ?string $description = null)
+	public function __construct(
+		?int $code = null,
+		string $libelle = "",
+		?string $description = null)
 	{
 		$this->code = $code;
 		$this->libelle = $libelle;

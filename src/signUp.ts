@@ -13,7 +13,6 @@ form.addEventListener("submit", async (ev) =>
 	console.log(`inscription : "${nameInput.value}" & "${firstNameInput.value}" & "${mailInput.value}" & "${pwdInput.value}"`);
 
 	try {
-		// TODO : passage en prod => mettre un URL absolu par rapport au serveur hébergeur
 		const response = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/InscriptionAPI.php`, {
 			"name": nameInput.value,
 			"firstName": firstNameInput.value,

@@ -8,8 +8,12 @@ class Specilisation extends Model
 
 	/**
 	 * Initialize a new Specilisation object.
+	 * @param int $codeSpecialite
+	 * @param int $codeAgent
 	 */
-	public function __construct(int $codeSpecialite, int $codeAgent)
+	public function __construct(
+		int $codeSpecialite,
+		int $codeAgent)
 	{
 		$this->codeSpecialite = $codeSpecialite;
 		$this->codeAgent = $codeAgent;
@@ -25,7 +29,8 @@ class Specilisation extends Model
 
 	/**
 	 * Set the value of codeSpecialite
-	 */ 
+	 * @param int $codeSpecialite
+	 */
 	public function setCodeSpecialite(int $codeSpecialite): void
 	{
 		$this->codeSpecialite = $codeSpecialite;
@@ -41,7 +46,8 @@ class Specilisation extends Model
 
 	/**
 	 * Set the value of codeAgent
-	 */ 
+	 * @param int $codeAgent
+	 */
 	public function setCodeAgent(int $codeAgent): void
 	{
 		$this->codeAgent = $codeAgent;

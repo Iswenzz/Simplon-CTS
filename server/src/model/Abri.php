@@ -8,8 +8,12 @@ class Abri extends Model
 
 	/**
 	 * Initialize a new Abri object.
+	 * @param int $codeMission
+	 * @param int $codePlanque
 	 */
-	public function __construct(int $codeMission, int $codePlanque)
+	public function __construct(
+		int $codeMission,
+		int $codePlanque)
 	{
 		$this->codeMission = $codeMission;
 		$this->codePlanque = $codePlanque;
@@ -25,7 +29,8 @@ class Abri extends Model
 
 	/**
 	 * Set the value of codeMission
-	 */ 
+	 * @param int $codeMission
+	 */
 	public function setCodeMission(int $codeMission): void
 	{
 		$this->codeMission = $codeMission;
@@ -41,7 +46,8 @@ class Abri extends Model
 
 	/**
 	 * Set the value of codePlanque
-	 */ 
+	 * @param int $codePlanque
+	 */
 	public function setCodePlanque(int $codePlanque): void
 	{
 		$this->codePlanque = $codePlanque;

@@ -8,8 +8,12 @@ class Statut extends Model implements JsonSerializable
 
 	/**
 	 * Initialize a new Statut object.
+	 * @param int|null $code
+	 * @param string $libelle
 	 */
-	public function __construct(?int $code, string $libelle)
+	public function __construct(
+		?int $code,
+		string $libelle)
 	{
 		$this->code = $code;
 		$this->libelle = $libelle;
@@ -25,7 +29,8 @@ class Statut extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of code
-	 */ 
+	 * @param int|null $code
+	 */
 	public function setCode(?int $code): void
 	{
 		$this->code = $code;
@@ -41,7 +46,8 @@ class Statut extends Model implements JsonSerializable
 
 	/**
 	 * Set the value of libelle
-	 */ 
+	 * @param string $libelle
+	 */
 	public function setLibelle(string $libelle): void
 	{
 		$this->libelle = $libelle;

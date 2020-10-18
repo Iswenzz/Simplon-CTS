@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/Model.php";
-require_once __DIR__ . "/../controller/AdminController.php";
 
 class Admin extends Model implements JsonSerializable
 {
@@ -12,11 +11,16 @@ class Admin extends Model implements JsonSerializable
     private ?string $apiKey;
     private ?DateTime $expirationApiKey;
 
-    private AdminController $controller;
-
-    /**
-     * Initialize a new Admin object.
-     */
+	/**
+	 * Initialize a new Admin object.
+	 * @param string $email
+	 * @param string $nom
+	 * @param string $prenom
+	 * @param DateTime $dateCreation
+	 * @param string $mdp
+	 * @param string|null $apiKey
+	 * @param DateTime|null $expirationApiKey
+	 */
     public function __construct(
         string $email,
         string $nom,
@@ -24,8 +28,7 @@ class Admin extends Model implements JsonSerializable
         DateTime $dateCreation,
         string $mdp,
         ?string $apiKey = null,
-        ?DateTime $expirationApiKey = null
-    )
+        ?DateTime $expirationApiKey = null)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -34,15 +37,6 @@ class Admin extends Model implements JsonSerializable
         $this->email = $email;
         $this->apiKey = $apiKey;
         $this->expirationApiKey = $expirationApiKey;
-        $this->controller = new AdminController($this, new AdminView($this));
-    }
-
-    /**
-     * Get the Admin controller instance.
-     */
-    public function getController(): AdminController
-    {
-        return $this->controller;
     }
 
     /**
@@ -53,9 +47,10 @@ class Admin extends Model implements JsonSerializable
         return $this->nom;
     }
 
-    /**
-     * Set the value of nom.
-     */
+	/**
+	 * Set the value of nom.
+	 * @param string $nom
+	 */
     public function setNom(string $nom): void
     {
         $this->nom = $nom;
@@ -69,9 +64,10 @@ class Admin extends Model implements JsonSerializable
         return $this->prenom;
     }
 
-    /**
-     * Set the value of prenom.
-     */
+	/**
+	 * Set the value of prenom.
+	 * @param string $prenom
+	 */
     public function setPrenom(string $prenom): void
     {
         $this->prenom = $prenom;
@@ -85,9 +81,10 @@ class Admin extends Model implements JsonSerializable
         return $this->dateCreation;
     }
 
-    /**
-     * Set the value of dateNaissance.
-     */
+	/**
+	 * Set the value of dateNaissance.
+	 * @param DateTime $dateCreation
+	 */
     public function setDateCreation(DateTime $dateCreation): void
     {
         $this->dateCreation = $dateCreation;
@@ -101,9 +98,10 @@ class Admin extends Model implements JsonSerializable
         return $this->mdp;
     }
 
-    /**
-     * Set the value of mdp
-     */
+	/**
+	 * Set the value of mdp
+	 * @param string $mdp
+	 */
     public function setMdp(string $mdp): void
     {
         $this->mdp = $mdp;
@@ -117,9 +115,10 @@ class Admin extends Model implements JsonSerializable
         return $this->email;
     }
 
-    /**
-     * Set the value of email
-     */
+	/**
+	 * Set the value of email
+	 * @param string $email
+	 */
     public function setEmail(string $email): void
     {
         $this->email = $email;
@@ -133,9 +132,10 @@ class Admin extends Model implements JsonSerializable
         return $this->apiKey;
     }
 
-    /**
-     * Set the value of apiKey
-     */
+	/**
+	 * Set the value of apiKey
+	 * @param string $apiKey
+	 */
     public function setApiKey(string $apiKey): void
     {
         $this->apiKey = $apiKey;
@@ -149,9 +149,10 @@ class Admin extends Model implements JsonSerializable
         return $this->expirationApiKey;
     }
 
-    /**
-     * Set the value of expirationApiKey
-     */
+	/**
+	 * Set the value of expirationApiKey
+	 * @param DateTime $expirationApiKey
+	 */
     public function setExpirationApiKey(DateTime $expirationApiKey): void
 	{
 		$this->expirationApiKey = $expirationApiKey;

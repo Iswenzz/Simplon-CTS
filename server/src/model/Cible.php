@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/Model.php";
-require_once __DIR__ . "/../controller/CibleController.php";
 
 class Cible extends Model implements JsonSerializable
 {
@@ -10,32 +9,26 @@ class Cible extends Model implements JsonSerializable
     private DateTime $dateNaissance;
     private int $codePays;
 
-    private CibleController $controller;
-
-    /**
-     * Initialize a new Cible object.
-     */
+	/**
+	 * Initialize a new Cible object.
+	 * @param int|null $code
+	 * @param string $nom
+	 * @param string $prenom
+	 * @param DateTime|null $dateNaissance
+	 * @param int $codePays
+	 */
     public function __construct(
-        ?int $code = null,
-        string $nom = "",
-        string $prenom = "",
+    	?int $code = null,
+		string $nom = "",
+		string $prenom = "",
         DateTime $dateNaissance = null,
-        int $codePays = 0
-    ) {
+		int $codePays = 0)
+	{
         $this->code = $code;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->dateNaissance = $dateNaissance ?? new DateTime();
         $this->codePays = $codePays;
-        $this->controller = new CibleController($this, new CibleView($this));
-    }
-
-    /**
-     * Get the Cible controller instance.
-     */
-    public function getController(): CibleController
-    {
-        return $this->controller;
     }
 
     /**
@@ -46,9 +39,10 @@ class Cible extends Model implements JsonSerializable
         return $this->code;
     }
 
-    /**
-     * Set the value of code.
-     */
+	/**
+	 * Set the value of code.
+	 * @param int|null $code
+	 */
     public function setCode(?int $code): void
     {
         $this->code = $code;
@@ -62,9 +56,10 @@ class Cible extends Model implements JsonSerializable
         return $this->nom;
     }
 
-    /**
-     * Set the value of nom.
-     */
+	/**
+	 * Set the value of nom.
+	 * @param string $nom
+	 */
     public function setNom(string $nom): void
     {
         $this->nom = $nom;
@@ -78,9 +73,10 @@ class Cible extends Model implements JsonSerializable
         return $this->prenom;
     }
 
-    /**
-     * Set the value of prenom.
-     */
+	/**
+	 * Set the value of prenom.
+	 * @param string $prenom
+	 */
     public function setPrenom(string $prenom): void
     {
         $this->prenom = $prenom;
@@ -94,9 +90,10 @@ class Cible extends Model implements JsonSerializable
         return $this->dateNaissance;
     }
 
-    /**
-     * Set the value of dateNaissance.
-     */
+	/**
+	 * Set the value of dateNaissance.
+	 * @param DateTime $dateNaissance
+	 */
     public function setDateNaissance(DateTime $dateNaissance): void
     {
         $this->dateNaissance = $dateNaissance;
@@ -110,9 +107,10 @@ class Cible extends Model implements JsonSerializable
         return $this->codePays;
     }
 
-    /**
-     * Set the value of codePays
-     */
+	/**
+	 * Set the value of codePays
+	 * @param int $codePays
+	 */
     public function setCodePays(int $codePays): void
     {
         $this->codePays = $codePays;
