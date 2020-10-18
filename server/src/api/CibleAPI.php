@@ -144,7 +144,7 @@ class CibleAPI extends Controller implements CRUD
 		try
 		{
 			$cible = (new Deserializer(Cible::class, $this->req->cible))->deserialize();
-			$pays = (new Deserializer(Pays::class, $this->req->agent->pays))->deserialize();
+			$pays = (new Deserializer(Pays::class, $this->req->cible->pays))->deserialize();
 			$cible->setPays($pays);
 		}
 		catch (Exception $e)

@@ -20,7 +20,7 @@ export default class ContactRepository implements Repository
 	 */
 	public async getAll() : Promise<Contact[]>
 	{
-		const response: AxiosResponse<ResponseAPI<Contact[]>> = await Axios.post("${process.env.BACKEND_URL}/api/ContactAPI.php", {
+		const response: AxiosResponse<ResponseAPI<Contact[]>> = await Axios.post(`${process.env.BACKEND_URL}/server/src/api/ContactAPI.php`, {
 			method: "getAll"
 		});
 		return response.data.body;

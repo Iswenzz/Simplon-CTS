@@ -62,4 +62,6 @@ document.addEventListener("DOMContentLoaded", async () =>
 	new PlanqueTab();
 	new SpecialiteTab();
 	new AgentTab();
+	new ContactTab();
+	new CibleTab();
 });

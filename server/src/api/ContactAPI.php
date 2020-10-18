@@ -145,7 +145,7 @@ class ContactAPI extends Controller implements CRUD
 		try
 		{
 			$contact = (new Deserializer(Contact::class, $this->req->contact))->deserialize();
-			$pays = (new Deserializer(Pays::class, $this->req->agent->pays))->deserialize();
+			$pays = (new Deserializer(Pays::class, $this->req->contact->pays))->deserialize();
 			$contact->setPays($pays);
 		}
 		catch (Exception $e)
