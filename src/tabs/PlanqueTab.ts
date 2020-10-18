@@ -54,7 +54,7 @@ export default class PlanqueTab implements Tab<Planque>
 			for (const planque of this.models)
 			{
 				const item = document.createElement("li") as HTMLLIElement;
-				item.innerText = `${planque.code} ${planque.adresse}`;
+				item.innerText = `${planque.adresse}`;
 				this.list.append(item);
 
 				item.setAttribute("data-code", planque.code.toString());
@@ -140,11 +140,16 @@ export default class PlanqueTab implements Tab<Planque>
 	 */
 	public renderEntryView(): void
 	{
+		// Planque
 		this.code.innerText = this.selected?.code ? `Planque ${this.selected?.code}` : "Nouvelle Planque";
 		this.adresse.value = this.selected?.adresse ?? "";
+
+		// Pays
 		this.pays.childNodes.forEach((i: HTMLOptionElement) => i.selected =
 			i.value === this.selected?.pays?.libelle);
 		M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
+
+		// TypePlanque
 		this.type.childNodes.forEach((i: HTMLOptionElement) => i.selected =
 			i.value === this.selected?.typePlanque?.libelle);
 		M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });

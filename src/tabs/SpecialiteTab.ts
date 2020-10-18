@@ -52,7 +52,7 @@ export default class SpecialiteTab implements Tab<Specialite>
 			for (const specialite of this.models)
 			{
 				const item = document.createElement("li") as HTMLLIElement;
-				item.innerText = `${specialite.code} ${specialite.libelle}`;
+				item.innerText = `${specialite.libelle}`;
 				this.list.append(item);
 
 				item.setAttribute("data-code", specialite.code.toString());
@@ -118,9 +118,12 @@ export default class SpecialiteTab implements Tab<Specialite>
 	 */
 	public renderEntryView(): void
 	{
+		// Specialite
 		this.code.innerText = this.selected?.code ? `Specialite ${this.selected?.code}` : "Nouvelle Specialite";
 		this.libelle.value = this.selected?.libelle ?? "";
 		this.description.value = this.selected?.description ?? "";
+
+		// Type
 		this.type.childNodes.forEach((i: HTMLOptionElement) => i.selected =
 			i.value === this.selected?.typeMission?.libelle);
 		M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
