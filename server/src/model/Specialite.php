@@ -5,25 +5,25 @@ class Specialite extends Model implements JsonSerializable
 {
     private ?int $code;
     private string $libelle;
-    private ?int $codeTypeMission;
+    private ?TypeMission $typeMission;
     private ?string $description;
 
 	/**
 	 * Initialize a new Specialite object.
 	 * @param int|null $code
 	 * @param string $libelle
-	 * @param int|null $codeTypeMission
+	 * @param TypeMission|null $typeMission
 	 * @param string|null $description
 	 */
     public function __construct(
     	?int $code = null,
 		string $libelle = "",
-		?int $codeTypeMission = null,
-		?string $description = "")
+		?TypeMission $typeMission = null,
+		?string $description = null)
     {
         $this->code = $code;
         $this->libelle = $libelle;
-        $this->codeTypeMission = $codeTypeMission;
+        $this->typeMission = $typeMission;
         $this->description = $description;
     }
 
@@ -63,40 +63,37 @@ class Specialite extends Model implements JsonSerializable
 
     /**
      * Get the value of description
-     * @return string
+     * @return ?string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
      * Set the value of description
-     * @param string $description
+     * @param ?string $description
      */
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
 
-
-    /**
-     * Get the value of codeTypeMission
-     */
-    public function getCodeTypeMission()
-    {
-        return $this->codeTypeMission;
-    }
+	/**
+	 * @return TypeMission|null
+	 */
+	public function getTypeMission(): ?TypeMission
+	{
+		return $this->typeMission;
+	}
 
 	/**
-	 * Set the value of codeTypeMission
-	 *
-	 * @param $codeTypeMission
+	 * @param TypeMission|null $typeMission
 	 */
-    public function setCodeTypeMission($codeTypeMission)
-    {
-        $this->codeTypeMission = $codeTypeMission;
-    }
+	public function setTypeMission(?TypeMission $typeMission): void
+	{
+		$this->typeMission = $typeMission;
+	}
     
     /**
      * Serialize the object.
@@ -105,7 +102,9 @@ class Specialite extends Model implements JsonSerializable
     {
         return [
             "code" => $this->getCode(),
-            "libelle" => $this->getLibelle()
+            "libelle" => $this->getLibelle(),
+			"description" => $this->getDescription(),
+			"typeMission" => $this->getTypeMission()->jsonSerialize()
         ];
     }
 }

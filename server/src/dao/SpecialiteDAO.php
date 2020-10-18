@@ -1,15 +1,31 @@
 <?php
 require_once __DIR__ . "/DAO.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
+require_once __DIR__ . "/TypeMissionDAO.php";
 require_once __DIR__ . "/../model/Specialite.php";
 
 class SpecialiteDAO implements DAO
 {
+	public TypeMissionDAO $typeMissionDAO;
+
     public const SELECT_QUERY = "SELECT codeSpecialite, libelleSpecialite, codeTypeMission, descSpecialite from Specialite";
     public const SELECT_ONE_QUERY = "SELECT codeSpecialite, libelleSpecialite, codeTypeMission, descSpecialite from Specialite WHERE codeSpecialite = :code";
     public const ADD_QUERY = "INSERT INTO Specialite (libelleSpecialite, codeTypeMission, descSpecialite) VALUES (:libelle, :codeTM, :descript)";
     public const DELETE_QUERY = "DELETE FROM Specialite WHERE codeSpecialite = :code";
     public const UPDATE_QUERY = "UPDATE Specialite SET libelleSpecialite = :libelle, codeTypeMission = :codeTM, descSpecialite = :descript WHERE codeSpecialite = :code";
+
+	/**
+	 * SpecialiteDAO constructor.
+	 */
+	public function __construct()
+	{
+		DAOFactory::registerDAO(TypeMissionDAO::class);
+		/**
+		 * @var TypeMissionDAO $typeMissionDAO
+		 */
+		$typeMissionDAO = DAOFactory::getDAO(TypeMissionDAO::class);
+		$this->typeMissionDAO = $typeMissionDAO;
+    }
 
     /**
      * Fetch all rows to get all Specialite objects.
@@ -25,7 +41,7 @@ class SpecialiteDAO implements DAO
             $specialite = new Specialite(
                 (int)$row["codeSpecialite"],
                 $row["libelleSpecialite"],
-                (int)$row["codeTypeMission"],
+                $this->typeMissionDAO->get((int)$row["codeTypeMission"]),
                 $row["descSpecialite"]
             );
             $specialites[] = $specialite;
@@ -49,7 +65,7 @@ class SpecialiteDAO implements DAO
             return new Specialite(
                 (int)$row["codeSpecialite"],
                 $row["libelleSpecialite"],
-                (int)$row["codeTypeMission"],
+				$this->typeMissionDAO->get((int)$row["codeTypeMission"]),
                 $row["descSpecialite"]
             );
         }
@@ -67,7 +83,7 @@ class SpecialiteDAO implements DAO
         return $stmt->execute([
             ":code" => $specialite->getCode(),
             ":libelle" => $specialite->getLibelle(),
-            ":codeTM" => $specialite->getCodeTypeMission(),
+            ":codeTM" => $specialite->getTypeMission()->getCode(),
             ":descript" => $specialite->getDescription()
         ]);
     }
@@ -96,7 +112,7 @@ class SpecialiteDAO implements DAO
         $res = $stmt->execute([
             ":code" => $specialite->getCode(),
             ":libelle" => $specialite->getLibelle(),
-            ":codeTM" => $specialite->getCodeTypeMission(),
+            ":codeTM" => $specialite->getTypeMission()->getCode(),
             ":descript" => $specialite->getDescription()
         ]);
         if ($specialite->getCode() == null) {

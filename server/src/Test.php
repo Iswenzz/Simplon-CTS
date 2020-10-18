@@ -1,13 +1,18 @@
 <?php
 
-require_once __DIR__ . "/dao/PlanqueDAO.php";
+require_once __DIR__ . "/dao/SpecialiteDAO.php";
 require_once __DIR__ . "/dao/DAOFactory.php";
 
-DAOFactory::registerDAO(PlanqueDAO::class);
+DAOFactory::registerDAO(SpecialiteDAO::class);
 /**
- * @var PlanqueDAO $planqueDAO
+ * @var SpecialiteDAO $dao
  */
-$planqueDAO = DAOFactory::getDAO(PlanqueDAO::class);
-$result = $planqueDAO->getAll();
+$dao = DAOFactory::getDAO(SpecialiteDAO::class);
+$result = $dao->getAll();
+
+// UPDATE
+//$update = $result[0];
+//$update->setLibelle($update->getLibelle() . " test");
+//$dao->update($update);
 
 var_dump($result);

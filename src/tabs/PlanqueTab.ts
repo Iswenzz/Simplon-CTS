@@ -2,7 +2,6 @@ import PlanqueRepository, {Planque, TypePlanque} from "../repository/PlanqueRepo
 import DeleteButton from "../component/DeleteButton";
 import PaysRepository from "../repository/PaysRepository";
 import Tab from "./Tab";
-import Model from "../repository/Model";
 
 export default class PlanqueTab implements Tab<Planque>
 {

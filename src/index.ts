@@ -60,4 +60,5 @@ document.addEventListener("DOMContentLoaded", async () =>
 
 	// Tabs
 	new PlanqueTab();
+	new SpecialiteTab();
 });

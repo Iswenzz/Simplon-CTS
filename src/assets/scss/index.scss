@@ -109,6 +109,10 @@ button {
 		font-size: 1.2em !important;
 	}
 
+	textarea {
+		color: gainsboro !important;
+	}
+
 	&::before {
 		content: "";
 		position: absolute;

@@ -142,7 +142,7 @@ class MissionAPI extends Controller implements CRUD
 		 */
 		try
 		{
-			$mission = (new Deserializer(Mission::class, $this->req->pays))->deserialize();
+			$mission = (new Deserializer(Mission::class, $this->req->mission))->deserialize();
 		}
 		catch (Exception $e)
 		{

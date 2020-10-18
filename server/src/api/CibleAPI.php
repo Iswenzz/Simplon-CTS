@@ -142,7 +142,7 @@ class CibleAPI extends Controller implements CRUD
 		 */
 		try
 		{
-			$cible = (new Deserializer(Cible::class, $this->req->pays))->deserialize();
+			$cible = (new Deserializer(Cible::class, $this->req->cible))->deserialize();
 		}
 		catch (Exception $e)
 		{

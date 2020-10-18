@@ -142,7 +142,7 @@ class ContactAPI extends Controller implements CRUD
 		 */
 		try
 		{
-			$contact = (new Deserializer(Contact::class, $this->req->pays))->deserialize();
+			$contact = (new Deserializer(Contact::class, $this->req->contact))->deserialize();
 		}
 		catch (Exception $e)
 		{

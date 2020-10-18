@@ -142,7 +142,7 @@ class AgentAPI extends Controller implements CRUD
 		 */
 		try
 		{
-			$agent = (new Deserializer(Agent::class, $this->req->pays))->deserialize();
+			$agent = (new Deserializer(Agent::class, $this->req->agent))->deserialize();
 		}
 		catch (Exception $e)
 		{

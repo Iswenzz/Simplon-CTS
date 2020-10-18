@@ -422,23 +422,23 @@ VALUES ("Résidence"),
 	("Mobile"),
 	("Placard");
 -- spécialité
-INSERT INTO Specialite (libelleSpecialite)
-VALUES ("Armes blanches"),
-	("Armes à feu"),
-	("Explosifs"),
-	("Corps à corps"),
-	("Poisons"),
-	("Chimie"),
-	("Fabrication"),
-	("Hacking"),
-	("Cambriolage"),
-	("Déguisement"),
-	("Séduction"),
-	("Interrogatoire"),
-	("Conduite d'un véhicule"),
-	("Traque"),
-	("Analyse"),
-	("Direction");
+INSERT INTO Specialite (libelleSpecialite, codeTypeMission)
+VALUES ("Armes blanches", 1),
+	("Armes à feu", 2),
+	("Explosifs", 3),
+	("Corps à corps", 4),
+	("Poisons", 5),
+	("Chimie", 6),
+	("Fabrication", 7),
+	("Hacking", 1),
+	("Cambriolage", 2),
+	("Déguisement", 3),
+	("Séduction", 4),
+	("Interrogatoire", 5),
+	("Conduite d'un véhicule", 6),
+	("Traque", 7),
+	("Analyse", 1),
+	("Direction", 2);
 -- ----- DONNÉES ALÉATOIRES ----- --
 -- contact
 INSERT INTO Contact (

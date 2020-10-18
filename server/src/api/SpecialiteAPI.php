@@ -141,7 +141,9 @@ class SpecialiteAPI extends Controller implements CRUD
 		 */
 		try
 		{
-			$specialite = (new Deserializer(Specialite::class, $this->req->pays))->deserialize();
+			$specialite = (new Deserializer(Specialite::class, $this->req->specialite))->deserialize();
+			$typeMission = (new Deserializer(TypeMission::class, $this->req->specialite->typeMission))->deserialize();
+			$specialite->setTypeMission($typeMission);
 		}
 		catch (Exception $e)
 		{
