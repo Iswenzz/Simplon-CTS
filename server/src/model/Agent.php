@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/Model.php";
-require_once __DIR__ . "/../controller/AgentController.php";
 
 class Agent extends Model implements JsonSerializable
 {
@@ -8,7 +7,7 @@ class Agent extends Model implements JsonSerializable
     private string $nom;
     private string $prenom;
     private DateTime $dateNaissance;
-    private int $codePays;
+    private ?Pays $pays;
 
 	/**
 	 * Initialize a new Agent object.
@@ -16,20 +15,20 @@ class Agent extends Model implements JsonSerializable
 	 * @param string $nom
 	 * @param string $prenom
 	 * @param DateTime|null $dateNaissance
-	 * @param int $codePays
+	 * @param Pays|null $pays
 	 */
     public function __construct(
         ?int $code = null,
         string $nom = "",
         string $prenom = "",
         DateTime $dateNaissance = null,
-        int $codePays = 0)
+		?Pays $pays = null)
     {
         $this->code = $code;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->dateNaissance = $dateNaissance ?? new DateTime();
-        $this->codePays = $codePays;
+        $this->pays = $pays;
     }
 
     /**
@@ -48,6 +47,22 @@ class Agent extends Model implements JsonSerializable
     {
         $this->code = $code;
     }
+
+	/**
+	 * @return Pays|null
+	 */
+	public function getPays(): ?Pays
+	{
+		return $this->pays;
+	}
+
+	/**
+	 * @param Pays|null $pays
+	 */
+	public function setPays(?Pays $pays): void
+	{
+		$this->pays = $pays;
+	}
 
     /**
      * Get the value of nom.
@@ -101,23 +116,6 @@ class Agent extends Model implements JsonSerializable
     }
 
     /**
-     * Get the value of codePays
-     */
-    public function getCodePays(): int
-    {
-        return $this->codePays;
-    }
-
-	/**
-	 * Set the value of codePays
-	 * @param int $codePays
-	 */
-    public function setCodePays(int $codePays): void
-    {
-        $this->codePays = $codePays;
-    }
-
-    /**
      * Serialize the object.
      */
     public function jsonSerialize(): array
@@ -127,7 +125,7 @@ class Agent extends Model implements JsonSerializable
             "nom" => $this->getNom(),
             "prenom" => $this->getPrenom(),
             "dateNaissance" => $this->getDateNaissance()->format("Y-m-d"),
-            "codePays" => $this->getCodePays()
+            "pays" => $this->getPays() ? $this->getPays()->jsonSerialize() : null
         ];
     }
 }

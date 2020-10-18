@@ -104,7 +104,7 @@ class Specialite extends Model implements JsonSerializable
             "code" => $this->getCode(),
             "libelle" => $this->getLibelle(),
 			"description" => $this->getDescription(),
-			"typeMission" => $this->getTypeMission()->jsonSerialize()
+			"typeMission" => $this->getTypeMission() ? $this->getTypeMission()->jsonSerialize() : null
         ];
     }
 }

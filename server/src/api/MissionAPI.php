@@ -139,14 +139,23 @@ class MissionAPI extends Controller implements CRUD
 	{
 		/**
 		 * @var Mission $mission
+		 * @var Statut $statut
+		 * @var TypeMission $typeMission
+		 * @var Specialite $specialite
 		 */
 		try
 		{
 			$mission = (new Deserializer(Mission::class, $this->req->mission))->deserialize();
+			$statut = (new Deserializer(Statut::class, $this->req->mission->statut))->deserialize();
+			$typeMission = (new Deserializer(TypeMission::class, $this->req->mission->typeMission))->deserialize();
+			$specialite = (new Deserializer(Specialite::class, $this->req->mission->specialite))->deserialize();
+			$mission->setStatut($statut);
+			$mission->setTypeMission($typeMission);
+			$mission->setSpecialite($specialite);
 		}
 		catch (Exception $e)
 		{
-			print_r(e);
+			print_r($e);
 		}
 		return $mission;
 	}

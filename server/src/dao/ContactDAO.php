@@ -1,15 +1,33 @@
 <?php
 require_once __DIR__ . "/DAO.php";
+require_once __DIR__ . "/PaysDAO.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../model/Contact.php";
+require_once __DIR__ . "/../model/Pays.php";
 
 class ContactDAO implements DAO
 {
+	public PaysDAO $paysDAO;
+
 	public const SELECT_QUERY = "SELECT codeContact, nomContact, prenomContact, dateNaissanceContact, codePays from Contact";
 	public const SELECT_ONE_QUERY = "SELECT codeContact, nomContact, prenomContact, dateNaissanceContact, codePays from Contact WHERE codeContact = :code";
 	public const ADD_QUERY = "INSERT INTO Contact (nomContact, prenomContact, dateNaissanceContact, codePays) VALUES (:nom, :prenom, :dateNaissance, :codePays)";
 	public const DELETE_QUERY = "DELETE FROM Contact WHERE codeContact = :code";
 	public const UPDATE_QUERY = "UPDATE Contact SET nomContact = :nom, prenomContact = :prenom, dateNaissanceContact = :dateNaissance, codePays = :codePays WHERE codeContact = :code";
+
+	/**
+	 * ContactDAO constructor.
+	 */
+	public function __construct()
+	{
+		DAOFactory::registerDAO(PaysDAO::class);
+		/**
+		 * @var PaysDAO $paysDAO
+		 */
+		$paysDAO = DAOFactory::getDAO(PaysDAO::class);
+		$this->paysDAO = $paysDAO;
+	}
+
 
 	/**
 	 * Fetch all rows to get all Contact objects.
@@ -23,9 +41,13 @@ class ContactDAO implements DAO
         
 		while ($row = $stmt->fetch())
 		{
-			$contact = new Contact($row["codeContact"], $row["nomContact"], $row["prenomContact"], 
+			$contact = new Contact(
+				$row["codeContact"],
+				$row["nomContact"],
+				$row["prenomContact"],
 				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceContact"]), 
-				(int)$row["codePays"]);
+				$this->paysDAO->get((int)$row["codePays"])
+			);
             $contacts[] = $contact;
         }
         return $contacts;
@@ -45,9 +67,13 @@ class ContactDAO implements DAO
 
 		if ($row = $stmt->fetch())
 		{
-			return new Contact($row["codeContact"], $row["nomContact"], $row["prenomContact"],
+			return new Contact(
+				$row["codeContact"],
+				$row["nomContact"],
+				$row["prenomContact"],
 				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceContact"]),
-				(int)$row["codePays"]);
+				$this->paysDAO->get((int)$row["codePays"])
+			);
 		}
 		return null;
 	}
@@ -55,6 +81,7 @@ class ContactDAO implements DAO
 	/**
 	 * Update a contact row.
 	 * @return bool - TRUE on success or FALSE on failure.
+	 * @param Contact $contact - The contact.
 	 */
 	public function update($contact): bool
 	{
@@ -64,7 +91,7 @@ class ContactDAO implements DAO
 			":nom" => $contact->getNom(),
 			":prenom" => $contact->getPrenom(),
 			":dateNaissance" => $contact->getDateNaissance()->format("Y-m-d"),
-			":codePays" => $contact->getCodePays()
+			":codePays" => $contact->getPays()->getCode()
 		]);
 	}
 
@@ -93,7 +120,7 @@ class ContactDAO implements DAO
 			":nom" => $contact->getNom(),
 			":prenom" => $contact->getPrenom(),
 			":dateNaissance" => $contact->getDateNaissance()->format("Y-m-d"),
-			":codePays" => $contact->getCodePays()
+			":codePays" => $contact->getPays()->getCode()
 		]);
 		if ($contact->getCode() == null)
 			$contact->setCode(DatabaseFactory::getConnection()->lastInsertId());

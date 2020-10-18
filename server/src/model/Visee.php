@@ -3,17 +3,17 @@ require_once __DIR__ . "/Model.php";
 
 class Visee extends Model
 {
-	private int $codeMission;
-	private int $codeCible;
+	private ?int $codeMission;
+	private ?int $codeCible;
 
 	/**
 	 * Initialize a new Visee object.
-	 * @param int $codeMission
-	 * @param int $codeCible
+	 * @param ?int $codeMission
+	 * @param ?int $codeCible
 	 */
 	public function __construct(
-		int $codeMission,
-		int $codeCible)
+		?int $codeMission = null,
+		?int $codeCible = null)
 	{
 		$this->codeMission = $codeMission;
 		$this->codeCible = $codeCible;
@@ -22,16 +22,16 @@ class Visee extends Model
 	/**
 	 * Get the value of codeMission
 	 */ 
-	public function getCodeMission(): int
+	public function getCodeMission(): ?int
 	{
 		return $this->codeMission;
 	}
 
 	/**
 	 * Set the value of codeMission
-	 * @param int $codeMission
+	 * @param ?int $codeMission
 	 */
-	public function setCodeMission(int $codeMission): void
+	public function setCodeMission(?int $codeMission): void
 	{
 		$this->codeMission = $codeMission;
 	}
@@ -39,16 +39,16 @@ class Visee extends Model
 	/**
 	 * Get the value of codeCible
 	 */ 
-	public function getCodeCible(): int
+	public function getCodeCible(): ?int
 	{
 		return $this->codeCible;
 	}
 
 	/**
 	 * Set the value of codeCible
-	 * @param int $codeCible
+	 * @param ?int $codeCible
 	 */
-	public function setCodeCible(int $codeCible): void
+	public function setCodeCible(?int $codeCible): void
 	{
 		$this->codeCible = $codeCible;
 	}

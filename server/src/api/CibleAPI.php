@@ -139,14 +139,17 @@ class CibleAPI extends Controller implements CRUD
 	{
 		/**
 		 * @var Cible $cible
+		 * @var Pays $pays
 		 */
 		try
 		{
 			$cible = (new Deserializer(Cible::class, $this->req->cible))->deserialize();
+			$pays = (new Deserializer(Pays::class, $this->req->agent->pays))->deserialize();
+			$cible->setPays($pays);
 		}
 		catch (Exception $e)
 		{
-			print_r(e);
+			print_r($e);
 		}
 		return $cible;
 	}

@@ -6,6 +6,7 @@ require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
 require_once __DIR__ . "/../dao/ContactDAO.php";
+require_once __DIR__ . "/../model/Pays.php";
 
 /**
  * Controller for contact request.
@@ -139,14 +140,17 @@ class ContactAPI extends Controller implements CRUD
 	{
 		/**
 		 * @var Contact $contact
+		 * @var Pays $pays
 		 */
 		try
 		{
 			$contact = (new Deserializer(Contact::class, $this->req->contact))->deserialize();
+			$pays = (new Deserializer(Pays::class, $this->req->agent->pays))->deserialize();
+			$contact->setPays($pays);
 		}
 		catch (Exception $e)
 		{
-			print_r(e);
+			print_r($e);
 		}
 		return $contact;
 	}

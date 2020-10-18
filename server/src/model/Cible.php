@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/Model.php";
+require_once __DIR__ . "/Pays.php";
 
 class Cible extends Model implements JsonSerializable
 {
@@ -7,7 +8,7 @@ class Cible extends Model implements JsonSerializable
     private string $nom;
     private string $prenom;
     private DateTime $dateNaissance;
-    private int $codePays;
+    private ?Pays $pays;
 
 	/**
 	 * Initialize a new Cible object.
@@ -15,20 +16,20 @@ class Cible extends Model implements JsonSerializable
 	 * @param string $nom
 	 * @param string $prenom
 	 * @param DateTime|null $dateNaissance
-	 * @param int $codePays
+	 * @param Pays|null $pays
 	 */
     public function __construct(
     	?int $code = null,
 		string $nom = "",
 		string $prenom = "",
         DateTime $dateNaissance = null,
-		int $codePays = 0)
+		?Pays $pays = null)
 	{
         $this->code = $code;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->dateNaissance = $dateNaissance ?? new DateTime();
-        $this->codePays = $codePays;
+        $this->pays = $pays;
     }
 
     /**
@@ -99,24 +100,24 @@ class Cible extends Model implements JsonSerializable
         $this->dateNaissance = $dateNaissance;
     }
 
-    /**
-     * Get the value of codePays
-     */
-    public function getCodePays(): int
-    {
-        return $this->codePays;
-    }
+	/**
+	 * @return Pays|null
+	 */
+	public function getPays(): ?Pays
+	{
+		return $this->pays;
+	}
 
 	/**
-	 * Set the value of codePays
-	 * @param int $codePays
+	 * @param Pays|null $pays
 	 */
-    public function setCodePays(int $codePays): void
-    {
-        $this->codePays = $codePays;
-    }
+	public function setPays(?Pays $pays): void
+	{
+		$this->pays = $pays;
+	}
 
-    /**
+
+	/**
      * Serialize the object.
      */
     public function jsonSerialize(): array
@@ -126,7 +127,7 @@ class Cible extends Model implements JsonSerializable
             "nom" => $this->getNom(),
             "prenom" => $this->getPrenom(),
             "dateNaissance" => $this->getDateNaissance()->format("Y-m-d"),
-            "codePays" => $this->getCodePays()
+            "pays" => $this->getPays() ? $this->getPays()->jsonSerialize() : null
         ];
     }
 }

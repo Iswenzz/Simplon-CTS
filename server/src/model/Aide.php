@@ -3,17 +3,17 @@ require_once __DIR__ . "/Model.php";
 
 class Aide extends Model
 {
-	private int $codeMission;
-	private int $codeContact;
+	private ?int $codeMission;
+	private ?int $codeContact;
 
 	/**
 	 * Initialize a new Aide object.
-	 * @param int $codeMission
-	 * @param int $codeContact
+	 * @param ?int $codeMission
+	 * @param ?int $codeContact
 	 */
 	public function __construct(
-		int $codeMission,
-		int $codeContact)
+		?int $codeMission = null,
+		?int $codeContact = null)
 	{
 		$this->codeMission = $codeMission;
 		$this->codeContact = $codeContact;
@@ -22,16 +22,16 @@ class Aide extends Model
 	/**
 	 * Get the value of codeMission
 	 */ 
-	public function getCodeMission(): int
+	public function getCodeMission(): ?int
 	{
 		return $this->codeMission;
 	}
 
 	/**
 	 * Set the value of codeMission
-	 * @param int $codeMission
+	 * @param ?int $codeMission
 	 */
-	public function setCodeMission(int $codeMission): void
+	public function setCodeMission(?int $codeMission): void
 	{
 		$this->codeMission = $codeMission;
 	}
@@ -39,16 +39,16 @@ class Aide extends Model
 	/**
 	 * Get the value of codeContact
 	 */ 
-	public function getCodeContact(): int
+	public function getCodeContact(): ?int
 	{
 		return $this->codeContact;
 	}
 
 	/**
 	 * Set the value of codeContact
-	 * @param int $codeContact
+	 * @param ?int $codeContact
 	 */
-	public function setCodeContact(int $codeContact): void
+	public function setCodeContact(?int $codeContact): void
 	{
 		$this->codeContact = $codeContact;
 	}

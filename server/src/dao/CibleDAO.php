@@ -1,15 +1,32 @@
 <?php
 require_once __DIR__ . "/DAO.php";
+require_once __DIR__ . "/PaysDAO.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../model/Cible.php";
+require_once __DIR__ . "/../model/Pays.php";
 
 class CibleDAO implements DAO
 {
+	public PaysDAO $paysDAO;
+
 	public const SELECT_QUERY = "SELECT codeCible, nomCible, prenomCible, dateNaissanceCible, codePays from Cible";
 	public const SELECT_ONE_QUERY = "SELECT codeCible, nomCible, prenomCible, dateNaissanceCible, codePays from Cible WHERE codeCible = :code";
 	public const ADD_QUERY = "INSERT INTO Cible (nomCible, prenomCible, dateNaissanceCible, codePays) VALUES (:nom, :prenom, :dateNaissance, :codePays)";
 	public const DELETE_QUERY = "DELETE FROM Cible WHERE codeCible = :code";
 	public const UPDATE_QUERY = "UPDATE Cible SET nomCible = :nom, prenomCible = :prenom, dateNaissanceCible = :dateNaissance, codePays = :codePays WHERE codeCible = :code";
+
+	/**
+	 * CibleDAO constructor.
+	 */
+	public function __construct()
+	{
+		DAOFactory::registerDAO(PaysDAO::class);
+		/**
+		 * @var PaysDAO $paysDAO
+		 */
+		$paysDAO = DAOFactory::getDAO(PaysDAO::class);
+		$this->paysDAO = $paysDAO;
+	}
 
 	/**
 	 * Fetch all rows to get all Cible objects.
@@ -23,9 +40,13 @@ class CibleDAO implements DAO
         
 		while ($row = $stmt->fetch())
 		{
-			$cible = new Cible((int)$row["codeCible"], $row["nomCible"], $row["prenomCible"], 
-				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceCible"]), 
-				(int)$row["codePays"]);
+			$cible = new Cible(
+				(int)$row["codeCible"],
+				$row["nomCible"],
+				$row["prenomCible"],
+				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceCible"]),
+				$this->paysDAO->get((int)$row["codePays"])
+			);
             $cibles[] = $cible;
         }
         return $cibles;
@@ -45,9 +66,13 @@ class CibleDAO implements DAO
 
 		if ($row = $stmt->fetch())
 		{
-			return new Cible($row["codeCible"], $row["nomCible"], $row["prenomCible"],
+			return new Cible(
+				$row["codeCible"],
+				$row["nomCible"],
+				$row["prenomCible"],
 				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceCible"]),
-				(int)$row["codePays"]);
+				$this->paysDAO->get((int)$row["codePays"])
+			);
 		}
 		return null;
 	}
@@ -65,7 +90,7 @@ class CibleDAO implements DAO
 			":nom" => $cible->getNom(),
 			":prenom" => $cible->getPrenom(),
 			":dateNaissance" => $cible->getDateNaissance()->format("Y-m-d"),
-			":codePays" => $cible->getCodePays()
+			":codePays" => $cible->getPays()->getCode()
 		]);
 	}
 
@@ -94,7 +119,7 @@ class CibleDAO implements DAO
 			":nom" => $cible->getNom(),
 			":prenom" => $cible->getPrenom(),
 			":dateNaissance" => $cible->getDateNaissance()->format("Y-m-d"),
-			":codePays" => $cible->getCodePays()
+			":codePays" => $cible->getPays()->getCode()
 		]);
 		if ($cible->getCode() == null)
 			$cible->setCode(DatabaseFactory::getConnection()->lastInsertId());

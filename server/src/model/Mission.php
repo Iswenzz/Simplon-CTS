@@ -8,9 +8,9 @@ class Mission extends Model implements JsonSerializable
 	private string $description;
 	private DateTime $dateDebut;
 	private DateTime $dateFin;
-	private int $codeStatut;
-	private int $codeType;
-	private int $codeSpecialite;
+	private ?Statut $statut;
+	private ?TypeMission $typeMission;
+	private ?Specialite $specialite;
 
 	/**
 	 * Initialize a new Mission object.
@@ -19,9 +19,9 @@ class Mission extends Model implements JsonSerializable
 	 * @param string $description - The mission description.
 	 * @param DateTime|null $dateDebut - The mission start date.
 	 * @param DateTime|null $dateFin - The mission end date.
-	 * @param int $codeStatut - The mission statut code.
-	 * @param int $codeType - The mission type code.
-	 * @param int $codeSpecialite - The mission speciality code.
+	 * @param Statut|null $statut
+	 * @param TypeMission|null $typeMission
+	 * @param Specialite|null $specialite
 	 */
 	public function __construct(
 		?int $code = 0,
@@ -29,18 +29,66 @@ class Mission extends Model implements JsonSerializable
 		string $description = "",
 		DateTime $dateDebut = null,
 		DateTime $dateFin = null,
-		int $codeStatut = 0,
-		int $codeType = 0,
-		int $codeSpecialite = 0)
+		?Statut $statut = null,
+		?TypeMission $typeMission = null,
+		?Specialite $specialite = null)
 	{
 		$this->code = $code;
 		$this->titre = $titre;
 		$this->description = $description;
 		$this->dateDebut = $dateDebut ?? new DateTime();
 		$this->dateFin = $dateFin ?? new DateTime();
-		$this->codeStatut = $codeStatut;
-		$this->codeType = $codeType;
-		$this->codeSpecialite = $codeSpecialite;
+		$this->statut = $statut;
+		$this->typeMission = $typeMission;
+		$this->specialite = $specialite;
+	}
+
+	/**
+	 * @return Statut|null
+	 */
+	public function getStatut(): ?Statut
+	{
+		return $this->statut;
+	}
+
+	/**
+	 * @param Statut|null $statut
+	 */
+	public function setStatut(?Statut $statut): void
+	{
+		$this->statut = $statut;
+	}
+
+	/**
+	 * @return TypeMission|null
+	 */
+	public function getTypeMission(): ?TypeMission
+	{
+		return $this->typeMission;
+	}
+
+	/**
+	 * @param TypeMission|null $typeMission
+	 */
+	public function setTypeMission(?TypeMission $typeMission): void
+	{
+		$this->typeMission = $typeMission;
+	}
+
+	/**
+	 * @return Specialite|null
+	 */
+	public function getSpecialite(): ?Specialite
+	{
+		return $this->specialite;
+	}
+
+	/**
+	 * @param Specialite|null $specialite
+	 */
+	public function setSpecialite(?Specialite $specialite): void
+	{
+		$this->specialite = $specialite;
 	}
 
 	/**
@@ -129,57 +177,6 @@ class Mission extends Model implements JsonSerializable
 	}
 
 	/**
-	 * Get the value of codeStatut
-	 */ 
-	public function getCodeStatut(): int
-	{
-		return $this->codeStatut;
-	}
-
-	/**
-	 * Set the value of codeStatut
-	 * @param int $codeStatut
-	 */
-	public function setCodeStatut(int $codeStatut): void
-	{
-		$this->codeStatut = $codeStatut;
-	}
-
-	/**
-	 * Get the value of codeType
-	 */ 
-	public function getCodeType(): int
-	{
-		return $this->codeType;
-	}
-
-	/**
-	 * Set the value of codeType
-	 * @param int $codeType
-	 */
-	public function setCodeType(int $codeType): void
-	{
-		$this->codeType = $codeType;
-	}
-
-	/**
-	 * Get the value of codeSpecialite
-	 */ 
-	public function getCodeSpecialite(): int
-	{
-		return $this->codeSpecialite;
-	}
-
-	/**
-	 * Set the value of codeSpecialite
-	 * @param int $codeSpecialite
-	 */
-	public function setCodeSpecialite(int $codeSpecialite): void
-	{
-		$this->codeSpecialite = $codeSpecialite;
-	}
-
-	/**
 	 * Serialize the object.
 	 */
 	public function jsonSerialize()
@@ -190,9 +187,9 @@ class Mission extends Model implements JsonSerializable
 			"description" => $this->getDescription(),
 			"dateDebut" => $this->getDateDebut()->format("Y-m-d"),
 			"dateFin" => $this->getDateFin()->format("Y-m-d"),
-			"codeStatut" => $this->getCodeStatut(),
-			"codeType" => $this->getCodeType(),
-			"codeSpecialite" => $this->getCodeSpecialite(),
+			"statut" => $this->getStatut() ? $this->getStatut()->jsonSerialize() : null,
+			"typeMission" => $this->getTypeMission() ? $this->getTypeMission()->jsonSerialize() : null,
+			"specialite" => $this->getSpecialite() ? $this->getSpecialite()->jsonSerialize() : null
 		];
 	}
 }

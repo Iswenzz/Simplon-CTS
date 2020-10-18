@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/Model.php";
+require_once __DIR__ . "/Pays.php";
 
 class Contact extends Model implements JsonSerializable
 {
@@ -7,7 +8,7 @@ class Contact extends Model implements JsonSerializable
 	private string $nom;
 	private string $prenom;
 	private DateTime $dateNaissance;
-	private int $codePays;
+	private ?Pays $pays;
 
 	/**
 	 * Initialize a new Contact object.
@@ -15,20 +16,20 @@ class Contact extends Model implements JsonSerializable
 	 * @param string $nom - The contact name.
 	 * @param string $prenom - The contact firstname.
 	 * @param DateTime|null $dateNaissance - The contact birthdate.
-	 * @param int $codePays - The contact country code.
+	 * @param Pays|null $pays
 	 */
 	public function __construct(
 		?int $code = null,
 		string $nom = "",
 		string $prenom = "",
 		DateTime $dateNaissance = null,
-		int $codePays = 0)
+		Pays $pays = null)
 	{
 		$this->code = $code;
 		$this->nom = $nom;
 		$this->prenom = $prenom;
 		$this->dateNaissance = $dateNaissance ?? new DateTime();
-		$this->codePays = $codePays;
+		$this->pays = $pays;
 	}
 
 	/**
@@ -100,20 +101,19 @@ class Contact extends Model implements JsonSerializable
 	}
 
 	/**
-	 * Get the value of codePays
-	 */ 
-	public function getCodePays(): int
+	 * @return Pays|null
+	 */
+	public function getPays(): ?Pays
 	{
-		return $this->codePays;
+		return $this->pays;
 	}
 
 	/**
-	 * Set the value of codePays
-	 * @param int $codePays
+	 * @param Pays|null $pays
 	 */
-	public function setCodePays(int $codePays): void
+	public function setPays(?Pays $pays): void
 	{
-		$this->codePays = $codePays;
+		$this->pays = $pays;
 	}
 
 	/**
@@ -126,7 +126,7 @@ class Contact extends Model implements JsonSerializable
 			"nom" => $this->getNom(),
 			"prenom" => $this->getPrenom(),
 			"dateNaissance" => $this->getDateNaissance()->format("Y-m-d"),
-			"codePays" => $this->getCodePays()
+			"pays" => $this->getPays() ? $this->getPays()->jsonSerialize() : null
 		];
 	}
 }

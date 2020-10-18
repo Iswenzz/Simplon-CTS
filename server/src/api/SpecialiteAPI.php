@@ -138,6 +138,7 @@ class SpecialiteAPI extends Controller implements CRUD
 	{
 		/**
 		 * @var Specialite $specialite
+		 * @var TypeMission $typeMission
 		 */
 		try
 		{
@@ -147,7 +148,7 @@ class SpecialiteAPI extends Controller implements CRUD
 		}
 		catch (Exception $e)
 		{
-			print_r(e);
+			print_r($e);
 		}
 		return $specialite;
 	}

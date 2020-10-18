@@ -12,8 +12,8 @@ class Statut extends Model implements JsonSerializable
 	 * @param string $libelle
 	 */
 	public function __construct(
-		?int $code,
-		string $libelle)
+		?int $code = null,
+		string $libelle = "")
 	{
 		$this->code = $code;
 		$this->libelle = $libelle;

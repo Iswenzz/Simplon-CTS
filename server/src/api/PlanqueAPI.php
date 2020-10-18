@@ -172,7 +172,7 @@ class PlanqueAPI extends Controller implements CRUD
 		}
 		catch (Exception $e)
 		{
-			print_r(e);
+			print_r($e);
 		}
 		return $planque;
 	}

@@ -1,15 +1,31 @@
 <?php
 require_once __DIR__ . "/DAO.php";
+require_once __DIR__ . "/PaysDAO.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../model/Agent.php";
 
 class AgentDAO implements DAO
 {
+	public PaysDAO $paysDAO;
+
     public const SELECT_QUERY = "SELECT codeAgent, nomAgent, prenomAgent, dateNaissanceAgent, codePays from Agent";
     public const SELECT_ONE_QUERY = "SELECT codeAgent, nomAgent, prenomAgent, dateNaissanceAgent, codePays from Agent WHERE codeAgent = :code";
     public const ADD_QUERY = "INSERT INTO Agent (nomAgent, prenomAgent, dateNaissanceAgent, codePays) VALUES (:nom, :prenom, :dateNaissance, :codePays)";
     public const DELETE_QUERY = "DELETE FROM Agent WHERE codeAgent = :code";
     public const UPDATE_QUERY = "UPDATE Agent SET nomAgent = :nom, prenomAgent = :prenom, dateNaissanceAgent = :dateNaissance, codePays = :codePays WHERE codeAgent = :code";
+
+	/**
+	 * AgentDAO constructor.
+	 */
+	public function __construct()
+	{
+		DAOFactory::registerDAO(PaysDAO::class);
+		/**
+		 * @var PaysDAO $paysDAO
+		 */
+		$paysDAO = DAOFactory::getDAO(PaysDAO::class);
+		$this->paysDAO = $paysDAO;
+	}
 
     /**
      * Fetch all rows to get all Agent objects.
@@ -27,7 +43,7 @@ class AgentDAO implements DAO
                 $row["nomAgent"],
                 $row["prenomAgent"],
                 DateTime::createFromFormat("Y-m-d", $row["dateNaissanceAgent"]),
-                (int)$row["codePays"]
+                $this->paysDAO->get((int)$row["codePays"])
             );
             $agents[] = $agent;
         }
@@ -52,7 +68,7 @@ class AgentDAO implements DAO
                 $row["nomAgent"],
                 $row["prenomAgent"],
                 DateTime::createFromFormat("Y-m-d", $row["dateNaissanceAgent"]),
-                (int)$row["codePays"]
+				$this->paysDAO->get((int)$row["codePays"])
             );
         }
         return null;
@@ -71,7 +87,7 @@ class AgentDAO implements DAO
             "nom" => $agent->getNom(),
             "prenom" => $agent->getPrenom(),
             "dateNaissance" => $agent->getDateNaissance()->format("Y-m-d"),
-            "codePays" => $agent->getCodePays()
+            "codePays" => $agent->getPays()->getCode()
         ]);
     }
 
@@ -100,7 +116,7 @@ class AgentDAO implements DAO
             "nom" => $agent->getNom(),
             "prenom" => $agent->getPrenom(),
             "dateNaissance" => $agent->getDateNaissance()->format("Y-m-d"),
-            "codePays" => $agent->getCodePays()
+            "codePays" => $agent->getPays()->getCode()
         ]);
         if ($agent->getCode() == null) {
             $agent->setCode(DatabaseFactory::getConnection()->lastInsertId());

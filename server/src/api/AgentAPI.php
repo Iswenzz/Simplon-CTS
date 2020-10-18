@@ -6,6 +6,7 @@ require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../Deserializer.php";
 require_once __DIR__ . "/../dao/DAOFactory.php";
 require_once __DIR__ . "/../dao/AgentDAO.php";
+require_once __DIR__ . "/../model/Pays.php";
 
 /**
  * Controller for agent requests.
@@ -139,14 +140,17 @@ class AgentAPI extends Controller implements CRUD
 	{
 		/**
 		 * @var Agent $agent
+		 * @var Pays $pays
 		 */
 		try
 		{
 			$agent = (new Deserializer(Agent::class, $this->req->agent))->deserialize();
+			$pays = (new Deserializer(Pays::class, $this->req->agent->pays))->deserialize();
+			$agent->setPays($pays);
 		}
 		catch (Exception $e)
 		{
-			print_r(e);
+			print_r($e);
 		}
 		return $agent;
 	}
