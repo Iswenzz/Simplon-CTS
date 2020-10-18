@@ -7,6 +7,7 @@ export default class SpecialiteTab implements Tab<Specialite>
 {
 	public selected: Specialite;
 	public models: Specialite[];
+	public modelsTypeMission: TypeMission[];
 
 	private readonly specialiteRepo: SpecialiteRepository;
 
@@ -32,11 +33,10 @@ export default class SpecialiteTab implements Tab<Specialite>
 		this.libelle.value = "";
 		this.description.value = "";
 		this.type.value = null;
+
 		document.getElementById("specialite-form").addEventListener("submit", this.submitModel.bind(this));
 		document.getElementById("specialite-new").addEventListener("click", this.onEntryAdd.bind(this));
-
-		this.initialize();
-		this.renderEntryView();
+		document.getElementById("specialite-tab").addEventListener("click", this.initialize.bind(this));
 	}
 
 	/**
@@ -69,12 +69,12 @@ export default class SpecialiteTab implements Tab<Specialite>
 			const typeMission: Record<string, TypeMission> = {};
 			this.models.forEach((s: Specialite) => typeMission[s.typeMission.libelle] = s.typeMission);
 			this.type.innerHTML = "";
-			for (const specialite of Object.values(typeMission))
+			this.modelsTypeMission = Object.values(typeMission);
+			for (const specialite of this.modelsTypeMission)
 			{
 				const item = document.createElement("option") as HTMLOptionElement;
 				item.innerText = specialite.libelle;
 				item.setAttribute("data-code", specialite.code.toString());
-				item.setAttribute("data-libelle", specialite.libelle);
 				this.type.appendChild(item);
 			}
 			M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
@@ -83,6 +83,7 @@ export default class SpecialiteTab implements Tab<Specialite>
 		{
 			console.log(error);
 		}
+		this.renderEntryView();
 	}
 
 	/**
@@ -99,18 +100,15 @@ export default class SpecialiteTab implements Tab<Specialite>
 		this.selected.libelle = this.libelle.value;
 		this.selected.description = this.description.value;
 
-		// TypeSpecialite
+		// TypeMission
 		if (!this.type.selectedOptions[0]) return;
-		this.selected.typeMission = {
-			...this.selected.typeMission,
-			code: parseInt(this.type.selectedOptions[0].getAttribute("data-code"), 10),
-			libelle: this.type.selectedOptions[0].getAttribute("data-libelle")
-		};
+		const selectedTypeMission = this.modelsTypeMission.find(i =>
+			i.code === parseInt(this.type.selectedOptions[0].getAttribute("data-code"), 10));
+		this.selected.typeMission = { ...this.selected?.typeMission, ...selectedTypeMission };
 
 		isNew ? await this.specialiteRepo.add(this.selected)
 			: await this.specialiteRepo.update(this.selected);
 		await this.initialize();
-		this.renderEntryView();
 	}
 
 	/**

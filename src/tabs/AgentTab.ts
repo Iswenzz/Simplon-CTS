@@ -1,6 +1,6 @@
 import AgentRepository, {Agent} from "../repository/AgentRepository";
 import DeleteButton from "../component/DeleteButton";
-import PaysRepository from "../repository/PaysRepository";
+import PaysRepository, {Pays} from "../repository/PaysRepository";
 import * as daysjs from "dayjs";
 import Tab from "./Tab";
 
@@ -8,6 +8,7 @@ export default class AgentTab implements Tab<Agent>
 {
 	public selected: Agent;
 	public models: Agent[];
+	public modelsPays: Pays[];
 
 	private readonly agentRepo: AgentRepository;
 	private readonly paysRepo: PaysRepository;
@@ -38,11 +39,10 @@ export default class AgentTab implements Tab<Agent>
 		this.prenom.value = "";
 		this.dateNaissance.value = "";
 		this.pays.value = null;
+
 		document.getElementById("agent-form").addEventListener("submit", this.submitModel.bind(this));
 		document.getElementById("agent-new").addEventListener("click", this.onEntryAdd.bind(this));
-
-		this.initialize();
-		this.renderEntryView();
+		document.getElementById("agent-tab").addEventListener("click", this.initialize.bind(this));
 	}
 
 	/**
@@ -72,14 +72,13 @@ export default class AgentTab implements Tab<Agent>
 			}
 
 			// Pays
-			const pays = await this.paysRepo.getAll();
+			this.modelsPays = await this.paysRepo.getAll();
 			this.pays.innerHTML = "";
-			for (const p of pays)
+			for (const p of this.modelsPays)
 			{
 				const item = document.createElement("option") as HTMLOptionElement;
 				item.innerText = p.libelle;
 				item.setAttribute("data-code", p.code.toString());
-				item.setAttribute("data-libelle", p.libelle);
 				this.pays.appendChild(item);
 			}
 			M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
@@ -88,6 +87,7 @@ export default class AgentTab implements Tab<Agent>
 		{
 			console.log(error);
 		}
+		this.renderEntryView();
 	}
 
 	/**
@@ -107,16 +107,13 @@ export default class AgentTab implements Tab<Agent>
 
 		// Pays
 		if (!this.pays.selectedOptions[0]) return;
-		this.selected.pays = {
-			...this.selected?.pays,
-			code: parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10),
-			libelle: this.pays.selectedOptions[0].getAttribute("data-libelle")
-		};
+		const selectedPays = this.modelsPays.find(i =>
+			i.code === parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10));
+		this.selected.pays = { ...this.selected?.pays, ...selectedPays };
 
 		isNew ? await this.agentRepo.add(this.selected)
 			: await this.agentRepo.update(this.selected);
 		await this.initialize();
-		this.renderEntryView();
 	}
 
 	/**

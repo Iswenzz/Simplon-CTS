@@ -1,12 +1,14 @@
 import PlanqueRepository, {Planque, TypePlanque} from "../repository/PlanqueRepository";
 import DeleteButton from "../component/DeleteButton";
-import PaysRepository from "../repository/PaysRepository";
+import PaysRepository, {Pays} from "../repository/PaysRepository";
 import Tab from "./Tab";
 
 export default class PlanqueTab implements Tab<Planque>
 {
 	public selected: Planque;
 	public models: Planque[];
+	public modelsPays: Pays[];
+	public modelsTypePlanque: TypePlanque[];
 
 	private readonly planqueRepo: PlanqueRepository;
 	private readonly paysRepo: PaysRepository;
@@ -34,11 +36,10 @@ export default class PlanqueTab implements Tab<Planque>
 		this.adresse.value = "";
 		this.pays.value = null;
 		this.type.value = null;
+
 		document.getElementById("hideout-form").addEventListener("submit", this.submitModel.bind(this));
 		document.getElementById("hideout-new").addEventListener("click", this.onEntryAdd.bind(this));
-
-		this.initialize();
-		this.renderEntryView();
+		document.getElementById("hideout-tab").addEventListener("click", this.initialize.bind(this));
 	}
 
 	/**
@@ -68,14 +69,13 @@ export default class PlanqueTab implements Tab<Planque>
 			}
 
 			// Pays
-			const pays = await this.paysRepo.getAll();
+			this.modelsPays = await this.paysRepo.getAll();
 			this.pays.innerHTML = "";
-			for (const p of pays)
+			for (const p of this.modelsPays)
 			{
 				const item = document.createElement("option") as HTMLOptionElement;
 				item.innerText = p.libelle;
 				item.setAttribute("data-code", p.code.toString());
-				item.setAttribute("data-libelle", p.libelle);
 				this.pays.appendChild(item);
 			}
 			M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
@@ -84,12 +84,12 @@ export default class PlanqueTab implements Tab<Planque>
 			const typePlanques: Record<string, TypePlanque> = {};
 			this.models.forEach((p: Planque) => typePlanques[p.typePlanque.libelle] = p.typePlanque);
 			this.type.innerHTML = "";
-			for (const typePlanque of Object.values(typePlanques))
+			this.modelsTypePlanque = Object.values(typePlanques);
+			for (const typePlanque of this.modelsTypePlanque)
 			{
 				const item = document.createElement("option") as HTMLOptionElement;
 				item.innerText = typePlanque.libelle;
 				item.setAttribute("data-code", typePlanque.code.toString());
-				item.setAttribute("data-libelle", typePlanque.libelle);
 				this.type.appendChild(item);
 			}
 			M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
@@ -98,6 +98,7 @@ export default class PlanqueTab implements Tab<Planque>
 		{
 			console.log(error);
 		}
+		this.renderEntryView();
 	}
 
 	/**
@@ -115,24 +116,19 @@ export default class PlanqueTab implements Tab<Planque>
 
 		// Pays
 		if (!this.pays.selectedOptions[0]) return;
-		this.selected.pays = {
-			...this.selected?.pays,
-			code: parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10),
-			libelle: this.pays.selectedOptions[0].getAttribute("data-libelle")
-		};
+		const selectedPays = this.modelsPays.find(i =>
+			i.code === parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10));
+		this.selected.pays = { ...this.selected?.pays, ...selectedPays };
 
 		// TypePlanque
 		if (!this.type.selectedOptions[0]) return;
-		this.selected.typePlanque = {
-			...this.selected.typePlanque,
-			code: parseInt(this.type.selectedOptions[0].getAttribute("data-code"), 10),
-			libelle: this.type.selectedOptions[0].getAttribute("data-libelle")
-		};
+		const selectedTypePlanque = this.modelsTypePlanque.find(i =>
+			i.code === parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10));
+		this.selected.pays = { ...this.selected?.pays, ...selectedTypePlanque };
 
 		isNew ? await this.planqueRepo.add(this.selected)
 			: await this.planqueRepo.update(this.selected);
 		await this.initialize();
-		this.renderEntryView();
 	}
 
 	/**

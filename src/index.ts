@@ -64,4 +64,5 @@ document.addEventListener("DOMContentLoaded", async () =>
 	new AgentTab();
 	new ContactTab();
 	new CibleTab();
+	new MissionTab();
 });

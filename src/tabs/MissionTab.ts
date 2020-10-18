@@ -1,96 +1,204 @@
-import * as dayjs from "dayjs";
-import Mission from "../model/Mission";
-import MissionRepository from "../repository/MissionRepository";
-import PaysRepository from "../repository/PaysRepository";
-import PlanqueRepository from "../repository/PlanqueRepository";
 import DeleteButton from "../component/DeleteButton";
+import MissionRepository, {Mission} from "../repository/MissionRepository";
+import PaysRepository, {Pays} from "../repository/PaysRepository";
+import PlanqueRepository, {Planque} from "../repository/PlanqueRepository";
+import AgentRepository, {Agent} from "../repository/AgentRepository";
+import CibleRepository, {Cible} from "../repository/CibleRepository";
+import ContactRepository, {Contact} from "../repository/ContactRepository";
+import * as daysjs from "dayjs";
+import Tab from "./Tab";
 
-export default class MissionTab
+export default class MissionTab implements Tab<Mission>
 {
-	// API links
+	public selected: Mission;
+	public models: Mission[];
+	public modelsContact: Contact[];
+	public modelsCible: Cible[];
+	public modelsAgent: Agent[];
+	public modelsPlanque: Planque[];
+
 	private readonly missionRepo: MissionRepository;
-	private paysRepo: PaysRepository;
-	private planqueRepo: PlanqueRepository;
+	private readonly contactRepo: ContactRepository;
+	private readonly cibleRepo: CibleRepository;
+	private readonly agentRepo: AgentRepository;
+	private readonly planqueRepo: PlanqueRepository;
 
-	// inputs
-	private list: HTMLUListElement;
-	private titre: HTMLInputElement;
-	private description: HTMLTextAreaElement;
-	private dateDebut: HTMLInputElement;
-	private dateFin: HTMLInputElement;
-	private paysSelect: HTMLSelectElement;
-
-	// outputs
-	private typeMission: HTMLParagraphElement; 	// join avec MissionType & Spécialité
-	private paysDesc: HTMLParagraphElement; 	// join avec Abrite
-	private planqueDesc: HTMLParagraphElement; 	// join avec Abrite
-	private planque: HTMLParagraphElement; 		// join avec Abrite
+	private readonly list: HTMLUListElement;
+	private readonly code: HTMLHeadingElement;
+	private readonly titre: HTMLInputElement;
+	private readonly description: HTMLTextAreaElement;
+	private readonly dateDebut: HTMLInputElement;
+	private readonly dateFin: HTMLInputElement;
+	private readonly contacts: HTMLSelectElement;
+	private readonly cibles: HTMLSelectElement;
+	private readonly agents: HTMLSelectElement;
+	private readonly planques: HTMLSelectElement;
+	private readonly type: HTMLSelectElement;
+	private readonly specialite: HTMLSelectElement;
 
 	/**
 	 * Initialize a new MissionTab.
-	 * @param missionRepo
 	 */
-	public constructor(missionRepo: MissionRepository, view: HTMLElement)
+	public constructor()
 	{
-		this.list = view as HTMLUListElement;
-		this.missionRepo = missionRepo;
-		this.paysRepo = new PaysRepository();
+		this.list = document.getElementById("mission-list") as HTMLUListElement;
+		this.code = document.getElementById("mission-header") as HTMLHeadingElement;
+		this.titre = document.getElementById("mission-title") as HTMLInputElement;
+		this.description = document.getElementById("mission-description") as HTMLTextAreaElement;
+		this.dateDebut = document.getElementById("mission-date-start") as HTMLInputElement;
+		this.dateFin = document.getElementById("mission-date-end") as HTMLInputElement;
+		this.contacts = document.getElementById("mission-contacts") as HTMLSelectElement;
+		this.cibles = document.getElementById("mission-cibles") as HTMLSelectElement;
+		this.agents = document.getElementById("mission-agents") as HTMLSelectElement;
+		this.planques = document.getElementById("mission-hideouts") as HTMLSelectElement;
+		this.type = document.getElementById("mission-type") as HTMLSelectElement;
+		this.specialite = document.getElementById("mission-specialite") as HTMLSelectElement;
+
+		this.missionRepo = new MissionRepository();
+		this.contactRepo = new ContactRepository();
+		this.cibleRepo = new CibleRepository();
+		this.agentRepo = new AgentRepository();
 		this.planqueRepo = new PlanqueRepository();
 
-		this.titre = document.getElementById("mission-details-name") as HTMLInputElement;
-		this.description = document.getElementById("mission-details-desc") as HTMLTextAreaElement;
-		this.dateDebut = document.getElementById("missions-details-date-start") as HTMLInputElement;
-		this.dateFin = document.getElementById("missions-details-date-end") as HTMLInputElement;
+		this.selected = null;
+		this.titre.value = "";
+		this.description.value = "";
+		this.dateDebut.value = null;
+		this.dateFin.value = null;
+		this.contacts.value = null;
+		this.cibles.value = null;
+		this.agents.value = null;
+		this.planques.value = null;
+		this.type.value = null;
+		this.specialite.value = null;
 
-		this.listAll();
+		document.getElementById("mission-form").addEventListener("submit", this.submitModel.bind(this));
+		document.getElementById("mission-new").addEventListener("click", this.onEntryAdd.bind(this));
+		document.getElementById("mission-tab").addEventListener("click", this.initialize.bind(this));
 	}
 
 	/**
-	 * List all missions in the view element.
+	 * Render the tab content.
 	 */
-	public async listAll(): Promise<void>
+	public async initialize(): Promise<void>
 	{
 		try
 		{
-			const missions = await this.missionRepo.getAll();
-			// display all missions gotten from the DB
-			for (const mission of missions)
+			// Missions
+			this.models = await this.missionRepo.getAll();
+			this.list.innerHTML = "";
+			for (const mission of this.models)
 			{
 				const item = document.createElement("li") as HTMLLIElement;
-				item.innerText = mission.format();
+				item.innerText = `${mission.code} ${mission.titre}`;
 				this.list.append(item);
 
-				item.setAttribute("id", "");
+				item.setAttribute("data-code", mission.code.toString());
 				item.classList.add("list-item");
-
-				item.addEventListener("mouseenter", () => {
-					console.log("enlevé la transparence");
-					document.getElementById("mission-details").classList.remove("transparent");
-				});
+				item.addEventListener("click", this.onEntryClick.bind(this, item));
 
 				// personal delete button
 				const del = new DeleteButton<Mission, MissionRepository>(
 					item, mission, this.missionRepo);
-				item.append(del.getButton());
+				item.append(del.button);
 			}
+
+			// Contacts
+			this.modelsContact = await this.contactRepo.getAll();
+			this.contacts.innerHTML = "";
+			for (const c of this.modelsContact)
+			{
+				const item = document.createElement("option") as HTMLOptionElement;
+				item.innerText = `${c.prenom} ${c.nom}`;
+				item.setAttribute("data-code", c.code.toString());
+				this.contacts.appendChild(item);
+			}
+			M.FormSelect.init(this.contacts, { dropdownOptions: { container:document.body } });
 		}
 		catch (error)
 		{
 			console.log(error);
 		}
+		this.renderEntryView();
 	}
 
 	/**
-	 * Updates the detailed view of the missions
-	 * @param mission - model of the Mission
+	 * Update the selected model data and send it to the backend.
 	 */
-	public updateMissionView(mission: Mission): void
+	public async submitModel(e: Event): Promise<void>
 	{
-		this.titre.value = mission.getTitre();
-		this.description.value = mission.getDescription();
-		const dD = mission.getDateDebut() ? dayjs(mission.getDateDebut()) : dayjs();
-		this.dateDebut.value =  dD.format("YYYY-MM-DD");
-		const dF = mission.getDateFin() ? dayjs(mission.getDateFin()) : dayjs();
-		this.dateFin.value = dF.format("YYYY-MM-DD");
+		e.preventDefault();
+		const isNew = !this.selected;
+		if (isNew)
+		{
+			this.selected = {
+				agents: [],
+				cibles: [],
+				code: 0,
+				contacts: [],
+				dateDebut: "",
+				dateFin: "",
+				description: "",
+				planques: [],
+				specialite: undefined,
+				statut: undefined,
+				titre: "",
+				type: undefined
+			};
+		}
+
+		// Mission
+		this.selected.titre = this.titre.value;
+		this.selected.description = this.description.value;
+
+		isNew ? await this.missionRepo.add(this.selected)
+			: await this.missionRepo.update(this.selected);
+		await this.initialize();
+	}
+
+	/**
+	 * Render the entry to the DOM.
+	 */
+	public renderEntryView(): void
+	{
+		// Mission
+		this.code.innerText = this.selected?.code
+			? `${this.selected?.titre}` : "Nouvelle Mission";
+		this.titre.value = this.selected?.titre ?? "";
+		this.description.value = this.selected?.description ?? "";
+		this.dateDebut.value = this.selected?.dateDebut ?? "";
+		M.Datepicker.init(this.dateDebut, {
+			container: document.body,
+			format: "yyyy-mm-dd",
+			defaultDate: daysjs(this.selected?.dateDebut).toDate(),
+			setDefaultDate: true
+		});
+		this.dateFin.value = this.selected?.dateFin ?? "";
+		M.Datepicker.init(this.dateFin, {
+			container: document.body,
+			format: "yyyy-mm-dd",
+			defaultDate: daysjs(this.selected?.dateFin).toDate(),
+			setDefaultDate: true
+		});
+	}
+
+	/**
+	 * Callback on entry click.
+	 * @param sender - The entry element.
+	 */
+	public onEntryClick(sender: HTMLLIElement): void
+	{
+		const idx: number = parseInt(sender.getAttribute("data-code"), 10);
+		this.selected = this.models.find(p => p.code === idx);
+		this.renderEntryView();
+	}
+
+	/**
+	 * Callback on entry add.
+	 */
+	public onEntryAdd(): void
+	{
+		this.selected = null;
+		this.renderEntryView();
 	}
 }

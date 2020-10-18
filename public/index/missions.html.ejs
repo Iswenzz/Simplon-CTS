@@ -1,0 +1,91 @@
+<article id="missions" class="entity-tab">
+	<div class="row">
+		<!-- LEFT visible-when-connected -->
+		<section class="page col s12 l5">
+			<h3 id="mission-header">Nouvelle Missions</h3>
+			<!-- SUBMIT -->
+			<form id="mission-form" method="POST">
+				<header class="details-header">
+					<section class="controls">
+						<button type="submit" id="mission-details-confirm" title="Confirmer la planque" class="btn waves-ripple waves-effect visible-when-connected">
+							Confirmer les modifications
+						</button>
+					</section>
+				</header>
+				<section>
+					<div>
+						<label for="mission-title">Titre</label>
+						<input id="mission-title" type="text">
+					</div>
+					<div>
+						<label for="mission-description">Description</label>
+						<textarea id="mission-description" class="materialize-textarea"></textarea>
+					</div>
+					<div>
+						<label for="mission-date-start">Date de début</label>
+						<input id="mission-date-start" type="text" class="datepicker">
+					</div>
+					<div>
+						<label for="mission-date-end">Date de fin</label>
+						<input id="mission-date-end" type="text" class="datepicker">
+					</div>
+					<div>
+						<label for="mission-contacts">Contacts</label>
+						<select multiple id="mission-contacts"></select>
+					</div>
+					<div>
+						<label for="mission-cibles">Cibles</label>
+						<select multiple id="mission-cibles"></select>
+					</div>
+					<div>
+						<label for="mission-agents">Agents</label>
+						<select multiple id="mission-agents"></select>
+					</div>
+					<div>
+						<label for="mission-hideouts">Planques</label>
+						<select multiple id="mission-hideouts"></select>
+					</div>
+					<div>
+						<label for="mission-statut">Statut</label>
+						<select id="mission-statut"></select>
+					</div>
+					<div>
+						<label for="mission-type">Type</label>
+						<select id="mission-type"></select>
+					</div>
+					<div>
+						<label for="mission-specialite">Specialite</label>
+						<select id="mission-specialite"></select>
+					</div>
+				</section>
+			</form>
+		</section>
+		
+		<!-- RIGHT -->
+		<section id="mission-list-page" class="page col s12 l5">
+			<!-- changement de page -->
+			<header id="mission-list-pagination" class="pagination">
+				<button title="Passer à la page précédente" id="mission-list-previous" class="btn waves-ripple waves-effect">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.5 444.5">
+						<path d="M213 222.4L352 83.7a35 35 0 0 0 10.6-25.8A35 35 0 0 0 351.9 32l-21.4-21.4A35 35 0 0 0 304.6 0a35 35 0 0 0-25.8 10.6l-186 186a35 35 0 0 0-10.6 25.8 35 35 0 0 0 10.6 25.8l186 186a35 35 0 0 0 25.8 10.6 35 35 0 0 0 25.8-10.6l21.4-21.4a35 35 0 0 0 10.6-25.7 36 36 0 0 0-10.6-26L213 222.4z" />
+					</svg>
+					<span class="sr-only">Passer à la page précédente</span>
+				</button>
+				<button title="Passer à la page suivante" id="mission-list-next" class="btn waves-ripple waves-effect">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.8 444.8">
+						<path d="M352 196.7l-186-186A34 34 0 0 0 140.2 0a34 34 0 0 0-25.7 10.8L92.8 32.3A35 35 0 0 0 82.2 58c0 10 3.5 18.6 10.6 26l138.8 138.5L92.8 361.2a35 35 0 0 0-10.6 25.7c0 10 3.5 18.6 10.6 26l21.7 21.4a35 35 0 0 0 25.7 10.6 35 35 0 0 0 25.7-10.6l186-186c7-7.4 10.6-16 10.6-26a35 35 0 0 0-10.6-25.7z" />
+					</svg>
+					<span class="sr-only">Passer à la page suivante</span>
+				</button>
+			</header>
+			<h3>Liste des missions :</h3>
+			<section class="list-item-new visible-when-connected">
+				<h5>Nouveau</h5>
+				<button title="Ajouter" id="mission-new" class="btn waves-ripple waves-effect">
+					<svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48px" height="48px"><path fill-rule="evenodd" d="M22 10.996L13.003 10.996 13.003 2 10.997 2 10.997 10.996 2 10.996 2 13.003 10.997 13.003 10.997 22 13.003 22 13.003 13.003 22 13.003z" clip-rule="evenodd"/></svg>
+				</button>
+			</section>
+			<ul id="mission-list"></ul>
+		</section>
+	</div>
+</article>

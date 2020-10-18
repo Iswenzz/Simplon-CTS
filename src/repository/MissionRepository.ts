@@ -3,6 +3,10 @@ import Repository from "./Repository";
 import {Specialite} from "./SpecialiteRepository";
 import ResponseAPI from "./ResponseAPI";
 import Model from "./Model";
+import {Contact} from "./ContactRepository";
+import {Cible} from "./CibleRepository";
+import {Agent} from "./AgentRepository";
+import {Planque} from "./PlanqueRepository";
 
 export interface Mission extends Model
 {
@@ -11,6 +15,10 @@ export interface Mission extends Model
 	description: string,
 	dateDebut: string,
 	dateFin: string,
+	contacts: Contact[],
+	cibles: Cible[],
+	agents: Agent[],
+	planques: Planque[],
 	statut: Statut,
 	type: TypeMission,
 	specialite: Specialite

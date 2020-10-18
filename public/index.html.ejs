@@ -84,12 +84,12 @@
 		<div class="row">
 			<div class="col s12 tabs-bg">
 				<ul class="tabs tabs-fixed-width">
-					<li class="tab col"><a href="#missions">Missions</a></li>
-					<li class="tab col"><a href="#hideouts">Planques</a></li>
-					<li class="tab col"><a href="#specialites">Spécialités</a></li>
-					<li class="tab col"><a href="#agents">Agents</a></li>
-					<li class="tab col"><a href="#contacts">Contacts</a></li>
-					<li class="tab col"><a href="#cibles">Cibles</a></li>
+					<li class="tab col"><a id="mission-tab" href="#missions">Missions</a></li>
+					<li class="tab col"><a id="hideout-tab" href="#hideouts">Planques</a></li>
+					<li class="tab col"><a id="specialite-tab" href="#specialites">Spécialités</a></li>
+					<li class="tab col"><a id="agent-tab" href="#agents">Agents</a></li>
+					<li class="tab col"><a id="contact-tab" href="#contacts">Contacts</a></li>
+					<li class="tab col"><a id="cible-tab" href="#cibles">Cibles</a></li>
 				</ul>
 			</div>
 		</div>
@@ -99,6 +99,7 @@
 		<%= require("html-loader!./index/agents.html.ejs") %>
 		<%= require("html-loader!./index/cibles.html.ejs") %>
 		<%= require("html-loader!./index/contacts.html.ejs") %>
+		<%= require("html-loader!./index/missions.html.ejs") %>
 	</main>
 </body>
 </html>
