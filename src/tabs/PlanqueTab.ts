@@ -1,6 +1,7 @@
-import PlanqueRepository, {Planque, TypePlanque} from "../repository/PlanqueRepository";
+import PlanqueRepository, {Planque} from "../repository/PlanqueRepository";
 import DeleteButton from "../component/DeleteButton";
 import PaysRepository, {Pays} from "../repository/PaysRepository";
+import TypePlanqueRepository, {TypePlanque} from "../repository/TypePlanqueRepository";
 import Tab from "./Tab";
 
 export default class PlanqueTab implements Tab<Planque>
@@ -12,6 +13,7 @@ export default class PlanqueTab implements Tab<Planque>
 
 	private readonly planqueRepo: PlanqueRepository;
 	private readonly paysRepo: PaysRepository;
+	private readonly typePlanqueRepo: TypePlanqueRepository;
 
 	private readonly list: HTMLUListElement;
 	private readonly code: HTMLHeadingElement;
@@ -29,8 +31,10 @@ export default class PlanqueTab implements Tab<Planque>
 		this.adresse = document.getElementById("hideout-adresse") as HTMLInputElement;
 		this.pays = document.getElementById("hideout-pays") as HTMLSelectElement;
 		this.type = document.getElementById("hideout-type") as HTMLSelectElement;
+
 		this.planqueRepo = new PlanqueRepository();
 		this.paysRepo = new PaysRepository();
+		this.typePlanqueRepo = new TypePlanqueRepository();
 
 		this.selected = null;
 		this.adresse.value = "";
@@ -81,10 +85,8 @@ export default class PlanqueTab implements Tab<Planque>
 			M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
 
 			// Type
-			const typePlanques: Record<string, TypePlanque> = {};
-			this.models.forEach((p: Planque) => typePlanques[p.typePlanque.libelle] = p.typePlanque);
+			this.modelsTypePlanque = await this.typePlanqueRepo.getAll();
 			this.type.innerHTML = "";
-			this.modelsTypePlanque = Object.values(typePlanques);
 			for (const typePlanque of this.modelsTypePlanque)
 			{
 				const item = document.createElement("option") as HTMLOptionElement;

@@ -7,6 +7,8 @@ import {Contact} from "./ContactRepository";
 import {Cible} from "./CibleRepository";
 import {Agent} from "./AgentRepository";
 import {Planque} from "./PlanqueRepository";
+import {Statut} from "./StatutRepository";
+import {TypeMission} from "./TypeMissionRepository";
 
 export interface Mission extends Model
 {
@@ -24,20 +26,7 @@ export interface Mission extends Model
 	specialite: Specialite
 }
 
-export interface Statut extends Model
-{
-	code: number,
-	libelle: string
-}
-
-export interface TypeMission extends Model
-{
-	code: number,
-	libelle: string,
-	description: string
-}
-
-export default class MissionRepository implements Repository
+export default class MissionRepository implements Repository<Mission>
 {
 	/**
 	 * Get all mission.

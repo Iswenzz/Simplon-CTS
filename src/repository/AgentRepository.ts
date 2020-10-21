@@ -13,7 +13,7 @@ export interface Agent extends Model
 	pays: Pays
 }
 
-export default class AgentRepository implements Repository
+export default class AgentRepository implements Repository<Agent>
 {
 	/**
 	 * Get all agent.

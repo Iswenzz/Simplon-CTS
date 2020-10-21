@@ -13,7 +13,7 @@ export interface Cible extends Model
 	pays: Pays
 }
 
-export default class CibleRepository implements Repository
+export default class CibleRepository implements Repository<Cible>
 {
 	/**
 	 * Get all cible.

@@ -1,10 +1,13 @@
-import ResponseAPI from "./ResponseAPI";
+import Model from "./Model";
 
-export default interface Repository
+/**
+ * Default interface for a repository.
+ */
+export default interface Repository<M extends Model>
 {
-	getAll(): Promise<ResponseAPI[]>;
-	get(model: ResponseAPI): Promise<ResponseAPI>;
-	add(model: ResponseAPI): Promise<boolean>;
-	delete(model: ResponseAPI): Promise<boolean>;
-	update(model: ResponseAPI): Promise<boolean>;
+	getAll(): Promise<M[]>;
+	get(model: M): Promise<M>;
+	add(model: M): Promise<boolean>;
+	delete(model: M): Promise<boolean>;
+	update(model: M): Promise<boolean>;
 }

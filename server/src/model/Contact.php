@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/Model.php";
 require_once __DIR__ . "/Pays.php";
+require_once __DIR__ . "/Mission.php";
 
 class Contact extends Model implements JsonSerializable
 {
@@ -11,25 +12,33 @@ class Contact extends Model implements JsonSerializable
 	private ?Pays $pays;
 
 	/**
+	 * @var Mission[] $missions
+	 */
+	private ?array $missions;
+
+	/**
 	 * Initialize a new Contact object.
 	 * @param int|null $code - The contact code.
 	 * @param string $nom - The contact name.
 	 * @param string $prenom - The contact firstname.
 	 * @param DateTime|null $dateNaissance - The contact birthdate.
 	 * @param Pays|null $pays
+	 * @param array $missions
 	 */
 	public function __construct(
 		?int $code = null,
 		string $nom = "",
 		string $prenom = "",
 		DateTime $dateNaissance = null,
-		Pays $pays = null)
+		Pays $pays = null,
+		array $missions = [])
 	{
 		$this->code = $code;
 		$this->nom = $nom;
 		$this->prenom = $prenom;
 		$this->dateNaissance = $dateNaissance ?? new DateTime();
 		$this->pays = $pays;
+		$this->missions = $missions;
 	}
 
 	/**

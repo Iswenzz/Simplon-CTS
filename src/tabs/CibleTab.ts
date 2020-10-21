@@ -31,6 +31,7 @@ export default class CibleTab implements Tab<Cible>
 		this.prenom = document.getElementById("cible-firstname") as HTMLInputElement;
 		this.dateNaissance = document.getElementById("cible-birthdate") as HTMLInputElement;
 		this.pays = document.getElementById("cible-pays") as HTMLSelectElement;
+
 		this.cibleRepo = new CibleRepository();
 		this.paysRepo = new PaysRepository();
 

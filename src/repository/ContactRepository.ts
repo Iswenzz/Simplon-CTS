@@ -13,7 +13,7 @@ export interface Contact extends Model
 	pays: Pays
 }
 
-export default class ContactRepository implements Repository
+export default class ContactRepository implements Repository<Contact>
 {
 	/**
 	 * Get all contact.

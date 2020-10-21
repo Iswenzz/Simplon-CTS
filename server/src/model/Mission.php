@@ -1,5 +1,12 @@
 <?php
 require_once __DIR__ . "/Model.php";
+require_once __DIR__ . "/Statut.php";
+require_once __DIR__ . "/TypeMission.php";
+require_once __DIR__ . "/Specialite.php";
+require_once __DIR__ . "/Contact.php";
+require_once __DIR__ . "/Cible.php";
+require_once __DIR__ . "/Agent.php";
+require_once __DIR__ . "/Planque.php";
 
 class Mission extends Model implements JsonSerializable
 {
@@ -13,6 +20,23 @@ class Mission extends Model implements JsonSerializable
 	private ?Specialite $specialite;
 
 	/**
+	 * @var Contact[] $contacts
+	 */
+	private ?array $contacts;
+	/**
+	 * @var Cible[] $cibles
+	 */
+	private ?array $cibles;
+	/**
+	 * @var Agent[] $agents
+	 */
+	private ?array $agents;
+	/**
+	 * @var Planque[] $planques
+	 */
+	private ?array $planques;
+
+	/**
 	 * Initialize a new Mission object.
 	 * @param int|null $code - The mission primary key.
 	 * @param string $titre - The mission title.
@@ -22,6 +46,10 @@ class Mission extends Model implements JsonSerializable
 	 * @param Statut|null $statut
 	 * @param TypeMission|null $typeMission
 	 * @param Specialite|null $specialite
+	 * @param array $contacts
+	 * @param array $cibles
+	 * @param array $agents
+	 * @param array $planques
 	 */
 	public function __construct(
 		?int $code = 0,
@@ -31,7 +59,11 @@ class Mission extends Model implements JsonSerializable
 		DateTime $dateFin = null,
 		?Statut $statut = null,
 		?TypeMission $typeMission = null,
-		?Specialite $specialite = null)
+		?Specialite $specialite = null,
+		array $contacts = [],
+		array $cibles = [],
+		array $agents = [],
+		array $planques = [])
 	{
 		$this->code = $code;
 		$this->titre = $titre;
@@ -41,6 +73,10 @@ class Mission extends Model implements JsonSerializable
 		$this->statut = $statut;
 		$this->typeMission = $typeMission;
 		$this->specialite = $specialite;
+		$this->contacts = $contacts;
+		$this->cibles = $cibles;
+		$this->agents = $agents;
+		$this->planques = $planques;
 	}
 
 	/**

@@ -3,6 +3,7 @@ import Repository from "./Repository";
 import {Pays} from "./PaysRepository";
 import ResponseAPI from "./ResponseAPI";
 import Model from "./Model";
+import {TypePlanque} from "./TypePlanqueRepository";
 
 export interface Planque extends Model
 {
@@ -12,14 +13,7 @@ export interface Planque extends Model
 	typePlanque: TypePlanque
 }
 
-export interface TypePlanque
-{
-	code: number,
-	libelle: string,
-	description: string
-}
-
-export default class PlanqueRepository implements Repository
+export default class PlanqueRepository implements Repository<Planque>
 {
 	/**
 	 * Get all planque.

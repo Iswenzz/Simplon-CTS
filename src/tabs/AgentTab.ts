@@ -31,6 +31,7 @@ export default class AgentTab implements Tab<Agent>
 		this.prenom = document.getElementById("agent-firstname") as HTMLInputElement;
 		this.dateNaissance = document.getElementById("agent-birthdate") as HTMLInputElement;
 		this.pays = document.getElementById("agent-pays") as HTMLSelectElement;
+
 		this.agentRepo = new AgentRepository();
 		this.paysRepo = new PaysRepository();
 

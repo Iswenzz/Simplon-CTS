@@ -7,6 +7,7 @@ import CibleRepository, {Cible} from "../repository/CibleRepository";
 import ContactRepository, {Contact} from "../repository/ContactRepository";
 import * as daysjs from "dayjs";
 import Tab from "./Tab";
+import StatutRepository, {Statut} from "../repository/StatutRepository";
 
 export default class MissionTab implements Tab<Mission>
 {
@@ -16,12 +17,14 @@ export default class MissionTab implements Tab<Mission>
 	public modelsCible: Cible[];
 	public modelsAgent: Agent[];
 	public modelsPlanque: Planque[];
+	public modelsStatut: Statut[];
 
 	private readonly missionRepo: MissionRepository;
 	private readonly contactRepo: ContactRepository;
 	private readonly cibleRepo: CibleRepository;
 	private readonly agentRepo: AgentRepository;
 	private readonly planqueRepo: PlanqueRepository;
+	private readonly statutRepo: StatutRepository;
 
 	private readonly list: HTMLUListElement;
 	private readonly code: HTMLHeadingElement;
@@ -33,6 +36,7 @@ export default class MissionTab implements Tab<Mission>
 	private readonly cibles: HTMLSelectElement;
 	private readonly agents: HTMLSelectElement;
 	private readonly planques: HTMLSelectElement;
+	private readonly statut: HTMLSelectElement;
 	private readonly type: HTMLSelectElement;
 	private readonly specialite: HTMLSelectElement;
 
@@ -51,6 +55,7 @@ export default class MissionTab implements Tab<Mission>
 		this.cibles = document.getElementById("mission-cibles") as HTMLSelectElement;
 		this.agents = document.getElementById("mission-agents") as HTMLSelectElement;
 		this.planques = document.getElementById("mission-hideouts") as HTMLSelectElement;
+		this.statut = document.getElementById("mission-type") as HTMLSelectElement;
 		this.type = document.getElementById("mission-type") as HTMLSelectElement;
 		this.specialite = document.getElementById("mission-specialite") as HTMLSelectElement;
 
@@ -59,6 +64,7 @@ export default class MissionTab implements Tab<Mission>
 		this.cibleRepo = new CibleRepository();
 		this.agentRepo = new AgentRepository();
 		this.planqueRepo = new PlanqueRepository();
+		this.statutRepo = new StatutRepository();
 
 		this.selected = null;
 		this.titre.value = "";
@@ -69,6 +75,7 @@ export default class MissionTab implements Tab<Mission>
 		this.cibles.value = null;
 		this.agents.value = null;
 		this.planques.value = null;
+		this.statut.value = null;
 		this.type.value = null;
 		this.specialite.value = null;
 
@@ -114,6 +121,18 @@ export default class MissionTab implements Tab<Mission>
 				this.contacts.appendChild(item);
 			}
 			M.FormSelect.init(this.contacts, { dropdownOptions: { container:document.body } });
+
+			// Statut
+			this.modelsStatut = await this.statutRepo.getAll();
+			this.contacts.innerHTML = "";
+			for (const c of this.modelsContact)
+			{
+				const item = document.createElement("option") as HTMLOptionElement;
+				item.innerText = `${c.prenom} ${c.nom}`;
+				item.setAttribute("data-code", c.code.toString());
+				this.contacts.appendChild(item);
+			}
+			M.FormSelect.init(this.contacts, { dropdownOptions: { container:document.body } });
 		}
 		catch (error)
 		{
@@ -150,6 +169,14 @@ export default class MissionTab implements Tab<Mission>
 		// Mission
 		this.selected.titre = this.titre.value;
 		this.selected.description = this.description.value;
+		this.selected.dateDebut = this.dateDebut.value;
+		this.selected.dateFin = this.dateFin.value;
+
+		// Statut
+		if (!this.statut.selectedOptions[0]) return;
+		const selectedStatut = this.modelsStatut.find(i =>
+			i.code === parseInt(this.statut.selectedOptions[0].getAttribute("data-code"), 10));
+		this.selected.statut = { ...this.selected?.statut, ...selectedStatut };
 
 		isNew ? await this.missionRepo.add(this.selected)
 			: await this.missionRepo.update(this.selected);
@@ -180,6 +207,11 @@ export default class MissionTab implements Tab<Mission>
 			defaultDate: daysjs(this.selected?.dateFin).toDate(),
 			setDefaultDate: true
 		});
+
+		// Statut
+		this.statut.childNodes.forEach((i: HTMLOptionElement) => i.selected =
+			i.value === this.selected?.statut?.libelle);
+		M.FormSelect.init(this.statut, { dropdownOptions: { container:document.body } });
 	}
 
 	/**

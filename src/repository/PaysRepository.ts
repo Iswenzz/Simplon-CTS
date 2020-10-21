@@ -9,7 +9,7 @@ export interface Pays extends Model
 	libelle: string
 }
 
-export default class PaysRepository implements Repository
+export default class PaysRepository implements Repository<Pays>
 {
 	/**
 	 * Get all pays.

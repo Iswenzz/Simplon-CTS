@@ -1,8 +1,8 @@
 import Axios, {AxiosResponse} from "axios";
 import Repository from "./Repository";
 import ResponseAPI from "./ResponseAPI";
-import {TypeMission} from "./MissionRepository";
 import Model from "./Model";
+import {TypeMission} from "./TypeMissionRepository";
 
 export interface Specialite extends Model
 {
@@ -12,7 +12,7 @@ export interface Specialite extends Model
 	description: string
 }
 
-export default class SpecialiteRepository implements Repository
+export default class SpecialiteRepository implements Repository<Specialite>
 {
 	/**
 	 * Get all specialite.

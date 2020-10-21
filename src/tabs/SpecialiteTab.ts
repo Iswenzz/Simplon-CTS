@@ -1,7 +1,7 @@
 import SpecialiteRepository, {Specialite} from "../repository/SpecialiteRepository";
 import DeleteButton from "../component/DeleteButton";
 import Tab from "./Tab";
-import {TypeMission} from "../repository/MissionRepository";
+import TypeMissionRepository, {TypeMission} from "../repository/TypeMissionRepository";
 
 export default class SpecialiteTab implements Tab<Specialite>
 {
@@ -10,6 +10,7 @@ export default class SpecialiteTab implements Tab<Specialite>
 	public modelsTypeMission: TypeMission[];
 
 	private readonly specialiteRepo: SpecialiteRepository;
+	private readonly typeMissionRepo: TypeMissionRepository;
 
 	private readonly list: HTMLUListElement;
 	private readonly code: HTMLHeadingElement;
@@ -27,7 +28,9 @@ export default class SpecialiteTab implements Tab<Specialite>
 		this.libelle = document.getElementById("specialite-libelle") as HTMLInputElement;
 		this.description = document.getElementById("specialite-description") as HTMLTextAreaElement;
 		this.type = document.getElementById("specialite-type") as HTMLSelectElement;
+
 		this.specialiteRepo = new SpecialiteRepository();
+		this.typeMissionRepo = new TypeMissionRepository();
 
 		this.selected = null;
 		this.libelle.value = "";
@@ -66,10 +69,8 @@ export default class SpecialiteTab implements Tab<Specialite>
 			}
 
 			// Type
-			const typeMission: Record<string, TypeMission> = {};
-			this.models.forEach((s: Specialite) => typeMission[s.typeMission.libelle] = s.typeMission);
+			this.modelsTypeMission = await this.typeMissionRepo.getAll();
 			this.type.innerHTML = "";
-			this.modelsTypeMission = Object.values(typeMission);
 			for (const specialite of this.modelsTypeMission)
 			{
 				const item = document.createElement("option") as HTMLOptionElement;

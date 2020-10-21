@@ -31,6 +31,7 @@ export default class ContactTab implements Tab<Contact>
 		this.prenom = document.getElementById("contact-firstname") as HTMLInputElement;
 		this.dateNaissance = document.getElementById("contact-birthdate") as HTMLInputElement;
 		this.pays = document.getElementById("contact-pays") as HTMLSelectElement;
+
 		this.contactRepo = new ContactRepository();
 		this.paysRepo = new PaysRepository();
 
