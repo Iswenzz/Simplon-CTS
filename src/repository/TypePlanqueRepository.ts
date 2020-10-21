@@ -5,7 +5,6 @@ import Model from "./Model";
 
 export interface TypePlanque extends Model
 {
-	code: number,
 	libelle: string,
 	description: string
 }

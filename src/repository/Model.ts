@@ -1,4 +1,7 @@
 /**
  * Default model interface.
  */
-export default interface Model { }
+export default interface Model
+{
+	code: number
+}

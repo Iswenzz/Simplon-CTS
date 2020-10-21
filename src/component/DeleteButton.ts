@@ -1,7 +1,7 @@
 import Repository from "../repository/Repository";
 import Model from "../repository/Model";
 
-export default class DeleteButton<M extends Model, R extends Repository>
+export default class DeleteButton<M extends Model, R extends Repository<M>>
 {
 	private readonly _button: HTMLButtonElement;
 	private readonly repository: R;

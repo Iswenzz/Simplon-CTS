@@ -6,7 +6,6 @@ import {TypeMission} from "./TypeMissionRepository";
 
 export interface Specialite extends Model
 {
-	code: number,
 	libelle: string,
 	typeMission: TypeMission,
 	description: string

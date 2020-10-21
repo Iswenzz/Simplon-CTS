@@ -12,7 +12,6 @@ import {TypeMission} from "./TypeMissionRepository";
 
 export interface Mission extends Model
 {
-	code: number,
 	titre: string,
 	description: string,
 	dateDebut: string,

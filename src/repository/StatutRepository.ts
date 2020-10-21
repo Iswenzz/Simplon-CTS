@@ -5,7 +5,6 @@ import Model from "./Model";
 
 export interface Statut extends Model
 {
-	code: number,
 	libelle: string
 }
 

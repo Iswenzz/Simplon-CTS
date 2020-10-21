@@ -2,6 +2,7 @@ import SpecialiteRepository, {Specialite} from "../repository/SpecialiteReposito
 import DeleteButton from "../component/DeleteButton";
 import Tab from "./Tab";
 import TypeMissionRepository, {TypeMission} from "../repository/TypeMissionRepository";
+import SelectComponent from "../component/SelectComponent";
 
 export default class SpecialiteTab implements Tab<Specialite>
 {
@@ -16,7 +17,7 @@ export default class SpecialiteTab implements Tab<Specialite>
 	private readonly code: HTMLHeadingElement;
 	private readonly libelle: HTMLInputElement;
 	private readonly description: HTMLTextAreaElement;
-	private readonly type: HTMLSelectElement;
+	private readonly type: SelectComponent<TypeMission>;
 
 	/**
 	 * Initialize a new SpecialiteTab.
@@ -27,7 +28,7 @@ export default class SpecialiteTab implements Tab<Specialite>
 		this.code = document.getElementById("specialite-header") as HTMLHeadingElement;
 		this.libelle = document.getElementById("specialite-libelle") as HTMLInputElement;
 		this.description = document.getElementById("specialite-description") as HTMLTextAreaElement;
-		this.type = document.getElementById("specialite-type") as HTMLSelectElement;
+		this.type = new SelectComponent<TypeMission>(document.getElementById("specialite-type") as HTMLSelectElement);
 
 		this.specialiteRepo = new SpecialiteRepository();
 		this.typeMissionRepo = new TypeMissionRepository();
@@ -35,7 +36,6 @@ export default class SpecialiteTab implements Tab<Specialite>
 		this.selected = null;
 		this.libelle.value = "";
 		this.description.value = "";
-		this.type.value = null;
 
 		document.getElementById("specialite-form").addEventListener("submit", this.submitModel.bind(this));
 		document.getElementById("specialite-new").addEventListener("click", this.onEntryAdd.bind(this));
@@ -70,15 +70,7 @@ export default class SpecialiteTab implements Tab<Specialite>
 
 			// Type
 			this.modelsTypeMission = await this.typeMissionRepo.getAll();
-			this.type.innerHTML = "";
-			for (const specialite of this.modelsTypeMission)
-			{
-				const item = document.createElement("option") as HTMLOptionElement;
-				item.innerText = specialite.libelle;
-				item.setAttribute("data-code", specialite.code.toString());
-				this.type.appendChild(item);
-			}
-			M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
+			this.type.initialize(this.modelsTypeMission, "libelle");
 		}
 		catch (error)
 		{
@@ -100,12 +92,7 @@ export default class SpecialiteTab implements Tab<Specialite>
 		// Specialite
 		this.selected.libelle = this.libelle.value;
 		this.selected.description = this.description.value;
-
-		// TypeMission
-		if (!this.type.selectedOptions[0]) return;
-		const selectedTypeMission = this.modelsTypeMission.find(i =>
-			i.code === parseInt(this.type.selectedOptions[0].getAttribute("data-code"), 10));
-		this.selected.typeMission = { ...this.selected?.typeMission, ...selectedTypeMission };
+		this.selected.typeMission = this.type.getSelection() ?? this.selected.typeMission;
 
 		isNew ? await this.specialiteRepo.add(this.selected)
 			: await this.specialiteRepo.update(this.selected);
@@ -121,11 +108,7 @@ export default class SpecialiteTab implements Tab<Specialite>
 		this.code.innerText = this.selected?.code ? `Specialite ${this.selected?.code}` : "Nouvelle Specialite";
 		this.libelle.value = this.selected?.libelle ?? "";
 		this.description.value = this.selected?.description ?? "";
-
-		// Type
-		this.type.childNodes.forEach((i: HTMLOptionElement) => i.selected =
-			i.value === this.selected?.typeMission?.libelle);
-		M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
+		this.type.render(this.selected?.typeMission?.code);
 	}
 
 	/**

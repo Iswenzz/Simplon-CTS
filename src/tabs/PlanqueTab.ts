@@ -3,6 +3,7 @@ import DeleteButton from "../component/DeleteButton";
 import PaysRepository, {Pays} from "../repository/PaysRepository";
 import TypePlanqueRepository, {TypePlanque} from "../repository/TypePlanqueRepository";
 import Tab from "./Tab";
+import SelectComponent from "../component/SelectComponent";
 
 export default class PlanqueTab implements Tab<Planque>
 {
@@ -18,8 +19,8 @@ export default class PlanqueTab implements Tab<Planque>
 	private readonly list: HTMLUListElement;
 	private readonly code: HTMLHeadingElement;
 	private readonly adresse: HTMLInputElement;
-	private readonly pays: HTMLSelectElement;
-	private readonly type: HTMLSelectElement;
+	private readonly pays: SelectComponent<Pays>;
+	private readonly type: SelectComponent<TypePlanque>;
 
 	/**
 	 * Initialize a new PlanqueTab.
@@ -29,8 +30,8 @@ export default class PlanqueTab implements Tab<Planque>
 		this.list = document.getElementById("hideout-list") as HTMLUListElement;
 		this.code = document.getElementById("hideout-header") as HTMLHeadingElement;
 		this.adresse = document.getElementById("hideout-adresse") as HTMLInputElement;
-		this.pays = document.getElementById("hideout-pays") as HTMLSelectElement;
-		this.type = document.getElementById("hideout-type") as HTMLSelectElement;
+		this.pays = new SelectComponent<Pays>(document.getElementById("hideout-pays") as HTMLSelectElement);
+		this.type = new SelectComponent<TypePlanque>(document.getElementById("hideout-type") as HTMLSelectElement);
 
 		this.planqueRepo = new PlanqueRepository();
 		this.paysRepo = new PaysRepository();
@@ -38,8 +39,6 @@ export default class PlanqueTab implements Tab<Planque>
 
 		this.selected = null;
 		this.adresse.value = "";
-		this.pays.value = null;
-		this.type.value = null;
 
 		document.getElementById("hideout-form").addEventListener("submit", this.submitModel.bind(this));
 		document.getElementById("hideout-new").addEventListener("click", this.onEntryAdd.bind(this));
@@ -74,27 +73,11 @@ export default class PlanqueTab implements Tab<Planque>
 
 			// Pays
 			this.modelsPays = await this.paysRepo.getAll();
-			this.pays.innerHTML = "";
-			for (const p of this.modelsPays)
-			{
-				const item = document.createElement("option") as HTMLOptionElement;
-				item.innerText = p.libelle;
-				item.setAttribute("data-code", p.code.toString());
-				this.pays.appendChild(item);
-			}
-			M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
+			this.pays.initialize(this.modelsPays, "libelle");
 
 			// Type
 			this.modelsTypePlanque = await this.typePlanqueRepo.getAll();
-			this.type.innerHTML = "";
-			for (const typePlanque of this.modelsTypePlanque)
-			{
-				const item = document.createElement("option") as HTMLOptionElement;
-				item.innerText = typePlanque.libelle;
-				item.setAttribute("data-code", typePlanque.code.toString());
-				this.type.appendChild(item);
-			}
-			M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
+			this.type.initialize(this.modelsTypePlanque, "libelle");
 		}
 		catch (error)
 		{
@@ -115,18 +98,8 @@ export default class PlanqueTab implements Tab<Planque>
 
 		// Planque
 		this.selected.adresse = this.adresse.value;
-
-		// Pays
-		if (!this.pays.selectedOptions[0]) return;
-		const selectedPays = this.modelsPays.find(i =>
-			i.code === parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10));
-		this.selected.pays = { ...this.selected?.pays, ...selectedPays };
-
-		// TypePlanque
-		if (!this.type.selectedOptions[0]) return;
-		const selectedTypePlanque = this.modelsTypePlanque.find(i =>
-			i.code === parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10));
-		this.selected.pays = { ...this.selected?.pays, ...selectedTypePlanque };
+		this.selected.pays = this.pays.getSelection() ?? this.selected.pays;
+		this.selected.typePlanque = this.type.getSelection() ?? this.selected.typePlanque;
 
 		isNew ? await this.planqueRepo.add(this.selected)
 			: await this.planqueRepo.update(this.selected);
@@ -141,16 +114,8 @@ export default class PlanqueTab implements Tab<Planque>
 		// Planque
 		this.code.innerText = this.selected?.code ? `Planque ${this.selected?.code}` : "Nouvelle Planque";
 		this.adresse.value = this.selected?.adresse ?? "";
-
-		// Pays
-		this.pays.childNodes.forEach((i: HTMLOptionElement) => i.selected =
-			i.value === this.selected?.pays?.libelle);
-		M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
-
-		// TypePlanque
-		this.type.childNodes.forEach((i: HTMLOptionElement) => i.selected =
-			i.value === this.selected?.typePlanque?.libelle);
-		M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
+		this.pays.render(this.selected?.pays?.code);
+		this.type.render(this.selected?.typePlanque?.code);
 	}
 
 	/**

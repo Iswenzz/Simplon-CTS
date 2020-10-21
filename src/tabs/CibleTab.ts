@@ -3,6 +3,7 @@ import DeleteButton from "../component/DeleteButton";
 import PaysRepository, {Pays} from "../repository/PaysRepository";
 import * as daysjs from "dayjs";
 import Tab from "./Tab";
+import SelectComponent from "../component/SelectComponent";
 
 export default class CibleTab implements Tab<Cible>
 {
@@ -18,7 +19,7 @@ export default class CibleTab implements Tab<Cible>
 	private readonly nom: HTMLInputElement;
 	private readonly prenom: HTMLInputElement;
 	private readonly dateNaissance: HTMLInputElement;
-	private readonly pays: HTMLSelectElement;
+	private readonly pays: SelectComponent<Pays>;
 
 	/**
 	 * Initialize a new CibleTab.
@@ -30,7 +31,7 @@ export default class CibleTab implements Tab<Cible>
 		this.nom = document.getElementById("cible-lastname") as HTMLInputElement;
 		this.prenom = document.getElementById("cible-firstname") as HTMLInputElement;
 		this.dateNaissance = document.getElementById("cible-birthdate") as HTMLInputElement;
-		this.pays = document.getElementById("cible-pays") as HTMLSelectElement;
+		this.pays = new SelectComponent<Pays>(document.getElementById("cible-pays") as HTMLSelectElement);
 
 		this.cibleRepo = new CibleRepository();
 		this.paysRepo = new PaysRepository();
@@ -39,7 +40,6 @@ export default class CibleTab implements Tab<Cible>
 		this.nom.value = "";
 		this.prenom.value = "";
 		this.dateNaissance.value = "";
-		this.pays.value = null;
 
 		document.getElementById("cible-form").addEventListener("submit", this.submitModel.bind(this));
 		document.getElementById("cible-new").addEventListener("click", this.onEntryAdd.bind(this));
@@ -74,15 +74,7 @@ export default class CibleTab implements Tab<Cible>
 
 			// Pays
 			this.modelsPays = await this.paysRepo.getAll();
-			this.pays.innerHTML = "";
-			for (const p of this.modelsPays)
-			{
-				const item = document.createElement("option") as HTMLOptionElement;
-				item.innerText = p.libelle;
-				item.setAttribute("data-code", p.code.toString());
-				this.pays.appendChild(item);
-			}
-			M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
+			this.pays.initialize(this.modelsPays, "libelle");
 		}
 		catch (error)
 		{
@@ -105,12 +97,7 @@ export default class CibleTab implements Tab<Cible>
 		this.selected.nom = this.nom.value;
 		this.selected.prenom = this.prenom.value;
 		this.selected.dateNaissance = this.dateNaissance.value;
-
-		// Pays
-		if (!this.pays.selectedOptions[0]) return;
-		const selectedPays = this.modelsPays.find(i =>
-			i.code === parseInt(this.pays.selectedOptions[0].getAttribute("data-code"), 10));
-		this.selected.pays = { ...this.selected?.pays, ...selectedPays };
+		this.selected.pays = this.pays.getSelection() ?? this.selected.pays;
 
 		isNew ? await this.cibleRepo.add(this.selected)
 			: await this.cibleRepo.update(this.selected);
@@ -134,11 +121,7 @@ export default class CibleTab implements Tab<Cible>
 			defaultDate: daysjs(this.selected?.dateNaissance).toDate(),
 			setDefaultDate: true
 		});
-
-		// Pays
-		this.pays.childNodes.forEach((i: HTMLOptionElement) => i.selected =
-			i.value === this.selected?.pays?.libelle);
-		M.FormSelect.init(this.pays, { dropdownOptions: { container:document.body } });
+		this.pays.render(this.selected?.pays?.code);
 	}
 
 	/**

@@ -7,7 +7,6 @@ import {TypePlanque} from "./TypePlanqueRepository";
 
 export interface Planque extends Model
 {
-	code: number,
 	adresse: string,
 	pays: Pays,
 	typePlanque: TypePlanque

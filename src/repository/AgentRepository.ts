@@ -6,7 +6,6 @@ import Model from "./Model";
 
 export interface Agent extends Model
 {
-	code: number,
 	nom: string,
 	prenom: string,
 	dateNaissance: string,

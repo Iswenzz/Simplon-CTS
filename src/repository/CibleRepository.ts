@@ -6,7 +6,6 @@ import Model from "./Model";
 
 export interface Cible extends Model
 {
-	code: number,
 	nom: string,
 	prenom: string,
 	dateNaissance: string,

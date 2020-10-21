@@ -5,7 +5,6 @@ import Model from "./Model";
 
 export interface TypeMission extends Model
 {
-	code: number,
 	libelle: string,
 	description: string
 }
