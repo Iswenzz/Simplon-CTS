@@ -9,6 +9,9 @@ import * as daysjs from "dayjs";
 import Tab from "./Tab";
 import StatutRepository, {Statut} from "../repository/StatutRepository";
 import TypeMissionRepository, {TypeMission} from "../repository/TypeMissionRepository";
+import DatePickerComponent from "../component/DatePickerComponent";
+import SelectComponent from "../component/SelectComponent";
+import SpecialiteRepository, {Specialite} from "../repository/SpecialiteRepository";
 
 export default class MissionTab implements Tab<Mission>
 {
@@ -20,6 +23,7 @@ export default class MissionTab implements Tab<Mission>
 	public modelsPlanque: Planque[];
 	public modelsStatut: Statut[];
 	public modelsTypeMission: TypeMission[];
+	public modelsSpecialite: Specialite[];
 
 	private readonly missionRepo: MissionRepository;
 	private readonly contactRepo: ContactRepository;
@@ -28,20 +32,21 @@ export default class MissionTab implements Tab<Mission>
 	private readonly planqueRepo: PlanqueRepository;
 	private readonly statutRepo: StatutRepository;
 	private readonly typeMissionRepo: TypeMissionRepository;
+	private readonly specialiteRepo: SpecialiteRepository;
 
 	private readonly list: HTMLUListElement;
 	private readonly code: HTMLHeadingElement;
 	private readonly titre: HTMLInputElement;
 	private readonly description: HTMLTextAreaElement;
-	private readonly dateDebut: HTMLInputElement;
-	private readonly dateFin: HTMLInputElement;
-	private readonly contacts: HTMLSelectElement;
-	private readonly cibles: HTMLSelectElement;
-	private readonly agents: HTMLSelectElement;
-	private readonly planques: HTMLSelectElement;
-	private readonly statut: HTMLSelectElement;
-	private readonly type: HTMLSelectElement;
-	private readonly specialite: HTMLSelectElement;
+	private readonly dateDebut: DatePickerComponent;
+	private readonly dateFin: DatePickerComponent;
+	private readonly contacts: SelectComponent<Contact>;
+	private readonly cibles: SelectComponent<Cible>;
+	private readonly agents: SelectComponent<Agent>;
+	private readonly planques: SelectComponent<Planque>;
+	private readonly statut: SelectComponent<Statut>;
+	private readonly type: SelectComponent<TypeMission>;
+	private readonly specialite: SelectComponent<Specialite>;
 
 	/**
 	 * Initialize a new MissionTab.
@@ -52,15 +57,15 @@ export default class MissionTab implements Tab<Mission>
 		this.code = document.getElementById("mission-header") as HTMLHeadingElement;
 		this.titre = document.getElementById("mission-title") as HTMLInputElement;
 		this.description = document.getElementById("mission-description") as HTMLTextAreaElement;
-		this.dateDebut = document.getElementById("mission-date-start") as HTMLInputElement;
-		this.dateFin = document.getElementById("mission-date-end") as HTMLInputElement;
-		this.contacts = document.getElementById("mission-contacts") as HTMLSelectElement;
-		this.cibles = document.getElementById("mission-cibles") as HTMLSelectElement;
-		this.agents = document.getElementById("mission-agents") as HTMLSelectElement;
-		this.planques = document.getElementById("mission-hideouts") as HTMLSelectElement;
-		this.statut = document.getElementById("mission-statut") as HTMLSelectElement;
-		this.type = document.getElementById("mission-type") as HTMLSelectElement;
-		this.specialite = document.getElementById("mission-specialite") as HTMLSelectElement;
+		this.dateDebut = new DatePickerComponent(document.getElementById("mission-date-start") as HTMLInputElement);
+		this.dateFin = new DatePickerComponent(document.getElementById("mission-date-end") as HTMLInputElement);
+		this.contacts = new SelectComponent<Contact>(document.getElementById("mission-contacts") as HTMLSelectElement);
+		this.cibles = new SelectComponent<Cible>(document.getElementById("mission-cibles") as HTMLSelectElement);
+		this.agents = new SelectComponent<Agent>(document.getElementById("mission-agents") as HTMLSelectElement);
+		this.planques = new SelectComponent<Planque>(document.getElementById("mission-hideouts") as HTMLSelectElement);
+		this.statut = new SelectComponent<Statut>(document.getElementById("mission-statut") as HTMLSelectElement);
+		this.type = new SelectComponent<TypeMission>(document.getElementById("mission-type") as HTMLSelectElement);
+		this.specialite = new SelectComponent<Specialite>(document.getElementById("mission-specialite") as HTMLSelectElement);
 
 		this.missionRepo = new MissionRepository();
 		this.contactRepo = new ContactRepository();
@@ -69,19 +74,11 @@ export default class MissionTab implements Tab<Mission>
 		this.planqueRepo = new PlanqueRepository();
 		this.statutRepo = new StatutRepository();
 		this.typeMissionRepo = new TypeMissionRepository();
+		this.specialiteRepo = new SpecialiteRepository();
 
 		this.selected = null;
 		this.titre.value = "";
 		this.description.value = "";
-		this.dateDebut.value = null;
-		this.dateFin.value = null;
-		this.contacts.value = null;
-		this.cibles.value = null;
-		this.agents.value = null;
-		this.planques.value = null;
-		this.statut.value = null;
-		this.type.value = null;
-		this.specialite.value = null;
 
 		document.getElementById("mission-form").addEventListener("submit", this.submitModel.bind(this));
 		document.getElementById("mission-new").addEventListener("click", this.onEntryAdd.bind(this));
@@ -114,41 +111,17 @@ export default class MissionTab implements Tab<Mission>
 				item.append(del.button);
 			}
 
-			// Contacts
-			this.modelsContact = await this.contactRepo.getAll();
-			this.contacts.innerHTML = "";
-			for (const c of this.modelsContact)
-			{
-				const item = document.createElement("option") as HTMLOptionElement;
-				item.innerText = `${c.prenom} ${c.nom}`;
-				item.setAttribute("data-code", c.code.toString());
-				this.contacts.appendChild(item);
-			}
-			M.FormSelect.init(this.contacts, { dropdownOptions: { container:document.body } });
-
 			// Statut
 			this.modelsStatut = await this.statutRepo.getAll();
-			this.statut.innerHTML = "";
-			for (const s of this.modelsStatut)
-			{
-				const item = document.createElement("option") as HTMLOptionElement;
-				item.innerText = s.libelle;
-				item.setAttribute("data-code", s.code.toString());
-				this.contacts.appendChild(item);
-			}
-			M.FormSelect.init(this.contacts, { dropdownOptions: { container:document.body } });
+			this.statut.initialize(this.modelsStatut, "libelle");
 
 			// TypeMission
 			this.modelsTypeMission = await this.typeMissionRepo.getAll();
-			this.statut.innerHTML = "";
-			for (const t of this.modelsTypeMission)
-			{
-				const item = document.createElement("option") as HTMLOptionElement;
-				item.innerText = t.libelle;
-				item.setAttribute("data-code", t.code.toString());
-				this.contacts.appendChild(item);
-			}
-			M.FormSelect.init(this.contacts, { dropdownOptions: { container:document.body } });
+			this.type.initialize(this.modelsTypeMission, "libelle");
+
+			// Specialite
+			this.modelsSpecialite = await this.specialiteRepo.getAll();
+			this.specialite.initialize(this.modelsSpecialite, "libelle");
 		}
 		catch (error)
 		{
@@ -185,20 +158,11 @@ export default class MissionTab implements Tab<Mission>
 		// Mission
 		this.selected.titre = this.titre.value;
 		this.selected.description = this.description.value;
-		this.selected.dateDebut = this.dateDebut.value;
-		this.selected.dateFin = this.dateFin.value;
-
-		// Statut
-		if (!this.statut.selectedOptions[0]) return;
-		const selectedStatut = this.modelsStatut.find(i =>
-			i.code === parseInt(this.statut.selectedOptions[0].getAttribute("data-code"), 10));
-		this.selected.statut = { ...this.selected?.statut, ...selectedStatut };
-
-		// TypeMission
-		if (!this.type.selectedOptions[0]) return;
-		const selectedType = this.modelsStatut.find(i =>
-			i.code === parseInt(this.type.selectedOptions[0].getAttribute("data-code"), 10));
-		this.selected.type = { ...this.selected?.type, ...selectedType };
+		this.selected.dateDebut = this.dateDebut.picker.value;
+		this.selected.dateFin = this.dateFin.picker.value;
+		this.selected.statut = this.statut.getSelection() ?? this.selected.statut;
+		this.selected.type = this.type.getSelection() ?? this.selected.type;
+		this.selected.specialite = this.specialite.getSelection() ?? this.selected.specialite;
 
 		isNew ? await this.missionRepo.add(this.selected)
 			: await this.missionRepo.update(this.selected);
@@ -215,30 +179,11 @@ export default class MissionTab implements Tab<Mission>
 			? `${this.selected?.titre}` : "Nouvelle Mission";
 		this.titre.value = this.selected?.titre ?? "";
 		this.description.value = this.selected?.description ?? "";
-		this.dateDebut.value = this.selected?.dateDebut ?? "";
-		M.Datepicker.init(this.dateDebut, {
-			container: document.body,
-			format: "yyyy-mm-dd",
-			defaultDate: daysjs(this.selected?.dateDebut).toDate(),
-			setDefaultDate: true
-		});
-		this.dateFin.value = this.selected?.dateFin ?? "";
-		M.Datepicker.init(this.dateFin, {
-			container: document.body,
-			format: "yyyy-mm-dd",
-			defaultDate: daysjs(this.selected?.dateFin).toDate(),
-			setDefaultDate: true
-		});
-
-		// Statut
-		this.statut.childNodes.forEach((i: HTMLOptionElement) => i.selected =
-			i.value === this.selected?.statut?.libelle);
-		M.FormSelect.init(this.statut, { dropdownOptions: { container:document.body } });
-
-		// TypeMission
-		this.type.childNodes.forEach((i: HTMLOptionElement) => i.selected =
-			i.value === this.selected?.type?.libelle);
-		M.FormSelect.init(this.type, { dropdownOptions: { container:document.body } });
+		this.dateDebut.render(this.selected?.dateDebut, "yyyy-mm-dd");
+		this.dateFin.render(this.selected?.dateFin, "yyyy-mm-dd");
+		this.statut.render(this.selected?.statut?.code);
+		this.type.render(this.selected?.type?.code);
+		this.specialite.render(this.selected?.specialite?.code);
 	}
 
 	/**

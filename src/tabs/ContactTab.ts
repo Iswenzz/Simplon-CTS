@@ -4,6 +4,7 @@ import PaysRepository, {Pays} from "../repository/PaysRepository";
 import * as daysjs from "dayjs";
 import Tab from "./Tab";
 import SelectComponent from "../component/SelectComponent";
+import DatePickerComponent from "../component/DatePickerComponent";
 
 export default class ContactTab implements Tab<Contact>
 {
@@ -18,7 +19,7 @@ export default class ContactTab implements Tab<Contact>
 	private readonly code: HTMLHeadingElement;
 	private readonly nom: HTMLInputElement;
 	private readonly prenom: HTMLInputElement;
-	private readonly dateNaissance: HTMLInputElement;
+	private readonly dateNaissance: DatePickerComponent;
 	private readonly pays: SelectComponent<Pays>;
 
 	/**
@@ -30,7 +31,7 @@ export default class ContactTab implements Tab<Contact>
 		this.code = document.getElementById("contact-header") as HTMLHeadingElement;
 		this.nom = document.getElementById("contact-lastname") as HTMLInputElement;
 		this.prenom = document.getElementById("contact-firstname") as HTMLInputElement;
-		this.dateNaissance = document.getElementById("contact-birthdate") as HTMLInputElement;
+		this.dateNaissance = new DatePickerComponent(document.getElementById("contact-birthdate") as HTMLInputElement);
 		this.pays = new SelectComponent<Pays>(document.getElementById("contact-pays") as HTMLSelectElement);
 
 		this.contactRepo = new ContactRepository();
@@ -39,7 +40,6 @@ export default class ContactTab implements Tab<Contact>
 		this.selected = null;
 		this.nom.value = "";
 		this.prenom.value = "";
-		this.dateNaissance.value = "";
 
 		document.getElementById("contact-form").addEventListener("submit", this.submitModel.bind(this));
 		document.getElementById("contact-new").addEventListener("click", this.onEntryAdd.bind(this));
@@ -96,7 +96,7 @@ export default class ContactTab implements Tab<Contact>
 		// Contact
 		this.selected.nom = this.nom.value;
 		this.selected.prenom = this.prenom.value;
-		this.selected.dateNaissance = this.dateNaissance.value;
+		this.selected.dateNaissance = this.dateNaissance.picker.value;
 		this.selected.pays = this.pays.getSelection() ?? this.selected.pays;
 
 		isNew ? await this.contactRepo.add(this.selected)
@@ -114,13 +114,7 @@ export default class ContactTab implements Tab<Contact>
 			? `${this.selected?.prenom} ${this.selected?.nom}` : "Nouveau Contact";
 		this.nom.value = this.selected?.nom ?? "";
 		this.prenom.value = this.selected?.prenom ?? "";
-		this.dateNaissance.value = this.selected?.dateNaissance ?? "";
-		M.Datepicker.init(this.dateNaissance, {
-			container: document.body,
-			format: "yyyy-mm-dd",
-			defaultDate: daysjs(this.selected?.dateNaissance).toDate(),
-			setDefaultDate: true
-		});
+		this.dateNaissance.render(this.selected?.dateNaissance, "yyyy-mm-dd");
 		this.pays.render(this.selected?.pays?.code);
 	}
 
