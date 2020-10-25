@@ -20,23 +20,27 @@ class DAOFactory
 	/**
 	 * Register a DAO object instance from the specified class name.
 	 * @param string $class - The DAO class name to register.
+	 * @return bool
 	 */
-	public static function registerDAO(string $class): void
+	public static function registerDAO(string $class): bool
 	{
 		if (array_key_exists($class, DAOFactory::$daoMap))
-			throw new RuntimeException("DAO for class " . $class . " already exists.");
+			return false;
 		DAOFactory::$daoMap[$class] = new $class;
+		return true;
 	}
 
 	/**
 	 * Unregister a DAO object instance from the specified class name.
 	 * @param string $class - The DAO class name to unregister.
+	 * @return bool
 	 */
-	public static function unregisterDAO(string $class): void
+	public static function unregisterDAO(string $class): bool
 	{
 		if (array_key_exists($class, DAOFactory::$daoMap))
 			unset(DAOFactory::$daoMap[$class]);
 		else
-			throw new RuntimeException("DAO for class " . $class . " not found.");
+			return false;
+		return true;
 	}
 }

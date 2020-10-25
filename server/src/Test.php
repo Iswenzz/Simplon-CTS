@@ -1,14 +1,14 @@
 <?php
 
-require_once __DIR__ . "/dao/SpecialiteDAO.php";
+require_once __DIR__ . "/dao/MissionDAO.php";
 require_once __DIR__ . "/dao/DAOFactory.php";
 
-DAOFactory::registerDAO(SpecialiteDAO::class);
+DAOFactory::registerDAO(MissionDAO::class);
 /**
- * @var SpecialiteDAO $dao
+ * @var MissionDAO $dao
  */
-$dao = DAOFactory::getDAO(SpecialiteDAO::class);
-$result = $dao->getAll();
+$dao = DAOFactory::getDAO(MissionDAO::class);
+$result = $dao->getAllByContact(1);
 
 // UPDATE
 //$update = $result[0];

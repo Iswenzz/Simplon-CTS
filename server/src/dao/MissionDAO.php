@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . "/DAO.php";
 require_once __DIR__ . "/StatutDAO.php";
-require_once __DIR__ . "/TypeMissionDAO.php";
-require_once __DIR__ . "/TypeMissionDAO.php";
+require_once __DIR__ . "/SpecialiteDAO.php";
+require_once __DIR__ . "/ContactDAO.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../model/Mission.php";
 require_once __DIR__ . "/../model/Specialite.php";
@@ -13,8 +13,10 @@ class MissionDAO implements DAO
 	public StatutDAO $statutDAO;
 	public TypeMissionDAO $typeMissionDAO;
 	public SpecialiteDAO $specialiteDAO;
+	public ContactDAO $contactDAO;
 
     public const SELECT_QUERY = "SELECT codeMission, titreMission, descriptionMission, dateDebut, dateFin, codeStatutMission, codeTypeMission, codeSpecialite from Mission";
+    public const SELECT_CONTACT_QUERY = "SELECT a.codeMission, titreMission, descriptionMission, dateDebut, dateFin, codeStatutMission, codeTypeMission, codeSpecialite FROM Aide a JOIN Contact AS c ON a.codeContact = c.codeContact INNER JOIN Mission AS m ON a.codeMission = m.codeMission WHERE a.codeContact = :codeContact";
     public const SELECT_ONE_QUERY = "SELECT codeMission, titreMission, descriptionMission, dateDebut, dateFin, codeStatutMission, codeTypeMission, codeSpecialite from Mission WHERE codeMission = :code";
     public const ADD_QUERY = "INSERT INTO Mission (titreMission, descriptionMission, dateDebut, dateFin, codeStatutMission, codeTypeMission, codeSpecialite) VALUES (:titre, :description, :dateDebut, :dateFin, :codeStatut, :codeType, :codeSpecialite)";
     public const DELETE_QUERY = "DELETE FROM Mission WHERE codeMission = :code";
@@ -26,19 +28,22 @@ class MissionDAO implements DAO
 	public function __construct()
 	{
 		DAOFactory::registerDAO(StatutDAO::class);
-		DAOFactory::registerDAO(TypeMissionDAO::class);
 		DAOFactory::registerDAO(SpecialiteDAO::class);
+		DAOFactory::registerDAO(ContactDAO::class);
 		/**
 		 * @var StatutDAO $statutDAO
 		 * @var TypeMissionDAO $typeMissionDAO
 		 * @var SpecialiteDAO $specialiteDAO
+		 * @var ContactDAO $contactDAO
 		 */
 		$statutDAO = DAOFactory::getDAO(StatutDAO::class);
 		$typeMissionDAO = DAOFactory::getDAO(TypeMissionDAO::class);
 		$specialiteDAO = DAOFactory::getDAO(SpecialiteDAO::class);
+		$contactDAO = DAOFactory::getDAO(ContactDAO::class);
 		$this->statutDAO = $statutDAO;
 		$this->typeMissionDAO = $typeMissionDAO;
 		$this->specialiteDAO = $specialiteDAO;
+		$this->contactDAO = $contactDAO;
 	}
 
     /**
@@ -60,12 +65,44 @@ class MissionDAO implements DAO
                 DateTime::createFromFormat("Y-m-d", $row["dateFin"]),
                 $this->statutDAO->get((int)$row["codeStatutMission"]),
 				$this->typeMissionDAO->get((int)$row["codeTypeMission"]),
-				$this->specialiteDAO->get((int)$row["codeSpecialite"])
+				$this->specialiteDAO->get((int)$row["codeSpecialite"]),
+				$this->contactDAO->getAllByMission((int)$row["codeMission"])
             );
             $missions[] = $mission;
         }
         return $missions;
     }
+
+	/**
+	 * Fetch all missions by contact id
+	 * @param int $codeContact - The contact code.
+	 * @return Contact[]
+	 */
+	public function getAllByContact(int $codeContact): array
+	{
+		$missions = [];
+		$stmt = DatabaseFactory::getConnection()->prepare(MissionDAO::SELECT_CONTACT_QUERY);
+		$stmt->execute([
+			":codeContact" => $codeContact
+		]);
+
+		while ($row = $stmt->fetch())
+		{
+			$mission = new Mission(
+				(int)$row["codeMission"],
+				$row["titreMission"],
+				$row["descriptionMission"],
+				DateTime::createFromFormat("Y-m-d", $row["dateDebut"]),
+				DateTime::createFromFormat("Y-m-d", $row["dateFin"]),
+				$this->statutDAO->get((int)$row["codeStatutMission"]),
+				$this->typeMissionDAO->get((int)$row["codeTypeMission"]),
+				$this->specialiteDAO->get((int)$row["codeSpecialite"]),
+//				$this->contactDAO->getAllByMission((int)$row["codeMission"])
+			);
+			$missions[] = $mission;
+		}
+		return $missions;
+	}
 
     /**
      * Get a mission from its primary key.

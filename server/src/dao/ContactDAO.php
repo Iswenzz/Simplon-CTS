@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/DAO.php";
 require_once __DIR__ . "/PaysDAO.php";
+require_once __DIR__ . "/MissionDAO.php";
 require_once __DIR__ . "/../DatabaseFactory.php";
 require_once __DIR__ . "/../model/Contact.php";
 require_once __DIR__ . "/../model/Pays.php";
@@ -8,8 +9,10 @@ require_once __DIR__ . "/../model/Pays.php";
 class ContactDAO implements DAO
 {
 	public PaysDAO $paysDAO;
+	public MissionDAO $missionDAO;
 
 	public const SELECT_QUERY = "SELECT codeContact, nomContact, prenomContact, dateNaissanceContact, codePays from Contact";
+	public const SELECT_MISSION_QUERY = "SELECT a.codeContact, nomContact, prenomContact, dateNaissanceContact, codePays FROM Aide a JOIN Contact AS c ON a.codeContact = c.codeContact JOIN Mission AS m ON a.codeMission = m.codeMission WHERE a.codeMission = :codeMission";
 	public const SELECT_ONE_QUERY = "SELECT codeContact, nomContact, prenomContact, dateNaissanceContact, codePays from Contact WHERE codeContact = :code";
 	public const ADD_QUERY = "INSERT INTO Contact (nomContact, prenomContact, dateNaissanceContact, codePays) VALUES (:nom, :prenom, :dateNaissance, :codePays)";
 	public const DELETE_QUERY = "DELETE FROM Contact WHERE codeContact = :code";
@@ -21,13 +24,16 @@ class ContactDAO implements DAO
 	public function __construct()
 	{
 		DAOFactory::registerDAO(PaysDAO::class);
+		DAOFactory::registerDAO(MissionDAO::class);
 		/**
 		 * @var PaysDAO $paysDAO
+		 * @var MissionDAO $missionDAO
 		 */
 		$paysDAO = DAOFactory::getDAO(PaysDAO::class);
+		$missionDAO = DAOFactory::getDAO(MissionDAO::class);
 		$this->paysDAO = $paysDAO;
+		$this->missionDAO = $missionDAO;
 	}
-
 
 	/**
 	 * Fetch all rows to get all Contact objects.
@@ -42,15 +48,44 @@ class ContactDAO implements DAO
 		while ($row = $stmt->fetch())
 		{
 			$contact = new Contact(
-				$row["codeContact"],
+				(int)$row["codeContact"],
 				$row["nomContact"],
 				$row["prenomContact"],
-				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceContact"]), 
-				$this->paysDAO->get((int)$row["codePays"])
+				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceContact"]),
+				$this->paysDAO->get((int)$row["codePays"]),
+				$this->missionDAO->getAllByContact((int)$row["codeContact"])
 			);
             $contacts[] = $contact;
         }
         return $contacts;
+	}
+
+	/**
+	 * Fetch all contacts by mission.
+	 * @param int $codeMission - The mission code.
+	 * @return Contact[]
+	 */
+	public function getAllByMission(int $codeMission): array
+	{
+		$contacts = [];
+		$stmt = DatabaseFactory::getConnection()->prepare(ContactDAO::SELECT_MISSION_QUERY);
+		$stmt->execute([
+			":codeMission" => $codeMission
+		]);
+
+		while ($row = $stmt->fetch())
+		{
+			$contact = new Contact(
+				$row["codeContact"],
+				$row["nomContact"],
+				$row["prenomContact"],
+				DateTime::createFromFormat("Y-m-d", $row["dateNaissanceContact"]),
+				$this->paysDAO->get((int)$row["codePays"]),
+//				$this->missionDAO->getAllByContact((int)$row["codeContact"])
+			);
+			$contacts[] = $contact;
+		}
+		return $contacts;
 	}
 
 	/**

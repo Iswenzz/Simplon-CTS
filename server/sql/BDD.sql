@@ -137,9 +137,9 @@ ALTER TABLE Specialite
 ADD CONSTRAINT fk_specialite_typemission FOREIGN KEY (codeTypeMission) REFERENCES TypeMission (codeTypeMission) ON DELETE CASCADE ON UPDATE CASCADE;
 -- aide
 ALTER TABLE Aide
-ADD CONSTRAINT fk_aide_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT fk_aide_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission);
 ALTER TABLE Aide
-ADD CONSTRAINT fk_aide_contact FOREIGN KEY (codeContact) REFERENCES Contact (codeContact) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT fk_aide_contact FOREIGN KEY (codeContact) REFERENCES Contact (codeContact);
 -- visee
 ALTER TABLE Visee
 ADD CONSTRAINT fk_visee_mission FOREIGN KEY (codeMission) REFERENCES Mission (codeMission) ON DELETE CASCADE ON UPDATE CASCADE;
