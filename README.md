@@ -1,4 +1,3 @@
-![](https://i.imgur.com/XFvRaaO.png)
 # Simplon PHP TP
 ![](https://i.imgur.com/8bY94NU.jpg)
 
